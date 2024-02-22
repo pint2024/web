@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+@import url(color.css);
+@import url(text.css);
+
+html,
+body {
+	font-family: "Poppins", "sans-serif";
+	background-color: var(--white-background-color);
+	margin: 0;
+}
+
+.hover-regular:hover {
+	background-color: var(--white-dark-color-transparent);
+	border-radius: 10px;
+}
+
+.br-regular {
+	border-radius: 10px !important;
+}
+
+.cursor-ponteiro {
+	cursor: pointer;
+}
+
+.bg-destaque {
+	background-color: var(--light-primary-color-transparent);
+}
+
+p {
+	padding: 0;
+	margin: 0;
+}
+
+.remove-margin-padding {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.sem-ponto {
+	list-style-type: none;
+}
+
+.link-colorido {
+	color: var(--light-primary-color) !important;
+	background-color: transparent;
+	text-decoration: underline !important;
+}
+
+.link-colorido-perigo {
+	color: var(--danger-color) !important;
+	background-color: transparent;
+	text-decoration: underline !important;
+}
+
+.link-colorido-hover:hover,
+.link-colorido:hover {
+	color: var(--dark-primary-color) !important;
+	cursor: pointer;
+}
+
+.destaque:hover {
+	color: var(--light-primary-color);
+	cursor: pointer;
+}
+
+.conta-imagem-pequena {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+}
+
+.conta-imagem {
+	width: 100px;
+	height: 100px;
+	border-radius: 25%;
+}
+
+.FontAwesomeIconsColor:hover {
+	color: var(--light-primary-color);
+	cursor: pointer;
+}
+
+.FontAwesomeIcons:hover {
+	background-color: var(--white-dark-color-transparent);
+	border-radius: 10px;
+}
+
+.FontAwesomeIconsSmaller {
+	font-size: "1px";
+	padding: 4px;
+}
+
+.utilizadorIcon {
+	width: 35px;
+	height: 38px;
+}
+
+.FontAwesomeIcons,
+.FontAwesomeIconsStatic {
+	font-size: 1.4rem;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.item-ativo {
+	color: var(--primary-color) !important;
+}
+
+.nav-link:hover {
+	color: var(--light-primary-color);
+}
+
+textarea {
+	resize: none;
+}
+
+/** <a> tag **/
+a:link {
+	color: var(--primary-text-color);
+	background-color: transparent;
+	text-decoration: none;
+}
+
+.link-user {
+	text-decoration: none;
+}
+
+.link-user:visited,
+.link-user:active {
+	color: var(--primary-text-color);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.link-user:hover {
+	color: var(--light-primary-color);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+a:visited {
+	color: var(--primary-black-color);
+	background-color: transparent;
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--light-primary-color);
+	background-color: transparent;
+	text-decoration: none;
+}
+
+a:active {
+	color: var(--primary-black-color);
+	background-color: transparent;
+	text-decoration: none;
+}
+
+.no-select {
+	-webkit-user-select: none;
+	/* Safari */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* IE10+/Edge */
+	user-select: none;
+	/* Standard */
+}
+
+/** Scroll Bar **/
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--white-background-color);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--primary-black-color);
+	border-radius: 20px;
+	border: 3px solid var(--white-background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #555;
+}

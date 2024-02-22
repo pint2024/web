@@ -1,25 +1,34 @@
-import logo from './assets/logo.svg';
+/// React
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from 'react';
+
+/// Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
+/// Toastify
+import 'react-toastify/dist/ReactToastify.css';
+
+	/// Estilização
 import './App.css';
 
+/// Componentes
+import Layout from "./layouts/PageLayout/pageLayout";
+import Inicial from "./pages/paginaInicial";
+
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Router>
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					<Route path="/" element={<Inicial />} />
+				</Route>
+			</Routes>
+		</Router>
+	);
 }
 
 export default App;
