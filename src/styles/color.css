@@ -1,34 +1,35 @@
 :root {
-	--dark-primary-color: #00396D;
-	--light-primary-color: #6C90CD;
-	--primary-color: #39639C;
-	--accent-color: #00B8E0;
+	/* Cores principais */
+	--DARK-PRIMARY: #00396D;
+	--LIGHT-PRIMARY: #6C90CD;
+	--LIGHT-PRIMARY-TRANSPARENT: rgba(108, 144, 205, 0.3);
+	--PRIMARY: #39639C;
+	--ACCENT: #00B8E0;
 
 	/* Cores preto e branco*/
-	--primary-black-color: #212121;
-	--secondary-black-color: #181818;
-	--primary-white-color: #FFFFFF;
+	--BLACK: #212121;
+	--BLACK-AUX: #181818;
+	--WHITE: #FFFFFF;
+	--DARKER-WHITE: #d5d5d5;
 
 	/* Cores de texto */
-	--primary-text-color: #0F1419;
-	--secondary-text-color: #536471;
-	--inverse-text-color: #FFFFFF;
+	--TEXT-PRIMARY: #0F1419;
+	--TEXT-SECONDARY: #536471;
+	--TEXT-INVERSE: #FFFFFF;
 
 	/* Cores de destaque */
-	--divider-color: #BDBDBD;
-	--white-background-color: #F0F0F0;
-	--white-dark-color: #d5d5d5;
+	--DIVIDER: #BDBDBD;
+	--BACKGROUND: #F0F0F0;
+	--WHITE-HOVER-TRANSPARENT: rgba(213, 213, 213, 0.3);
 	
 	/* Cores de navegação*/
-	--danger-color: rgb(140, 0, 0);
-	--success-color: rgba(0, 128, 0);
-	--info-color: rgba(0, 0, 128);
+	--DANGER: rgb(140, 0, 0);
+	--DANGER-TRANSPARENT: rgba(255, 0, 0, 0.8);
+	--SUCCESS: rgba(0, 128, 0);
+	--SUCCESS-TRANSPARENT: rgba(0, 128, 0, 0.8);
+	--INFO: rgba(0, 0, 128);
+	--INFO-TRANSPARENT: rgba(0, 0, 128, 0.8);
 
 	/* Versões transparentes*/
-	--light-primary-color-transparent: rgba(108, 144, 205, 0.3);
-	--danger-color-transparent: rgba(255, 0, 0, 0.8);
-	--info-color-transparent: rgba(0, 0, 128, 0.8);
-	--success-color-transparent: rgba(0, 128, 0, 0.8);
-	--white-dark-color-transparent: rgba(213, 213, 213, 0.3);
-	--transparent: rgba(255, 255, 255, 1)
+	--TRANSPARENT: rgba(255, 255, 255, 1)
 }

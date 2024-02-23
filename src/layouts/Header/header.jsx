@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import './header.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../assets/logo.png'
 
 
@@ -25,25 +24,6 @@ function Header() {
 							</li>
 							<li className="nav-item">
 								<Link className='nav-link' to="/beneficios">Benefícios</Link>
-							</li>
-						</ul>
-					</div>
-					<div className="icons">
-						<ul className="navbar-nav">
-							<li className="nav-item">
-								<Link className='text-white nav-link' to="/dashboard">
-									<FontAwesomeIcon icon={["fas", "gauge"]} className='FontAwesomeIcons nav-conta' />
-								</Link>
-							</li>
-							<li className="nav-item" to="">
-								<Link className='text-white nav-link' to="/calendario">
-									<FontAwesomeIcon icon={["fas", "fa-calendar-alt"]} className='FontAwesomeIcons nav-calendario' />
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link className='text-white nav-link' to={`/conta/lucasrei`}>
-									<FontAwesomeIcon icon={["fas", "fa-user"]} className='FontAwesomeIcons nav-conta' />
-								</Link>
 							</li>
 						</ul>
 					</div>

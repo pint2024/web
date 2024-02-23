@@ -1,11 +1,11 @@
-import Popup from "src/components/Popup/popup";
+import Popup from "../components/popup/popup";
 import { useState } from "react";
 
 export const usePopup = () => {
 	const [puIsOpen, setpuIsOpen] = useState(false);
-	const [puTitulo, setpuTitulo] = useState("");
-	const [puSubtitulo, setpuSubtitulo] = useState("");
-	const [puIcons, setpuIcons] = useState("");
+	const [puHeaderTitle, setpuHeaderTitle] = useState("");
+	const [puHeaderSubtitle, setpuHeaderSubtitle] = useState("");
+	const [puHeaderIcons, setpuHeaderIcons] = useState("");
 	const [puBody, setpuBody] = useState("");
 	const [puFooter, setpuFooter] = useState("");
 
@@ -17,53 +17,53 @@ export const usePopup = () => {
 		setpuIsOpen(false);
 	};
 
-	const puDefine = (titulo, subtitulo, icons, body, footer) => {
-		setpuTitulo(titulo);
-		setpuSubtitulo(subtitulo);
-		setpuIcons(icons);
+	const puSet = ({footer, body, headerTitle, headerSubtitle, headerIcons}) => {
+		setpuHeaderTitle(headerTitle);
+		setpuHeaderSubtitle(headerSubtitle);
+		setpuHeaderIcons(headerIcons);
 		setpuBody(body);
 		setpuFooter(footer);
 	}
 
 	const puClear = () => {
-		setpuTitulo("");
-		setpuSubtitulo("");
-		setpuIcons("");
+		setpuHeaderTitle("");
+		setpuHeaderSubtitle("");
+		setpuHeaderIcons("");
 		setpuBody("");
 		setpuFooter("");
 	};
 
 	const puCreate = () => (
-		<div>
+		<section>
 			{puIsOpen && (
 				<Popup
-					titulo={puTitulo}
-					subtitulo={puSubtitulo}
-					childrenHeaderIcons={puIcons}
-					childrenBody={puBody}
-					childrenFooter={puFooter}
+					headerTitle={puHeaderTitle}
+					headerSubtitle={puHeaderSubtitle}
+					headerIcons={puHeaderIcons}
+					body={puBody}
+					footer={puFooter}
 					onClose={puClose}
 				/>
 			)}
-		</div>
+		</section>
 	);
 
 	return {
 		puIsOpen,
-		puTitulo,
-		puSubtitulo,
-		puIcons,
+		puHeaderTitle,
+		puHeaderSubtitle,
+		puHeaderIcons,
 		puBody,
 		puFooter,
 
 		setpuIsOpen,
-		setpuTitulo,
-		setpuSubtitulo,
-		setpuIcons,
+		setpuHeaderTitle,
+		setpuHeaderSubtitle,
+		setpuHeaderIcons,
 		setpuBody,
 		setpuFooter,
 
-		puDefine,
+		puSet,
 		puCreate,
 		puOpen,
 		puClear,
