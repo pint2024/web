@@ -27,13 +27,13 @@ function Home() {
 		conSet({
 			title: "Título da Confirmação",
 			body: "Corpo da Confirmação",
-			onSuccess: handleConfirmationAccepted
+			onSuccess: () => handleConfirmationAccepted
 		});
 		conOpen();
 	};
 
 	const handleConfirmationAccepted = () => {
-        alert("ola");
+        console.log("ola");
 	}
 
 	return (
