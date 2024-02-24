@@ -1,0 +1,54 @@
+@import url(color.css);
+@import url(font.css);
+@import url(scroll-bar.css);
+@import url(text.css);
+
+html,
+body {
+	background-color: var(--WHITE-BACKGROUND);
+	margin: 0;
+}
+
+a { /* Temporario */
+	text-decoration: none;
+  }
+  
+
+p {
+	padding: 0;
+	margin: 0;
+}
+
+.remove-margin-padding {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.remove-bullet {
+	list-style-type: none;
+}
+
+.icon-hover:hover {
+	background-color: var(--WHITE-HOVER-TRANSPARENT);
+	border-radius: 50px;
+	cursor: pointer;
+}
+
+.icon {
+	font-size: 2rem;
+}
+
+textarea {
+	resize: none;
+}
+
+.remove-user-select {
+	-webkit-user-select: none;
+	/* Safari */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* IE10+/Edge */
+	user-select: none;
+	/* Standard */
+}
