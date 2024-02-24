@@ -16,7 +16,14 @@ function Home() {
 			headerIcons: null,
 			body: (
 				<section>
-					<CaixaTexto label={"ola"} />
+					<CaixaTexto 
+						title={"ola"} 
+						prefix={'asd2'}
+						inputType={'number'}
+						marginTop={'asd4'}
+						value={'asd6'}
+						disabled={false}
+					/>
 				</section>
 			),
 			footer: <Botao>Adicionar</Botao>,
@@ -40,10 +47,18 @@ function Home() {
 
 	return (
 		<div>
+			<p>asdfa</p>
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>
 			<Botao handleClick={handleOpenConfirmation}>Confirmação</Botao>
+			<Botao route={'utilizador'}>Redirect</Botao>
 			{puCreate()}
 			{conCreate()}
+			<CaixaTexto 
+				title={"ola"} 
+				prefix={'asd2'}
+				inputType={'text'}
+				value={'asd6'}
+			/>
 		</div>
 	);
 }

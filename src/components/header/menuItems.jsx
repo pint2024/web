@@ -43,6 +43,7 @@ const MenuItems = ({ items, depthLevel }) => {
 			{items.submenu ? (
 				<>
 					<Link
+						className="link"
 						aria-haspopup="menu"
 						aria-expanded={dropdown ? "true" : "false"}
 						onClick={() => toggleDropdown()}

@@ -13,7 +13,7 @@ const Header = () => {
 					<img src={logo} alt="Imagem do utilizador" className="header-site-logo" />
 				</Link>
 				<Navbar />
-				{/*<MobileNav />*/}
+				<MobileNav />
 				<div>
 					<Link to="/utilizador" className="header-user">
 						Utilizador

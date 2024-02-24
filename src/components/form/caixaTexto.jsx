@@ -1,33 +1,38 @@
+import React, { useState } from "react";
+
 export function CaixaTexto({
-	label,
-	placeholder,
-	addon = false,
+	title,
+	prefix = false,
 	inputType = "text",
-	marginTop = 0,
-	handleChange = null,
-	value = null,
-	maxChar = 5000,
-	disable = false,
-	defaultValue = null
+	handleChange,
+	value: propValue = "",
+	disabled = false,
 }) {
+	const [value, setValue] = useState(propValue);
+
+	const handleInputChange = (e) => {
+		setValue(e.target.value);
+		if (typeof handleChange === 'function') {
+			handleChange(e);
+		}
+	};
+
 	return (
-		<div className={`TextBox mt-${marginTop}`}>
-			{label && <label htmlFor="inputNome">{label}</label>}
+		<div className="TextBox">
+			{title && <label htmlFor="inputNome">{title}</label>}
 			<div className="input-group">
-				{addon && (
+				{prefix && (
 					<span className="input-group-text" id="basic-addon">
-						{addon}
+						{prefix}
 					</span>
 				)}
 				<input
 					type={inputType}
 					className="form-control"
 					id="inputNome"
-					placeholder={placeholder}
-					onChange={handleChange}
+					onChange={handleInputChange}
 					value={value}
-					title={label}
-					disabled={disable}
+					disabled={disabled}
 				/>
 			</div>
 		</div>

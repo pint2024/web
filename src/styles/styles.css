@@ -2,8 +2,11 @@
 @import url(font.css);
 @import url(scroll-bar.css);
 @import url(text.css);
+@import url(utils.css);
 
-body, html {
+
+body,
+html {
 	background-color: var(--BACKGROUND);
 	margin: 0;
 }
