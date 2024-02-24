@@ -4,6 +4,10 @@ import * as Icon from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
 
 export const Confirmacao = ({ title, body, onSuccess, onClose }) => {
+	const handleSuccessClick = () => {
+		onSuccess();
+		onClose();
+	}
 	return (
 		<section>
 			<Modal show={true} onHide={onClose} centered>
@@ -12,7 +16,7 @@ export const Confirmacao = ({ title, body, onSuccess, onClose }) => {
 				</Modal.Header>
 				<Modal.Body>{body}</Modal.Body>
 				<Modal.Footer>
-					<Botao variant="success" handleClick={onSuccess}>
+					<Botao variant="success" handleClick={handleSuccessClick}>
 						<Icon.CheckLg /> Sim
 					</Botao>
 					<Botao variant="danger" handleClick={onClose}>

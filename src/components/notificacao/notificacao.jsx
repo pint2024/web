@@ -1,8 +1,8 @@
-import "./toast.css";
+import "./notificacao.css";
 import { toast } from "react-toastify";
 
 
-export function Toast(text, tipo = "success") {
+export function Notificacao(text, tipo = "success") {
 	if (tipo !== 'success' && tipo !== 'info' && tipo !== 'warn' && tipo !== 'error')
 		console.error('PopupStatus tipo está mal configurado!');
 	toast[tipo](text, {

@@ -2,7 +2,8 @@ import React from "react";
 import { usePopup } from "../hooks/usePopup";
 import { Botao, CaixaTexto } from "../components/form/__init__";
 import { useConfirmation } from "../hooks/useConfirmation";
-import { Toast } from "../components/toast/toast";
+import { Notificacao } from "../components/notificacao/notificacao";
+import { getColor } from "../data/colors";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -33,7 +34,8 @@ function Home() {
 	};
 
 	const handleConfirmationAccepted = () => {
-        console.log("ola");
+        console.log(getColor('DANGER'));
+		Notificacao('opa');
 	}
 
 	return (

@@ -10,11 +10,8 @@ import "bootstrap/dist/js/bootstrap.min.js";
 /// Toastify
 import "react-toastify/dist/ReactToastify.css";
 
-/// Estilização
-import "./App.css";
-
 /// Componentes
-import Layout from "./layouts/PageLayout/pageLayout";
+import Layout from "./layouts/pageLayout";
 import Home from "./pages/home";
 
 function App() {

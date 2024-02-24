@@ -14,7 +14,7 @@
 	padding: 10px 20px;
 	margin-bottom: 10px;
 	border-radius: 4px;
-	color: var(--inverse-text-color);
+	color: var(--TEXT-INVERSE);
 	height: 80px;
 	width: 400px;
 	overflow: hidden;
@@ -24,19 +24,19 @@
 }
 
 .notification.success {
-	background-color: var(--success-color-transparent);
+	background-color: var(--SUCCESS-TRANSPARENT);
 }
 
 .notification.info {
-	background-color: var(--info-color-transparent);
+	background-color: var(--INFO-TRANSPARENT);
 }
 
 .notification.error {
-	background-color: var(--danger-color-transparent);
+	background-color: var(--DANGER-TRANSPARENT);
 }
 
 .popupCloseIcon {
-	color: var(--inverse-text-color);
+	color: var(--TEXT-INVERSE);
 	position: absolute;
 	top: 10px;
 	right: 10px;

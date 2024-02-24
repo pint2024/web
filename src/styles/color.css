@@ -5,8 +5,6 @@
 	--LIGHT-PRIMARY-TRANSPARENT: rgba(108, 144, 205, 0.3);
 	--PRIMARY: #39639C;
 	--ACCENT: #00B8E0;
-
-	/* Cores preto e branco*/
 	--BLACK: #212121;
 	--BLACK-AUX: #181818;
 	--WHITE: #FFFFFF;
@@ -15,7 +13,7 @@
 	/* Cores de texto */
 	--TEXT-PRIMARY: #0F1419;
 	--TEXT-SECONDARY: #536471;
-	--TEXT-INVERSE: #FFFFFF;
+	--TEXT-INVERSE: var(--WHITE);
 
 	/* Cores de destaque */
 	--DIVIDER: #BDBDBD;
@@ -29,7 +27,5 @@
 	--SUCCESS-TRANSPARENT: rgba(0, 128, 0, 0.8);
 	--INFO: rgba(0, 0, 128);
 	--INFO-TRANSPARENT: rgba(0, 0, 128, 0.8);
-
-	/* Versões transparentes*/
-	--TRANSPARENT: rgba(255, 255, 255, 1)
+	--SCROLL-BAR: #555;
 }
