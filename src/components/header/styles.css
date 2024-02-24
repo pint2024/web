@@ -89,7 +89,7 @@ header * {
 
 .desktop-nav .menu-items a:hover,
 .desktop-nav .menu-items button:hover {
-	background-color: var(--WHITE-HOVER-TRANSPARENT);
+	background-color: var(--WHITE-HOVER);
 	border-radius: 10px;
 }
 
@@ -188,7 +188,7 @@ header * {
 
 	.mobile-nav .menu-items a:hover,
 	.mobile-nav .menu-items button:hover {
-		background-color: var(--WHITE-HOVER-TRANSPARENT);
+		background-color: var(--WHITE-HOVER);
 		border-radius: 10px;
 	}
 

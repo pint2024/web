@@ -1,16 +1,15 @@
+@import url(animations.css);
 @import url(color.css);
 @import url(font.css);
 @import url(scroll-bar.css);
 @import url(text.css);
 @import url(utils.css);
-
-
-main {
-    background-color: var(--BACKGROUND) !important; /* temp */
-}
+@import url(z-index.css);
 
 body,
-html {
+html,
+main {
+    background-color: var(--BACKGROUND);
 	margin: 0;
 }
 
@@ -31,4 +30,8 @@ p {
 
 textarea {
 	resize: none;
+}
+
+svg {
+	color: var(--ICON-PRIMARY);
 }

@@ -1,0 +1,62 @@
+@import url(../../styles/color.css);
+
+/* Font Sizes */
+.text-size-4 {
+	font-weight: bold;
+	font-style: normal;
+	font-size: 23px;
+	line-height: 1.5;
+}
+
+.text-size-3 {
+	font-weight: 501;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+.text-size-2 {
+	font-weight: 500;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.text-size-1 {
+	font-weight: normal;
+	font-style: normal;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.text-size-0 {
+	font-weight: normal;
+	font-style: normal;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+/* Font Types */
+.text-types-primary {
+	color: var(--TEXT-PRIMARY);
+}
+
+.text-types-secondary {
+	color: var(--TEXT-SECONDARY);
+}
+
+.text-types-success {
+	color: var(--TEXT-SUCCESS);
+}
+
+.text-types-danger {
+	color: var(--TEXT-DANGER);
+}
+
+.text-types-inverse {
+	color: var(--TEXT-INVERSE);
+}
+
+.text-comp {
+	margin: 0;
+}

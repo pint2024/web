@@ -10,7 +10,7 @@ export const Confirmacao = ({ title, body, onSuccess, onClose }) => {
 	}
 	return (
 		<section>
-			<Modal show={true} onHide={onClose} centered>
+			<Modal show={true} onHide={onClose} className="confirmacao-modal" centered>
 				<Modal.Header closeButton>
 					<Modal.Title>{title}</Modal.Title>
 				</Modal.Header>

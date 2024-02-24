@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/styles.css";
+import "./styles/main.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
-import "./components/header/header.css";
+import "./components/header/styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -23,7 +23,7 @@
 }
 
 .icon-hover:hover {
-	background-color: var(--WHITE-HOVER-TRANSPARENT);
+	background-color: var(--WHITE-HOVER);
 	border-radius: 50px;
 	cursor: pointer;
 }
@@ -38,4 +38,8 @@
 
 .link {
 	color: red;
+}
+
+.icon-inverse {
+	color: var(--ICON-INVERSE) !important;
 }

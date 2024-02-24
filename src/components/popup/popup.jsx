@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as Icon from "react-bootstrap-icons";
+import Texto from "../texto/texto";
 
 export default function Popup({ headerTitle, headerSubtitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);
@@ -31,9 +32,9 @@ export default function Popup({ headerTitle, headerSubtitle, headerIcons, body, 
 	});
 
 	return (
-		<div className="Popup">
+		<div className="popup-modal">
 			<div className="modal-backdrop bg-dark opacity-50"></div>
-			<div className="modal fade show" id={"popuploadable"} aria-hidden="true" style={{ display: "block" }}>
+			<div className="modal fade show d-block" id={"popuploadable"} aria-hidden="true">
 				<div
 					className="modal-dialog modal-lg modal-content"
 					style={{ height: "100%", maxHeight: 90 + "vh" }}
@@ -41,10 +42,10 @@ export default function Popup({ headerTitle, headerSubtitle, headerIcons, body, 
 				>
 					<section className="modal-header d-flex justify-content-between">
 						<div>
-							<h2 className="modal-title" id="exampleModalLabel">
+							<Texto size={3} className="modal-title" id="exampleModalLabel">
 								{headerTitle}
-							</h2>
-							<div>{headerSubtitle}</div>
+							</Texto>
+							<Texto size={3}>{headerSubtitle}</Texto>
 						</div>
 						<div className="d-flex align-items-center">
 							{headerIcons}

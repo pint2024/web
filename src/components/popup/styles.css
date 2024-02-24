@@ -1,0 +1,17 @@
+@import url(../../styles/z-index.css);
+
+.confirmacao-modal {
+	z-index: var(--CONFIRMACAO);
+}
+
+.confirmacao-modal .modal-backdrop {
+	z-index: var(--CONFIRMACAO-BACKGROUND);
+}
+
+.popup-modal {
+	z-index: var(--POPUP);
+}
+
+.popup-modal .modal-backdrop {
+	z-index: var(--POPUP-BACKGROUND);
+}

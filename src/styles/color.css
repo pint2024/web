@@ -10,15 +10,20 @@
 	--WHITE: #FFFFFF;
 	--DARKER-WHITE: #d5d5d5;
 
-	/* Cores de texto */
-	--TEXT-PRIMARY: #0F1419;
-	--TEXT-SECONDARY: #536471;
+	/* Cores de conteudo */
+	--ICON-PRIMARY: var(--TEXT-PRIMARY);
+	--ICON-SECONDARY: var(--TEXT-SECONDARY);
+	--ICON-INVERSE: var(--TEXT-INVERSE);
+	--TEXT-PRIMARY: #202124;
+	--TEXT-SECONDARY: #909090;
 	--TEXT-INVERSE: var(--WHITE);
+	--TEXT-DANGER: var(--DANGER);
+	--TEXT-SUCCESS: var(--SUCCESS);
 
 	/* Cores de destaque */
 	--DIVIDER: #BDBDBD;
-	--BACKGROUND: #F0F0F0;
-	--WHITE-HOVER-TRANSPARENT: rgba(213, 213, 213, 0.3);
+	--BACKGROUND: #f8f7f5;
+	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
 	
 	/* Cores de navegação*/
 	--DANGER: rgb(140, 0, 0);

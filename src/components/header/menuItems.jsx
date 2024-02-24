@@ -53,8 +53,8 @@ const MenuItems = ({ items, depthLevel }) => {
 					>
 						{items.title}
 						{depthLevel > 0 
-							? <Icons.CaretRightFill className="header-submenu-arrow" /> 
-							: <Icons.CaretDownFill className="header-menu-arrow" />}
+							? <Icons.CaretRightFill className="header-submenu-arrow icon-inverse" /> 
+							: <Icons.CaretDownFill className="header-menu-arrow icon-inverse" />}
 					</Link>
 					<Dropdown depthLevel={depthLevel} submenus={items.submenu} dropdown={dropdown} />
 				</>

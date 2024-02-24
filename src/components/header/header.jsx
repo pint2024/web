@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 import { Link } from "react-router-dom";
 import userDefault from "../../assets/user-default.png";
 import logo from "../../assets/logo.png";
-import "./header.css";
+import "./styles.css";
 
 const Header = () => {
 	return (
