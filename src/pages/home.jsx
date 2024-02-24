@@ -16,12 +16,12 @@ function Home() {
 			headerIcons: null,
 			body: (
 				<section>
-					<CaixaTexto 
-						title={"ola"} 
-						prefix={'asd2'}
-						inputType={'number'}
-						marginTop={'asd4'}
-						value={'asd6'}
+					<CaixaTexto
+						title={"ola"}
+						prefix={"asd2"}
+						inputType={"number"}
+						marginTop={"asd4"}
+						value={"asd6"}
 						disabled={false}
 					/>
 				</section>
@@ -35,30 +35,25 @@ function Home() {
 		conSet({
 			title: "Título da Confirmação",
 			body: "Corpo da Confirmação",
-			onSuccess: () => handleConfirmationAccepted
+			onSuccess: () => handleConfirmationAccepted,
 		});
 		conOpen();
 	};
 
 	const handleConfirmationAccepted = () => {
-        console.log(getColor('DANGER'));
-		Notificacao('opa');
-	}
+		console.log(getColor("DANGER"));
+		Notificacao("opa");
+	};
 
 	return (
 		<div>
 			<p>asdfa</p>
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>
 			<Botao handleClick={handleOpenConfirmation}>Confirmação</Botao>
-			<Botao route={'utilizador'}>Redirect</Botao>
+			<Botao route={"utilizador"}>Redirect</Botao>
 			{puCreate()}
 			{conCreate()}
-			<CaixaTexto 
-				title={"ola"} 
-				prefix={'asd2'}
-				inputType={'text'}
-				value={'asd6'}
-			/>
+			<CaixaTexto title={"ola"} prefix={"asd2"} inputType={"text"} value={"asd6"} />
 		</div>
 	);
 }

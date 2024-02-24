@@ -47,10 +47,14 @@ const MenuItems = ({ items, depthLevel }) => {
 						aria-haspopup="menu"
 						aria-expanded={dropdown ? "true" : "false"}
 						onClick={() => toggleDropdown()}
-						to={items.route ? items.route : null}
+						to={items.route 
+							? items.route 
+							: null}
 					>
 						{items.title}
-						{depthLevel > 0 ? <Icons.CaretRightFill className="header-submenu-arrow" /> : <Icons.CaretDownFill className="header-menu-arrow" />}
+						{depthLevel > 0 
+							? <Icons.CaretRightFill className="header-submenu-arrow" /> 
+							: <Icons.CaretDownFill className="header-menu-arrow" />}
 					</Link>
 					<Dropdown depthLevel={depthLevel} submenus={items.submenu} dropdown={dropdown} />
 				</>

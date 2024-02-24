@@ -13,16 +13,18 @@ header * {
 .header-menu-arrow,
 .header-submenu-arrow {
 	margin-left: 5px;
+	text-decoration: none;
+	background-color: transparent; /*temp*/
 }
 
-.header-site-logo {
-	max-width: 100px;
+.header-site-logo,
+.header-user-image {
+	max-width: 50px;
 	height: auto;
 }
 
 .header-user-image {
-	max-width: 50px;
-	height: auto;
+	border-radius: 50px;
 }
 
 .header-user {
@@ -32,7 +34,7 @@ header * {
 .nav-area {
 	display: flex;
 	align-items: center;
-	max-width: 1200px;
+	max-width: 90%;
 	margin: 0 auto;
 	padding: 10px 20px;
 	justify-content: space-between;
@@ -56,7 +58,6 @@ header * {
 
 .desktop-nav .menu-items {
 	position: relative;
-	font-size: 14px;
 }
 
 .desktop-nav .menu-items a {
@@ -188,6 +189,7 @@ header * {
 	.mobile-nav .menu-items a:hover,
 	.mobile-nav .menu-items button:hover {
 		background-color: var(--WHITE-HOVER-TRANSPARENT);
+		border-radius: 10px;
 	}
 
 	.mobile-nav .arrow::after {

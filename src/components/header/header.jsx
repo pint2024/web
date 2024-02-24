@@ -1,8 +1,8 @@
 import MobileNav from "./mobile/navMobile";
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
-import userDefault from '../../assets/user-default.png'
-import logo from '../../assets/logo.png'
+import userDefault from "../../assets/user-default.png";
+import logo from "../../assets/logo.png";
 import "./header.css";
 
 const Header = () => {
@@ -16,7 +16,6 @@ const Header = () => {
 				<MobileNav />
 				<div>
 					<Link to="/utilizador" className="header-user">
-						Utilizador
 						<img src={userDefault} alt="Imagem do utilizador" className="header-user-image" />
 					</Link>
 				</div>

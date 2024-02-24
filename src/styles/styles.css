@@ -5,14 +5,22 @@
 @import url(utils.css);
 
 
+main {
+    background-color: var(--BACKGROUND) !important; /* temp */
+}
+
 body,
 html {
-	background-color: var(--BACKGROUND);
 	margin: 0;
 }
 
-a {
-	/* Temporario */
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: var(--TEXT-PRIMARY);
+	background-color: transparent;
 	text-decoration: none;
 }
 
