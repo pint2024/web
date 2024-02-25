@@ -1,12 +1,14 @@
-import "./styles.css";
+import "./cartao.css";
 import Cartao from "./cartao";
 import Texto from "../texto/texto";
 import * as Icon from "react-bootstrap-icons";
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "../../data/constants";
-import { Botao } from "../form/botao";
 import { usePopup } from "../../hooks/usePopup";
 import { CaixaTexto } from "../form/caixaTexto";
+import { Link } from "react-router-dom";
+import { SmallUser } from "../utilizador-info/smallUser";
+import User from "../../assets/logo2.png";
 
 function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
 	const [likes, setLikes] = useState(numLikes);
@@ -37,31 +39,16 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 
 	const handleOpenPopup = () => {
 		puSet({
-			headerTitle: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-			headerSubtitle: "Joaumzin Gaimeplais",
+			headerInfo: <SmallUser nome={'Joaumzin Gaimeplais'} data={'à 1h'} imagem={User} /> ,
+			headerTitle: <>{titulo}</>,
 			headerIcons: (
-				<>
+				<Link to={id}>
 					<Icon.ArrowsAngleExpand />
-				</>
+				</Link>
 			),
 			body: (
-				<div className="">
-					<section className="comentario-modal-post">
-						<Texto>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-							industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-							and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-							leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-							with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-							publishing software like Aldus PageMaker including versions of Lorem Ipsum. It is a long established
-							fact that a reader will be distracted by the readable content of a page when looking at its layout.
-							The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-							opposed to using 'Content here, content here\', making it look like readable English. Many desktop
-							publishing packages and web page editors now use Lorem Ipsum as their default model text, and a
-							search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have
-							evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-						</Texto>
-					</section>
+				<div>
+					<section className="comentario-modal-post">{descricao}</section>
 					<section className="comentario-modal-elements">
 						<div className="d-flex gap-5 mt-4">
 							<div
@@ -83,7 +70,6 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 					<section className="comentario-modal-comments"></section>
 				</div>
 			),
-			footer: <Botao>Adicionar</Botao>,
 		});
 		puOpen();
 	};

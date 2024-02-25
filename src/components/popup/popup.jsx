@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import * as Icon from "react-bootstrap-icons";
 import Texto from "../texto/texto";
 import { Modal } from "react-bootstrap";
-import { ModalBase } from "./modal";
+import { ModalBase } from "./modalBase";
 
-export default function Popup({ headerTitle, headerSubtitle, headerIcons, body, footer, onClose }) {
+export default function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);
 
 	function handlePopupClose() {
@@ -36,20 +36,21 @@ export default function Popup({ headerTitle, headerSubtitle, headerIcons, body, 
 	});
 
 	return (
-		<>
+		<section>
 			<ModalBase
-				header={
-					<>
+				headerInfo={headerInfo}
+				headerTitle={
+					<section className="popup-title">
 						<Texto size={3}>{headerTitle}</Texto>
-						<Texto size={2}>{headerSubtitle}</Texto>
-					</>
+					</section>
 				}
 				headerIcons={headerIcons}
 				footer={footer}
 				onClose={onClose}
+				className="modal-popup"
 			>
-				{body}
+				<section className="popup-body mt-3">{body}</section>
 			</ModalBase>
-		</>
+		</section>
 	);
 }

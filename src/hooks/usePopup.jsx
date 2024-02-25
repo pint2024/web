@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export const usePopup = () => {
 	const [puIsOpen, setpuIsOpen] = useState(false);
 	const [puHeaderTitle, setpuHeaderTitle] = useState("");
-	const [puHeaderSubtitle, setpuHeaderSubtitle] = useState("");
+	const [puHeaderInfo, setpuHeaderInfo] = useState("");
 	const [puHeaderIcons, setpuHeaderIcons] = useState("");
 	const [puBody, setpuBody] = useState("");
 	const [puFooter, setpuFooter] = useState("");
@@ -14,12 +14,12 @@ export const usePopup = () => {
 		console.log("Estado atualizado:", {
 		  puIsOpen,
 		  puHeaderTitle,
-		  puHeaderSubtitle,
+		  puHeaderInfo,
 		  puHeaderIcons,
 		  puBody,
 		  puFooter,
 		});
-	  }, [puIsOpen, puHeaderTitle, puHeaderSubtitle, puHeaderIcons, puBody, puFooter]);
+	  }, [puIsOpen, puHeaderTitle, puHeaderInfo, puHeaderIcons, puBody, puFooter]);
 
 	const puOpen = () => {
 		setpuIsOpen(true);
@@ -29,17 +29,17 @@ export const usePopup = () => {
 		setpuIsOpen(false);
 	};
 
-	const puSet = ({ footer, body, headerTitle, headerSubtitle, headerIcons }) => {
+	const puSet = ({ footer, body, headerTitle, headerInfo, headerIcons }) => {
+		setpuHeaderInfo(() => headerInfo);
 		setpuHeaderTitle(() => headerTitle);
-		setpuHeaderSubtitle(() => headerSubtitle);
 		setpuHeaderIcons(() => headerIcons);
 		setpuBody(() => body);
 		setpuFooter(() => footer);
 	};
 
 	const puClear = () => {
+		setpuHeaderInfo("");
 		setpuHeaderTitle("");
-		setpuHeaderSubtitle("");
 		setpuHeaderIcons("");
 		setpuBody("");
 		setpuFooter("");
@@ -49,8 +49,8 @@ export const usePopup = () => {
 		<section>
 			{puIsOpen && (
 				<Popup
+					headerInfo={puHeaderInfo}
 					headerTitle={puHeaderTitle}
-					headerSubtitle={puHeaderSubtitle}
 					headerIcons={puHeaderIcons}
 					body={puBody}
 					footer={puFooter}
@@ -63,14 +63,14 @@ export const usePopup = () => {
 	return {
 		puIsOpen,
 		puHeaderTitle,
-		puHeaderSubtitle,
+		puHeaderInfo,
 		puHeaderIcons,
 		puBody,
 		puFooter,
 
 		setpuIsOpen,
 		setpuHeaderTitle,
-		setpuHeaderSubtitle,
+		setpuHeaderInfo,
 		setpuHeaderIcons,
 		setpuBody,
 		setpuFooter,

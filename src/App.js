@@ -19,7 +19,7 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route path="/" element={<Home />} />
+					<Route path="/atividade" element={<Home />} />
 				</Route>
 			</Routes>
 		</Router>
