@@ -7,11 +7,13 @@ export function CaixaTexto({
 	handleChange,
 	value: propValue = "",
 	disabled = false,
+	placeholder = ''
 }) {
 	const [value, setValue] = useState(propValue);
 
 	const handleInputChange = (e) => {
 		setValue(e.target.value);
+		console.log(e.target.value)
 		if (typeof handleChange === 'function') {
 			handleChange(e);
 		}

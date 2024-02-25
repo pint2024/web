@@ -1,6 +1,6 @@
 import "./styles.css";
 
-const Text = ({className = '', style = '', size = 1, type = "primary", children}) => {
+const Texto = ({className = '', style = '', size = 1, type = "primary", children}) => {
 	const validSizes = [0, 1, 2, 3, 4];
 	const isSizeValid = validSizes.includes(size) ? true : false;
 
@@ -17,4 +17,4 @@ const Text = ({className = '', style = '', size = 1, type = "primary", children}
 	);
 };
 
-export default Text;
+export default Texto;

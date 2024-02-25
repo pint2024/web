@@ -1,0 +1,41 @@
+@import url(../../styles/z-index.css);
+
+.confirmacao-modal {
+	z-index: var(--CONFIRMACAO);
+}
+
+.confirmacao-modal .modal-backdrop {
+	z-index: var(--CONFIRMACAO-BACKGROUND);
+}
+
+.popup-modal {
+	z-index: var(--POPUP);
+}
+
+.popup-modal .modal-backdrop {
+	z-index: var(--POPUP-BACKGROUND);
+}
+
+.modal-largo {
+	max-width: 90vh;
+	display: "flex";
+	align-items: "center";
+	justify-content: "center";
+	min-height: "100vh";
+}
+
+.modal-header-icons svg:hover {
+	background-color: var(--WHITE-HOVER);
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 3px;
+	padding: 3px;
+}
+
+.modal-header-icons svg {
+	font-size: 1.5rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 3px;
+	padding: 3px;
+}

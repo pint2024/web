@@ -41,5 +41,9 @@
 }
 
 .icon-inverse {
-	color: var(--ICON-INVERSE) !important;
+	color: var(--ICON-INVERSE);
+}
+
+.icon-color {
+	color: var(--DARK-PRIMARY) !important;
 }

@@ -1,5 +1,5 @@
 import Popup from "../components/popup/popup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const usePopup = () => {
 	const [puIsOpen, setpuIsOpen] = useState(false);
@@ -9,6 +9,18 @@ export const usePopup = () => {
 	const [puBody, setpuBody] = useState("");
 	const [puFooter, setpuFooter] = useState("");
 
+	useEffect(() => {
+		// Lógica que será executada quando ocorrerem mudanças nos estados especificados
+		console.log("Estado atualizado:", {
+		  puIsOpen,
+		  puHeaderTitle,
+		  puHeaderSubtitle,
+		  puHeaderIcons,
+		  puBody,
+		  puFooter,
+		});
+	  }, [puIsOpen, puHeaderTitle, puHeaderSubtitle, puHeaderIcons, puBody, puFooter]);
+
 	const puOpen = () => {
 		setpuIsOpen(true);
 	};
@@ -17,13 +29,13 @@ export const usePopup = () => {
 		setpuIsOpen(false);
 	};
 
-	const puSet = ({footer, body, headerTitle, headerSubtitle, headerIcons}) => {
-		setpuHeaderTitle(headerTitle);
-		setpuHeaderSubtitle(headerSubtitle);
-		setpuHeaderIcons(headerIcons);
-		setpuBody(body);
-		setpuFooter(footer);
-	}
+	const puSet = ({ footer, body, headerTitle, headerSubtitle, headerIcons }) => {
+		setpuHeaderTitle(() => headerTitle);
+		setpuHeaderSubtitle(() => headerSubtitle);
+		setpuHeaderIcons(() => headerIcons);
+		setpuBody(() => body);
+		setpuFooter(() => footer);
+	};
 
 	const puClear = () => {
 		setpuHeaderTitle("");
@@ -33,7 +45,7 @@ export const usePopup = () => {
 		setpuFooter("");
 	};
 
-	const puCreate = () => (
+	const puCreate = (...propriedades) => (
 		<section>
 			{puIsOpen && (
 				<Popup

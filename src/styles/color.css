@@ -10,6 +10,7 @@
 	--WHITE: #FFFFFF;
 	--DARKER-WHITE: #d5d5d5;
 
+
 	/* Cores de conteudo */
 	--ICON-PRIMARY: var(--TEXT-PRIMARY);
 	--ICON-SECONDARY: var(--TEXT-SECONDARY);
@@ -17,13 +18,16 @@
 	--TEXT-PRIMARY: #202124;
 	--TEXT-SECONDARY: #909090;
 	--TEXT-INVERSE: var(--WHITE);
-	--TEXT-DANGER: var(--DANGER);
-	--TEXT-SUCCESS: var(--SUCCESS);
+	--TEXT-DANGER: #58151c;
+	--TEXT-SUCCESS: #0a3622;
+	--TEXT-INFO: #055160;
+	
 
 	/* Cores de destaque */
 	--DIVIDER: #BDBDBD;
 	--BACKGROUND: #f8f7f5;
 	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
+	
 	
 	/* Cores de navegação*/
 	--DANGER: rgb(140, 0, 0);

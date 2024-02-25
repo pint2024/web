@@ -1,3 +1,7 @@
+.main-cartao {
+	cursor: pointer;
+}
+
 .card-body {
 	border-radius: 10px;
 }
