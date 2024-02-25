@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
-
-html,
-body {
-	font-family: "Poppins", "sans-serif";
+* {
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+	line-height: 1.43;
+	font-weight: 400;
+	letter-spacing: 0px;
 }

@@ -10,11 +10,8 @@ import "bootstrap/dist/js/bootstrap.min.js";
 /// Toastify
 import "react-toastify/dist/ReactToastify.css";
 
-/// Estilização
-import "./App.css";
-
 /// Componentes
-import Layout from "./layouts/PageLayout/pageLayout";
+import Layout from "./layouts/pageLayout";
 import Home from "./pages/home";
 
 function App() {
@@ -22,7 +19,7 @@ function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route path="/" element={<Home />} />
+					<Route path="/atividade" element={<Home />} />
 				</Route>
 			</Routes>
 		</Router>

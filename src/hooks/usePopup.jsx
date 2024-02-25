@@ -1,13 +1,25 @@
 import Popup from "../components/popup/popup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const usePopup = () => {
 	const [puIsOpen, setpuIsOpen] = useState(false);
 	const [puHeaderTitle, setpuHeaderTitle] = useState("");
-	const [puHeaderSubtitle, setpuHeaderSubtitle] = useState("");
+	const [puHeaderInfo, setpuHeaderInfo] = useState("");
 	const [puHeaderIcons, setpuHeaderIcons] = useState("");
 	const [puBody, setpuBody] = useState("");
 	const [puFooter, setpuFooter] = useState("");
+
+	useEffect(() => {
+		// Lógica que será executada quando ocorrerem mudanças nos estados especificados
+		console.log("Estado atualizado:", {
+		  puIsOpen,
+		  puHeaderTitle,
+		  puHeaderInfo,
+		  puHeaderIcons,
+		  puBody,
+		  puFooter,
+		});
+	  }, [puIsOpen, puHeaderTitle, puHeaderInfo, puHeaderIcons, puBody, puFooter]);
 
 	const puOpen = () => {
 		setpuIsOpen(true);
@@ -17,28 +29,28 @@ export const usePopup = () => {
 		setpuIsOpen(false);
 	};
 
-	const puSet = ({footer, body, headerTitle, headerSubtitle, headerIcons}) => {
-		setpuHeaderTitle(headerTitle);
-		setpuHeaderSubtitle(headerSubtitle);
-		setpuHeaderIcons(headerIcons);
-		setpuBody(body);
-		setpuFooter(footer);
-	}
+	const puSet = ({ footer, body, headerTitle, headerInfo, headerIcons }) => {
+		setpuHeaderInfo(() => headerInfo);
+		setpuHeaderTitle(() => headerTitle);
+		setpuHeaderIcons(() => headerIcons);
+		setpuBody(() => body);
+		setpuFooter(() => footer);
+	};
 
 	const puClear = () => {
+		setpuHeaderInfo("");
 		setpuHeaderTitle("");
-		setpuHeaderSubtitle("");
 		setpuHeaderIcons("");
 		setpuBody("");
 		setpuFooter("");
 	};
 
-	const puCreate = () => (
+	const puCreate = (...propriedades) => (
 		<section>
 			{puIsOpen && (
 				<Popup
+					headerInfo={puHeaderInfo}
 					headerTitle={puHeaderTitle}
-					headerSubtitle={puHeaderSubtitle}
 					headerIcons={puHeaderIcons}
 					body={puBody}
 					footer={puFooter}
@@ -51,14 +63,14 @@ export const usePopup = () => {
 	return {
 		puIsOpen,
 		puHeaderTitle,
-		puHeaderSubtitle,
+		puHeaderInfo,
 		puHeaderIcons,
 		puBody,
 		puFooter,
 
 		setpuIsOpen,
 		setpuHeaderTitle,
-		setpuHeaderSubtitle,
+		setpuHeaderInfo,
 		setpuHeaderIcons,
 		setpuBody,
 		setpuFooter,

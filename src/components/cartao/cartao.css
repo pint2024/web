@@ -1,0 +1,42 @@
+.main-cartao {
+	cursor: pointer;
+}
+
+.card-body {
+	border-radius: 10px;
+}
+
+.cartao-corpo-descricao {
+	height: 40px;
+}
+
+.card-title-header,
+.card-body-descricao {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.card-body-descricao {
+	-webkit-line-clamp: 2;
+}
+
+.main-cartao .container {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+/* post */
+.post-icon:hover {
+	background-color: var(--WHITE-HOVER);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.post-icon {
+	padding: 5px;
+}

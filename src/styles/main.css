@@ -1,0 +1,37 @@
+@import url(animations.css);
+@import url(color.css);
+@import url(font.css);
+@import url(scroll-bar.css);
+@import url(text.css);
+@import url(utils.css);
+@import url(z-index.css);
+
+body,
+html,
+main {
+    background-color: var(--BACKGROUND);
+	margin: 0;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: var(--TEXT-PRIMARY);
+	background-color: transparent;
+	text-decoration: none;
+}
+
+p {
+	padding: 0;
+	margin: 0;
+}
+
+textarea {
+	resize: none;
+}
+
+svg {
+	color: var(--ICON-PRIMARY);
+}

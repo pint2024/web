@@ -5,22 +5,29 @@
 	--LIGHT-PRIMARY-TRANSPARENT: rgba(108, 144, 205, 0.3);
 	--PRIMARY: #39639C;
 	--ACCENT: #00B8E0;
-
-	/* Cores preto e branco*/
 	--BLACK: #212121;
 	--BLACK-AUX: #181818;
 	--WHITE: #FFFFFF;
 	--DARKER-WHITE: #d5d5d5;
 
-	/* Cores de texto */
-	--TEXT-PRIMARY: #0F1419;
-	--TEXT-SECONDARY: #536471;
-	--TEXT-INVERSE: #FFFFFF;
+
+	/* Cores de conteudo */
+	--ICON-PRIMARY: var(--TEXT-PRIMARY);
+	--ICON-SECONDARY: var(--TEXT-SECONDARY);
+	--ICON-INVERSE: var(--TEXT-INVERSE);
+	--TEXT-PRIMARY: #202124;
+	--TEXT-SECONDARY: #909090;
+	--TEXT-INVERSE: var(--WHITE);
+	--TEXT-DANGER: #58151c;
+	--TEXT-SUCCESS: #0a3622;
+	--TEXT-INFO: #055160;
+	
 
 	/* Cores de destaque */
 	--DIVIDER: #BDBDBD;
-	--BACKGROUND: #F0F0F0;
-	--WHITE-HOVER-TRANSPARENT: rgba(213, 213, 213, 0.3);
+	--BACKGROUND: #f8f7f5;
+	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
+	
 	
 	/* Cores de navegação*/
 	--DANGER: rgb(140, 0, 0);
@@ -29,7 +36,5 @@
 	--SUCCESS-TRANSPARENT: rgba(0, 128, 0, 0.8);
 	--INFO: rgba(0, 0, 128);
 	--INFO-TRANSPARENT: rgba(0, 0, 128, 0.8);
-
-	/* Versões transparentes*/
-	--TRANSPARENT: rgba(255, 255, 255, 1)
+	--SCROLL-BAR: #555
 }
