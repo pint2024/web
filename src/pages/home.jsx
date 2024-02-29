@@ -10,6 +10,8 @@ import User from "../assets/user-default.png";
 import Texto from "../components/texto/texto";
 import Post from "../components/cartao/post";
 import { PLACEHOLDER_TEXT } from "../data/constants";
+import Footer from "../components/footer/footer";
+
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();

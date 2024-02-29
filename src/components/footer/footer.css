@@ -1,0 +1,56 @@
+/* Adicione este conteúdo ao seu arquivo footer.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .main-footer {
+    background-color: var(--BLACK);
+    color: var(--TEXT-INVERSE);
+    padding: 20px 0;
+    margin-top: auto;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .left-content, .right-content {
+    width: 48%;
+    color: var(--TEXT-INVERSE);
+  }
+  
+  .left-content p, .left-content a, .right-content a {
+    margin: 5px 10px; 
+    color: var(--TEXT-INVERSE);
+  }
+  
+  .social-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .social-icons p {
+    margin-right: 10px;
+    color: var(--TEXT-INVERSE);
+  }
+  
+  .footer-content a {
+    text-decoration: none;
+    color: var(--TEXT-INVERSE);
+  }
+  
+  .footer-content a:hover {
+    color: var(--WHITE);
+  }
+  
