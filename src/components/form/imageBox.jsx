@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
-export function CaixaTexto({
+export function ImageBox({
 	title,
-	prefix = false,
-	inputType = "text",
 	handleChange,
 	value: propValue = "",
 	disabled = false,
@@ -12,31 +10,31 @@ export function CaixaTexto({
 	const [value, setValue] = useState(propValue);
 
 	const handleInputChange = (e) => {
-		setValue(e.target.value);
-		console.log(e.target.value)
+		setValue(e.target.files[0]);
 		if (typeof handleChange === 'function') {
 			handleChange(e);
 		}
 	};
 
 	return (
-		<div className="TextBox">
-			{title && <label htmlFor="inputNome">{title}</label>}
+		<div className="ImageBox">
+			{title && <label htmlFor="inputImage">{title}</label>}
 			<div className="input-group">
-				{prefix && (
-					<span className="input-group-text" id="basic-addon">
-						{prefix}
-					</span>
-				)}
 				<input
-					type={inputType}
+					type="file"
 					className="form-control"
-					id="inputNome"
+					id="inputImage"
 					onChange={handleInputChange}
-					value={value}
 					disabled={disabled}
 				/>
 			</div>
+			{value && (
+				<img
+					src={URL.createObjectURL(value)}
+					alt="Imagem selecionada"
+					style={{ width: "100%", height: "auto" }}
+				/>
+			)}
 		</div>
 	);
 }
