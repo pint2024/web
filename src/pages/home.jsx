@@ -49,7 +49,10 @@ function Home() {
 	};
 
 	const handleConfirmationAccepted = () => {
-		Notificacao("opa");
+		Notificacao("opa", "success");
+		Notificacao("opa", "info");
+		Notificacao("opa", "warn");
+		Notificacao("opa", "error");
 	};
 
 	return (
@@ -58,6 +61,7 @@ function Home() {
 			{puCreate()}
 			{conCreate()}
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
+			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 			<div style={{ marginLeft: '1%', marginRight: '', marginTop: "2%" }}>
 				<Post
 					id={1}
