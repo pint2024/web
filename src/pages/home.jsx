@@ -47,7 +47,7 @@ function Home() {
 	};
 
 	const handleConfirmationAccepted = () => {
-		Notificacao("opa");
+		Notificacao("ola sou uma notificação");
 	};
 
 	return (
