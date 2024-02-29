@@ -25,6 +25,19 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+<!--PAra brincar daqui a baixo-->
+    <title>Imagens lado a lado</title>
+    <style>
+      img {
+          max-width: 30%; /* Reduces the maximum width of the image to 30% of its container */
+          height: auto; /* Maintains the aspect ratio of the image */
+          object-fit: contain; /* Ensures the image stays within its boundary */
+          display: inline-block; /* Displays the images side by side */
+          vertical-align: middle; /* Vertically centers the images */
+          margin-right: 1%; /* Adds a little space between the images */
+      }
+  </style>
+    <!----Ate aqui-->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +52,32 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <style>
+      .image-container {
+          display: flex; /* This will lay out its children in a line, side by side. */
+          justify-content: space-between; /* This will add space between the images. */
+      }
+      .image-container img {
+          width: 30%; /* This will make each image take up 30% of the width of the container. */
+          height: auto; /* This will maintain the aspect ratio of the images. */
+      }
+  </style>
+  <style>
+    .centered-title {
+      text-align: center;
+      color:pink;
+    }
+    </style>
+    
+    <h1 class="centered-title">Los Vagabundos</h1>
+  <div class="image-container">
+    
+    <img src="https://cdn.discordapp.com/attachments/1113864764616093778/1212800538148864120/IMG_20231128_165333.jpg?ex=65f32785&is=65e0b285&hm=b003257534a6be7445233efeb6000dd5cc50da8ddaf0b1be5b77aefa421da441&" alt="Jonas Pitolas">
+    <img src="https://cdn.discordapp.com/attachments/1113864764616093778/1212800536328413276/IMG_20240229_140247_710.webp?ex=65f32784&is=65e0b284&hm=56bf754df06afd1156f1fb483525dfed87ecb16207b449d84b20981c89b732fb&" alt="O Grande Chouriço">
+    <img src="https://cdn.discordapp.com/attachments/1113864764616093778/1210247986052071464/IMG_20240222_103943_007.webp?ex=65f318c5&is=65e0a3c5&hm=e7025233cb8b7e3db001f06851a1ebc8a6daca42f040fc99325d49134ac6831d&" alt="O Nativo">
+    </div>
+    <img class ="centered-title"src="https://e7.pngegg.com/pngimages/363/401/png-clipart-lgbt-flag-miscellaneous-flags.png">
+
   </body>
 </html>
