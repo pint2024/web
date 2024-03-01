@@ -1,30 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./footer.css";  
-import * as Icon from "react-bootstrap-icons";
+import "./footer.css";
+import Texto from "../texto/texto";
+import Icon from "../icons/icon";
 
 function Footer() {
-  return (
-    <footer className="main-footer">
-      <div className="footer-content">
-        <div className="align-items-left d-flex">
-          <p>An IBM Group Company</p>
-          <p>@sofitnsa Todos os direitos reservados</p>
-          <Link to="/politica-de-privacidade">Política de Privacidade</Link>
-          <Link to="/condicoes-de-utilizacao">Condições de Utilização</Link>
-        </div>
-        <div className="right-content">
-          <Link to="/sobre-nos">Sobre Nós</Link>
-          <Link to="/contacte-nos">Contacte-nos</Link>
-          <div className="social-icons">
-            <Icon.Google className="text-white"/> 
-            <Icon.Facebook className="text-white"/> 
-            <Icon.TwitterX className="text-white"/>        
-            </div>
-        </div>
-      </div>
-    </footer>
-  );
+	return (
+		<section className="footer-content d-flex justify-content-between">
+			<div className="align-items-left d-flex gap-4 align-items-center">
+				<Texto>An IBM Group Company</Texto>
+				<Texto>@ Sofitnsa Todos os direitos reservados</Texto>
+				<Link to="/politica-de-privacidade">
+					<Texto>Política de Privacidade</Texto>
+				</Link>
+			</div>
+			<div className="align-items-right d-flex gap-4 align-items-center">
+				<Link to="/sobre-nos">Sobre nós</Link>
+				<Link to="/contacte-nos">Contacte-nos:</Link>
+				<div className="d-flex gap-2">
+					<Link to="https://www.facebook.com/">
+						<Icon iconName="Facebook" type="inverse" />
+					</Link>
+					<Link to="https://x.com">
+						<Icon iconName="TwitterX" type="inverse" />
+					</Link>
+				</div>
+			</div>
+		</section>
+	);
 }
 
 export default Footer;

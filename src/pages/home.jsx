@@ -57,6 +57,7 @@ function Home() {
 
 	return (
 		<div>
+			<Texto size={4}>Ola reis</Texto>
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>
 			{puCreate()}
 			{conCreate()}

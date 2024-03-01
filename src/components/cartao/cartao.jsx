@@ -25,7 +25,7 @@ function Cartao({
 						{titulo}
 					</Texto>
 				</div>
-				<div className="cartao-corpo-descricao" title={descricao}>
+				<div className="cartao-corpo-descricao">
 					<Texto className="card-body-descricao">{descricao}</Texto>
 				</div>
 				{footer ? <div className="remove-user-select">{footer}</div> : null}

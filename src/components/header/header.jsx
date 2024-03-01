@@ -7,7 +7,7 @@ import "./styles.css";
 
 const Header = () => {
 	return (
-		<header>
+		<section>
 			<div className="nav-area">
 				<Link to="/" className="header-logo">
 					<img src={logo} alt="Imagem do utilizador" className="header-site-logo" />
@@ -20,7 +20,7 @@ const Header = () => {
 					</Link>
 				</div>
 			</div>
-		</header>
+		</section>
 	);
 };
 
