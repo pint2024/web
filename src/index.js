@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import "./components/header/styles.css";
+import { LoadingProvider } from "./contexts/loadingContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<body>
 		<React.StrictMode>
-			<ToastContainer />
-			<App />
+			<LoadingProvider>
+				<ToastContainer />
+				<App />
+			</LoadingProvider>
 		</React.StrictMode>
 	</body>
 );

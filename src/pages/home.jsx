@@ -11,11 +11,14 @@ import Texto from "../components/texto/texto";
 import Post from "../components/cartao/post";
 import { PLACEHOLDER_TEXT } from "../data/constants";
 import Footer from "../components/footer/footer";
+import Loading from "../components/loading/loading";
+import { useLoading } from "../hooks/useLoading"
 
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
 	const { conSet, conOpen, conCreate } = useConfirmation(false);
+	const { startLoading, stopLoading } = useLoading();
 
 	const handleOpenPopup = () => {
 		puSet({
@@ -53,6 +56,12 @@ function Home() {
 		Notificacao("opa", "info");
 		Notificacao("opa", "warn");
 		Notificacao("opa", "error");
+		startLoading();
+		setTimeout(aux, 1000);
+	};
+
+	const aux = () => {
+		stopLoading();
 	};
 
 	return (
@@ -61,6 +70,8 @@ function Home() {
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>
 			{puCreate()}
 			{conCreate()}
+
+			{Loading}
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 			<div style={{ marginLeft: '1%', marginRight: '', marginTop: "2%" }}>
