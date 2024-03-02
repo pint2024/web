@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as Icon from "react-bootstrap-icons";
-import Texto from "../texto/texto";
+import Texto from "components/texto/texto";
 
 function Popup({ headerTitle, headerSubtitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);

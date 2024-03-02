@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "./cartao.css";
-import User from "../../assets/logo2.png";
-import Texto from "../texto/texto";
-import { SmallUser } from "../utilizador-info/smallUser";
+import User from "assets/logo2.png";
+import Texto from "components/texto/texto";
+import { SmallUser } from "components/utilizador-info/smallUser";
 
 function Cartao({
 	id = 0,

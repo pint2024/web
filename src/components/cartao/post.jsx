@@ -1,14 +1,14 @@
 import "./cartao.css";
 import Cartao from "./cartao";
-import Texto from "../texto/texto";
+import Texto from "components/texto/texto";
 import * as Icon from "react-bootstrap-icons";
 import { useState } from "react";
-import { GOSTO_ANIMATION } from "../../data/constants";
-import { usePopup } from "../../hooks/usePopup";
-import { CaixaTexto } from "../form/caixaTexto";
+import { GOSTO_ANIMATION } from "data/constants";
+import { usePopup } from "hooks/usePopup";
+import { CaixaTexto } from "components/form/caixaTexto";
 import { Link } from "react-router-dom";
-import { SmallUser } from "../utilizador-info/smallUser";
-import User from "../../assets/logo2.png";
+import { SmallUser } from "components/utilizador-info/smallUser";
+import User from "assets/logo2.png";
 
 function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
 	const [likes, setLikes] = useState(numLikes);

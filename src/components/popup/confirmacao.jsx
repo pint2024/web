@@ -1,5 +1,5 @@
 import React from "react";
-import { Botao } from "../form/__init__";
+import { Botao } from "components/form/__init__";
 import * as Icon from "react-bootstrap-icons";
 import { Modal } from "react-bootstrap";
 import { ModalBase } from "./modalBase";

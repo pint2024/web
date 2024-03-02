@@ -1,24 +1,48 @@
-import React from "react";
-import { usePopup } from "../hooks/usePopup";
-import { Botao, CaixaTexto } from "../components/form/__init__";
-import { useConfirmation } from "../hooks/useConfirmation";
-import { Notificacao } from "../components/notificacao/notificacao";
-import { getColor } from "../data/colors";
-import Cartao from "../components/cartao/cartao";
-import Logo from "../assets/logo.png";
-import User from "../assets/user-default.png";
-import Texto from "../components/texto/texto";
-import Post from "../components/cartao/post";
-import { PLACEHOLDER_TEXT } from "../data/constants";
-import Footer from "../components/footer/footer";
-import Loading from "../components/loading/loading";
-import { useLoading } from "../hooks/useLoading"
-
+import React, { useEffect, useState } from "react";
+import { usePopup } from "hooks/usePopup";
+import { Botao, CaixaTexto } from "components/form/__init__";
+import { useConfirmation } from "hooks/useConfirmation";
+import { Notificacao } from "components/notificacao/notificacao";
+import Texto from "components/texto/texto";
+import Post from "components/cartao/post";
+import { PLACEHOLDER_TEXT } from "data/constants";
+import Loading from "components/loading/loading";
+import { useLoading } from "hooks/useLoading";
+import { myAxios } from "api/axios";
+import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
 	const { conSet, conOpen, conCreate } = useConfirmation(false);
 	const { startLoading, stopLoading } = useLoading();
+	const [data, setdata] = useState();
+	const [user, setuser] = useState();
+
+	/*useEffect(() => {
+		async function atualizarData() {
+			const response = await atualizarRequest("atividade", 16, {
+				"titulo": "titulo teste123 atualizado",
+				"descricao": "descricao teste123 atualizado",
+			});
+			console.log(response);
+			setdata(response);
+		}
+
+		atualizarData();
+	}, [setdata]);*/
+
+
+	/*useEffect(() => {
+		async function fetchUtilizador() {
+			startLoading();
+			const response = await listarRequest("utilizador");
+			stopLoading();
+			console.log(response);
+			setuser(response);
+		}
+
+		fetchUtilizador();
+	}, [setuser]);*/
 
 	const handleOpenPopup = () => {
 		puSet({
@@ -60,6 +84,15 @@ function Home() {
 		setTimeout(aux, 1000);
 	};
 
+	const buscaData = () => {
+		const teste = listarRequest({
+			url: "/atividade/listar",
+			id: 10,
+		});
+
+		console.log("ola", teste);
+	};
+
 	const aux = () => {
 		stopLoading();
 	};
@@ -74,12 +107,13 @@ function Home() {
 			{Loading}
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
-			<div style={{ marginLeft: '1%', marginRight: '', marginTop: "2%" }}>
+			<Botao handleClick={buscaData}>Vai buscar puta</Botao>
+			<div style={{ marginLeft: "1%", marginRight: "", marginTop: "2%" }}>
 				<Post
 					id={1}
-					titulo={'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'}
+					titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
 					descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
-					date={'à 1h'}
+					date={"à 1h"}
 					utilizador={"Joaumzin Gaimeplais"}
 				/>
 			</div>

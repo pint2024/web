@@ -1,4 +1,4 @@
-import Texto from "../texto/texto";
+import Texto from "components/texto/texto";
 import './utilizador-info.css'
 
 export const SmallUser = ({ imagem, nome, data }) => {

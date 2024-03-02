@@ -1,5 +1,5 @@
 import { createContext, useMemo, useState } from "react";
-import Loading from "../components/loading/loading";
+import Loading from "components/loading/loading";
 
 export const LoadingContext = createContext();
 

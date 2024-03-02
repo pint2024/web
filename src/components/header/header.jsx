@@ -1,8 +1,8 @@
 import MobileNav from "./mobile/navMobile";
 import Navbar from "./navbar";
 import { Link } from "react-router-dom";
-import userDefault from "../../assets/user-default.png";
-import logo from "../../assets/logo.png";
+import userDefault from "assets/user-default.png";
+import logo from "assets/logo.png";
 import "./styles.css";
 
 const Header = () => {
