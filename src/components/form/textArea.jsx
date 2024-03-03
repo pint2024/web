@@ -36,6 +36,7 @@ export function TextArea({
 					value={value}
 					disabled={disabled}
 					placeholder={placeholder}
+					style={{ resize: "none" }}
 				/>
 			</div>
 		</div>

@@ -6,7 +6,7 @@ export function ComboBox({
 	handleChange,
 	value: propValue = "",
 	disabled = false,
-	placeholder = ''
+	placeholder = '-'
 }) {
 	const [value, setValue] = useState(propValue);
 
@@ -27,7 +27,7 @@ export function ComboBox({
 				value={value}
 				disabled={disabled}
 			>
-				<option value="">{placeholder}</option>
+				<option value="placeHolder">{placeholder}</option>
 				{options.map((option, index) => (
 					<option key={index} value={option.value}>
 						{option.label}

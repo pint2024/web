@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { usePopup } from "hooks/usePopup";
-import { Botao, CaixaTexto } from "components/form/__init__";
+import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea } from "components/form/__init__";
 import { useConfirmation } from "hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import Texto from "components/texto/texto";
@@ -104,7 +104,7 @@ function Home() {
 			{puCreate()}
 			{conCreate()}
 
-			{Loading}
+
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 			<Botao handleClick={buscaData}>Vai buscar puta</Botao>
