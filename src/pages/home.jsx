@@ -10,6 +10,7 @@ import Loading from "components/loading/loading";
 import { useLoading } from "hooks/useLoading";
 import { myAxios } from "api/axios";
 import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
+import { GraficoBarras } from "components/graficos/__init__";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -30,7 +31,6 @@ function Home() {
 
 		atualizarData();
 	}, [setdata]);*/
-
 
 	/*useEffect(() => {
 		async function fetchUtilizador() {
@@ -97,6 +97,19 @@ function Home() {
 		stopLoading();
 	};
 
+	/*const dadosFicticios = {
+		labels: ["Categoria 1", "Categoria 2", "Categoria 3", "Categoria 4", "Categoria 5"],
+		datasets: [
+			{
+				label: "Dados Fictícios",
+				data: [30, 45, 20, 75, 60],
+				backgroundColor: "rgba(75,192,192,0.6)",
+				borderColor: "rgba(75,192,192,1)",
+				borderWidth: 1,
+			},
+		],
+	};*/
+
 	return (
 		<div>
 			<Texto size={4}>Ola reis</Texto>
@@ -104,6 +117,7 @@ function Home() {
 			{puCreate()}
 			{conCreate()}
 
+			{/*<GraficoBarras chartData={dadosFicticios} Nome="Grafico de Exemplo" />*/}
 
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
