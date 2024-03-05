@@ -4,7 +4,7 @@ import Texto from "components/texto/texto";
 import * as Icon from "react-bootstrap-icons";
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
-import { usePopup } from "hooks/usePopup";
+import { usePopup } from "custom/hooks/usePopup";
 import { CaixaTexto } from "components/form/caixaTexto";
 import { Link } from "react-router-dom";
 import { SmallUser } from "components/utilizador-info/smallUser";

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { usePopup } from "hooks/usePopup";
+import { usePopup } from "custom/hooks/usePopup";
 import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea } from "components/form/__init__";
-import { useConfirmation } from "hooks/useConfirmation";
+import { useConfirmation } from "custom/hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import Texto from "components/texto/texto";
 import Post from "components/cartao/post";
 import { PLACEHOLDER_TEXT } from "data/constants";
 import Loading from "components/loading/loading";
-import { useLoading } from "hooks/useLoading";
+import { useLoading } from "custom/hooks/useLoading";
 import { myAxios } from "api/axios";
 import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
 import { GraficoBarras } from "components/graficos/__init__";

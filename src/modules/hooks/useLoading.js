@@ -1,5 +1,5 @@
 import { useContext, useState, useMemo } from "react";
-import { LoadingContext } from "hooks/loadingContext";
+import { LoadingContext } from "custom/providers/loadingProvider";
 
 
 export const useLoading = () => {
