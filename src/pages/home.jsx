@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { usePopup } from "custom/hooks/usePopup";
-import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea } from "components/form/__init__";
-import { useConfirmation } from "custom/hooks/useConfirmation";
+import { usePopup } from "modules/hooks/usePopup";
+import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea, CheckBox } from "components/form/__init__";
+import { useConfirmation } from "modules/hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import Texto from "components/texto/texto";
 import Post from "components/cartao/post";
 import { PLACEHOLDER_TEXT } from "data/constants";
 import Loading from "components/loading/loading";
-import { useLoading } from "custom/hooks/useLoading";
+import { useLoading } from "modules/hooks/useLoading";
 import { myAxios } from "api/axios";
 import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
 import { GraficoBarras } from "components/graficos/__init__";
@@ -122,6 +122,9 @@ function Home() {
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 			<Botao handleClick={buscaData}>Vai buscar puta</Botao>
+
+			<CheckBox/>
+
 			<div style={{ marginLeft: "1%", marginRight: "", marginTop: "2%" }}>
 				<Post
 					id={1}
