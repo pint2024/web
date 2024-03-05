@@ -32,7 +32,7 @@ function Home() {
 		atualizarData();
 	}, [setdata]);*/
 
-	/*useEffect(() => {
+	useEffect(() => {
 		async function fetchUtilizador() {
 			startLoading();
 			const response = await listarRequest("utilizador");
@@ -42,7 +42,7 @@ function Home() {
 		}
 
 		fetchUtilizador();
-	}, [setuser]);*/
+	}, [setuser]);
 
 	const handleOpenPopup = () => {
 		puSet({
@@ -84,15 +84,6 @@ function Home() {
 		setTimeout(aux, 1000);
 	};
 
-	const buscaData = () => {
-		const teste = listarRequest({
-			url: "/atividade/listar",
-			id: 10,
-		});
-
-		console.log("ola", teste);
-	};
-
 	const aux = () => {
 		stopLoading();
 	};
@@ -121,7 +112,6 @@ function Home() {
 
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
-			<Botao handleClick={buscaData}>Vai buscar puta</Botao>
 
 			<CheckBox/>
 
