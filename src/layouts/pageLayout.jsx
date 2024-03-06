@@ -1,22 +1,24 @@
-import { Outlet } from 'react-router-dom';
-import Header from '../components/header/header';
+import { Outlet } from "react-router-dom";
+import Header from "components/header/header";
+import Footer from "components/footer/footer";
+import PageContent from "./pageContent";
 
-/** Components */
-
-function Layout() {
+function PageLayout() {
 	return (
-		<div className='Layout'>
-			<section style={{ display: 'block' }}>
+		<body>
+			<header>
 				<Header />
-			</section>
-			<main className='content-wrapper'>
-				<Outlet />
+			</header>
+			<main>
+				<PageContent>
+					<Outlet />
+				</PageContent>
 			</main>
 			<footer>
-
+				<Footer />
 			</footer>
-		</div>
+		</body>
 	);
 }
 
-export default Layout;
+export default PageLayout;

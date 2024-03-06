@@ -1,0 +1,14 @@
+footer {
+	background-color: var(--BLACK);
+	color: var(--TEXT-INVERSE);
+	padding: 20px 20px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+.footer-content a,
+.footer-content p,
+.footer-social-icons {
+	color: var(--TEXT-INVERSE);
+}

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 
 export function Notificacao(text, tipo = "success") {
-	if (tipo !== 'success' && tipo !== 'info' && tipo !== 'warn' && tipo !== 'error')
+	if (tipo.includes(['success', 'info', 'warn', 'error']))
 		console.error('PopupStatus tipo está mal configurado!');
 	toast[tipo](text, {
 		position: "top-right",

@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import * as Icon from "react-bootstrap-icons";
-import Texto from "../texto/texto";
-import { Modal } from "react-bootstrap";
+import Texto from "components/texto/texto";
 import { ModalBase } from "./modalBase";
 
 export default function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onClose }) {
