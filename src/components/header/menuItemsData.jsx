@@ -78,18 +78,12 @@ const navItems = [
 ];
 
 const criarObjeto = (data, parentRoute = null) => {
-	console.log('criarObjeto');
+	console.log("criarObjeto");
 	return data.map((item) => ({
 		title: item.title,
-		route: parentRoute
-			? parentRoute + item.route
-			: item.route,
-		submenu: item.submenu 
-			? criarObjeto(item.submenu, parentRoute 
-				? parentRoute + item.route 
-				: item.route) 
-			: undefined,
+		route: parentRoute ? parentRoute + item.route : item.route,
+		submenu: item.submenu ? criarObjeto(item.submenu, parentRoute ? parentRoute + item.route : item.route) : undefined,
 	}));
-}
+};
 
 export const menuItemsData = criarObjeto(navItems);

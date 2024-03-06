@@ -9,14 +9,12 @@ import { LoadingProvider } from "modules/providers/loadingProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<body>
-		<React.StrictMode>
-			<LoadingProvider>
-				<ToastContainer />
-				<App />
-			</LoadingProvider>
-		</React.StrictMode>
-	</body>
+	<React.StrictMode>
+		<LoadingProvider>
+			<ToastContainer />
+			<App />
+		</LoadingProvider>
+	</React.StrictMode>
 );
 
 reportWebVitals();

@@ -1,12 +1,16 @@
+import Texto from "components/texto/texto";
 import React from "react";
 
 export default function NotFound() {
-  return (
-    <div>
-      <h1 className="display-4">
-        <span className="text-danger">404</span> Page Not Found
-      </h1>
-      <p className="lead">This Page you are looking doesn't exists !!!</p>
-    </div>
-  );
+	return (
+		<>
+			<div className="d-flex gap-3">
+				<Texto size={5} type="danger">
+					404
+				</Texto>
+				<Texto size={5}>Pagina não foi encontrada</Texto>
+			</div>
+			<p className="lead">O que estas aqui a fazer mongoloide? Vai po caralho</p>
+		</>
+	);
 }

@@ -1,5 +1,5 @@
 const Texto = ({ className = "", style = "", size = 1, type = "primary", children }) => {
-	const validSizes = [0, 1, 2, 3, 4];
+	const validSizes = [0, 1, 2, 3, 4, 5];
 	const isSizeValid = validSizes.includes(size) ? true : false;
 
 	const validTypes = ["primary", "secondary", "success", "danger", "inverse"];

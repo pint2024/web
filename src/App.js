@@ -1,5 +1,5 @@
 /// React
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React from "react";
 
 /// Bootstrap
@@ -11,16 +11,15 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "react-toastify/dist/ReactToastify.css";
 
 /// Componentes
-import PageLayout from "./layouts/pageLayout";
-import Home from "./pages/home";
+import { renderRoutes } from "./routes";
+import { PageLayout } from "layouts/pageLayout";
 
 function App() {
 	return (
 		<Router>
 			<Routes>
 				<Route path="/" element={<PageLayout />}>
-					<Route path="/atividade" element={<Home />} />
-					
+					{renderRoutes}
 				</Route>
 			</Routes>
 		</Router>

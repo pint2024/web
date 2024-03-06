@@ -3,9 +3,9 @@ import Header from "components/header/header";
 import Footer from "components/footer/footer";
 import PageContent from "./pageContent";
 
-function PageLayout() {
+export function PageLayout() {
 	return (
-		<body>
+		<div>
 			<header>
 				<Header />
 			</header>
@@ -17,8 +17,6 @@ function PageLayout() {
 			<footer>
 				<Footer />
 			</footer>
-		</body>
+		</div>
 	);
 }
-
-export default PageLayout;

@@ -11,6 +11,7 @@ import { useLoading } from "modules/hooks/useLoading";
 import { myAxios } from "api/axios";
 import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
 import { GraficoBarras } from "components/graficos/__init__";
+import { Tempo } from "utils/dataUtils";
 
 
 function Home() {
@@ -44,6 +45,15 @@ function Home() {
 
 		fetchUtilizador();
 	}, [setuser]);*/
+
+	useEffect(() => {
+		async function fetchUtilizador() {
+			const x = Tempo("02/05/2023 18:51:10");
+			setuser(x);
+		}
+
+		fetchUtilizador();
+	}, [setuser]);
 
 	const handleOpenPopup = () => {
 		puSet({
@@ -118,6 +128,10 @@ function Home() {
 			<CheckBox/>
 
 			<DatePicker/>
+
+			<div>
+				{user}
+			</div>
 
 			<div style={{ marginLeft: "1%", marginRight: "", marginTop: "2%" }}>
 				<Post
