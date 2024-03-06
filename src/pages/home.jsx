@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { usePopup } from "modules/hooks/usePopup";
-import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea, CheckBox } from "components/form/__init__";
+import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea, CheckBox, DatePicker } from "components/form/__init__";
 import { useConfirmation } from "modules/hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import Texto from "components/texto/texto";
@@ -11,7 +11,6 @@ import { useLoading } from "modules/hooks/useLoading";
 import { myAxios } from "api/axios";
 import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
 import { GraficoBarras } from "components/graficos/__init__";
-import DatePicker from 'components/form/datePicker';
 
 
 function Home() {
@@ -34,7 +33,7 @@ function Home() {
 		atualizarData();
 	}, [setdata]);*/
 
-	useEffect(() => {
+	/*useEffect(() => {
 		async function fetchUtilizador() {
 			startLoading();
 			const response = await listarRequest("utilizador");
@@ -44,7 +43,7 @@ function Home() {
 		}
 
 		fetchUtilizador();
-	}, [setuser]);
+	}, [setuser]);*/
 
 	const handleOpenPopup = () => {
 		puSet({
@@ -117,6 +116,8 @@ function Home() {
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 
 			<CheckBox/>
+
+			<DatePicker/>
 
 			<div style={{ marginLeft: "1%", marginRight: "", marginTop: "2%" }}>
 				<Post
