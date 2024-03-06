@@ -11,6 +11,8 @@ import { useLoading } from "modules/hooks/useLoading";
 import { myAxios } from "api/axios";
 import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
 import { GraficoBarras } from "components/graficos/__init__";
+import DatePicker from 'components/form/datePicker';
+
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -87,6 +89,7 @@ function Home() {
 	const aux = () => {
 		stopLoading();
 	};
+
 
 	/*const dadosFicticios = {
 		labels: ["Categoria 1", "Categoria 2", "Categoria 3", "Categoria 4", "Categoria 5"],
