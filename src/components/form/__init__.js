@@ -7,3 +7,4 @@ export { ImageBox } from "./imageBox";
 export { TextArea } from "./textArea";
 export { DatePicker } from "./datePicker";
 export { TimePicker } from "./TimePicker";
+export { OTPVerification } from "./OTPverification";

@@ -12,6 +12,7 @@ import { myAxios } from "api/axios";
 import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api/__init__";
 import { GraficoBarras } from "components/graficos/__init__";
 import { Tempo } from "utils/dataUtils";
+import { OTPVerification } from "components/form/__init__";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -127,6 +128,7 @@ function Home() {
 
 			<DatePicker />
 			<TimePicker />
+			<OTPVerification />
 
 			<div>{user}</div>
 
