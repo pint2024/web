@@ -1,18 +1,35 @@
 import React, { useState } from "react";
 
 export function DatePicker() {
-	const [selectedDate, setSelectedDate] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
-	const handleDateChange = (e) => {
-		setSelectedDate(e.target.value);
-	};
+  const handleStartDateChange = (e) => {
+    setStartDate(e.target.value);
+  };
 
-	return (
-		<input
-			type="date"
-			value={selectedDate}
-			onChange={handleDateChange}
-			className="form-control"
-		/>
-	);
+  const handleEndDateChange = (e) => {
+    setEndDate(e.target.value);
+  };
+
+  return (
+    <div>
+      <label htmlFor="startDatePicker">Start Date:</label>
+      <input
+        type="date"
+        id="startDatePicker"
+        value={startDate}
+        onChange={handleStartDateChange}
+        className="form-control"
+      />
+      <label htmlFor="endDatePicker">End Date:</label>
+      <input
+        type="date"
+        id="endDatePicker"
+        value={endDate}
+        onChange={handleEndDateChange}
+        className="form-control"
+      />
+    </div>
+  );
 }
