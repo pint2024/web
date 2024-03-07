@@ -20,6 +20,9 @@ function Home() {
 	const { startLoading, stopLoading } = useLoading();
 	const [data, setdata] = useState();
 	const [user, setuser] = useState();
+	const [selectedOptions, setSelectedOptions] = useState([]);
+	const handleMultiSelectChange = (selectedOptions) => {
+	setSelectedOptions(selectedOptions);};
 
 	/*useEffect(() => {
 		async function atualizarData() {
@@ -114,6 +117,8 @@ function Home() {
 
 	return (
 		<div>
+
+			
 			<Texto size={4}>Ola reis</Texto>
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>
 			{puCreate()}
@@ -139,7 +144,16 @@ function Home() {
 				date={"à 1h"}
 				utilizador={"Joaumzin Gaimeplais"}
 			/>
+			<h1>Selecione suas opções:</h1>
+      		<MultiSelectBox
+        		options={['Opção 1', 'Opção 2', 'Opção 3', 'Opção 5','Opção 6','Opção 7','Opção 8','Opção 9','Opção 10','Opção 11','Opção 12','Opção 13','Opção 14']}
+        		onChange={handleMultiSelectChange}
+      		/>
+      		<div>
+       		 Opções Selecionadas: {selectedOptions.join(', ')}
+      		</div>
 		</div>
+		
 	);
 }
 
