@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { usePopup } from "modules/hooks/usePopup";
-import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea, CheckBox, DatePicker } from "components/form/__init__";
+import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea, CheckBox, DatePicker, TimePicker } from "components/form/__init__";
 import { useConfirmation } from "modules/hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import Texto from "components/texto/texto";
@@ -126,6 +126,7 @@ function Home() {
 			<CheckBox />
 
 			<DatePicker />
+			<TimePicker />
 
 			<div>{user}</div>
 
