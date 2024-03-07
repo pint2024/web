@@ -10,7 +10,6 @@ import { Calendario } from "pages/calendario/calendario";
 import { Habitacao } from "pages/atividades/habitacao";
 import { Mobilidade } from "pages/atividades/mobilidade";
 import { Lazer } from "pages/atividades/lazer";
-import { ListaContactos } from "pages/conversa/listaContactos";
 import { Conversa } from "pages/conversa/conversa";
 
 const dataRoutes = [
@@ -50,13 +49,7 @@ const dataRoutes = [
 	},
 	{
 		path: "/conversa",
-		element: <ListaContactos />,
-		children: [
-			{
-				path: "/:id",
-				element: <Conversa />,
-			},
-		],
+		element: <Conversa />,
 	},
 	{
 		path: "/calendario",

@@ -8,7 +8,7 @@ const Texto = ({ className = "", style = "", size = 1, type = "primary", childre
 	return (
 		<>
 			{isSizeValid && isTypeValid ? (
-				<p className={`text-size-${size} text-types-${type} remove-margin ${className}`} style={{ style }}>
+				<p className={`text-size-${size} text-types-${type} remove-margin ${className}`} style={{ ...style }}>
 					{children}
 				</p>
 			) : (

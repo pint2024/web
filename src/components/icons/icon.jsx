@@ -12,7 +12,7 @@ const Icon = ({ iconName, className = "", style = "", size = 1, type = "primary"
 	return (
 		<>
 			{isTypeValid && isSizeValid ? (
-				<IconVariant className={`text-size-${size} text-types-${type} ${className}`} style={{ style }} />
+				<IconVariant className={`text-size-${size} text-types-${type} ${className}`} style={{ ...style }} />
 			) : (
 				<h1>Icon invalido</h1>
 			)}

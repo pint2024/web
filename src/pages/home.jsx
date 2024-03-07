@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { usePopup } from "modules/hooks/usePopup";
-import { Botao, CaixaTexto, ComboBox, FileBox, ImageBox, TextArea, CheckBox, DatePicker, TimePicker } from "components/form/__init__";
+import {
+	Botao,
+	CaixaTexto,
+	ComboBox,
+	FileBox,
+	ImageBox,
+	TextArea,
+	CheckBox,
+	DatePicker,
+	TimePicker,
+} from "components/form/__init__";
 import { useConfirmation } from "modules/hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import Texto from "components/texto/texto";
@@ -23,7 +33,8 @@ function Home() {
 	const [user, setuser] = useState();
 	const [selectedOptions, setSelectedOptions] = useState([]);
 	const handleMultiSelectChange = (selectedOptions) => {
-	setSelectedOptions(selectedOptions);};
+		setSelectedOptions(selectedOptions);
+	};
 
 	/*useEffect(() => {
 		async function atualizarData() {
@@ -118,8 +129,6 @@ function Home() {
 
 	return (
 		<div>
-
-			
 			<Texto size={4}>Ola reis</Texto>
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>
 			{puCreate()}
@@ -130,6 +139,7 @@ function Home() {
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 
+			<CaixaTexto />
 			<CheckBox />
 
 			<DatePicker />
@@ -146,15 +156,26 @@ function Home() {
 				utilizador={"Joaumzin Gaimeplais"}
 			/>
 			<h1>Selecione suas opções:</h1>
-      		<MultiSelectBox
-        		options={['Opção 1', 'Opção 2', 'Opção 3', 'Opção 5','Opção 6','Opção 7','Opção 8','Opção 9','Opção 10','Opção 11','Opção 12','Opção 13','Opção 14']}
-        		onChange={handleMultiSelectChange}
-      		/>
-      		<div>
-       		 Opções Selecionadas: {selectedOptions.join(', ')}
-      		</div>
+			<MultiSelectBox
+				options={[
+					"Opção 1",
+					"Opção 2",
+					"Opção 3",
+					"Opção 5",
+					"Opção 6",
+					"Opção 7",
+					"Opção 8",
+					"Opção 9",
+					"Opção 10",
+					"Opção 11",
+					"Opção 12",
+					"Opção 13",
+					"Opção 14",
+				]}
+				onChange={handleMultiSelectChange}
+			/>
+			<div>Opções Selecionadas: {selectedOptions.join(", ")}</div>
 		</div>
-		
 	);
 }
 

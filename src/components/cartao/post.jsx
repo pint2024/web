@@ -7,7 +7,7 @@ import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "modules/hooks/usePopup";
 import { CaixaTexto } from "components/form/caixaTexto";
 import { Link } from "react-router-dom";
-import { SmallUser } from "components/utilizador-info/smallUser";
+import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
 import User from "assets/logo2.png";
 
 function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
@@ -39,7 +39,7 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 
 	const handleOpenPopup = () => {
 		puSet({
-			headerInfo: <SmallUser nome={'Joaumzin Gaimeplais'} data={'à 1h'} imagem={User} /> ,
+			headerInfo: <CartaoInfo titulo={'Joaumzin Gaimeplais'} subtitulo={'à 1h'} imagem={User} /> ,
 			headerTitle: <>{titulo}</>,
 			headerIcons: (
 				<Link to={id}>

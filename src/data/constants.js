@@ -7,6 +7,12 @@ export const API_URL = "http://localhost:8000";
 
 export const POSTS_TO_RENDER = 20;
 
+export const HEADER_VH = 8;
+
+export const FOOTER_VH = 7;
+
+export const CONTENT_VH = 100 - (HEADER_VH + FOOTER_VH);
+
 export const monthName = [
 	"Janeiro",
 	"Fevereiro",
