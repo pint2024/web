@@ -13,6 +13,7 @@ import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api
 import { GraficoBarras } from "components/graficos/__init__";
 import { Tempo } from "utils/dataUtils";
 import { OTPVerification } from "components/form/__init__";
+import MultiSelectBox from "components/form/multiselectbox";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
