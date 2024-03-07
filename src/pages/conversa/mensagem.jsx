@@ -1,13 +1,13 @@
-export function Mensagem() {
+export function Mensagem({ imagem, nome, data, mensagem, isMe = false }) {
 	return (
 		<li>
-			<img class="contacts-list-img" src="/docs/3.2/assets/img/user7-128x128.jpg" />
+			<img class="contacts-list-img" src={imagem} alt="" className="xcard-user-picture" />
 			<div class="contacts-list-info">
 				<span class="contacts-list-name">
-					Sarah Doe
-					<small class="contacts-list-date float-right">2/23/2015</small>
+					{nome}
+					<small class="contacts-list-date float-right">{data}</small>
 				</span>
-				<span class="contacts-list-msg">I will be waiting for...</span>
+				<span class="contacts-list-msg">{mensagem}</span>
 			</div>
 		</li>
 	);
