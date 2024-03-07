@@ -13,7 +13,6 @@ import { atualizarRequest, criarRequest, listarRequest, obterRequest } from "api
 import { GraficoBarras } from "components/graficos/__init__";
 import { Tempo } from "utils/dataUtils";
 
-
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
 	const { conSet, conOpen, conCreate } = useConfirmation(false);
@@ -99,7 +98,6 @@ function Home() {
 		stopLoading();
 	};
 
-
 	/*const dadosFicticios = {
 		labels: ["Categoria 1", "Categoria 2", "Categoria 3", "Categoria 4", "Categoria 5"],
 		datasets: [
@@ -125,23 +123,19 @@ function Home() {
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 
-			<CheckBox/>
+			<CheckBox />
 
-			<DatePicker/>
+			<DatePicker />
 
-			<div>
-				{user}
-			</div>
+			<div>{user}</div>
 
-			<div style={{ marginLeft: "1%", marginRight: "", marginTop: "2%" }}>
-				<Post
-					id={1}
-					titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
-					descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
-					date={"à 1h"}
-					utilizador={"Joaumzin Gaimeplais"}
-				/>
-			</div>
+			<Post
+				id={1}
+				titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
+				descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
+				date={"à 1h"}
+				utilizador={"Joaumzin Gaimeplais"}
+			/>
 		</div>
 	);
 }
