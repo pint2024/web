@@ -78,7 +78,6 @@ const navItems = [
 ];
 
 const criarObjeto = (data, parentRoute = null) => {
-	console.log("criarObjeto");
 	return data.map((item) => ({
 		title: item.title,
 		route: parentRoute ? parentRoute + item.route : item.route,

@@ -7,11 +7,11 @@ export const ContactoInfo = ({ imagem, titulo, data, subtitulo }) => {
 			<UtilizadorInfo
 				imagem={imagem}
 				header={
-					<div className="d-flex gap-3 align-items-center">
+					<div className="d-flex align-items-center">
 						<div>
 							<Texto>{titulo}</Texto>
 						</div>
-						<div>
+						<div className="ms-auto" style={{ marginRight: "15px" }}>
 							<Texto size={0}>{data}</Texto>
 						</div>
 					</div>

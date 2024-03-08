@@ -31,9 +31,15 @@
 	cursor: pointer;
 }
 
+.icon-square-hover:hover {
+	background-color: var(--WHITE-HOVER);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
 .card-hover:hover {
 	background-color: var(--WHITE-HOVER);
-	border-radius: 50px;
+	border-radius: 20px;
 	cursor: pointer;
 }
 

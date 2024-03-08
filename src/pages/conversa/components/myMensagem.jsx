@@ -1,9 +1,8 @@
 import Texto from "components/texto/texto";
 
-export function Mensagem({ id, imagem, nome, data, mensagem, isMe = false }) {
+export function MyMensagem({ id, imagem, nome, data, mensagem }) {
 	return (
-		<li className="d-flex align-items-center gap-2 mt-3">
-			<img src={imagem} alt="" className="card-user-picture" />
+		<li className="d-flex justify-content-end align-items-center gap-2 mt-3">
 			<div>
 				<div className="d-flex gap-2 align-items-center">
 					<Texto size={3}>{nome}</Texto>
@@ -11,6 +10,7 @@ export function Mensagem({ id, imagem, nome, data, mensagem, isMe = false }) {
 				</div>
 				<Texto>{mensagem}</Texto>
 			</div>
+			<img src={imagem} alt="" className="card-user-picture" />
 		</li>
 	);
 }

@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import jaumzin from "assets/logo2.png";
-import { Mensagem } from "./mensagem";
+import { MyMensagem } from "./myMensagem";
+import { OthersMensagem } from "./othersMensagem";
 import Texto from "components/texto/texto";
 import { Botao, CaixaTexto } from "components/form/__init__";
 import { isEmpty } from "utils/utils";
 import { CONTENT_VH, SEND_MESSAGE_DELAY } from "data/constants";
+import { Icon } from "components/icons/icon";
+import { obterRequest } from "api/obterRequest";
 
 export const Mensagens = ({ id }) => {
 	const [sendMensagem, setsendMessage] = useState("");
 	const [delayAtivo, setDelayAtivo] = useState(false);
+	const [showArrowDown, setShowArrowDown] = useState(false);
 	const [mensagens, setMensagens] = useState([
 		{
 			imagem: jaumzin,
@@ -17,7 +21,7 @@ export const Mensagens = ({ id }) => {
 			mensagem: "Is this template really for free? That's unbelievable!",
 			isMe: false,
 		},
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 2:05 pm", mensagem: "You better believe it!", isMe: true },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 2:05 pm", mensagem: "You better believe it!", isMe: false },
 		{
 			imagem: jaumzin,
 			nome: "Alexander Pierce",
@@ -25,40 +29,61 @@ export const Mensagens = ({ id }) => {
 			mensagem: "Working with AdminLTE on a great new app! Wanna join?",
 			isMe: false,
 		},
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
 	]);
 	const messageContainerRef = useRef(null);
+
+	/*useEffect(() => {
+		const fetchMensagens = async () => {
+			const conversa = await obterRequest("conversa", 1);
+
+			console.log(conversa)
+			for (const mensagem of conversa.mensagem_conversa) {
+				adicionarMensagem(jaumzin, mensagem.participante, mensagem.data_criacao, mensagem.mensagem, true);
+			}
+		};
+
+		fetchMensagens();
+	}, [sendMensagem]);*/
 
 	useEffect(() => {
 		if (messageContainerRef.current) {
 			setTimeout(() => {
-				messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+				voltarAbaixo();
 			}, 100);
 		}
 	}, [mensagens]);
 
-	const adicionarMensagem = () => {
-		if (isEmpty(sendMensagem) || delayAtivo) return;
-		const mensagemObj = {
-			imagem: jaumzin,
-			nome: "Daniel Val",
-			data: new Date().toLocaleString(),
-			mensagem: sendMensagem,
-			isMe: true,
+	const voltarAbaixo = () => {
+		messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+	};
+
+	const adicionarMensagem = (imagem, nome, data, mensagem, isMe) => {
+		const novaMensagem = {
+			imagem,
+			nome,
+			data,
+			mensagem,
+			isMe,
 		};
-		setMensagens([...mensagens, mensagemObj]);
+		setMensagens([...mensagens, novaMensagem]);
+	};
+
+	const enviarMensagem = () => {
+		if (isEmpty(sendMensagem) || delayAtivo) return;
+		adicionarMensagem(jaumzin, "Daniel Val", new Date().toLocaleString(), sendMensagem, true);
 		setsendMessage("");
 		restartMessageDelay();
 	};
@@ -68,7 +93,7 @@ export const Mensagens = ({ id }) => {
 		setTimeout(() => {
 			setDelayAtivo(false);
 		}, SEND_MESSAGE_DELAY);
-	}
+	};
 
 	return (
 		<div className="card" style={{ height: "100%" }}>
@@ -76,20 +101,22 @@ export const Mensagens = ({ id }) => {
 				<Texto size={4}>Grupo X</Texto>
 			</div>
 			<div className="card-body" style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }} ref={messageContainerRef}>
-				{mensagens.map((mensagem, index) => (
-					<Mensagem key={index} {...mensagem} />
-				))}
+				{mensagens.map((mensagem, index) =>
+					mensagem.isMe ? <MyMensagem key={index} {...mensagem} /> : <OthersMensagem key={index} {...mensagem} />
+				)}
 			</div>
 			<div className="card-footer">
 				<div className="d-flex gap-2">
 					<CaixaTexto
 						placeholder="Escrever uma mensagem"
 						setValue={(e) => setsendMessage(e)}
-						handleKeyDown={adicionarMensagem}
+						handleKeyDown={enviarMensagem}
 						value={sendMensagem}
-						disabled={delayAtivo ? true : false}
 					/>
-					<Botao handleClick={adicionarMensagem}>Enviar</Botao>
+					{/*<Botao handleClick={enviarMensagem}>Enviar</Botao>*/}
+					<div className="text-end" onClick={voltarAbaixo}>
+						<Icon iconName="ArrowDown" type="primary" className="icon-square-hover icon" />
+					</div>
 				</div>
 			</div>
 		</div>

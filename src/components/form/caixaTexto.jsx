@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Icon } from "components/icons/icon";
 
-import Icon from "components/icons/icon";
 export const CaixaTexto = ({ setValue, value, label, type, prefix, placeholder, disabled, handleKeyDown }) => {
 	const [inputType, setInputType] = useState("");
 	const [isFocused, setIsFocused] = useState(false);

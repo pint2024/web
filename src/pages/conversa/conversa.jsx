@@ -3,10 +3,9 @@ import { Contactos } from "./components/contactos";
 import { Mensagens } from "./components/mensagens";
 
 export function Conversa() {
-	console.log(CONTENT_VH)
 	return (
 		<div style={{ display: "flex", height: `${CONTENT_VH}vh` }}>
-			<div style={{ flex: "0.3", height: "100%" }}>
+			<div style={{ flex: "0.3", height: "100%", width: "100%" }}>
 				<Contactos />
 			</div>
 

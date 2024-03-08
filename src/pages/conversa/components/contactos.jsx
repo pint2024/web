@@ -21,7 +21,7 @@ export const Contactos = ({ id }) => {
 	]);
 
 	return (
-		<div style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }}>
+		<div style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh`}}>
 			{contactos.map((contacto, index) => (
 				<Contacto key={index} {...contacto} />
 			))}
