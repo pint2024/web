@@ -1,0 +1,48 @@
+.text-box {
+	font-family: "Inter";
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	input {
+		background-color: var(--bg-sec-color);
+		border: none;
+		outline: none;
+		//box-shadow: 5px 5px 25px rgba($color: #333, $alpha: 0.05);
+		font-size: 20px;
+		padding: 13px 20px;
+		border-radius: 8px;
+		font-weight: 300;
+		font-family: "Inter";
+	}
+	.box__label {
+		position: absolute;
+		left: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+		font-family: "Inter";
+		font-weight: bold;
+		user-select: none;
+		pointer-events: none;
+		font-size: 16px;
+		transition: 0.2s;
+
+		&.active {
+			font-size: 12px;
+			top: -12px;
+			left: 15px;
+		}
+	}
+
+	.show__pass {
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		font-size: 20px;
+	}
+}

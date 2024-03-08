@@ -1,13 +1,14 @@
+import { useEffect, useRef, useState } from "react";
 import jaumzin from "assets/logo2.png";
 import { Mensagem } from "./mensagem";
 import Texto from "components/texto/texto";
 import { Botao, CaixaTexto } from "components/form/__init__";
-import { useState } from "react";
 import { isEmpty } from "utils/utils";
-import { CONTENT_VH } from "data/constants";
+import { CONTENT_VH, SEND_MESSAGE_DELAY } from "data/constants";
 
 export const Mensagens = ({ id }) => {
 	const [sendMensagem, setsendMessage] = useState("");
+	const [delayAtivo, setDelayAtivo] = useState(false);
 	const [mensagens, setMensagens] = useState([
 		{
 			imagem: jaumzin,
@@ -38,9 +39,18 @@ export const Mensagens = ({ id }) => {
 		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
 		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: true },
 	]);
+	const messageContainerRef = useRef(null);
+
+	useEffect(() => {
+		if (messageContainerRef.current) {
+			setTimeout(() => {
+				messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+			}, 100);
+		}
+	}, [mensagens]);
 
 	const adicionarMensagem = () => {
-		if (isEmpty(sendMensagem)) return;
+		if (isEmpty(sendMensagem) || delayAtivo) return;
 		const mensagemObj = {
 			imagem: jaumzin,
 			nome: "Daniel Val",
@@ -50,27 +60,34 @@ export const Mensagens = ({ id }) => {
 		};
 		setMensagens([...mensagens, mensagemObj]);
 		setsendMessage("");
+		restartMessageDelay();
 	};
+
+	const restartMessageDelay = () => {
+		setDelayAtivo(true);
+		setTimeout(() => {
+			setDelayAtivo(false);
+		}, SEND_MESSAGE_DELAY);
+	}
 
 	return (
 		<div className="card" style={{ height: "100%" }}>
 			<div className="card-header">
 				<Texto size={4}>Grupo X</Texto>
 			</div>
-			<div className="card-body" style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }}>
-				<div>
-					{mensagens.map((mensagem, index) => (
-						<Mensagem key={index} {...mensagem} />
-					))}
-				</div>
+			<div className="card-body" style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }} ref={messageContainerRef}>
+				{mensagens.map((mensagem, index) => (
+					<Mensagem key={index} {...mensagem} />
+				))}
 			</div>
 			<div className="card-footer">
 				<div className="d-flex gap-2">
 					<CaixaTexto
 						placeholder="Escrever uma mensagem"
-						handleChange={(e) => setsendMessage(e.target.value)}
+						setValue={(e) => setsendMessage(e)}
 						handleKeyDown={adicionarMensagem}
 						value={sendMensagem}
+						disabled={delayAtivo ? true : false}
 					/>
 					<Botao handleClick={adicionarMensagem}>Enviar</Botao>
 				</div>

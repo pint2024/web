@@ -1,35 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export function CaixaTexto({
-	title,
-	prefix = false,
-	inputType = "text",
-	handleChange = null,
-	handleKeyDown = null,
-	value = "",
-	disabled = false,
-	placeholder = "",
-}) {
-	const [stateValue, setstateValue] = useState(value);
+import Icon from "components/icons/icon";
+export const CaixaTexto = ({ setValue, value, label, type, prefix, placeholder, disabled, handleKeyDown }) => {
+	const [inputType, setInputType] = useState("");
+	const [isFocused, setIsFocused] = useState(false);
+	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+	useEffect(() => {
+		setInputType(type);
+	}, [type]);
 
 	const handleInputKeyDown = (e) => {
 		if (e.key === "Enter") {
 			e.preventDefault();
 			handleKeyDown();
-			setstateValue("");
-		}
-	};
-
-	const handleInputChange = (e) => {
-		setstateValue(e.target.value);
-		if (typeof handleChange === "function") {
-			handleChange(e);
 		}
 	};
 
 	return (
 		<>
-			{title && <label htmlFor="inputNome">{title}</label>}
+			{label && <label htmlFor="inputNome">{label}</label>}
 			<div className="input-group">
 				{prefix && (
 					<span className="input-group-text" id="basic-addon">
@@ -37,16 +27,32 @@ export function CaixaTexto({
 					</span>
 				)}
 				<input
-					type={inputType}
+					type={inputType !== "password" ? inputType : isPasswordVisible ? "text" : "password"}
 					className="form-control"
-					id="inputNome"
-					onChange={(e) => handleInputChange(e)}
-					value={stateValue}
-					disabled={disabled}
+					value={value}
 					placeholder={placeholder}
+					disabled={disabled}
+					onChange={(e) => setValue(e.target.value)}
+					onFocus={() => setIsFocused(true)}
+					onBlur={() => setIsFocused(false)}
 					onKeyDown={(e) => handleInputKeyDown(e)}
 				/>
+				<span className="show__pass" onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
+					{inputType === "password" ? (
+						value !== "" ? (
+							isPasswordVisible ? (
+								<Icon iconName="OutlineEyeSlash" />
+							) : (
+								<Icon iconName="OutlineEye" />
+							)
+						) : (
+							""
+						)
+					) : (
+						""
+					)}
+				</span>
 			</div>
 		</>
 	);
-}
+};

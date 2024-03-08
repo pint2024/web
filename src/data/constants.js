@@ -13,27 +13,4 @@ export const FOOTER_VH = 7;
 
 export const CONTENT_VH = 100 - (HEADER_VH + FOOTER_VH);
 
-export const monthName = [
-	"Janeiro",
-	"Fevereiro",
-	"Março",
-	"Abril",
-	"Maio",
-	"Junho",
-	"Julho",
-	"Agosto",
-	"Setembro",
-	"Outubro",
-	"Novembro",
-	"Dezembro",
-];
-
-export const weekName = [
-	"Segunda-feira",
-	"Terça-feira",
-	"Quarta-feira",
-	"Quinta-feira",
-	"Sexta-feira",
-	"Sabado",
-	"Domingo",
-];
+export const SEND_MESSAGE_DELAY = 200;
