@@ -14,3 +14,8 @@ export const FOOTER_VH = 7;
 export const CONTENT_VH = 100 - (HEADER_VH + FOOTER_VH);
 
 export const SEND_MESSAGE_DELAY = 200;
+
+export const ROLES = {
+	USER: { ID: 1, NOME: "Utilizador" },
+	ADMIN: { ID: 2, NOME: "Administrador" },
+};

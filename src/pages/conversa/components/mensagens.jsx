@@ -12,8 +12,8 @@ import { obterRequest } from "api/obterRequest";
 export const Mensagens = ({ id }) => {
 	const [sendMensagem, setsendMessage] = useState("");
 	const [delayAtivo, setDelayAtivo] = useState(false);
-	const [showArrowDown, setShowArrowDown] = useState(false);
 	const [mensagens, setMensagens] = useState([
+		/*
 		{
 			imagem: jaumzin,
 			nome: "Alexander Pierce",
@@ -29,36 +29,46 @@ export const Mensagens = ({ id }) => {
 			mensagem: "Working with AdminLTE on a great new app! Wanna join?",
 			isMe: false,
 		},
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
-		{ imagem: jaumzin, nome: "Sarah Bullock", data: "23 Jan 6:10 pm", mensagem: "I would love to.", isMe: false },
+	*/
 	]);
 	const messageContainerRef = useRef(null);
 
-	/*useEffect(() => {
+	useEffect(() => {
 		const fetchMensagens = async () => {
 			const conversa = await obterRequest("conversa", 1);
 
-			console.log(conversa)
+			let novaMensagem = [];
+
 			for (const mensagem of conversa.mensagem_conversa) {
-				adicionarMensagem(jaumzin, mensagem.participante, mensagem.data_criacao, mensagem.mensagem, true);
+				const participante_id = mensagem.participante;
+				const utilizador = conversa.participante_conversa[participante_id - 1];
+
+				const utilizador_nome =
+					utilizador.participante_utilizador.nome + " " + utilizador.participante_utilizador.sobrenome;
+
+				novaMensagem.push({
+					imagem: jaumzin,
+					nome: utilizador_nome,
+					data: mensagem.data_criacao,
+					mensagem: mensagem.mensagem,
+					isMe: true,
+				});
+
+
+
+				//adicionarMensagem(jaumzin, utilizador_nome, mensagem.data_criacao, mensagem.mensagem, true);
 			}
+			setMensagens(novaMensagem);
+			console.log("opa1", mensagens)
+			console.log("opa2", novaMensagem)
+
 		};
 
 		fetchMensagens();
-	}, [sendMensagem]);*/
+	}, []);
 
 	useEffect(() => {
+		// da scroll down quando é enviada uma nova mensagem
 		if (messageContainerRef.current) {
 			setTimeout(() => {
 				voltarAbaixo();
@@ -78,6 +88,7 @@ export const Mensagens = ({ id }) => {
 			mensagem,
 			isMe,
 		};
+		console.log(novaMensagem, " adicionada!");
 		setMensagens([...mensagens, novaMensagem]);
 	};
 
