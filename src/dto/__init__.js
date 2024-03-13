@@ -1,0 +1,1 @@
+export { ConversaDTO } from "./conversa.dto";

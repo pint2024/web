@@ -9,7 +9,7 @@ function Footer() {
 		<section className="footer-content d-flex justify-content-between">
 			<div className="align-items-left d-flex gap-4 align-items-center">
 				<Texto>An IBM Group Company</Texto>
-				<Texto>@ Sofitnsa Todos os direitos reservados</Texto>
+				<Texto>@ Softinsa Todos os direitos reservados</Texto>
 				<Link to="/politica-de-privacidade">
 					<Texto>Política de Privacidade</Texto>
 				</Link>

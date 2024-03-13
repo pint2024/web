@@ -1,7 +1,7 @@
 import axios from "axios";
 import { backendUrl, userAuthLocalStorageItem } from "../data/constants";
 import { myAxios } from "src/lib/axios";
-import { log } from "utils/logUtils";
+import { log } from "utils/log.utils";
 
 export class AutenticacaoRequest {
 	entrar(login, password) {

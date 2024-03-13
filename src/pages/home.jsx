@@ -8,7 +8,7 @@ import Texto from "components/texto/texto";
 import Post from "components/cartao/post";
 import { PLACEHOLDER_TEXT } from "data/constants";
 import { useLoading } from "modules/hooks/useLoading";
-import { Tempo } from "utils/dateUtils";
+import { Tempo } from "utils/date.utils";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -119,12 +119,10 @@ function Home() {
 			{puCreate()}
 			{conCreate()}
 
-			{/*<GraficoBarras chartData={dadosFicticios} Nome="Grafico de Exemplo" />*/}
 
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
 
-			<CaixaTexto />
 			<CheckBox />
 
 			<DatePicker />

@@ -1,7 +1,7 @@
 import { AutenticacaoRequest } from "api/autenticacaoRequest";
-import { AutenticacaoContext } from "modules/contexts/autenticacaoContext";
+import { AutenticacaoContext } from "modules/contexts/autenticacao.context";
 import { useEffect, useState } from "react";
-import { log } from "utils/logUtils";
+import { log } from "utils/log.utils";
 
 export const AutenticacaoProvider = ({ children }) => {
 	const [userData, setUserData] = useState(false);
