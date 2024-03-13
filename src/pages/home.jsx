@@ -21,31 +21,6 @@ function Home() {
 		setSelectedOptions(selectedOptions);
 	};
 
-	/*useEffect(() => {
-		async function atualizarData() {
-			const response = await atualizarRequest("atividade", 16, {
-				"titulo": "titulo teste123 atualizado",
-				"descricao": "descricao teste123 atualizado",
-			});
-			console.log(response);
-			setdata(response);
-		}
-
-		atualizarData();
-	}, [setdata]);*/
-
-	/*useEffect(() => {
-		async function fetchUtilizador() {
-			startLoading();
-			const response = await listarRequest("utilizador");
-			stopLoading();
-			console.log(response);
-			setuser(response);
-		}
-
-		fetchUtilizador();
-	}, [setuser]);*/
-
 	useEffect(() => {
 		async function fetchUtilizador() {
 			const x = Tempo("02/05/2023 18:51:10");

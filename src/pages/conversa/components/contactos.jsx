@@ -1,27 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Contacto } from "./contacto";
-import jaumzin from "assets/logo2.png";
+import jaumzin from "assets/images/logo2.png";
 import { CONTENT_VH } from "data/constants";
+import { listarRequest } from "api/listarRequest";
+import { ParticipanteDTO } from "dto/participante.dto";
+import { isEmpty } from "utils/utils";
+import { useLoading } from "modules/hooks/useLoading";
 
 export const Contactos = ({ id }) => {
-	const [contactos, setContactos] = useState([
-		{ imagem: jaumzin, nome: "Count Dracula", data: "2/28/2015", mensagem: "How have you been? I was..." },
-		{ imagem: jaumzin, nome: "Nadia Jolie", data: "2/20/2015", mensagem: "I'll call you back at..." },
-		{ imagem: jaumzin, nome: "Nora S. Vans", data: "2/10/2015", mensagem: "Where is your new..." },
-		{ imagem: jaumzin, nome: "John K.", data: "1/27/2015", mensagem: "Can I take a look at..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-		{ imagem: jaumzin, nome: "Kennth M.", data: "1/4/2015", mensagem: "I will be waiting for..." },
-	]);
+	const { startLoading, stopLoading } = useLoading();
+	const [participantesData, setparticipantesData] = useState([]);
+	const [contactos, setContactos] = useState([]);
+
+	useEffect(() => {
+		const fetchMensagens = async () => {
+			const participantesDTO = [];
+			const contactosAux = [];
+
+			const data = await listarRequest("participante", { utilizador: id });
+
+
+			console.log("opa", data)
+
+			for (const participante of data) {
+				const aux = new ParticipanteDTO(participante);
+				contactosAux.push(aux.getContactosFormatted());
+				participantesDTO.push(aux);
+			}
+
+			setContactos(contactosAux);
+			setparticipantesData(participantesDTO);
+			stopLoading();
+		};
+
+		fetchMensagens();
+	}, []);
+
+	if (isEmpty(participantesData)) {
+		startLoading();
+		return;
+	}
 
 	return (
-		<div style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh`}}>
+		<div style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }}>
 			{contactos.map((contacto, index) => (
 				<Contacto key={index} {...contacto} />
 			))}

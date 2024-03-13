@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./cartao.css";
-import User from "assets/logo2.png";
+import User from "assets/images/logo2.png";
 import Texto from "components/texto/texto";
 import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
 

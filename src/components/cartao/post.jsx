@@ -8,7 +8,7 @@ import { usePopup } from "modules/hooks/usePopup";
 import { CaixaTexto } from "components/form/caixaTexto";
 import { Link } from "react-router-dom";
 import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
-import User from "assets/logo2.png";
+import User from "assets/images/logo2.png";
 
 function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
 	const [likes, setLikes] = useState(numLikes);

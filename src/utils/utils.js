@@ -1,9 +1,11 @@
 export function isEmpty(variavel) {
-	if (!variavel || isWhitespaces(variavel) || variavel === null)
+	if (variavel)
+		return false;
+	else if (!variavel || variavel === null || isWhitespaces(variavel))
 		return true;
 	return false;
 }
 
 export function isWhitespaces(variavel) {
-    return variavel.trim() === '';
+    return variavel?.trim() === '';
 }
