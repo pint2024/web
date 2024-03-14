@@ -19,9 +19,6 @@ export const Contactos = ({ id }) => {
 
 			const data = await listarRequest("participante", { utilizador: id });
 
-
-			console.log("opa", data)
-
 			for (const participante of data) {
 				const aux = new ParticipanteDTO(participante);
 				contactosAux.push(aux.getContactosFormatted());

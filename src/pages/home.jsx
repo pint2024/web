@@ -9,6 +9,7 @@ import Post from "components/cartao/post";
 import { PLACEHOLDER_TEXT } from "data/constants";
 import { useLoading } from "modules/hooks/useLoading";
 import { Tempo } from "utils/date.utils";
+import { SwitchToggle } from "components/form/switchToggle";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -94,6 +95,7 @@ function Home() {
 			{puCreate()}
 			{conCreate()}
 
+			<SwitchToggle/>
 
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
