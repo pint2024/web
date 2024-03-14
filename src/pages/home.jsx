@@ -107,13 +107,7 @@ function Home() {
 
 			<div>{user}</div>
 
-			<Post
-				id={1}
-				titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
-				descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
-				date={"à 1h"}
-				utilizador={"Joaumzin Gaimeplais"}
-			/>
+<div>
 			<h1>Selecione suas opções:</h1>
 			<MultiSelectBox
 				options={[
@@ -129,11 +123,18 @@ function Home() {
 					"Opção 11",
 					"Opção 12",
 					"Opção 13",
-					"Opção 14",
 				]}
+				
 				onChange={handleMultiSelectChange}
+			/></div>
+			<Post
+				id={1}
+				titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
+				descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
+				date={"à 1h"}
+				utilizador={"Joaumzin Gaimeplais"}
 			/>
-			<div>Opções Selecionadas: {selectedOptions.join(", ")}</div>
+			
 		</div>
 	);
 }
