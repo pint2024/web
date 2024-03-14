@@ -13,7 +13,6 @@ export async function myAxios({ url, method = "get", data = null, headers = {} }
 			headers,
 			data,
 		});
-		console.log(response)
 		if (response.data.success)
 			// caso o request tenha corrido bem receba os dados
 			return response.data.data;

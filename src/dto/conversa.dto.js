@@ -11,11 +11,11 @@ export class ConversaDTO {
 		this.mensagens = data.mensagem_conversa;
 	}
 
-	getMensagensFormatted(isMe = false) {
+	getMensagensFormatted(isMe = true) {
 		let novaMensagem = [];
 		for (const msg of this.mensagens) {
 			const participante_id = msg.participante;
-			const utilizador = this.participantes[participante_id - 1];
+			const utilizador = this.getParticipanteById(participante_id);
 
 			const msg_autor = `${utilizador.participante_utilizador.nome} ${utilizador.participante_utilizador.sobrenome}`;
 
@@ -25,16 +25,28 @@ export class ConversaDTO {
 				nome: msg_autor,
 				data: this.data_criacao,
 				mensagem: msg.mensagem,
-				isMe: isMe,
+				isMe,
 			});
 		}
 
 		return novaMensagem;
 	}
 
+	getParticipanteById(id) {
+		for (let i = 0; i < this.participantes.length; i++) {
+			if (this.participantes[i].id === id) {
+				return this.participantes[i];
+			}
+		}
+		return null;
+	}
+
 	getParticipantesFormatted() {
-		return this.participantes.map((participante) =>
-			`${participante.participante_utilizador.nome} ${participante.participante_utilizador.sobrenome}`
-		).join(", ");
+		return this.participantes
+			.map(
+				(participante) =>
+					`${participante.participante_utilizador.nome} ${participante.participante_utilizador.sobrenome}`
+			)
+			.join(", ");
 	}
 }

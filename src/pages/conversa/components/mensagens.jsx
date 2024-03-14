@@ -22,6 +22,7 @@ export const Mensagens = ({ id }) => {
 	useEffect(() => {
 		const fetchMensagens = async () => {
 			const data = await obterRequest("conversa", id);
+			console.log(data)
 			const conversa = new ConversaDTO(data);
 			setconversaData(conversa);
 			const mensagensFormatadas = conversa.getMensagensFormatted();
