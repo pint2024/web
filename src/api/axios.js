@@ -1,5 +1,6 @@
 import axios from "axios";
-import { API_URL } from "data/constants";
+import { API_URL, STATUS } from "data/constants";
+import { log } from "utils/log.utils";
 
 const api = axios.create({
 	baseURL: API_URL,
@@ -17,8 +18,9 @@ export async function myAxios({ url, method = "get", data = null, headers = {} }
 			// caso o request tenha corrido bem receba os dados
 			return response.data.data;
 		// caso contrario devolve false
-		else return response.data.success;
+		else return STATUS.ERRO;
 	} catch (error) {
-		return error;
+		log.erro(error);
+		return STATUS.SEM_DATA;
 	}
 }

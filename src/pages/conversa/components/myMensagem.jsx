@@ -13,7 +13,7 @@ export function MyMensagem({ id, imagem, nome, data, mensagem }) {
 	}, [data, setdataMsg]);
 
 	return (
-		<li className="d-flex justify-content-end align-items-center gap-2 mt-3">
+		<li className="conversa-mensagem d-flex justify-content-end align-items-center gap-2 mt-3">
 			<div>
 				<div className="d-flex gap-2 align-items-center">
 					<Texto size={3}>{nome}</Texto>

@@ -33,6 +33,6 @@ export class ParticipanteDTO {
 
 
 	getContactosFormatted() {
-		return { imagem: jaumzin, nome: this.conversa.titulo, data: this.data_criacao, mensagem: "Can I take a look at..." };
+		return { id: this.id, imagem: jaumzin, nome: this.conversa.titulo, data: this.data_criacao, mensagem: "Can I take a look at..." };
 	}
 }

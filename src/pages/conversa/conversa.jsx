@@ -2,6 +2,7 @@ import { CONTENT_VH } from "data/constants";
 import { Contactos } from "./components/contactos";
 import { Mensagens } from "./components/mensagens";
 import { useState } from "react";
+import { isEmpty } from "utils/utils";
 
 export function Conversa() {
 	const [contactosId, setContactosId] = useState(1);

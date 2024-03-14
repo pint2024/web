@@ -11,7 +11,7 @@ export class ConversaDTO {
 		this.mensagens = data.mensagem_conversa;
 	}
 
-	getMensagensFormatted(isMe = true) {
+	getMensagensFormatted(isMe = false) {
 		let novaMensagem = [];
 		for (const msg of this.mensagens) {
 			const participante_id = msg.participante;
