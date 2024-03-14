@@ -13,7 +13,7 @@ function LoginPage() {
 
         <button type="submit">Log in</button>
       </form>
-
+    <br/>
       <button className="register-button">Registar</button>
       <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
     </div>
