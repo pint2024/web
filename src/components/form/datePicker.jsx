@@ -7,12 +7,5 @@ export function DatePicker() {
 		setSelectedDate(e.target.value);
 	};
 
-	return (
-		<input
-			type="date"
-			value={selectedDate}
-			onChange={handleDateChange}
-			className="form-control"
-		/>
-	);
+	return <input type="date" value={selectedDate} onChange={handleDateChange} className="form-control" />;
 }

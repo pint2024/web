@@ -31,6 +31,18 @@
 	cursor: pointer;
 }
 
+.icon-square-hover:hover {
+	background-color: var(--WHITE-HOVER);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.card-hover:hover {
+	background-color: var(--WHITE-HOVER);
+	border-radius: 20px;
+	cursor: pointer;
+}
+
 .icon {
 	font-size: 2rem;
 }
@@ -49,4 +61,14 @@
 
 .icon-color {
 	color: var(--DARK-PRIMARY) !important;
+}
+
+.card-user-picture {
+	width: 40px;
+	height: 40px;
+	border-radius: 30px;
+}
+
+.cursor-pointer {
+	cursor: pointer;
 }

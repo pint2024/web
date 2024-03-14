@@ -9,18 +9,6 @@ export const usePopup = () => {
 	const [puBody, setpuBody] = useState("");
 	const [puFooter, setpuFooter] = useState("");
 
-	useEffect(() => {
-		// Lógica que será executada quando ocorrerem mudanças nos estados especificados
-		console.log("Estado atualizado:", {
-		  puIsOpen,
-		  puHeaderTitle,
-		  puHeaderInfo,
-		  puHeaderIcons,
-		  puBody,
-		  puFooter,
-		});
-	  }, [puIsOpen, puHeaderTitle, puHeaderInfo, puHeaderIcons, puBody, puFooter]);
-
 	const puOpen = () => {
 		setpuIsOpen(true);
 	};

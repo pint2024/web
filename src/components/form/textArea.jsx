@@ -13,7 +13,6 @@ export function TextArea({
 
 	const handleInputChange = (e) => {
 		setValue(e.target.value);
-		console.log(e.target.value)
 		if (typeof handleChange === 'function') {
 			handleChange(e);
 		}

@@ -2,7 +2,7 @@ footer {
 	background-color: var(--BLACK);
 	color: var(--TEXT-INVERSE);
 	padding: 20px 20px;
-	position: fixed;
+	position: flex;
 	bottom: 0;
 	width: 100%;
 }

@@ -1,4 +1,4 @@
-import { monthName, weekName } from "data/constants";
+import { monthName, weekName } from "data/data";
 
 
 export function getData(data = new Date()) {
