@@ -11,6 +11,8 @@ import { Habitacao } from "pages/atividades/habitacao";
 import { Mobilidade } from "pages/atividades/mobilidade";
 import { Lazer } from "pages/atividades/lazer";
 import { Conversa } from "pages/conversa/conversa";
+import {LoginPage} from "pages/login/LoginPage";
+import CreateAccount from "pages/criarConta/criar";
 
 const dataRoutes = [
 	{
@@ -58,6 +60,14 @@ const dataRoutes = [
 	{
 		path: "/utilizador/:id",
 		element: <Calendario />,
+	},
+	{
+		path:"/login",
+		element: <LoginPage />
+	},
+	{
+		path:"/criarconta",
+		element: <CreateAccount />
 	},
 	{
 		path: "*",

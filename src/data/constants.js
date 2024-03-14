@@ -19,3 +19,9 @@ export const ROLES = {
 	USER: { ID: 1, NOME: "Utilizador" },
 	ADMIN: { ID: 2, NOME: "Administrador" },
 };
+
+export const STATUS = {
+	ERRO: 0,
+	SUCESSO: 1,
+	SEM_DATA: -1,
+}

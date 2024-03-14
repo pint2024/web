@@ -1,13 +1,24 @@
 import Texto from "components/texto/texto";
+import { useEffect, useState } from "react";
+import { Tempo } from "utils/date.utils";
 
 export function OthersMensagem({ id, imagem, nome, data, mensagem }) {
+	const [dataMsg, setdataMsg] = useState();
+
+	useEffect(() => {
+		const formataData = () => {
+			setdataMsg(Tempo(data));
+		}
+		formataData();
+	}, [data, setdataMsg]);
+
 	return (
-		<li className="d-flex align-items-center gap-2 mt-3">
+		<li className="conversa-mensagem d-flex align-items-center gap-2 mt-3">
 			<img src={imagem} alt="" className="card-user-picture" />
 			<div>
 				<div className="d-flex gap-2 align-items-center">
 					<Texto size={3}>{nome}</Texto>
-					<Texto size={0}>{data}</Texto>
+					<Texto size={0}>{dataMsg}</Texto>
 				</div>
 				<Texto>{mensagem}</Texto>
 			</div>

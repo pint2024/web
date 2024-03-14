@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Contacto } from "./contacto";
 import jaumzin from "assets/images/logo2.png";
-import { CONTENT_VH } from "data/constants";
+import { CONTENT_VH, STATUS } from "data/constants";
 import { listarRequest } from "api/listarRequest";
 import { ParticipanteDTO } from "dto/participante.dto";
 import { isEmpty } from "utils/utils";
@@ -18,10 +18,10 @@ export const Contactos = ({ id }) => {
 			const contactosAux = [];
 
 			const data = await listarRequest("participante", { utilizador: id });
-
-
-			console.log("opa", data)
-
+			/*if (data === STATUS.ERRO || data === STATUS.SEM_DATA) {
+				setparticipantesData(data);
+				return
+			};*/
 			for (const participante of data) {
 				const aux = new ParticipanteDTO(participante);
 				contactosAux.push(aux.getContactosFormatted());
@@ -41,10 +41,12 @@ export const Contactos = ({ id }) => {
 		return;
 	}
 
+	console.log("oi", contactos);
+
 	return (
 		<div style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }}>
-			{contactos.map((contacto, index) => (
-				<Contacto key={index} {...contacto} />
+			{contactos.map((contacto) => (
+				<Contacto {...contacto} />
 			))}
 		</div>
 	);

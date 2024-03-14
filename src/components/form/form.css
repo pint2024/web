@@ -1,3 +1,6 @@
+@import url(../../assets/styles/color.css);
+
+/* Caixa de Texto*/
 .text-box {
   font-family: "Inter";
   width: 100%;
@@ -5,28 +8,26 @@
   flex-direction: column;
   position: relative;
 
-  input {
-    background-color: var(--bg-sec-color);
-    border: none;
-    outline: none;
-    box-shadow: 5px 5px 25px rgba($color: #333, $alpha: 0.05);
-    font-size: 20px;
-    padding: 13px 20px;
-    border-radius: 8px;
-    font-weight: 300;
-    font-family: "Inter";
-  }
-  .box__label {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: "Inter";
-    font-weight: bold;
-    user-select: none;
-    pointer-events: none;
-    font-size: 16px;
-    transition: 0.2s;
+	input {
+		border: none;
+		outline: none;
+		font-size: 20px;
+		padding: 13px 20px;
+		border-radius: 8px;
+		font-weight: 300;
+		font-family: "Inter";
+	}
+	.box__label {
+		position: absolute;
+		left: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+		font-family: "Inter";
+		font-weight: bold;
+		user-select: none;
+		pointer-events: none;
+		font-size: 16px;
+		transition: 0.2s;
 
     &.active {
       font-size: 12px;
@@ -45,4 +46,48 @@
     cursor: pointer;
     font-size: 20px;
   }
+}
+
+/* Switch Toggle */
+.toggle-switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.toggle-switch input {
+	display: none;
+}
+
+.toggle-switch .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	transition: 0.4s;
+	border-radius: 34px;
+}
+
+.toggle-switch input:checked + .slider {
+	background-color: var(--ACCENT);
+}
+
+.toggle-switch input:checked + .slider:before {
+	transform: translateX(26px);
+}
+
+.toggle-switch .slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: #fff;
+	transition: 0.4s;
+	border-radius: 50%;
 }

@@ -9,6 +9,7 @@ import Post from "components/cartao/post";
 import { PLACEHOLDER_TEXT } from "data/constants";
 import { useLoading } from "modules/hooks/useLoading";
 import { Tempo } from "utils/date.utils";
+import { SwitchToggle } from "components/form/switchToggle";
 
 function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -94,6 +95,7 @@ function Home() {
 			{puCreate()}
 			{conCreate()}
 
+			<SwitchToggle/>
 
 			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
@@ -107,13 +109,7 @@ function Home() {
 
 			<div>{user}</div>
 
-			<Post
-				id={1}
-				titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
-				descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
-				date={"à 1h"}
-				utilizador={"Joaumzin Gaimeplais"}
-			/>
+<div>
 			<h1>Selecione suas opções:</h1>
 			<MultiSelectBox
 				options={[
@@ -129,11 +125,18 @@ function Home() {
 					"Opção 11",
 					"Opção 12",
 					"Opção 13",
-					"Opção 14",
 				]}
+				
 				onChange={handleMultiSelectChange}
+			/></div>
+			<Post
+				id={1}
+				titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
+				descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
+				date={"à 1h"}
+				utilizador={"Joaumzin Gaimeplais"}
 			/>
-			<div>Opções Selecionadas: {selectedOptions.join(", ")}</div>
+			
 		</div>
 	);
 }
