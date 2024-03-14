@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from 'react';
+import './CustomCheckbox.css'; // Estilo CSS
 
-export const CheckBox = () => {
-	return (
-		<div className="checkbox-outside-card">
-			<input type="checkbox" className="custom-control-input" id="customCheck" />
-			<label className="custom-control-label" htmlFor="customCheck">
-				Your Label
-			</label>
-		</div>
-	);
-};
+function CustomCheckbox() {
+  const [isChecked, setIsChecked] = useState(true);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  return (
+    <label className="custom-checkbox">
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleCheckboxChange}
+      />
+      <span className="checkmark"></span>
+      Checkbox
+    </label>
+  );
+}
+
+export default CustomCheckbox;

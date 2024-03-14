@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './login';
-
+import './login.css'; 
 
 export function LoginPage() {
   return (
@@ -9,4 +9,3 @@ export function LoginPage() {
     </div>
   );
 }
-
