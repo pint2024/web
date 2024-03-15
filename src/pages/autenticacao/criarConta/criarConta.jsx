@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DatePicker } from "components/form/__init__";
 
-const SignUpPage = () => {
+export const CriarConta = () => {
     const [formData, setFormData] = useState({
         nome: '',
         sobrenome: '',
@@ -146,5 +146,3 @@ const SignUpPage = () => {
         </div>
     );
 };
-
-export default SignUpPage;

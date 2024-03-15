@@ -11,13 +11,19 @@ import { Habitacao } from "pages/atividades/habitacao";
 import { Mobilidade } from "pages/atividades/mobilidade";
 import { Lazer } from "pages/atividades/lazer";
 import { Conversa } from "pages/conversa/conversa";
-import {LoginPage} from "pages/login/LoginPage";
-import CreateAccount from "pages/criarConta/criar";
+import { IniciarSessao } from "pages/autenticacao/iniciarSessao/iniciarSessao";
+import { CriarConta } from "pages/autenticacao/criarConta/criarConta";
+import { Atividade } from "pages/atividades/atividade";
+import { Utilizador } from "pages/utilizador/utilizador";
 
 const dataRoutes = [
 	{
-		path: "/atividade",
+		path: "/",
 		element: <Home />,
+	},
+	{
+		path: "/atividade",
+		element: <Atividade />,
 		children: [
 			{
 				path: "/saude",
@@ -59,15 +65,15 @@ const dataRoutes = [
 	},
 	{
 		path: "/utilizador/:id",
-		element: <Calendario />,
+		element: <Utilizador />,
 	},
 	{
-		path:"/login",
-		element: <LoginPage />
+		path: "/iniciar-sessao",
+		element: <IniciarSessao />,
 	},
 	{
-		path:"/criarconta",
-		element: <CreateAccount />
+		path: "/criar-conta",
+		element: <CriarConta />,
 	},
 	{
 		path: "*",

@@ -1,0 +1,40 @@
+:root {
+	--HEADER_VH: 8vh;
+	--FOOTER_VH: 7vh;
+	--CONTENT_VH: 85vh; /* = 100 - (HEADER_VH + FOOTER_VH) */
+}
+
+.header-height {
+	height: var(--HEADER_VH);
+}
+
+.header-min-height {
+	min-height: var(--HEADER_VH);
+}
+
+.header-max-height {
+	max-height: var(--HEADER_VH);
+}
+.content-height {
+	height: var(--CONTENT_VH);
+}
+
+.content-min-height {
+	min-height: var(--CONTENT_VH);
+}
+
+.content-max-height {
+	max-height: var(--CONTENT_VH);
+}
+
+.footer-height {
+	height: var(--FOOTER_VH);
+}
+
+.footer-min-height {
+	min-height: var(--FOOTER_VH);
+}
+
+.footer-max-height {
+	max-height: var(--FOOTER_VH);
+}

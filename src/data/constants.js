@@ -1,3 +1,5 @@
+import { getSizes } from "./cssVars";
+
 export const GOSTO_ANIMATION = "animation-bounce";
 
 export const PLACEHOLDER_TEXT =
@@ -7,11 +9,11 @@ export const API_URL = "http://localhost:8000";
 
 export const POSTS_TO_RENDER = 20;
 
-export const HEADER_VH = 8;
+export const HEADER_VH = getSizes("HEADER_VH");
 
-export const FOOTER_VH = 7;
+export const FOOTER_VH = getSizes("FOOTER_VH");
 
-export const CONTENT_VH = 100 - (HEADER_VH + FOOTER_VH);
+export const CONTENT_VH = getSizes("CONTENT_VH");
 
 export const SEND_MESSAGE_DELAY = 200;
 

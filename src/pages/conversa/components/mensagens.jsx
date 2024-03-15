@@ -83,7 +83,7 @@ export const Mensagens = ({ id }) => {
 				<Texto size={1}>{conversaData.descricao}</Texto>
 				<Texto size={1}>{conversaData.getParticipantesFormatted()}</Texto>
 			</div>
-			<div className="card-body" style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }} ref={messageContainerRef}>
+			<div className="card-body" style={{ overflowY: "auto" }} ref={messageContainerRef}>
 				{mensagens.map((mensagem, index) =>
 					mensagem.isMe ? <MyMensagem key={index} {...mensagem} /> : <OthersMensagem key={index} {...mensagem} />
 				)}

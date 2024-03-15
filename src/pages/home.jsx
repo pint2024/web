@@ -8,7 +8,7 @@ import Texto from "components/texto/texto";
 import Post from "components/cartao/post";
 import { PLACEHOLDER_TEXT } from "data/constants";
 import { useLoading } from "modules/hooks/useLoading";
-import { Tempo } from "utils/date.utils";
+import { DataRelativa } from "utils/date.utils";
 import { SwitchToggle } from "components/form/switchToggle";
 
 function Home() {
@@ -24,7 +24,7 @@ function Home() {
 
 	useEffect(() => {
 		async function fetchUtilizador() {
-			const x = Tempo("02/05/2023 18:51:10");
+			const x = DataRelativa("02/05/2023 18:51:10");
 			setuser(x);
 		}
 

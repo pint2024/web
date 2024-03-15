@@ -7,15 +7,15 @@ import { HEADER_VH, FOOTER_VH } from "data/constants";
 export function PageLayout() {
 	return (
 		<div>
-			<header style={{ height: `${HEADER_VH}vh`}}>
+			<header className="header-height">
 				<Header />
 			</header>
-			<main>
+			<main className="content-min-height">
 				<PageContent>
 					<Outlet />
 				</PageContent>
 			</main>
-			<footer style={{ height: `${FOOTER_VH}vh`}}>
+			<footer className="footer-height">
 				<Footer />
 			</footer>
 		</div>

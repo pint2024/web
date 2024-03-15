@@ -1,13 +1,13 @@
 import Texto from "components/texto/texto";
 import { useEffect, useState } from "react";
-import { Tempo } from "utils/date.utils";
+import { DataRelativa } from "utils/date.utils";
 
 export function MyMensagem({ id, imagem, nome, data, mensagem }) {
 	const [dataMsg, setdataMsg] = useState();
 
 	useEffect(() => {
 		const formataData = () => {
-			setdataMsg(Tempo(data));
+			setdataMsg(DataRelativa(data));
 		}
 		formataData();
 	}, [data, setdataMsg]);

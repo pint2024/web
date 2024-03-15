@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { Contacto } from "./contacto";
-import jaumzin from "assets/images/logo2.png";
-import { CONTENT_VH, STATUS } from "data/constants";
 import { listarRequest } from "api/listarRequest";
 import { ParticipanteDTO } from "dto/participante.dto";
 import { isEmpty } from "utils/utils";
@@ -44,7 +42,7 @@ export const Contactos = ({ id }) => {
 	console.log("oi", contactos);
 
 	return (
-		<div style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }}>
+		<div style={{ overflowY: "auto" }} className="content-height">
 			{contactos.map((contacto) => (
 				<Contacto {...contacto} />
 			))}
