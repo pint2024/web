@@ -1,3 +1,5 @@
+import "./iniciarSessao.css"
+
 export function IniciarSessao() {
 	return (
 		<div className="login-page-container">
@@ -12,7 +14,7 @@ export function IniciarSessao() {
 
 					<button type="submit">Log in</button>
 				</form>
-
+				<br />
 				<button className="register-button">Registar</button>
 				<a href="/forgot-password" className="forgot-password-link">
 					Forgot Password?
