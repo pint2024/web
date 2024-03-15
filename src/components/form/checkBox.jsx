@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./CustomCheckbox.css";
+import "./checkBox.css";
 
-function CustomCheckbox() {
+export function CheckBox() {
 	const [isChecked, setIsChecked] = useState(true);
 
 	const handleCheckboxChange = () => {
@@ -16,5 +16,3 @@ function CustomCheckbox() {
 		</label>
 	);
 }
-
-export default CustomCheckbox;
