@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./checkBox.css";
 
-export function CheckBox() {
+export function CheckBox({ label }) {
 	const [isChecked, setIsChecked] = useState(true);
 
 	const handleCheckboxChange = () => {
@@ -9,10 +9,10 @@ export function CheckBox() {
 	};
 
 	return (
-		<label className="custom-checkbox">
+		<label className="check-box remove-user-select">
 			<input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
-			<span className="checkmark"></span>
-			Checkbox
+			<span className="check-mark"></span>
+			{label}
 		</label>
 	);
 }

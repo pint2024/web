@@ -1,6 +1,5 @@
-@import url(color.css);
-
-.remove-user-select { /* utilizador deixa de conseguir selecionar o texto */
+.remove-user-select {
+	/* utilizador deixa de conseguir selecionar o texto */
 	-webkit-user-select: none;
 	/* Safari */
 	-moz-user-select: none;
@@ -11,8 +10,9 @@
 	/* Standard */
 }
 
-.perigo { /* pinta o elemento com a cor de perigo */
-	color: var(--DANGER)
+.perigo {
+	/* pinta o elemento com a cor de perigo */
+	color: var(--DANGER);
 }
 
 .remove-padding {

@@ -5,7 +5,7 @@ import * as Icon from "react-bootstrap-icons";
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "modules/hooks/usePopup";
-import { CaixaTexto } from "components/form/caixaTexto";
+import { CaixaTexto } from "components/form/caixaTexto/caixaTexto";
 import { Link } from "react-router-dom";
 import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
 import User from "assets/images/logo2.png";

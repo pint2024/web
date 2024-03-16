@@ -2,14 +2,14 @@ import React from "react";
 import { Route } from "react-router-dom";
 import Home from "pages/home";
 import NotFound from "pages/NotFound";
-import { Saude } from "pages/atividades/saude";
-import { Desporto } from "pages/atividades/desporto";
-import { Formacao } from "pages/atividades/formacao";
-import { Gastronomia } from "pages/atividades/gastronomia";
+import { Saude } from "pages/atividades/rever/saude";
+import { Desporto } from "pages/atividades/rever/desporto";
+import { Formacao } from "pages/atividades/rever/formacao";
+import { Gastronomia } from "pages/atividades/rever/gastronomia";
 import { Calendario } from "pages/calendario/calendario";
-import { Habitacao } from "pages/atividades/habitacao";
-import { Mobilidade } from "pages/atividades/mobilidade";
-import { Lazer } from "pages/atividades/lazer";
+import { Habitacao } from "pages/atividades/rever/habitacao";
+import { Mobilidade } from "pages/atividades/rever/mobilidade";
+import { Lazer } from "pages/atividades/rever/lazer";
 import { Conversa } from "pages/conversa/conversa";
 import { IniciarSessao } from "pages/autenticacao/iniciarSessao/iniciarSessao";
 import { CriarConta } from "pages/autenticacao/criarConta/criarConta";
@@ -27,31 +27,31 @@ const dataRoutes = [
 		children: [
 			{
 				path: "/saude",
-				element: <Saude />,
+				element: <Atividade />,
 			},
 			{
 				path: "/desporto",
-				element: <Desporto />,
+				element: <Atividade />,
 			},
 			{
 				path: "/formacao",
-				element: <Formacao />,
+				element: <Atividade />,
 			},
 			{
 				path: "/gastronomia",
-				element: <Gastronomia />,
+				element: <Atividade />,
 			},
 			{
 				path: "/habitacao",
-				element: <Habitacao />,
+				element: <Atividade />,
 			},
 			{
 				path: "/mobilidade",
-				element: <Mobilidade />,
+				element: <Atividade />,
 			},
 			{
 				path: "/lazer",
-				element: <Lazer />,
+				element: <Atividade />,
 			},
 		],
 	},

@@ -2,8 +2,11 @@
 	/* Cores principais */
 	--DARK-PRIMARY: #00396D;
 	--LIGHT-PRIMARY: #6C90CD;
-	--LIGHT-PRIMARY-TRANSPARENT: rgba(108, 144, 205, 0.3);
+	--LIGHT-PRIMARY-TRANSPARENT: rgba(108, 144, 205, 0.5);
 	--PRIMARY: #39639C;
+	--SECONDARY: #909090;
+	--LIGHT-SECONDARY: #BDBDBD;
+	--LIGHT-SECONDARY-TRANSPARENT: rgba(189, 189, 189, 0.5);
 	--ACCENT: #00B8E0;
 	--BLACK: #212121;
 	--BLACK-AUX: #181818;
@@ -13,28 +16,30 @@
 
 	/* Cores de conteudo */
 	--ICON-PRIMARY: var(--TEXT-PRIMARY);
-	--ICON-SECONDARY: var(--TEXT-SECONDARY);
+	--ICON-SECONDARY: var(--SECONDARY);
 	--ICON-INVERSE: var(--TEXT-INVERSE);
 	--TEXT-PRIMARY: #202124;
-	--TEXT-SECONDARY: #909090;
+	--TEXT-SECONDARY: var(--SECONDARY);
 	--TEXT-INVERSE: var(--WHITE);
-	--TEXT-DANGER: #58151c;
-	--TEXT-SUCCESS: #0a3622;
-	--TEXT-INFO: #055160;
+	--TEXT-DANGER: var(--DANGER);
+	--TEXT-SUCCESS: var(--SUCCESS);
+	--TEXT-INFO: var(--INFO);
 	
 
 	/* Cores de destaque */
-	--DIVIDER: #BDBDBD;
+	--DIVIDER: var(--LIGHT-SECONDARY);
 	--BACKGROUND: #f8f7f5;
 	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
 	
 	
 	/* Cores de navegação*/
-	--DANGER: rgb(140, 0, 0);
-	--DANGER-TRANSPARENT: rgba(255, 0, 0, 0.8);
-	--SUCCESS: rgba(0, 128, 0);
-	--SUCCESS-TRANSPARENT: rgba(0, 128, 0, 0.8);
-	--INFO: rgba(0, 0, 128);
-	--INFO-TRANSPARENT: rgba(0, 0, 128, 0.8);
+	--DANGER: rgb(180, 0, 0);
+	--DARK-DANGER: rgb(150, 0, 0);
+	--DARK-DANGER-TRANSPARENT: rgba(150, 0, 0, 0.5);
+	--SUCCESS: rgb(0, 128, 0);
+	--LIGHT-SUCCESS: rgb(0, 150, 0);
+	--LIGHT-SUCCESS-TRANSPARENT: rgba(0, 150, 0, 0.5);
+	--INFO: rgb(0, 0, 128);
+	--INFO-TRANSPARENT: rgba(0, 0, 128, 0.5);
 	--SCROLL-BAR: #555
 }

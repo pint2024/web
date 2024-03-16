@@ -1,6 +1,6 @@
-export { Botao } from "./botao";
-export { CaixaTexto } from "./caixaTexto";
-export { CheckBox } from "./checkBox";
+export { Botao } from "./botao/botao";
+export { CaixaTexto } from "./caixaTexto/caixaTexto";
+export { CheckBox } from "./checkBox/checkBox";
 export { ComboBox } from "./comboBox";
 export { DatePicker } from "./datePicker";
 export { DatePickerRange } from "./datePickerRange";

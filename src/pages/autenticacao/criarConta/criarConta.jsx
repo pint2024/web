@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker } from "components/form/__init__";
+import { CaixaTexto, DatePicker } from "components/form/__init__";
 
 export const CriarConta = () => {
     const [formData, setFormData] = useState({
