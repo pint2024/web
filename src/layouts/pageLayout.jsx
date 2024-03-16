@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "components/header/header";
 import Footer from "components/footer/footer";
 import PageContent from "./pageContent";
-import { HEADER_VH, FOOTER_VH } from "data/constants";
+import { Breadcrumb } from "./breadcrumb";
 
 export function PageLayout() {
 	return (
@@ -11,6 +11,7 @@ export function PageLayout() {
 				<Header />
 			</header>
 			<main className="content-min-height">
+				<Breadcrumb />
 				<PageContent>
 					<Outlet />
 				</PageContent>

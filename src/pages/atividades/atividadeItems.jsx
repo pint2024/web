@@ -6,17 +6,20 @@ import { AtividadeDTO } from "dto/atividade.dto";
 import { useLoading } from "modules/hooks/useLoading";
 import { DTO } from "dto/dto";
 import { isEmpty } from "utils/utils";
+import { usePopup } from "modules/hooks/usePopup";
 
 export const AtividadeItems = () => {
 	const { startLoading, stopLoading } = useLoading();
-	const [atividadeData, setatividadeData] = useState({});
+	const [atividadeData, setatividadeData] = useState();
+	const { puSet, puCreate, puOpen } = usePopup();
 
 	useEffect(() => {
-			console.log("a")
-			const fetchAtividades = async () => {
+		const fetchAtividades = async () => {
 			const data = await listarRequest("atividade");
 
 			const atividades = DTO.createDTOs(data, AtividadeDTO);
+
+
 			setatividadeData(atividades);
 			stopLoading();
 		};
@@ -24,7 +27,6 @@ export const AtividadeItems = () => {
 		fetchAtividades();
 	}, []);
 
-	
 	if (isEmpty(atividadeData)) {
 		startLoading();
 		return;
@@ -32,6 +34,7 @@ export const AtividadeItems = () => {
 
 	return (
 		<div>
+			{puCreate()}
 			<Post
 				id={1}
 				titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
@@ -39,8 +42,8 @@ export const AtividadeItems = () => {
 				date={"à 1h"}
 				utilizador={"Joaumzin Gaimeplais"}
 			/>
-			{!isEmpty(atividadeData) && atividadeData.map((atividade) => (
-				<Post {...atividade.formatToPost} />
+			{atividadeData.map((atividade, index) => (
+				<Post key={index} {...atividade.formattToPost()} />
 			))}
 		</div>
 	);

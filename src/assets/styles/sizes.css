@@ -1,7 +1,8 @@
 :root {
 	--HEADER_VH: 8vh;
+	--BREADCRUMB_VH: 3vh;
+	--CONTENT_VH: 82vh; /* = 100 - (HEADER_VH + FOOTER_VH) */
 	--FOOTER_VH: 7vh;
-	--CONTENT_VH: 85vh; /* = 100 - (HEADER_VH + FOOTER_VH) */
 }
 
 .header-height {
@@ -15,6 +16,19 @@
 .header-max-height {
 	max-height: var(--HEADER_VH);
 }
+
+.breadcrumb-height {
+	height: var(--BREADCRUMB_VH);
+}
+
+.breadcrumb-min-height {
+	min-height: var(--BREADCRUMB_VH);
+}
+
+.breadcrumb-max-height {
+	max-height: var(--BREADCRUMB_VH);
+}
+
 .content-height {
 	height: var(--CONTENT_VH);
 }

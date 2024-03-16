@@ -1,13 +1,17 @@
+import { Link } from "react-router-dom";
 import MobileNav from "./mobile/navMobile";
 import Navbar from "./navbar";
-import { Link } from "react-router-dom";
+import { Dropdown } from "components/dropdown/dropdown";
+import { userItems } from "./menuItemsData";
+
 import userDefault from "assets/images/user-default.png";
 import logo from "assets/images/logo.png";
+
 import "./styles.css";
 
 const Header = () => {
 	return (
-		<section>
+		<section id="Header">
 			<div className="nav-area">
 				<Link to="/" className="header-logo">
 					<img src={logo} alt="Imagem do utilizador" className="header-site-logo" />
@@ -15,9 +19,11 @@ const Header = () => {
 				<Navbar />
 				<MobileNav />
 				<div>
-					<Link to="/utilizador" className="header-user">
-						<img src={userDefault} alt="Imagem do utilizador" className="header-user-image" />
-					</Link>
+					<Dropdown items={userItems}>
+						{/*<Link to="/utilizador" className="header-user">*/}
+						<img src={userDefault} alt="Imagem do utilizador" className="header-user-image cursor-pointer" />
+						{/*</Link>*/}
+					</Dropdown>
 				</div>
 			</div>
 		</section>

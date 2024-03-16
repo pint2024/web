@@ -1,81 +1,100 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Home from "pages/home";
-import NotFound from "pages/NotFound";
-import { Saude } from "pages/atividades/rever/saude";
-import { Desporto } from "pages/atividades/rever/desporto";
-import { Formacao } from "pages/atividades/rever/formacao";
-import { Gastronomia } from "pages/atividades/rever/gastronomia";
+import { Home } from "pages/home";
+import { NotFound } from "pages/NotFound";
 import { Calendario } from "pages/calendario/calendario";
-import { Habitacao } from "pages/atividades/rever/habitacao";
-import { Mobilidade } from "pages/atividades/rever/mobilidade";
-import { Lazer } from "pages/atividades/rever/lazer";
 import { Conversa } from "pages/conversa/conversa";
 import { IniciarSessao } from "pages/autenticacao/iniciarSessao/iniciarSessao";
 import { CriarConta } from "pages/autenticacao/criarConta/criarConta";
 import { Atividade } from "pages/atividades/atividade";
-import { Utilizador } from "pages/utilizador/utilizador";
+import { Conta } from "pages/conta/conta";
 
-const dataRoutes = [
+export const dataRoutes = [
 	{
+		title: "Página Inicial",
 		path: "/",
 		element: <Home />,
 	},
 	{
+		title: "Atividade",
 		path: "/atividade",
 		element: <Atividade />,
 		children: [
 			{
+				title: "Saúde",
 				path: "/saude",
 				element: <Atividade />,
 			},
 			{
+				title: "Desporto",
 				path: "/desporto",
 				element: <Atividade />,
 			},
 			{
+				title: "Formação",
 				path: "/formacao",
 				element: <Atividade />,
 			},
 			{
+				title: "Gastronomia",
 				path: "/gastronomia",
 				element: <Atividade />,
 			},
 			{
+				title: "Habitação",
 				path: "/habitacao",
 				element: <Atividade />,
 			},
 			{
+				title: "Mobilidade",
 				path: "/mobilidade",
 				element: <Atividade />,
 			},
 			{
+				title: "Lazer",
 				path: "/lazer",
 				element: <Atividade />,
 			},
 		],
 	},
 	{
+		title: "Conversa",
 		path: "/conversa",
 		element: <Conversa />,
 	},
 	{
+		title: "Calendário",
 		path: "/calendario",
 		element: <Calendario />,
 	},
 	{
-		path: "/utilizador/:id",
-		element: <Utilizador />,
+		title: "Conta",
+		path: "/conta/:id",
+		element: <Conta />,
+		children: [
+			{
+				title: "Editar",
+				path: "/editar",
+				element: <Conta />,
+			},
+		],
 	},
 	{
-		path: "/iniciar-sessao",
-		element: <IniciarSessao />,
-	},
-	{
+		title: "Criar Conta",
 		path: "/criar-conta",
 		element: <CriarConta />,
 	},
 	{
+		title: "Iniciar Sessão",
+		path: "/iniciar-sessao",
+		element: <IniciarSessao />,
+	},
+	{
+		title: "Terminar Sessão",
+		path: "/terminar-sessao",
+	},
+	{
+		title: "Não encontrado",
 		path: "*",
 		element: <NotFound />,
 	},
@@ -91,3 +110,21 @@ const criarRoutes = (route, parentRoute = "") => {
 };
 
 export const renderRoutes = criarRoutes(dataRoutes);
+
+export function findRouteByPath(path) {
+	const findRecursive = (routes, currentPath) => {
+		for (const route of routes) {
+			if (route.path === currentPath || route.path.split('/:')[0] === currentPath) {
+				return route;
+			} else if (route.children) {
+				const childRoute = findRecursive(route.children, currentPath);
+				if (childRoute) {
+					return childRoute;
+				}
+			}
+		}
+		return null;
+	};
+
+	return findRecursive(dataRoutes, path);
+}

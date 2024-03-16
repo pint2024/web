@@ -39,8 +39,6 @@ export const Contactos = ({ id }) => {
 		return;
 	}
 
-	console.log("oi", contactos);
-
 	return (
 		<div style={{ overflowY: "auto" }} className="content-height">
 			{contactos.map((contacto) => (

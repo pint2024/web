@@ -39,7 +39,7 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 
 	const handleOpenPopup = () => {
 		puSet({
-			headerInfo: <CartaoInfo titulo={'Joaumzin Gaimeplais'} subtitulo={'à 1h'} imagem={User} /> ,
+			headerInfo: <CartaoInfo titulo={"Joaumzin Gaimeplais"} subtitulo={"à 1h"} imagem={User} />,
 			headerTitle: <>{titulo}</>,
 			headerIcons: (
 				<Link to={id}>
@@ -76,15 +76,19 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 
 	return (
 		<div className="Post" id={id}>
-			{puCreate()}
-			<Cartao
-				id={id}
-				titulo={titulo}
-				descricao={descricao}
-				date={date}
-				utilizador={utilizador}
-				handleClick={handleOpenPopup}
-				footer={
+			<div className="card active cartao-corpo card-body main-cartao" onClick={handleOpenPopup} id={id}>
+				<div className="d-flex">
+					<CartaoInfo imagem={User} titulo={utilizador} subtitulo={date} />
+				</div>
+				<div className="cartao-corpo-titulo" title={titulo}>
+					<Texto size={3} className="card-title-header">
+						{titulo}
+					</Texto>
+				</div>
+				<div className="cartao-corpo-descricao">
+					<Texto className="card-body-descricao">{descricao}</Texto>
+				</div>
+				<div className="remove-user-select">
 					<div className="d-flex gap-5 mt-4">
 						<div
 							className={`d-flex align-items-center gap-2 post-icon ${animate ? GOSTO_ANIMATION : ""}`}
@@ -98,8 +102,8 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 							<Texto size={0}>{comments}</Texto>
 						</div>
 					</div>
-				}
-			/>
+				</div>
+			</div>
 		</div>
 	);
 }

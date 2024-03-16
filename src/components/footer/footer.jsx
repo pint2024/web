@@ -6,7 +6,7 @@ import { Icon } from "components/icons/icon";
 
 function Footer() {
 	return (
-		<section className="footer-content d-flex justify-content-between">
+		<section id="Footer" className="footer-content d-flex justify-content-between">
 			<div className="align-items-left d-flex gap-4 align-items-center">
 				<Texto>An IBM Group Company</Texto>
 				<Texto>@ Softinsa Todos os direitos reservados</Texto>

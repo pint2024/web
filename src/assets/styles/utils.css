@@ -57,6 +57,14 @@
 	color: red;
 }
 
+.link-hover:hover {
+	color: var(--LIGHT-PRIMARY);
+}
+
+.underline-hover:hover {
+	text-decoration: underline;
+}
+
 .icon-inverse {
 	color: var(--ICON-INVERSE);
 }

@@ -22,7 +22,7 @@ import { useLoading } from "modules/hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
 import { SwitchToggle } from "components/form/switchToggle/switchToggle";
 
-function Home() {
+export function Home() {
 	const { puSet, puCreate, puOpen } = usePopup();
 	const { conSet, conOpen, conCreate } = useConfirmation(false);
 	const { startLoading, stopLoading } = useLoading();
@@ -101,15 +101,12 @@ function Home() {
 
 	return (
 		<div>
-			<Texto size={4}>Ola reis</Texto>
-			<Botao handleClick={handleOpenPopup}>Popup</Botao>
-			{puCreate()}
 			{conCreate()}
-
-			<SwitchToggle />
-
-			<Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>
+			{puCreate()}
+			<Botao handleClick={handleOpenPopup}>Popup</Botao>
+			<Botao handleClick={handleOpenConfirmation}>Confirmação</Botao>
 			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
+			<SwitchToggle />
 			<br />
 			<br />
 			<br />
@@ -162,5 +159,3 @@ function Home() {
 		</div>
 	);
 }
-
-export default Home;

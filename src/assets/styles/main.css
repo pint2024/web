@@ -9,7 +9,8 @@
 
 body,
 html,
-main {
+main,
+#root {
 	background-color: var(--BACKGROUND);
 	margin: 0;
 	height: 100%;
