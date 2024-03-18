@@ -1,6 +1,5 @@
 import { monthName, weekName } from "data/data";
 
-
 export function DataCompleta(data = new Date()) {
 	const dateObj = new Date(data);
 	return {
@@ -43,14 +42,9 @@ export function DataRelativa(date) {
 	const dataCriacao = DataCompleta(date);
 	const diff = DiffDatas(date);
 
-	if (diff.ano > 0)
-		return `${dataCriacao.mesNome} de ${dataCriacao.ano}`;
-	else if (diff.mes > 0 || diff.dia > 0)
-		return `${dataCriacao.dia} de ${dataCriacao.mesNome}`;
-	else if (diff.hora > 0)
-		return `${diff.hora}h`;
-	else if (diff.minuto > 0)
-		return `${diff.minuto}m`;
-	else if (diff.segundo > 0)
-		return `${diff.segundo}s`;
+	if (diff.ano > 0) return `${dataCriacao.mesNome} de ${dataCriacao.ano}`;
+	else if (diff.mes > 0 || diff.dia > 0) return `${dataCriacao.dia} de ${dataCriacao.mesNome}`;
+	else if (diff.hora > 0) return `${diff.hora}h`;
+	else if (diff.minuto > 0) return `${diff.minuto}m`;
+	else if (diff.segundo > 0) return `${diff.segundo}s`;
 }

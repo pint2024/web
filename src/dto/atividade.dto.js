@@ -1,4 +1,5 @@
 import jaumzin from "assets/images/logo2.png";
+import { DataRelativa } from "utils/date.utils";
 
 export class AtividadeDTO {
 	constructor(data) {
@@ -21,6 +22,6 @@ export class AtividadeDTO {
 	}
 
 	formattToPost() {
-		return { id: this.id, titulo: this.titulo, descricao: this.descricao, date: this.data_criacao, utilizador: `${this.utilizador.nome} ${this.utilizador.sobrenome}` }
+		return { id: this.id, titulo: this.titulo, descricao: this.descricao, date: DataRelativa(this.data_criacao), utilizador: `${this.utilizador.nome} ${this.utilizador.sobrenome}` }
 	}
 }
