@@ -9,8 +9,10 @@ import { CaixaTexto } from "components/form/caixaTexto/caixaTexto";
 import { Link } from "react-router-dom";
 import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
 import User from "assets/images/logo2.png";
+import { Divider } from "components/divider/divider";
+import { TinyInfo } from "components/detalhes/tinyInfo";
 
-function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
+function Post({ id, titulo, descricao, topico = null, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
 	const [likes, setLikes] = useState(numLikes);
 	const [comments, setComments] = useState(numComments);
 	const [liked, setLiked] = useState(false);
@@ -76,8 +78,11 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 
 	return (
 		<div className="Post" id={id}>
-			<div className="card active cartao-corpo card-body main-cartao" onClick={handleOpenPopup} id={id}>
-				<div className="d-flex">
+			{puCreate()}
+			<Divider />
+			<div className="card-hover post-content cartao-corpo card-body main-cartao" onClick={handleOpenPopup} id={id}>
+				<TinyInfo info={topico} />
+				<div className="d-flex mt-2">
 					<CartaoInfo imagem={User} titulo={utilizador} subtitulo={date} />
 				</div>
 				<div className="cartao-corpo-titulo" title={titulo}>

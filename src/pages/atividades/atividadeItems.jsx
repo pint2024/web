@@ -18,6 +18,7 @@ export const AtividadeItems = () => {
 			const data = await listarRequest("atividade");
 			const atividades = DTO.createDTOs(data, AtividadeDTO);
 			setatividadeData(atividades);
+			console.log(atividades)
 			stopLoading();
 		};
 

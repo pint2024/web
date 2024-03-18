@@ -1,0 +1,6 @@
+.divider {
+	color: var(--DIVIDER);
+	border: none;
+	background-color: var(--DIVIDER);
+	height: 2px;
+}

@@ -12,7 +12,16 @@ export class AtividadeDTO {
 		this.data_evento = data.data_evento;
 		this.imagem = data.imagem;
 		this.formulario = data.atividade_formulario;
-		this.subtopico = data.atividade_subtopico;
+		this.subtopico = {
+			id: data.atividade_subtopico.id,
+			data_criacao: data.atividade_subtopico.data_criacao,
+			area: data.atividade_subtopico.area,
+			topico: {
+				id: data.atividade_subtopico.subtopico_topico.id,
+				data_criacao: data.atividade_subtopico.subtopico_topico.data_criacao,
+				topico: data.atividade_subtopico.subtopico_topico.topico,
+			},
+		};
 		this.utilizador = data.atividade_utilizador;
 		this.gostos = data.gosto_atividade;
 		this.comentarios = data.comentario_atividade;
@@ -22,6 +31,13 @@ export class AtividadeDTO {
 	}
 
 	formattToPost() {
-		return { id: this.id, titulo: this.titulo, descricao: this.descricao, date: DataRelativa(this.data_criacao), utilizador: `${this.utilizador.nome} ${this.utilizador.sobrenome}` }
+		return {
+			id: this.id,
+			titulo: this.titulo,
+			descricao: this.descricao,
+			topico: this.subtopico.topico.topico,
+			date: DataRelativa(this.data_criacao),
+			utilizador: `${this.utilizador.nome} ${this.utilizador.sobrenome}`,
+		};
 	}
 }

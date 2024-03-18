@@ -1,0 +1,7 @@
+.tiny-info {
+	border-radius: 20px;
+	background-color: var(--LIGHT-PRIMARY);
+	display: inline-block;
+	padding: 5px 10px;
+	color: var(--TEXT-INVERSE);
+}

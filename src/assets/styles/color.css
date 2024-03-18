@@ -27,7 +27,7 @@
 	
 
 	/* Cores de destaque */
-	--DIVIDER: var(--LIGHT-SECONDARY);
+	--DIVIDER: var(--SECONDARY);
 	--BACKGROUND: #f8f7f5;
 	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
 	
