@@ -2,14 +2,14 @@ import { LOG } from "./log.utils";
 
 export function isEmpty(...variaveis) {
 	try {
+		let isEmpty = false;
 		for (let variavel of variaveis) {
-			if (variavel && variavel.length !== undefined && variavel.length !== 0) {
-				return false;
-			} else if (!variavel || variavel === null || isWhitespaces(variavel)) {
-				return true;
+			if (!variavel || variavel === null || isWhitespaces(variavel)) {
+				isEmpty = true;
+				break;
 			}
 		}
-		return true;
+		return isEmpty;
 	} catch (error) {
 		LOG.erro(error);
 		return true;
@@ -17,5 +17,7 @@ export function isEmpty(...variaveis) {
 }
 
 export function isWhitespaces(variavel) {
-	return variavel?.trim() === "";
+	if (typeof variavel === "string")
+		return variavel?.trim() === "";
+	return false;
 }

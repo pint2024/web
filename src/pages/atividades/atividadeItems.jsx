@@ -7,33 +7,14 @@ import { DTO } from "dto/dto";
 import { isEmpty } from "utils/utils";
 import { usePopup } from "modules/hooks/usePopup";
 
-export const AtividadeItems = () => {
-	const { startLoading, stopLoading } = useLoading();
-	const [atividadeData, setatividadeData] = useState();
+export const AtividadeItems = ({ data }) => {
 	const { puSet, puCreate, puOpen } = usePopup();
-
-	useEffect(() => {
-		const fetchAtividades = async () => {
-			const data = await listarRequest("atividade");
-			const atividades = DTO.createDTOs(data, AtividadeDTO);
-			setatividadeData(atividades);
-		};
-
-		fetchAtividades();
-	}, []);
-
-
-	if (isEmpty(atividadeData)) {
-		startLoading();
-		return;
-	} else {
-		stopLoading();
-	}
+	
 
 	return (
 		<div>
 			{puCreate()}
-			{atividadeData.map((atividade, index) => (
+			{data.map((atividade, index) => (
 				<Post key={index} {...atividade.formattToPost()} />
 			))}
 		</div>

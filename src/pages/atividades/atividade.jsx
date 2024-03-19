@@ -6,11 +6,13 @@ import { TopicoDTO } from "dto/topico.dot";
 import { DTO } from "dto/dto";
 import { isEmpty } from "utils/utils";
 import { useLoading } from "modules/hooks/useLoading";
+import { AtividadeDTO } from "dto/atividade.dto";
 
 export const Atividade = () => {
 	const [topicoData, setTopicoData] = useState([]);
-	const [topicoOptions, setTopicoOptions] = useState([]);
+	const [topicoFilterOptions, setTopicoFilterOptions] = useState({});
 	const { startLoading, stopLoading } = useLoading();
+	const [atividadeData, setatividadeData] = useState();
 
 	useEffect(() => {
 		const fetchTopicos = async () => {
@@ -20,18 +22,32 @@ export const Atividade = () => {
 		};
 
 		fetchTopicos();
-	}, [topicoOptions]);
+	}, []);
 
-	if (isEmpty(topicoData)) {
+	useEffect(() => {
+		const fetchAtividades = async () => {
+			const data = await listarRequest("atividade", topicoFilterOptions);
+			const atividades = DTO.createDTOs(data, AtividadeDTO);
+			setatividadeData(atividades);
+		};
+
+		fetchAtividades();
+	}, [topicoFilterOptions]);
+
+	if (isEmpty(topicoData, atividadeData)) {
 		startLoading();
 		return;
 	} else {
 		stopLoading();
 	}
 
-	const filter = (e) => { // isto tem que ser utilizado no atividadeitems
-		/*console.log(e.target.value);
-		setTopicoOptions({ id: e.target.value });*/
+	const filter = (e) => {
+		// isto tem que ser utilizado no atividadeitems
+		const filterId = e.target.value;
+		if (filterId === "0")
+			setTopicoFilterOptions({});
+		else
+			setTopicoFilterOptions(filterId ? { "$atividade_subtopico.subtopico_topico.id$": filterId } : {});
 	};
 
 	return (
@@ -50,7 +66,7 @@ export const Atividade = () => {
 					options={topicoData.map((item) => item.getComboBoxData())}
 				/>
 			</div>
-			<AtividadeItems />
+			<AtividadeItems data={atividadeData} />
 		</div>
 	);
 };
