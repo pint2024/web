@@ -42,12 +42,8 @@ export const Atividade = () => {
 	}
 
 	const filter = (e) => {
-		// isto tem que ser utilizado no atividadeitems
-		const filterId = e.target.value;
-		if (filterId === "0")
-			setTopicoFilterOptions({});
-		else
-			setTopicoFilterOptions(filterId ? { "$atividade_subtopico.subtopico_topico.id$": filterId } : {});
+		if (e.target.value === "0") setTopicoFilterOptions({});
+		else setTopicoFilterOptions({ "$atividade_subtopico.subtopico_topico.id$": e.target.value });
 	};
 
 	return (
