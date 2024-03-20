@@ -1,6 +1,6 @@
 
 .login-container {
-    width: 300px;
+    width: 350px;
     padding: 16px;
     background-color: white;
     border-radius: 8px;
@@ -69,3 +69,16 @@
     text-decoration: underline;
   }
   
+  .outer-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    margin-left: 32.5%;
+    margin-right: 32.5%;
+    width: 35%;
+    border: 3px solid #2d2929;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
