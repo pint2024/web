@@ -1,18 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import otpimg from "assets/images/otp.png";
 
 export function OTPVerification() {
-  const [otp, setOTP] = useState("");
+  const [otp, setOTP] = useState(["", "", "", "", ""]); 
   const [verificationCode, setVerificationCode] = useState("");
   const [isVerified, setIsVerified] = useState(false);
-  const [emailSentTo, setEmailSentTo] = useState(""); // Estado para armazenar o e-mail
+  const [emailSentTo, setEmailSentTo] = useState(""); 
 
-  const handleChange = (e) => {
-    setOTP(e.target.value);
+  /*
+  useEffect(() => {
+    handleResendemail(); // pk que isto manda duas vezes?!?!
+  }, []);
+  */
+
+  useEffect(() => {
+    const generateOTP = () => {
+      const length = 6;
+      const charset = "0123456789";
+      let otp = "";
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        otp += charset[randomIndex];
+      }
+      return otp;
+    };
+
+    const generatedOTP = generateOTP(); //o codigo otp é guardado aqui
+    //setOTP(generatedOTP.split("")); //Caso seja necessario ver o codigo otp que foi criado usar esta linha 
+    console.log("Código OTP gerado:", generatedOTP);
+  }, []);
+
+  const handleChange = (e, index) => {
+    const newOTP = [...otp];
+    newOTP[index] = e.target.value;
+    setOTP(newOTP);
   };
 
   const handleVerify = () => {
-    if (otp === verificationCode) {
+    const enteredOTP = otp.join(""); 
+    if (enteredOTP === verificationCode) {
       setIsVerified(true);
     } else {
       setIsVerified(false);
@@ -38,21 +64,26 @@ export function OTPVerification() {
             <img src={otpimg} alt="Imagem" style={styles.image} />
             <h2 style={styles.heading}>Verificação OTP</h2>
             <p style={styles.subheading}>
-          One Time Password (OTP) foi enviada via email para:{" "}
-          {emailSentTo ? <span style={styles.email}>{emailSentTo}</span> : ""}
-        </p>
-            <input
-              type="text"
-              placeholder="Digite o código OTP"
-              value={otp}
-              onChange={handleChange}
-              style={styles.input}
-            />
+              One Time Password (OTP) foi enviada via email para:{" "}
+              {emailSentTo ? <span style={styles.email}>{emailSentTo}</span> : ""}
+            </p>
+            <div style={styles.inputContainer}>
+              {otp.map((value, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  maxLength="1"
+                  value={value}
+                  onChange={(e) => handleChange(e, index)}
+                  style={styles.input}
+                />
+              ))}
+            </div>
             <div style={styles.buttonContainer}>
-              <button onClick={handleVerify} style={styles.button1}>
+              <button onClick={handleVerify} style={styles.button}>
                 Verificar
               </button>
-              <button onClick={handleResend} style={styles.button2}>
+              <button onClick={handleResendemail} style={styles.button}>
                 Reenviar OTP
               </button>
             </div>
@@ -67,6 +98,8 @@ export function OTPVerification() {
     </div>
   );
 }
+
+
 
 const styles = {
   container: {
@@ -88,35 +121,42 @@ const styles = {
   heading: {
     marginBottom: "20px",
   },
+  subheading: {
+    marginBottom: "20px",
+  },
   text: {
     marginTop: "20px",
+  },
+  inputContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "20px",
+  },
+  input: {
+    width: "40px",
+    height: "40px",
+    fontSize: "20px",
+    textAlign: "center",
+    marginRight: "10px",
   },
   buttonContainer: {
     display: "flex",
     justifyContent: "space-between",
   },
-  button1: {
+  button: {
     padding: "10px 20px",
     backgroundColor: "#007bff",
     color: "#fff",
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
-    marginTop: "60px", // Ajuste a margem superior conforme necessário
-    marginLeft: "50px", // Ajuste a margem esquerda conforme necessário
-  },
-  button2: {
-    padding: "10px 20px",
-    backgroundColor: "#007bff",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    marginTop: "60px", // Ajuste a margem superior conforme necessário
-    marginRight: "50px", // Ajuste a margem direita conforme necessário
   },
   image: {
     width: "100px",
-    marginBottom: "10px", // Adiciona espaço entre a imagem e o título
+    marginBottom: "10px",
+  },
+  email: {
+    fontWeight: "bold",
   },
 };
