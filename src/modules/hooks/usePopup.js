@@ -34,7 +34,7 @@ export const usePopup = () => {
 	};
 
 	const puCreate = (...propriedades) => (
-		<section>
+		<>
 			{puIsOpen && (
 				<Popup
 					headerInfo={puHeaderInfo}
@@ -45,7 +45,7 @@ export const usePopup = () => {
 					onClose={puClose}
 				/>
 			)}
-		</section>
+		</>
 	);
 
 	return {

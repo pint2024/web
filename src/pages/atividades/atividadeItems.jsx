@@ -12,11 +12,11 @@ export const AtividadeItems = ({ data }) => {
 	
 
 	return (
-		<div>
+		<>
 			{puCreate()}
 			{data.map((atividade, index) => (
 				<Post key={index} {...atividade.formattToPost()} />
 			))}
-		</div>
+		</>
 	);
 };

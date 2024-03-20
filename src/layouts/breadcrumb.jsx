@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon } from "components/icons/icon";
-import { dataRoutes, findRouteByPath } from "routes";
+import { findRouteByPath } from "routes";
 import { useEffect, useState } from "react";
 import Texto from "components/texto/texto";
 export function Breadcrumb() {

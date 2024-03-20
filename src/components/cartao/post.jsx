@@ -50,8 +50,8 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 			),
 			body: (
 				<div>
-					<section className="comentario-modal-post">{descricao}</section>
-					<section className="comentario-modal-elements">
+					<div className="comentario-modal-post">{descricao}</div>
+					<div className="comentario-modal-elements">
 						<div className="d-flex gap-5 mt-4">
 							<div
 								className={`d-flex align-items-center gap-2 post-icon ${animate ? GOSTO_ANIMATION : ""}`}
@@ -65,11 +65,11 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 								<Texto size={0}>{comments}</Texto>
 							</div>
 						</div>
-					</section>
-					<section className="comentario-modal-add-comment gap-4">
+					</div>
+					<div className="comentario-modal-add-comment gap-4">
 						<CaixaTexto value="Adicione um comentário" />
-					</section>
-					<section className="comentario-modal-comments"></section>
+					</div>
+					<div className="comentario-modal-comments"></div>
 				</div>
 			),
 		});
@@ -77,7 +77,7 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 	};
 
 	return (
-		<div className="Post" id={id}>
+		<article className="Post" id={id}>
 			{puCreate()}
 			<Divider />
 			<div className="card-hover post-content cartao-corpo card-body main-cartao" onClick={handleOpenPopup} id={id}>
@@ -109,7 +109,7 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 					</div>
 				</div>
 			</div>
-		</div>
+		</article>
 	);
 }
 

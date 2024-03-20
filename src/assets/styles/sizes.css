@@ -1,8 +1,8 @@
 :root {
-	--HEADER_VH: 8vh;
+	--HEADER_VH: 8%;
 	--BREADCRUMB_VH: 3vh;
 	--CONTENT_VH: 82vh; /* = 100 - (HEADER_VH + FOOTER_VH) */
-	--FOOTER_VH: 7vh;
+	--FOOTER_VH: 7%;
 }
 
 .header-height {

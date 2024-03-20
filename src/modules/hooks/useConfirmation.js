@@ -28,7 +28,7 @@ export const useConfirmation = () => {
 	};
 
 	const conCreate = () => (
-		<section>
+		<>
 			{conIsOpen && (
 				<Confirmacao
 					title={conTitle}
@@ -37,7 +37,7 @@ export const useConfirmation = () => {
 					onClose={conClose}
 				/>
 			)}
-		</section>
+		</>
 	);
 
 	return {

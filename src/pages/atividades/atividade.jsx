@@ -48,7 +48,7 @@ export const Atividade = () => {
 
 	return (
 		<div>
-			<div className="d-flex justify-content-end gap-2">
+			<section className="d-flex justify-content-end gap-2">
 				<ComboBox
 					placeholder="Recentes"
 					options={[
@@ -61,8 +61,10 @@ export const Atividade = () => {
 					placeholder="Todos"
 					options={topicoData.map((item) => item.getComboBoxData())}
 				/>
-			</div>
-			<AtividadeItems data={atividadeData} />
+			</section>
+			<section>
+				<AtividadeItems data={atividadeData} />
+			</section>
 		</div>
 	);
 };

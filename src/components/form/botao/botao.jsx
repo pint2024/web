@@ -8,7 +8,7 @@ export function Botao({ variant = "primario", route = null, handleClick = null, 
 	const isVariantValid = validVariants.includes(variant) ? true : false;
 
 	return (
-		<section>
+		<div>
 			{isVariantValid ? (
 				<Link to={route} className="d-inline-block">
 					<button
@@ -23,6 +23,6 @@ export function Botao({ variant = "primario", route = null, handleClick = null, 
 			) : (
 				<Texto size={4}>Variante inválida</Texto>
 			)}
-		</section>
+		</div>
 	);
 }

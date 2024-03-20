@@ -44,17 +44,3 @@ const ModalHeaderIcons = ({ headerIcons, onClose, isVisible }) => {
 	);
 };
 
-{
-	/* aparecer apenas quando modalbase-header esta fora de vista e entao ficar "stick" ao topo do popup
-				
-				<Modal.Header className="d-flex justify-content-between gap-2">
-					<img src={headerInfo.props.imagem} alt="" className="card-user-picture" />
-					<Modal.Title>
-						<div>{headerTitle}</div>
-					</Modal.Title>
-					<div className="d-flex align-items-center modal-header-icons">
-						{headerIcons}
-						<Icon.XLg title="Fechar" onClick={onClose} />
-					</div>
-	</Modal.Header>*/
-}

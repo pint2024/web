@@ -3,10 +3,6 @@ import { usePopup } from "modules/hooks/usePopup";
 import {
 	Botao,
 	CaixaTexto,
-	ComboBox,
-	FileBox,
-	ImageBox,
-	TextArea,
 	CheckBox,
 	DatePicker,
 	TimePicker,
@@ -15,14 +11,13 @@ import {
 } from "components/form/__init__";
 import { useConfirmation } from "modules/hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
-import Texto from "components/texto/texto";
 import Post from "components/cartao/post";
 import { PLACEHOLDER_TEXT } from "data/constants";
 import { useLoading } from "modules/hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
 import { SwitchToggle } from "components/form/switchToggle/switchToggle";
 
-export function Home() {
+export function Teste() {
 	const { puSet, puCreate, puOpen } = usePopup();
 	const { conSet, conOpen, conCreate } = useConfirmation(false);
 	const { startLoading, stopLoading } = useLoading();

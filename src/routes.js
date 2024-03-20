@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { Home } from "pages/home";
+import { Teste } from "pages/teste.test";
 import { NotFound } from "pages/NotFound";
 import { Calendario } from "pages/calendario/calendario";
 import { Conversa } from "pages/conversa/conversa";
@@ -8,12 +8,18 @@ import { IniciarSessao } from "pages/autenticacao/iniciarSessao/iniciarSessao";
 import { CriarConta } from "pages/autenticacao/criarConta/criarConta";
 import { Atividade } from "pages/atividades/atividade";
 import { Conta } from "pages/conta/conta";
+import { PaginaInicial } from "pages/paginaInicial";
 
-export const dataRoutes = [
+export const DataRoutes = [
 	{
 		title: "Página Inicial",
 		path: "/",
-		element: <Home />,
+		element: <PaginaInicial />,
+	},
+	{
+		title: "Teste",
+		path: "/teste",
+		element: <Teste />,
 	},
 	{
 		title: "Atividade",
@@ -109,7 +115,7 @@ const criarRoutes = (route, parentRoute = "") => {
 	));
 };
 
-export const renderRoutes = criarRoutes(dataRoutes);
+export const renderRoutes = criarRoutes(DataRoutes);
 
 export function findRouteByPath(path) {
 	const findRecursive = (routes, currentPath) => {
@@ -126,5 +132,5 @@ export function findRouteByPath(path) {
 		return null;
 	};
 
-	return findRecursive(dataRoutes, path);
+	return findRecursive(DataRoutes, path);
 }

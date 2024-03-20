@@ -7,20 +7,14 @@
 @import url(utils.css);
 @import url(z-index.css);
 
-body,
-html,
-main,
-#root {
+body, html, #root, main {
 	background-color: var(--BACKGROUND);
 	margin: 0;
 	height: 100%;
+	width: 100%;
 }
 
-a,
-a:link,
-a:visited,
-a:hover,
-a:active {
+a, a:link, a:visited, a:hover, a:active {
 	color: var(--TEXT-PRIMARY);
 	background-color: transparent;
 	text-decoration: none;

@@ -6,7 +6,7 @@ import { Breadcrumb } from "./breadcrumb";
 
 export function PageLayout() {
 	return (
-		<div>
+		<div id="PageLayout">
 			<header className="header-height">
 				<Header />
 			</header>

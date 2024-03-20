@@ -45,7 +45,6 @@ export function Calendario() {
 		setpuIcons(
 			<Link to={`/reunioes/${data.reuniao_id}`}>
 				<Icon iconName="expand" className="align-self-center" />
-				{/*<FontAwesomeIcon icon={["fas", "expand"]} className="FontAwesomeIcons align-self-center" />*/}
 			</Link>
 		);
 		setpuSubtitulo(
