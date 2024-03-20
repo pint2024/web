@@ -1,18 +1,19 @@
-import { AutenticacaoRequest } from "api/autenticacaoRequest";
+import AutenticacaoRequest from "api/autenticacaoRequest";
 import { AutenticacaoContext } from "modules/contexts/autenticacao.context";
 import { useEffect, useState } from "react";
-import { log } from "utils/log.utils";
+import { LOG } from "utils/log.utils";
 
 export const AutenticacaoProvider = ({ children }) => {
-	const [userData, setUserData] = useState(false);
+	const [userData, setUserData] = useState({});
 
 	useEffect(() => {
 		const getUserData = async () => {
 			try {
-				const data = await AutenticacaoRequest.getCurrentUser();
+				const data = await AutenticacaoRequest.obterUtilizadorAtual();
 				setUserData(data);
 			} catch (error) {
-				log.erro("Error fetching user data:", error);
+				LOG.erro("Error fetching user data:", error);
+				throw new Error(error);
 			}
 		};
 		getUserData();

@@ -27,9 +27,8 @@ export function Dropdown({ items, children }) {
 			{isOpen && (
 				<div className="dropdown-content">
 					{items &&
-						items.map((item) => (
-							<div className="card-hover">
-								{/*item?.newGroup ? <hr className="remove-margin remove-padding" /> : null*/}
+						items.map((item, index) => (
+							<div className="card-hover" key={index}>
 								<Link to={item.rota} className="dropdown-item gap-3 d-flex align-items-center">
 									<Texto className="">{item.nome}</Texto>
 								</Link>

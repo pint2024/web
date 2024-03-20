@@ -1,6 +1,6 @@
 /// React
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 
 /// Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,8 +13,18 @@ import "react-toastify/dist/ReactToastify.css";
 /// Componentes
 import { renderRoutes } from "./routes";
 import { PageLayout } from "layouts/pageLayout";
+import { PROJETO } from "data/constants";
+import { useAutenticacao } from "modules/hooks/useAutenticacao";
 
 function App() {
+	const utilizadorAtual = useAutenticacao();
+
+	useEffect(() => {
+		document.title = PROJETO.NAME;
+	}, []);
+
+	console.log("utilizadorAtual", utilizadorAtual);
+
 	return (
 		<Router>
 			<Routes>

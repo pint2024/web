@@ -1,63 +1,68 @@
 import axios from "axios";
-import { backendUrl, userAuthLocalStorageItem } from "../data/constants";
-import { myAxios } from "src/lib/axios";
-import { log } from "utils/log.utils";
+import { API_URL, AUTH_KEY, STATUS } from "../data/constants";
+import { LOG } from "utils/log.utils";
+import { myAxios } from "./axios";
+import { isEmpty } from "utils/utils";
 
-export class AutenticacaoRequest {
-	entrar(login, password) {
-		return axios.post(`${backendUrl}/utilizador/login`, { login, password }).then(
+class AutenticacaoRequest {
+	async entrar(login, senha) {
+		try {
+			const response = await myAxios({ url: "/autenticacao/entrar", method: "post", data: { login, senha } });
+			if (response.token) {
+				localStorage.setItem(AUTH_KEY, JSON.stringify(response.token));
+			}
+			return response;
+		} catch (error) {
+			LOG.erro(error);
+			return STATUS.SEM_DATA;
+		}
+		/*return axios.post(`${API_URL}/autenticacao/entrar`, { login, senha }).then(
 			(res) => {
 				try {
-					if (res.data.token) {
-						localStorage.setItem(userAuthLocalStorageItem, JSON.stringify(res.data));
+					if (res.data.data.token) {
+						console.log(res.data.data.token)
+						console.log(AUTH_KEY, JSON.stringify(res.data.data))
+						localStorage.setItem(AUTH_KEY, JSON.stringify(res.data.data));
 					}
-					return res.data;
+					return res.data.data;
 				} catch (error) {
+					LOG.erro(error);
 					return null;
 				}
 			},
 			(reason) => {
-				log.erro("Utilizador Inválido");
+				LOG.erro("Utilizador inválido.", reason);
 			}
-		);
+		);*/
 	}
 	terminar_sessao() {
-		localStorage.removeItem(userAuthLocalStorageItem);
+		localStorage.removeItem(AUTH_KEY);
 	}
-	getCurrentUser() {
+	async obterUtilizadorAtual() {
 		try {
-			const user = this.getToken();
-			if (!user && !user.token) return false;
-			return new Promise((resolve, reject) => {
-				axios
-					.get(`${backendUrl}/utilizador/dados`, { headers: { Authorization: `Bearer ${user.token}` } })
-					.then((response) => {
-						const data = response.data.data;
-						resolve({
-							id: data.id,
-							tag: data.tag,
-							email: data.email,
-							perfil: data.perfil,
-							imagem: data.imagem,
-						});
-					})
-					.catch((error) => {
-						reject(error);
-					});
+			const token = this.getToken();
+			console.log("token", token)
+			if (isEmpty(token)) return false;
+			const response = await myAxios({
+				url: "/autenticacao/obter",
+				method: "get",
+				headers: { Authorization: `Bearer ${token}` },
 			});
+			return response;
 		} catch (error) {
-			return false;
+			LOG.erro(error);
+			return STATUS.SEM_DATA;
 		}
 	}
-	confirmarUtilizador(token) {
+	/*confirmarUtilizador(token) {
 		try {
 			if (!token) return false;
 			return new Promise((resolve, reject) => {
 				axios
-					.get(`${backendUrl}/utilizador/confirmacao`, { headers: { Authorization: `Bearer ${token}` } })
+					.get(`${AUTH_KEY}/utilizador/confirmacao`, { headers: { Authorization: `Bearer ${token}` } })
 					.then((response) => {
 						if (response.data.token) {
-							localStorage.setItem(userAuthLocalStorageItem, JSON.stringify(response.data));
+							localStorage.setItem(AUTH_KEY, JSON.stringify(response.data));
 						}
 						resolve(response.data);
 					})
@@ -71,11 +76,11 @@ export class AutenticacaoRequest {
 	}
 	refreshAuth() {
 		const token = this.getToken().token;
-		return axios.post(`${backendUrl}/utilizador/auth/refresh`, { token }).then(
+		return axios.post(`${AUTH_KEY}/utilizador/auth/refresh`, { token }).then(
 			(res) => {
 				try {
 					if (res.data.token) {
-						localStorage.setItem(userAuthLocalStorageItem, JSON.stringify(res.data));
+						localStorage.setItem(AUTH_KEY, JSON.stringify(res.data));
 					}
 					return res.data;
 				} catch (error) {
@@ -86,8 +91,10 @@ export class AutenticacaoRequest {
 				throw new Error("Utilizador Inválido");
 			}
 		);
-	}
+	}*/
 	getToken() {
-		return JSON.parse(localStorage.getItem(userAuthLocalStorageItem));
+		return JSON.parse(localStorage.getItem(AUTH_KEY));
 	}
 }
+
+export default new AutenticacaoRequest();

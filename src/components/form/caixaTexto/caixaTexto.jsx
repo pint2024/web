@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Icon } from "components/icons/icon";
 
 export const CaixaTexto = ({ handleChange, value, label, type, prefix, placeholder, disabled, handleKeyDown }) => {
-	const [inputType, setInputType] = useState("");
 	const [isFocused, setIsFocused] = useState(false);
-	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
-	useEffect(() => {
-		setInputType(type);
-	}, [type]);
 
 	const handleInputKeyDown = (e) => {
 		if (e.key === "Enter") {
@@ -27,7 +21,7 @@ export const CaixaTexto = ({ handleChange, value, label, type, prefix, placehold
 					</span>
 				)}
 				<input
-					type={inputType !== "password" ? inputType : isPasswordVisible ? "text" : "password"}
+					type={type}
 					className="form-control"
 					value={value}
 					placeholder={placeholder}
@@ -37,21 +31,6 @@ export const CaixaTexto = ({ handleChange, value, label, type, prefix, placehold
 					onBlur={() => setIsFocused(false)}
 					onKeyDown={(e) => handleInputKeyDown(e)}
 				/>
-				<span className="show__pass" onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
-					{inputType === "password" ? (
-						value !== "" ? (
-							isPasswordVisible ? (
-								<Icon iconName="OutlineEyeSlash" />
-							) : (
-								<Icon iconName="OutlineEye" />
-							)
-						) : (
-							""
-						)
-					) : (
-						""
-					)}
-				</span>
 			</div>
 		</>
 	);

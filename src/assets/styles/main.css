@@ -12,6 +12,7 @@ body, html, #root, main {
 	margin: 0;
 	height: 100%;
 	width: 100%;
+	color-scheme: light;
 }
 
 a, a:link, a:visited, a:hover, a:active {
