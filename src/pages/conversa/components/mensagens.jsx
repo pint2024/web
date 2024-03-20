@@ -22,7 +22,6 @@ export const Mensagens = ({ id }) => {
 	useEffect(() => {
 		const fetchMensagens = async () => {
 			const data = await obterRequest("conversa", id);
-			console.log(data)
 			const conversa = new ConversaDTO(data);
 			setconversaData(conversa);
 			const mensagensFormatadas = conversa.getMensagensFormatted();
@@ -83,7 +82,7 @@ export const Mensagens = ({ id }) => {
 				<Texto size={1}>{conversaData.descricao}</Texto>
 				<Texto size={1}>{conversaData.getParticipantesFormatted()}</Texto>
 			</div>
-			<div className="card-body" style={{ overflowY: "auto", maxHeight: `${CONTENT_VH}vh` }} ref={messageContainerRef}>
+			<div className="card-body" style={{ overflowY: "auto" }} ref={messageContainerRef}>
 				{mensagens.map((mensagem, index) =>
 					mensagem.isMe ? <MyMensagem key={index} {...mensagem} /> : <OthersMensagem key={index} {...mensagem} />
 				)}
@@ -92,7 +91,7 @@ export const Mensagens = ({ id }) => {
 				<div className="d-flex gap-2">
 					<CaixaTexto
 						placeholder="Escrever uma mensagem"
-						setValue={(e) => setsendMessage(e)}
+						handleChange={(e) => setsendMessage(e)}
 						handleKeyDown={enviarMensagem}
 						value={sendMensagem}
 					/>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./form.css";
+import "./switchToggle.css";
 
 export function SwitchToggle() {
 	const [isChecked, setIsChecked] = useState(false);

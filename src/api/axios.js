@@ -20,7 +20,7 @@ export async function myAxios({ url, method = "get", data = null, headers = {} }
 		// caso contrario devolve false
 		else return STATUS.ERRO;
 	} catch (error) {
-		log.erro(error);
+		console.error(error);
 		return STATUS.SEM_DATA;
 	}
 }

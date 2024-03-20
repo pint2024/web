@@ -1,7 +1,6 @@
 import { monthName, weekName } from "data/data";
 
-
-export function getData(data = new Date()) {
+export function DataCompleta(data = new Date()) {
 	const dateObj = new Date(data);
 	return {
 		data: dateObj,
@@ -16,7 +15,7 @@ export function getData(data = new Date()) {
 	};
 }
 
-export function getDataDiferenca(data1, data2 = new Date()) {
+export function DiffDatas(data1, data2 = new Date()) {
 	const dataObj1 = new Date(data1);
 	const dataObj2 = new Date(data2);
 	const diff = Math.abs(dataObj2 - dataObj1);
@@ -39,18 +38,13 @@ export function getDataDiferenca(data1, data2 = new Date()) {
 	};
 }
 
-export function Tempo(date) {
-	const dataCriacao = getData(date);
-	const diff = getDataDiferenca(date);
+export function DataRelativa(date) {
+	const dataCriacao = DataCompleta(date);
+	const diff = DiffDatas(date);
 
-	if (diff.ano > 0)
-		return `${dataCriacao.mesNome} de ${dataCriacao.ano}`;
-	else if (diff.mes > 0 || diff.dia > 0)
-		return `${dataCriacao.dia} de ${dataCriacao.mesNome}`;
-	else if (diff.hora > 0)
-		return `${diff.hora}h`;
-	else if (diff.minuto > 0)
-		return `${diff.minuto}m`;
-	else if (diff.segundo > 0)
-		return `${diff.segundo}s`;
+	if (diff.ano > 0) return `${dataCriacao.mesNome} de ${dataCriacao.ano}`;
+	else if (diff.mes > 0 || diff.dia > 0) return `${dataCriacao.dia} de ${dataCriacao.mesNome}`;
+	else if (diff.hora > 0) return `${diff.hora}h`;
+	else if (diff.minuto > 0) return `${diff.minuto}m`;
+	else if (diff.segundo > 0) return `${diff.segundo}s`;
 }

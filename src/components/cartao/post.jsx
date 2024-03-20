@@ -5,12 +5,14 @@ import * as Icon from "react-bootstrap-icons";
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "modules/hooks/usePopup";
-import { CaixaTexto } from "components/form/caixaTexto";
+import { CaixaTexto } from "components/form/caixaTexto/caixaTexto";
 import { Link } from "react-router-dom";
 import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
 import User from "assets/images/logo2.png";
+import { Divider } from "components/divider/divider";
+import { TinyInfo } from "components/detalhes/tinyInfo";
 
-function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
+function Post({ id, titulo, descricao, topico = null, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
 	const [likes, setLikes] = useState(numLikes);
 	const [comments, setComments] = useState(numComments);
 	const [liked, setLiked] = useState(false);
@@ -39,7 +41,7 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 
 	const handleOpenPopup = () => {
 		puSet({
-			headerInfo: <CartaoInfo titulo={'Joaumzin Gaimeplais'} subtitulo={'à 1h'} imagem={User} /> ,
+			headerInfo: <CartaoInfo titulo={"Joaumzin Gaimeplais"} subtitulo={"à 1h"} imagem={User} />,
 			headerTitle: <>{titulo}</>,
 			headerIcons: (
 				<Link to={id}>
@@ -77,14 +79,21 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 	return (
 		<div className="Post" id={id}>
 			{puCreate()}
-			<Cartao
-				id={id}
-				titulo={titulo}
-				descricao={descricao}
-				date={date}
-				utilizador={utilizador}
-				handleClick={handleOpenPopup}
-				footer={
+			<Divider />
+			<div className="card-hover post-content cartao-corpo card-body main-cartao" onClick={handleOpenPopup} id={id}>
+				<TinyInfo info={topico} />
+				<div className="d-flex mt-2">
+					<CartaoInfo imagem={User} titulo={utilizador} subtitulo={date} />
+				</div>
+				<div className="cartao-corpo-titulo" title={titulo}>
+					<Texto size={3} className="card-title-header">
+						{titulo}
+					</Texto>
+				</div>
+				<div className="cartao-corpo-descricao">
+					<Texto className="card-body-descricao">{descricao}</Texto>
+				</div>
+				<div className="remove-user-select">
 					<div className="d-flex gap-5 mt-4">
 						<div
 							className={`d-flex align-items-center gap-2 post-icon ${animate ? GOSTO_ANIMATION : ""}`}
@@ -98,8 +107,8 @@ function Post({ id, titulo, descricao, utilizador = "", date = "", numLikes = 0,
 							<Texto size={0}>{comments}</Texto>
 						</div>
 					</div>
-				}
-			/>
+				</div>
+			</div>
 		</div>
 	);
 }

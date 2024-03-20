@@ -1,75 +1,100 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Home from "pages/home";
-import NotFound from "pages/NotFound";
-import { Saude } from "pages/atividades/saude";
-import { Desporto } from "pages/atividades/desporto";
-import { Formacao } from "pages/atividades/formacao";
-import { Gastronomia } from "pages/atividades/gastronomia";
+import { Home } from "pages/home";
+import { NotFound } from "pages/NotFound";
 import { Calendario } from "pages/calendario/calendario";
-import { Habitacao } from "pages/atividades/habitacao";
-import { Mobilidade } from "pages/atividades/mobilidade";
-import { Lazer } from "pages/atividades/lazer";
 import { Conversa } from "pages/conversa/conversa";
-import {LoginPage} from "pages/login/LoginPage";
-import CreateAccount from "pages/criarConta/criar";
+import { IniciarSessao } from "pages/autenticacao/iniciarSessao/iniciarSessao";
+import { CriarConta } from "pages/autenticacao/criarConta/criarConta";
+import { Atividade } from "pages/atividades/atividade";
+import { Conta } from "pages/conta/conta";
 
-const dataRoutes = [
+export const dataRoutes = [
 	{
-		path: "/atividade",
+		title: "Página Inicial",
+		path: "/",
 		element: <Home />,
+	},
+	{
+		title: "Atividade",
+		path: "/atividade",
+		element: <Atividade />,
 		children: [
 			{
+				title: "Saúde",
 				path: "/saude",
-				element: <Saude />,
+				element: <Atividade />,
 			},
 			{
+				title: "Desporto",
 				path: "/desporto",
-				element: <Desporto />,
+				element: <Atividade />,
 			},
 			{
+				title: "Formação",
 				path: "/formacao",
-				element: <Formacao />,
+				element: <Atividade />,
 			},
 			{
+				title: "Gastronomia",
 				path: "/gastronomia",
-				element: <Gastronomia />,
+				element: <Atividade />,
 			},
 			{
+				title: "Habitação",
 				path: "/habitacao",
-				element: <Habitacao />,
+				element: <Atividade />,
 			},
 			{
+				title: "Mobilidade",
 				path: "/mobilidade",
-				element: <Mobilidade />,
+				element: <Atividade />,
 			},
 			{
+				title: "Lazer",
 				path: "/lazer",
-				element: <Lazer />,
+				element: <Atividade />,
 			},
 		],
 	},
 	{
+		title: "Conversa",
 		path: "/conversa",
 		element: <Conversa />,
 	},
 	{
+		title: "Calendário",
 		path: "/calendario",
 		element: <Calendario />,
 	},
 	{
-		path: "/utilizador/:id",
-		element: <Calendario />,
+		title: "Conta",
+		path: "/conta/:id",
+		element: <Conta />,
+		children: [
+			{
+				title: "Editar",
+				path: "/editar",
+				element: <Conta />,
+			},
+		],
 	},
 	{
-		path:"/login",
-		element: <LoginPage />
+		title: "Criar Conta",
+		path: "/criar-conta",
+		element: <CriarConta />,
 	},
 	{
-		path:"/criarconta",
-		element: <CreateAccount />
+		title: "Iniciar Sessão",
+		path: "/iniciar-sessao",
+		element: <IniciarSessao />,
 	},
 	{
+		title: "Terminar Sessão",
+		path: "/terminar-sessao",
+	},
+	{
+		title: "Não encontrado",
 		path: "*",
 		element: <NotFound />,
 	},
@@ -85,3 +110,21 @@ const criarRoutes = (route, parentRoute = "") => {
 };
 
 export const renderRoutes = criarRoutes(dataRoutes);
+
+export function findRouteByPath(path) {
+	const findRecursive = (routes, currentPath) => {
+		for (const route of routes) {
+			if (route.path === currentPath || route.path.split('/:')[0] === currentPath) {
+				return route;
+			} else if (route.children) {
+				const childRoute = findRecursive(route.children, currentPath);
+				if (childRoute) {
+					return childRoute;
+				}
+			}
+		}
+		return null;
+	};
+
+	return findRecursive(dataRoutes, path);
+}

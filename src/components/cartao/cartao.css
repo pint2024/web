@@ -1,3 +1,4 @@
+/* Cartão */
 .main-cartao {
 	cursor: pointer;
 }
@@ -39,4 +40,8 @@
 
 .post-icon {
 	padding: 5px;
+}
+
+.post-content {
+	padding: 10px;
 }

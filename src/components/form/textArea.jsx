@@ -7,13 +7,13 @@ export function TextArea({
 	handleChange,
 	value: propValue = "",
 	disabled = false,
-	placeholder = ''
+	placeholder = "",
 }) {
 	const [value, setValue] = useState(propValue);
 
 	const handleInputChange = (e) => {
 		setValue(e.target.value);
-		if (typeof handleChange === 'function') {
+		if (typeof handleChange === "function") {
 			handleChange(e);
 		}
 	};

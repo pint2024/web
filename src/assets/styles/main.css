@@ -2,13 +2,15 @@
 @import url(color.css);
 @import url(font.css);
 @import url(scroll-bar.css);
+@import url(sizes.css);
 @import url(text.css);
 @import url(utils.css);
 @import url(z-index.css);
 
 body,
 html,
-main {
+main,
+#root {
 	background-color: var(--BACKGROUND);
 	margin: 0;
 	height: 100%;

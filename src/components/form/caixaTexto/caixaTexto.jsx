@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Icon } from "components/icons/icon";
 
-export const CaixaTexto = ({ setValue, value, label, type, prefix, placeholder, disabled, handleKeyDown }) => {
+export const CaixaTexto = ({ handleChange, value, label, type, prefix, placeholder, disabled, handleKeyDown }) => {
 	const [inputType, setInputType] = useState("");
 	const [isFocused, setIsFocused] = useState(false);
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -32,7 +32,7 @@ export const CaixaTexto = ({ setValue, value, label, type, prefix, placeholder, 
 					value={value}
 					placeholder={placeholder}
 					disabled={disabled}
-					onChange={(e) => setValue(e.target.value)}
+					onChange={(e) => handleChange(e.target.value)}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
 					onKeyDown={(e) => handleInputKeyDown(e)}

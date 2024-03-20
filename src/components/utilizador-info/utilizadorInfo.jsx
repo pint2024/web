@@ -2,11 +2,11 @@ import "./utilizador-info.css";
 
 export const UtilizadorInfo = ({ imagem, header, info }) => {
 	return (
-		<div className="row align-items-center gap-2">
-			<div className="col-2">
+		<div style={{ display: "flex", alignItems: "center" }}>
+			<div>
 				<img src={imagem} alt="" className="card-user-picture" />
 			</div>
-			<div className="col">
+			<div className="col" style={{ marginLeft: "8px" }}>
 				<div>{header}</div>
 				<div>{info}</div>
 			</div>

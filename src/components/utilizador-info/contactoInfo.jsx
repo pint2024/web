@@ -1,14 +1,14 @@
 import Texto from "components/texto/texto";
 import { UtilizadorInfo } from "./utilizadorInfo";
 import { useEffect, useState } from "react";
-import { Tempo } from "utils/date.utils";
+import { DataRelativa } from "utils/date.utils";
 
 export const ContactoInfo = ({ imagem, titulo, data, subtitulo }) => {
 	const [dataMsg, setdataMsg] = useState();
 
 	useEffect(() => {
 		const formataData = () => {
-			setdataMsg(Tempo(data));
+			setdataMsg(DataRelativa(data));
 		}
 		formataData();
 	}, [data, setdataMsg]);

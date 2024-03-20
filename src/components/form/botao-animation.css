@@ -1,8 +1,0 @@
-.Button {
-	position: relative;
-	transition: transform 0.2s;
-}
-
-.Button:active {
-	transform: scale(0.95);
-}

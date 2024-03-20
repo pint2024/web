@@ -77,6 +77,13 @@ const navItems = [
 	{ title: "Calendário", route: "/calendario" },
 ];
 
+export const userItems = [
+	{ nome: "Minha conta", rota: `/conta/1` },
+	{ nome: "Editar conta", rota: `/conta/1/editar` },
+	{ nome: "Terminar sessão", rota: `/terminar-sessao` },
+];
+
+
 const criarObjeto = (data, parentRoute = null) => {
 	return data.map((item) => ({
 		title: item.title,

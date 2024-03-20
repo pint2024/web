@@ -1,8 +1,7 @@
 import React from "react";
 import { Botao } from "components/form/__init__";
-import * as Icon from "react-bootstrap-icons";
-import { Modal } from "react-bootstrap";
 import { ModalBase } from "./modalBase";
+import { Icon } from "components/icons/icon";
 
 export const Confirmacao = ({ title, body, onSuccess, onClose }) => {
 	const handleSuccessClick = () => {
@@ -17,11 +16,11 @@ export const Confirmacao = ({ title, body, onSuccess, onClose }) => {
 				onClose={onClose}
 				footer={
 					<div className="d-flex gap-2">
-						<Botao variant="success" handleClick={handleSuccessClick}>
-							<Icon.CheckLg /> Sim
+						<Botao variant="sucesso" handleClick={handleSuccessClick}>
+							<Icon iconName="CheckLg" className="icon-inverse" /> Sim
 						</Botao>
-						<Botao variant="danger" handleClick={onClose}>
-							<Icon.XLg /> Não
+						<Botao variant="perigo" handleClick={onClose}>
+							<Icon iconName="XLg" className="icon-inverse" /> Não
 						</Botao>
 					</div>
 				}

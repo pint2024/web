@@ -1,6 +1,6 @@
 function PageContent({ children }) {
 	return (
-		<section className="container">
+		<section id="PageContent" className="container content-min-height">
 			{children}
 		</section>
 	);

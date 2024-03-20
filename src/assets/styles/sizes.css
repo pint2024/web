@@ -1,0 +1,54 @@
+:root {
+	--HEADER_VH: 8vh;
+	--BREADCRUMB_VH: 3vh;
+	--CONTENT_VH: 82vh; /* = 100 - (HEADER_VH + FOOTER_VH) */
+	--FOOTER_VH: 7vh;
+}
+
+.header-height {
+	height: var(--HEADER_VH);
+}
+
+.header-min-height {
+	min-height: var(--HEADER_VH);
+}
+
+.header-max-height {
+	max-height: var(--HEADER_VH);
+}
+
+.breadcrumb-height {
+	height: var(--BREADCRUMB_VH);
+}
+
+.breadcrumb-min-height {
+	min-height: var(--BREADCRUMB_VH);
+}
+
+.breadcrumb-max-height {
+	max-height: var(--BREADCRUMB_VH);
+}
+
+.content-height {
+	height: var(--CONTENT_VH);
+}
+
+.content-min-height {
+	min-height: var(--CONTENT_VH);
+}
+
+.content-max-height {
+	max-height: var(--CONTENT_VH);
+}
+
+.footer-height {
+	height: var(--FOOTER_VH);
+}
+
+.footer-min-height {
+	min-height: var(--FOOTER_VH);
+}
+
+.footer-max-height {
+	max-height: var(--FOOTER_VH);
+}

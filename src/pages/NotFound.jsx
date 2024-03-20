@@ -1,7 +1,7 @@
 import Texto from "components/texto/texto";
 import React from "react";
 
-export default function NotFound() {
+export function NotFound() {
 	return (
 		<>
 			<div className="d-flex gap-3">

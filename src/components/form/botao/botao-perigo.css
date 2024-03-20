@@ -1,0 +1,31 @@
+.botao-perigo {
+	color: var(--WHITE);
+	background-color: var(--DANGER);
+	border-color: var(--DANGER);
+}
+
+.botao-perigo:hover {
+	color: var(--WHITE);
+	background-color: var(--DARK-DANGER);
+	border-color: var(--DARK-DANGER);
+}
+
+.botao-perigo:focus {
+	color: var(--WHITE);
+	background-color: var(--DARK-DANGER);
+	border-color: var(--DARK-DANGER);
+}
+
+.botao-perigo:active {
+	color: var(--WHITE);
+	background-color: var(--DARK-DANGER);
+	border-color: var(--DARK-DANGER);
+}
+
+.botao-perigo:disabled {
+	color: var(--WHITE);
+	background-color: var(--DARK-DANGER-TRANSPARENT);
+	border-color: var(--DARK-DANGER-TRANSPARENT);
+	pointer-events: none;
+	cursor: not-allowed;
+}
