@@ -1,21 +1,3 @@
-@import url(../../assets/styles/z-index.css);
-
-.modal-confirmacao .modal {
-	z-index: 2;
-}
-
-.modal-confirmacao .modal-backdrop {
-	z-index: 1;
-}
-
-.modal-popup .modal {
-	z-index: 0;
-}
-
-.modal-popup .modal-backdrop {
-	z-index: 4;
-}
-
 .modal-header-icons svg:hover {
 	background-color: var(--WHITE-HOVER);
 	border-radius: 5px;

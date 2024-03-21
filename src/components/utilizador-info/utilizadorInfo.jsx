@@ -7,8 +7,8 @@ export const UtilizadorInfo = ({ imagem, header, info }) => {
 				<img src={imagem} alt="" className="card-user-picture" />
 			</div>
 			<div className="col" style={{ marginLeft: "8px" }}>
-				<div>{header}</div>
-				<div>{info}</div>
+				{header ? <div>{header}</div> : null}
+				{info ? <div>{info}</div> : null}
 			</div>
 		</div>
 	);

@@ -36,8 +36,10 @@ export class AtividadeDTO {
 			titulo: this.titulo,
 			descricao: this.descricao,
 			topico: this.subtopico.topico.topico,
-			date: DataRelativa(this.data_criacao),
 			utilizador: `${this.utilizador.nome} ${this.utilizador.sobrenome}`,
+			date: DataRelativa(this.data_criacao),
+			gostos: this.gostos,
+			comentarios: this.comentarios,
 		};
 	}
 }

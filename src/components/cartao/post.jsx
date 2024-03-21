@@ -1,5 +1,4 @@
 import "./cartao.css";
-import Cartao from "./cartao";
 import Texto from "components/texto/texto";
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
@@ -8,13 +7,13 @@ import { CaixaTexto } from "components/form/caixaTexto/caixaTexto";
 import { Link } from "react-router-dom";
 import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
 import User from "assets/images/logo2.png";
-import { Divider } from "components/divider/divider";
 import { TinyInfo } from "components/detalhes/tinyInfo";
 import { Icon } from "components/icons/icon";
+import { Comentario } from "./comentario";
 
-function Post({ id, titulo, descricao, topico = null, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
-	const [likes, setLikes] = useState(numLikes);
-	const [comments, setComments] = useState(numComments);
+function Post({ id, titulo, descricao, topico = null, utilizador = "", date = "", gostos = 0, comentarios = 0 }) {
+	const [likes, setLikes] = useState(gostos ? gostos.length : 0);
+	const [comments, setComments] = useState(comentarios ? comentarios.length : 0);
 	const [liked, setLiked] = useState(false);
 	const [animate, setAnimate] = useState(false);
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -73,7 +72,13 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 					<div className="comentario-modal-add-comment gap-4">
 						<CaixaTexto value="Adicione um comentário" />
 					</div>
-					<div className="comentario-modal-comments"></div>
+					<div className="comentario-modal-comments">
+						{comentarios.map((comentario) => (
+							<div className="mt-3">
+								<Comentario comentario={comentario.comentario} />
+							</div>
+						))}
+					</div>
 				</div>
 			),
 		});

@@ -22,17 +22,15 @@ export function Dropdown({ items, children }) {
 	});
 
 	return (
-		<div id="Dropdown" className="dropdown remove-user-select" onClick={toggleDropdown} ref={menuDropdownRef}>
+		<div id="Dropdown" className="dropdown" onClick={toggleDropdown} ref={menuDropdownRef}>
 			{children}
 			{isOpen && (
 				<div className="dropdown-content">
 					{items &&
 						items.map((item, index) => (
-							<div className="card-hover" key={index}>
-								<Link to={item.rota} className="dropdown-item gap-3 d-flex align-items-center">
-									<Texto className="">{item.nome}</Texto>
-								</Link>
-							</div>
+							<Link to={item.rota} className="card-hover dropdown-item" key={index}>
+								<Texto>{item.nome}</Texto>
+							</Link>
 						))}
 				</div>
 			)}

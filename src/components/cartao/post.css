@@ -1,0 +1,13 @@
+.post-icon:hover {
+	background-color: var(--WHITE-HOVER);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.post-icon {
+	padding: 5px;
+}
+
+.post-content {
+	padding: 10px;
+}

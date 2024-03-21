@@ -32,41 +32,6 @@ export const DataRoutes = [
 				path: "/criar",
 				element: <AtividadeCriar />,
 			},
-			{
-				title: "Saúde",
-				path: "/saude",
-				element: <Atividade />,
-			},
-			{
-				title: "Desporto",
-				path: "/desporto",
-				element: <Atividade />,
-			},
-			{
-				title: "Formação",
-				path: "/formacao",
-				element: <Atividade />,
-			},
-			{
-				title: "Gastronomia",
-				path: "/gastronomia",
-				element: <Atividade />,
-			},
-			{
-				title: "Habitação",
-				path: "/habitacao",
-				element: <Atividade />,
-			},
-			{
-				title: "Mobilidade",
-				path: "/mobilidade",
-				element: <Atividade />,
-			},
-			{
-				title: "Lazer",
-				path: "/lazer",
-				element: <Atividade />,
-			},
 		],
 	},
 	{

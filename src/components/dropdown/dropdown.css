@@ -1,25 +1,12 @@
 .dropdown-content {
 	position: absolute;
 	background-color: var(--BACKGROUND);
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	border-radius: 20px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	right: 0%;
 	top: 120%;
-	z-index: var(--HEADER-DROPDOWN);
-}
-
-.dropdown {
-	border-radius: 20px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-
 }
 
 .dropdown-item {
 	padding: 12px 16px;
-}
-
-.custom-hr {
-	height: 2px;
-	background-color: black;
-	border: none;
 }

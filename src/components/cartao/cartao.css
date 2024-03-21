@@ -1,4 +1,3 @@
-/* Cartão */
 .main-cartao {
 	cursor: pointer;
 }
@@ -27,21 +26,4 @@
 .main-cartao .container {
 	margin: 0;
 	padding: 0;
-}
-
-
-
-/* post */
-.post-icon:hover {
-	background-color: var(--WHITE-HOVER);
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-.post-icon {
-	padding: 5px;
-}
-
-.post-content {
-	padding: 10px;
 }

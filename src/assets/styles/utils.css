@@ -44,7 +44,7 @@
 }
 
 .card-hover:hover {
-	background-color: var(--WHITE-HOVER);
+	background-color: var(--WHITE-HOVER) !important; /* análisar se o "!important" pode dar problemas */
 	border-radius: 20px;
 	cursor: pointer;
 }
@@ -85,4 +85,8 @@
 
 .cursor-pointer {
 	cursor: pointer;
+}
+
+.remove-text-decoration {
+	text-decoration: none;
 }

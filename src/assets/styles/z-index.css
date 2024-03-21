@@ -1,12 +1,47 @@
 :root {
 	--POPUP: 8;
-	--POPUP-BACKGROUND: var(--POPUP) -1;
+	--POPUP-BACKGROUND: var(--POPUP) - 1;
+
+	--NOTIFICACAO-POPUP: 11;
+
+	--LOADING: 20;
 
 	--HEADER-DROPDOWN: 6;
-	--NOTIFICACAO: 11;
+	--REGULAR-DROPDOWN: 4;
 
-	--REGULAR-DROPDOWN: X;
-	
 	--CONFIRMACAO: 10;
 	--CONFIRMACAO-BACKGROUND: var(--CONFIRMACAO) - 1;
+}
+
+.loading-operation {
+	z-index: var(--LOADING);
+}
+
+.notification-popup {
+	z-index: var(--NOTIFICACAO-POPUP);
+}
+
+.desktop-nav .dropdown,
+.mobile-nav .menus {
+	z-index: var(--HEADER-DROPDOWN);
+}
+
+.dropdown-content {
+	z-index: var(--REGULAR-DROPDOWN);
+}
+
+.modal-confirmacao .modal {
+	z-index: var(--CONFIRMACAO);
+}
+
+.modal-confirmacao .modal-backdrop {
+	z-index: var(--CONFIRMACAO-BACKGROUND);
+}
+
+.modal-popup .modal {
+	z-index: var(--POPUP);
+}
+
+.modal-popup .modal-backdrop {
+	z-index: var(--POPUP-BACKGROUND);
 }

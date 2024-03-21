@@ -1,0 +1,7 @@
+.comentario-conteudo {
+	border: 1px solid var(--BACKGROUND);
+	border-radius: 20px;
+	background-color: var(--BACKGROUND);
+	padding: 10px;
+
+}
