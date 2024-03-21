@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export function TextArea({
-	title,
+	label,
 	prefix = false,
 	inputType = "text",
 	handleChange,
@@ -20,7 +20,7 @@ export function TextArea({
 
 	return (
 		<div className="TextBox">
-			{title && <label htmlFor="inputNome">{title}</label>}
+			{label && <label htmlFor="inputNome">{label}</label>}
 			<div className="input-group">
 				{prefix && (
 					<span className="input-group-text" id="basic-addon">

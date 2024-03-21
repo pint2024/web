@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export function ImageBox({
-	title,
+	label,
 	handleChange,
 	value: propValue = "",
 	disabled = false,
@@ -18,7 +18,7 @@ export function ImageBox({
 
 	return (
 		<div className="ImageBox">
-			{title && <label htmlFor="inputImage">{title}</label>}
+			{label && <label htmlFor="inputImage">{label}</label>}
 			<div className="input-group">
 				<input
 					type="file"

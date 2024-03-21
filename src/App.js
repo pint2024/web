@@ -23,8 +23,6 @@ function App() {
 		document.title = PROJETO.NAME;
 	}, []);
 
-	console.log("utilizadorAtual", utilizadorAtual);
-
 	return (
 		<Router>
 			<Routes>

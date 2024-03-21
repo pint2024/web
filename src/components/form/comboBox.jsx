@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export function ComboBox({
-	title,
+	label,
 	options,
 	handleChange,
 	value: propValue = "",
@@ -19,7 +19,7 @@ export function ComboBox({
 
 	return (
 		<div className="ComboBox">
-			{title && <label htmlFor="selectOption">{title}</label>}
+			{label && <label htmlFor="selectOption">{label}</label>}
 			<select
 				className="form-select"
 				id="selectOption"
