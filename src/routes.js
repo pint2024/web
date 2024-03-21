@@ -9,6 +9,7 @@ import { CriarConta } from "pages/autenticacao/criarConta/criarConta";
 import { Atividade } from "pages/atividades/atividade";
 import { Conta } from "pages/conta/conta";
 import { PaginaInicial } from "pages/paginaInicial";
+import { AtividadeCriar } from "pages/atividades/atividadeCriar";
 
 export const DataRoutes = [
 	{
@@ -26,6 +27,11 @@ export const DataRoutes = [
 		path: "/atividade",
 		element: <Atividade />,
 		children: [
+			{
+				title: "Criar Atividade",
+				path: "/criar",
+				element: <AtividadeCriar />,
+			},
 			{
 				title: "Saúde",
 				path: "/saude",
