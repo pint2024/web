@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { isEmpty } from "utils/utils";
 
 export const AtividadeCriar = () => {
+	const [subtopicoData, setSubtopicoData] = useState(null);
+	const { startLoading, stopLoading } = useLoading();
 	const [formData, setFormData] = useState({
 		titulo: "",
 		descricao: "",
@@ -17,6 +19,32 @@ export const AtividadeCriar = () => {
 		formulario: "",
 		subtopico: "",
 	});
+
+	useEffect(() => {
+		const fetchSubtopico = async () => {
+			const data = await listarRequest("topico");
+			const subtopicos = DTO.createDTOs(data, TopicoDTO);
+			setSubtopicoData(subtopicos);
+		};
+
+		fetchSubtopico();
+	}, []);
+
+	if (isEmpty(subtopicoData)) {
+		startLoading();
+		return;
+	} else {
+		stopLoading();
+	}
+
+	const formatSubtopicoData = () => {
+		let options = [];
+		subtopicoData.forEach((item) => {
+			options = options.concat(item.formatComboBoxData());
+		});
+		console.log(options);
+		return options;
+	};
 
 	return (
 		<section>
@@ -31,6 +59,7 @@ export const AtividadeCriar = () => {
 				<ComboBox
 					label="Subtópico"
 					handleChange={(e) => setFormData({ ...formData, subtopico: e })}
+					options={formatSubtopicoData()}
 				/>
 				<Botao>Criar</Botao>
 			</form>

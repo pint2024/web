@@ -20,9 +20,7 @@ const Header = () => {
 				<MobileNav />
 				<div>
 					<Dropdown items={userItems}>
-						{/*<Link to="/utilizador" className="header-user">*/}
 						<img src={userDefault} alt="Imagem do utilizador" className="header-user-image cursor-pointer" />
-						{/*</Link>*/}
 					</Dropdown>
 				</div>
 			</div>

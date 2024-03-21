@@ -1,7 +1,6 @@
 import "./cartao.css";
 import Cartao from "./cartao";
 import Texto from "components/texto/texto";
-import * as Icon from "react-bootstrap-icons";
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "modules/hooks/usePopup";
@@ -11,6 +10,7 @@ import { CartaoInfo, Perfil } from "components/utilizador-info/cartaoInfo";
 import User from "assets/images/logo2.png";
 import { Divider } from "components/divider/divider";
 import { TinyInfo } from "components/detalhes/tinyInfo";
+import { Icon } from "components/icons/icon";
 
 function Post({ id, titulo, descricao, topico = null, utilizador = "", date = "", numLikes = 0, numComments = 0 }) {
 	const [likes, setLikes] = useState(numLikes);
@@ -45,7 +45,7 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 			headerTitle: <>{titulo}</>,
 			headerIcons: (
 				<Link to={id}>
-					<Icon.ArrowsAngleExpand />
+					<Icon iconName="ArrowsAngleExpand" />
 				</Link>
 			),
 			body: (
@@ -57,11 +57,15 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 								className={`d-flex align-items-center gap-2 post-icon ${animate ? GOSTO_ANIMATION : ""}`}
 								onClick={handleLikesClick}
 							>
-								{liked ? <Icon.HandThumbsUpFill className="icon-color" /> : <Icon.HandThumbsUp />}
+								{liked ? (
+									<Icon iconName="HandThumbsUpFill" className="icon-color" />
+								) : (
+									<Icon iconName="HandThumbsUp" />
+								)}
 								<Texto size={0}>{likes}</Texto>
 							</div>
 							<div className="d-flex align-items-center gap-2 post-icon">
-								<Icon.ChatLeft />
+								<Icon iconName="ChatLeft" />
 								<Texto size={0}>{comments}</Texto>
 							</div>
 						</div>
@@ -79,9 +83,11 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 	return (
 		<article className="Post" id={id}>
 			{puCreate()}
-			<Divider />
 			<div className="card-hover post-content cartao-corpo card-body main-cartao" onClick={handleOpenPopup} id={id}>
-				<TinyInfo info={topico} />
+				<div className="d-flex justify-content-between align-items-center">
+					<TinyInfo info={topico} />
+					<Icon iconName="ThreeDotsVertical" className="icon-hover" size={3} />
+				</div>
 				<div className="d-flex mt-2">
 					<CartaoInfo imagem={User} titulo={utilizador} subtitulo={date} />
 				</div>
@@ -99,11 +105,15 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 							className={`d-flex align-items-center gap-2 post-icon ${animate ? GOSTO_ANIMATION : ""}`}
 							onClick={handleLikesClick}
 						>
-							{liked ? <Icon.HandThumbsUpFill className="icon-color" /> : <Icon.HandThumbsUp />}
+							{liked ? (
+								<Icon iconName="HandThumbsUpFill" className="icon-color" />
+							) : (
+								<Icon iconName="HandThumbsUp" />
+							)}
 							<Texto size={0}>{likes}</Texto>
 						</div>
 						<div className="d-flex align-items-center gap-2 post-icon">
-							<Icon.ChatLeft />
+							<Icon iconName="ChatLeft" />
 							<Texto size={0}>{comments}</Texto>
 						</div>
 					</div>

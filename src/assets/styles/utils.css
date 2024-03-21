@@ -27,6 +27,10 @@
 	list-style-type: none;
 }
 
+.icon-size-big {
+	font-size: 35px;
+}
+
 .icon-hover:hover {
 	background-color: var(--WHITE-HOVER);
 	border-radius: 50px;

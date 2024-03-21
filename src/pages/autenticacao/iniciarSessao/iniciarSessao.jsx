@@ -1,7 +1,6 @@
 import { Botao, CaixaTexto } from "components/form/__init__";
 import { useState } from "react";
 import "./iniciarSessao.css";
-import { myAxios } from "api/axios";
 import AutenticacaoRequest from "api/autenticacaoRequest";
 
 export function IniciarSessao() {
@@ -11,7 +10,7 @@ export function IniciarSessao() {
 	});
 
 	const handleChange = async (e) => {
-		const x = await AutenticacaoRequest.entrar(formData.login, formData.senha);
+		await AutenticacaoRequest.entrar(formData.login, formData.senha);
 	};
 
 	return (

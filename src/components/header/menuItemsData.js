@@ -1,5 +1,9 @@
 const navItems = [
 	{
+		title: "Área de Testes",
+		route: "/teste",
+	},
+	{
 		title: "Atividades",
 		route: "/atividade",
 		submenu: [
@@ -82,7 +86,6 @@ export const userItems = [
 	{ nome: "Editar conta", rota: `/conta/1/editar` },
 	{ nome: "Terminar sessão", rota: `/terminar-sessao` },
 ];
-
 
 const criarObjeto = (data, parentRoute = null) => {
 	return data.map((item) => ({

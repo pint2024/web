@@ -6,16 +6,19 @@ import { useLoading } from "modules/hooks/useLoading";
 import { DTO } from "dto/dto";
 import { isEmpty } from "utils/utils";
 import { usePopup } from "modules/hooks/usePopup";
+import { Divider } from "components/divider/divider";
 
 export const AtividadeItems = ({ data }) => {
 	const { puSet, puCreate, puOpen } = usePopup();
-	
 
 	return (
 		<>
 			{puCreate()}
 			{data.map((atividade, index) => (
-				<Post key={index} {...atividade.formattToPost()} />
+				<>
+					<Divider />
+					<Post key={index} {...atividade.formattToPost()} />
+				</>
 			))}
 		</>
 	);
