@@ -1,23 +1,40 @@
+import { STATUS } from "data/constants";
 import { LOG } from "./log.utils";
 
 export function isEmpty(...variaveis) {
 	try {
-		let isEmpty = false;
 		for (let variavel of variaveis) {
-			if (!variavel || variavel === null || isWhitespaces(variavel)) {
-				isEmpty = true;
-				break;
+			if (
+				variavel === STATUS.ERRO ||
+				variavel === STATUS.SEM_DATA ||
+				!variavel ||
+				variavel === null ||
+				isWhitespaces(variavel)
+			) {
+				return true; // se algum for verdadeiro devolve que é vazio
 			}
 		}
-		return isEmpty;
+		return false;
 	} catch (error) {
 		LOG.erro(error);
 		return true;
 	}
 }
 
+export function waitData(setLoading, ...dataVars) {
+	if (isEmpty(...dataVars)) {
+		setLoading(true);
+		return true;
+	} else {
+		setLoading(false);
+		return false;
+	}
+}
+
 export function isWhitespaces(variavel) {
-	if (typeof variavel === "string")
+	try {
 		return variavel?.trim() === "";
-	return false;
+	} catch {
+		return false;
+	}
 }

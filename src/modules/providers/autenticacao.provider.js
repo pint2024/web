@@ -13,7 +13,6 @@ export const AutenticacaoProvider = ({ children }) => {
 				setUserData(data);
 			} catch (error) {
 				LOG.erro("Error fetching user data:", error);
-				throw new Error(error);
 			}
 		};
 		getUserData();

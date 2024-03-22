@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { listarRequest } from "api/listarRequest";
 import { TopicoDTO } from "dto/topico.dot";
 import { DTO } from "dto/dto";
-import { isEmpty } from "utils/utils";
+import { waitData } from "utils/utils";
 import { useLoading } from "modules/hooks/useLoading";
 import { AtividadeDTO } from "dto/atividade.dto";
 import { Icon } from "components/icons/icon";
@@ -12,12 +12,13 @@ import { Icon } from "components/icons/icon";
 export const Atividade = () => {
 	const [topicoData, setTopicoData] = useState([]);
 	const [topicoFilterOptions, setTopicoFilterOptions] = useState({});
-	const { startLoading, stopLoading } = useLoading();
+	const { setLoading } = useLoading();
 	const [atividadeData, setatividadeData] = useState();
 
 	useEffect(() => {
 		const fetchTopicos = async () => {
 			const data = await listarRequest("topico");
+			console.log(data);
 			const topico = DTO.createDTOs(data, TopicoDTO);
 			setTopicoData(topico);
 		};
@@ -28,6 +29,7 @@ export const Atividade = () => {
 	useEffect(() => {
 		const fetchAtividades = async () => {
 			const data = await listarRequest("atividade", topicoFilterOptions);
+			console.log(data);
 			const atividades = DTO.createDTOs(data, AtividadeDTO);
 			setatividadeData(atividades);
 		};
@@ -35,12 +37,7 @@ export const Atividade = () => {
 		fetchAtividades();
 	}, [topicoFilterOptions]);
 
-	if (isEmpty(topicoData, atividadeData)) {
-		startLoading();
-		return;
-	} else {
-		stopLoading();
-	}
+	if (waitData(setLoading, topicoData, atividadeData)) return;
 
 	const filter = (e) => {
 		if (e.target.value === "0") setTopicoFilterOptions({});

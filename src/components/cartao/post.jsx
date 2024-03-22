@@ -12,6 +12,7 @@ import { Icon } from "components/icons/icon";
 import { Comentario } from "./comentario";
 
 function Post({ id, titulo, descricao, topico = null, utilizador = "", date = "", gostos = 0, comentarios = 0 }) {
+	const [formComentario, setFormComentario] = useState("");
 	const [likes, setLikes] = useState(gostos ? gostos.length : 0);
 	const [comments, setComments] = useState(comentarios ? comentarios.length : 0);
 	const [liked, setLiked] = useState(false);
@@ -41,7 +42,7 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 	const handleOpenPopup = () => {
 		puSet({
 			headerInfo: <CartaoInfo titulo={"Joaumzin Gaimeplais"} subtitulo={"à 1h"} imagem={User} />,
-			headerTitle: <>{titulo}</>,
+			headerTitle: titulo,
 			headerIcons: (
 				<Link to={id}>
 					<Icon iconName="ArrowsAngleExpand" />
@@ -69,8 +70,8 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 							</div>
 						</div>
 					</div>
-					<div className="comentario-modal-add-comment gap-4">
-						<CaixaTexto value="Adicione um comentário" />
+					<div className="comentario-modal-add-comment gap-4 mt-2">
+						<CaixaTexto handleChange={(e) => setFormComentario(e)} value={formComentario} placeholder="Adicionar Comentário" />
 					</div>
 					<div className="comentario-modal-comments">
 						{comentarios.map((comentario) => (

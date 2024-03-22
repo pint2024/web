@@ -13,12 +13,16 @@ export const LoadingProvider = ({ children }) => {
 		setisLoading(false);
 	};
 
+	const setLoading = (estado) => {
+		setisLoading(estado);
+	};
+
 	const createLoading = useMemo(() => {
 		return <>{isLoading && <Loading />}</>;
 	}, [isLoading]);
 
 	return (
-		<LoadingContext.Provider value={{ isLoading, setisLoading, startLoading, stopLoading }}>
+		<LoadingContext.Provider value={{ isLoading, setisLoading, startLoading, stopLoading, setLoading }}>
 			{createLoading}
 			{children}
 		</LoadingContext.Provider>

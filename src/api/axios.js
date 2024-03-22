@@ -14,9 +14,9 @@ export async function myAxios({ url, method = "get", data = null, headers = {} }
 			data,
 		});
 		if (response.data.success) return response.data.data;
-		else return STATUS.ERRO;
+		else return STATUS.SEM_DATA;
 	} catch (error) {
 		console.error(error);
-		return STATUS.SEM_DATA;
+		return STATUS.ERRO;
 	}
 }

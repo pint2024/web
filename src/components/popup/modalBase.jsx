@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import "./popup.css";
+import { CaixaTexto } from "components/form/__init__";
 
 export const ModalBase = ({ headerTitle, headerInfo, headerIcons, children, footer, onClose, styles, className, id }) => {
 	return (
