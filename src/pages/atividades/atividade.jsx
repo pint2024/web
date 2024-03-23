@@ -1,18 +1,20 @@
 import { Botao, ComboBox } from "components/form/__init__";
-import { AtividadeItems } from "./atividadeItems";
 import { useEffect, useState } from "react";
 import { listarRequest } from "api/listarRequest";
 import { TopicoDTO } from "dto/topico.dot";
 import { DTO } from "dto/dto";
 import { waitData } from "utils/utils";
-import { useLoading } from "modules/hooks/useLoading";
+import { useLoading } from "hooks/useLoading";
 import { AtividadeDTO } from "dto/atividade.dto";
-import { Icon } from "components/icons/icon";
+import { Icon, Divider } from "components/elementos/index";
+import { usePopup } from "hooks/usePopup";
+import { Post } from "./components/post/post";
 
 export const Atividade = () => {
+	const { puSet, puCreate, puOpen } = usePopup();
+	const { setLoading } = useLoading();
 	const [topicoData, setTopicoData] = useState([]);
 	const [topicoFilterOptions, setTopicoFilterOptions] = useState({});
-	const { setLoading } = useLoading();
 	const [atividadeData, setatividadeData] = useState();
 
 	useEffect(() => {
@@ -69,7 +71,15 @@ export const Atividade = () => {
 				</div>
 			</section>
 			<section>
-				<AtividadeItems data={atividadeData} />
+			<>
+				{puCreate()}
+				{atividadeData.map((atividade, index) => (
+					<>
+						<Divider />
+						<Post key={index} data={atividade.formattToPost()} />
+					</>
+				))}
+			</>
 			</section>
 		</div>
 	);

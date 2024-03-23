@@ -1,4 +1,4 @@
-const Texto = ({ className = "", style = "", size = 1, type = "primary", children }) => {
+export const Texto = ({ className = "", style = "", size = 1, type = "primary", children }) => {
 	const validSizes = [0, 1, 2, 3, 4, 5];
 	const isSizeValid = validSizes.includes(size) ? true : false;
 
@@ -17,5 +17,3 @@ const Texto = ({ className = "", style = "", size = 1, type = "primary", childre
 		</>
 	);
 };
-
-export default Texto;

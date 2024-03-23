@@ -4,11 +4,11 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-import { usePopup } from "modules/hooks/usePopup";
+import { usePopup } from "hooks/usePopup";
 import { Link, useNavigate } from "react-router-dom";
 
 import { DataCompleta, DataRelativa, DiffDatas } from "utils/date.utils";
-import { Icon } from "components/icons/icon";
+import { Icon } from "components/elementos/index";
 
 export function Calendario() {
 	const navigate = useNavigate();

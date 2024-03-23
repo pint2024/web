@@ -1,7 +1,7 @@
 import Dropdown from "./navDropdown";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import * as Icons from 'react-bootstrap-icons';
+import { Icon } from "components/elementos/index";
 
 const MenuItems = ({ items, depthLevel }) => {
 	const [dropdown, setDropdown] = useState(false);
@@ -53,8 +53,8 @@ const MenuItems = ({ items, depthLevel }) => {
 					>
 						{items.title}
 						{depthLevel > 0 
-							? <Icons.CaretRightFill className="header-submenu-arrow icon-inverse" /> 
-							: <Icons.CaretDownFill className="header-menu-arrow icon-inverse" />}
+							? <Icon iconName="CaretRightFill" className="header-submenu-arrow icon-inverse" /> 
+							: <Icon iconName="CaretDownFill" className="header-menu-arrow icon-inverse" />}
 					</Link>
 					<Dropdown depthLevel={depthLevel} submenus={items.submenu} dropdown={dropdown} />
 				</>

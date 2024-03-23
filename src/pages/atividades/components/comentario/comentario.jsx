@@ -1,4 +1,3 @@
-import { PLACEHOLDER_TEXT } from "data/constants";
 import User from "assets/images/logo2.png";
 import "./comentario.css"
 

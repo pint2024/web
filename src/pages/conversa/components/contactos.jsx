@@ -3,7 +3,7 @@ import { Contacto } from "./contacto";
 import { listarRequest } from "api/listarRequest";
 import { ParticipanteDTO } from "dto/participante.dto";
 import { isEmpty } from "utils/utils";
-import { useLoading } from "modules/hooks/useLoading";
+import { useLoading } from "hooks/useLoading";
 
 export const Contactos = ({ id }) => {
 	const { startLoading, stopLoading } = useLoading();

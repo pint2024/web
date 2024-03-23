@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Icon } from "components/icons/icon";
+import React, { useState } from "react";
 
 export const CaixaTexto = ({ handleChange, value, label, type, prefix, placeholder, disabled, handleKeyDown }) => {
 	const [isFocused, setIsFocused] = useState(false);

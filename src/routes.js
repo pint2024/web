@@ -2,14 +2,12 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Teste } from "pages/teste.test";
 import { NotFound } from "pages/NotFound";
-import { Calendario } from "pages/calendario/calendario";
-import { Conversa } from "pages/conversa/conversa";
-import { IniciarSessao } from "pages/autenticacao/iniciarSessao/iniciarSessao";
-import { CriarConta } from "pages/autenticacao/criarConta/criarConta";
-import { Atividade } from "pages/atividades/atividade";
-import { Conta } from "pages/conta/conta";
+import { Calendario } from "pages/calendario/index";
+import { Conversa } from "pages/conversa/index";
+import { IniciarSessao, CriarConta } from "pages/autenticacao/index";
+import { Atividade, AtividadeCriar } from "pages/atividades/index";
+import { Conta } from "pages/conta/index";
 import { PaginaInicial } from "pages/paginaInicial";
-import { AtividadeCriar } from "pages/atividades/atividadeCriar";
 
 export const DataRoutes = [
 	{

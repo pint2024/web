@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
-import Texto from "components/texto/texto";
-import { Icon } from "components/icons/icon";
+import { Icon, Texto } from "components/elementos/index";
 
 function Footer() {
 	return (

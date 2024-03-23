@@ -1,7 +1,12 @@
+import { useEffect, useState, useContext, createContext } from "react";
 import AutenticacaoRequest from "api/autenticacaoRequest";
-import { AutenticacaoContext } from "modules/contexts/autenticacao.context";
-import { useEffect, useState } from "react";
 import { LOG } from "utils/log.utils";
+
+export const AutenticacaoContext = createContext();
+
+export const useAutenticacao = () => {
+	return useContext(AutenticacaoContext);
+};
 
 export const AutenticacaoProvider = ({ children }) => {
 	const [userData, setUserData] = useState({});

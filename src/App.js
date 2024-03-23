@@ -14,10 +14,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { renderRoutes } from "./routes";
 import { PageLayout } from "layouts/pageLayout";
 import { PROJETO } from "data/constants";
-import { useAutenticacao } from "modules/hooks/useAutenticacao";
+import { useAutenticacao } from "hooks/useAutenticacao";
 
 function App() {
 	const utilizadorAtual = useAutenticacao();
+
+	console.log("opa", utilizadorAtual)
 
 	useEffect(() => {
 		document.title = PROJETO.NAME;

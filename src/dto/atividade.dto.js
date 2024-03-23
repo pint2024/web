@@ -22,7 +22,23 @@ export class AtividadeDTO {
 				topico: data.atividade_subtopico.subtopico_topico.topico,
 			},
 		};
-		this.utilizador = data.atividade_utilizador;
+		this.utilizador = {
+			id: data.atividade_utilizador.id,
+			data_criacao: data.atividade_utilizador.data_criacao,
+			nome: data.atividade_utilizador.nome,
+			sobrenome: data.atividade_utilizador.sobrenome,
+			nome_completo: `${data.atividade_utilizador.nome} ${data.atividade_utilizador.sobrenome}`,
+			email: data.atividade_utilizador.email,
+			senha: data.atividade_utilizador.senha,
+			verificado: data.atividade_utilizador.verificado,
+			imagem: data.atividade_utilizador.imagem,
+			linkedin: data.atividade_utilizador.linkedin,
+			instagram: data.atividade_utilizador.instagram,
+			facebook: data.atividade_utilizador.facebook,
+			perfil: data.atividade_utilizador.perfil,
+		};
+		
+		
 		this.gostos = data.gosto_atividade;
 		this.comentarios = data.comentario_atividade;
 		this.revisoes = data.revisao_atividade;
@@ -36,7 +52,7 @@ export class AtividadeDTO {
 			titulo: this.titulo,
 			descricao: this.descricao,
 			topico: this.subtopico.topico.topico,
-			utilizador: `${this.utilizador.nome} ${this.utilizador.sobrenome}`,
+			utilizador: this.utilizador,
 			date: DataRelativa(this.data_criacao),
 			gostos: this.gostos,
 			comentarios: this.comentarios,

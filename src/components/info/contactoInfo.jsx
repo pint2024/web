@@ -1,5 +1,5 @@
-import Texto from "components/texto/texto";
-import { UtilizadorInfo } from "./utilizadorInfo";
+import { Texto } from "components/elementos/index";
+import { InfoLayout } from "./infoLayout";
 import { useEffect, useState } from "react";
 import { DataRelativa } from "utils/date.utils";
 
@@ -15,7 +15,7 @@ export const ContactoInfo = ({ imagem, titulo, data, subtitulo }) => {
 
 	return (
 		<>
-			<UtilizadorInfo
+			<InfoLayout
 				imagem={imagem}
 				header={
 					<div className="d-flex align-items-center">

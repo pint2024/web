@@ -1,6 +1,4 @@
-import "./utilizador-info.css";
-
-export const UtilizadorInfo = ({ imagem, header, info }) => {
+export const InfoLayout = ({ imagem, header, info }) => {
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<div>

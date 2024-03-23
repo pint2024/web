@@ -1,10 +1,10 @@
-import Texto from "components/texto/texto";
-import { UtilizadorInfo } from "./utilizadorInfo";
+import { Texto } from "components/elementos/index";
+import { InfoLayout } from "./infoLayout";
 
 export const ComentarioInfo = ({ imagem, comentario }) => {
 	return (
 		<>
-			<UtilizadorInfo
+			<InfoLayout
 				imagem={imagem}
 				header={<Texto>{comentario}</Texto>}
 			/>
