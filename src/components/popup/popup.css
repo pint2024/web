@@ -36,3 +36,7 @@
 	display: block;
 	overflow-y: auto;
 }
+
+.modal-content {
+	background-color: var(--BACKGROUND);
+}

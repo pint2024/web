@@ -48,7 +48,9 @@ export function Post({ data }) {
 			),
 			body: (
 				<div>
-					<div className="comentario-modal-post">{data.descricao}</div>
+					<div className="comentario-modal-post">
+						<Texto>{data.descricao}</Texto>
+					</div>
 					<div className="comentario-modal-elements">
 						<div className="d-flex gap-5 mt-4">
 							<div
@@ -69,7 +71,11 @@ export function Post({ data }) {
 						</div>
 					</div>
 					<div className="comentario-modal-add-comment gap-4 mt-2">
-						<CaixaTexto handleChange={(e) => setFormComentario(e)} value={formComentario} placeholder="Adicionar Comentário" />
+						<CaixaTexto
+							handleChange={(e) => setFormComentario(e)}
+							value={formComentario}
+							placeholder="Adicionar Comentário"
+						/>
 					</div>
 					<div className="comentario-modal-comments">
 						{data.comentarios.map((comentario) => (

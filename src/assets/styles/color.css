@@ -1,18 +1,17 @@
 :root {
 	/* Cores principais */
-	--DARK-PRIMARY: #00396D;
-	--LIGHT-PRIMARY: #6C90CD;
+	--DARK-PRIMARY: #00396d;
+	--LIGHT-PRIMARY: #6c90cd;
 	--LIGHT-PRIMARY-TRANSPARENT: rgba(108, 144, 205, 0.5);
-	--PRIMARY: #39639C;
+	--PRIMARY: #39639c;
 	--SECONDARY: #909090;
-	--LIGHT-SECONDARY: #BDBDBD;
+	--LIGHT-SECONDARY: #bdbdbd;
 	--LIGHT-SECONDARY-TRANSPARENT: rgba(189, 189, 189, 0.5);
-	--ACCENT: #00B8E0;
+	--ACCENT: #00b8e0;
 	--BLACK: #212121;
 	--BLACK-AUX: #181818;
-	--WHITE: #FFFFFF;
+	--WHITE: #ffffff;
 	--DARKER-WHITE: #d5d5d5;
-
 
 	/* Cores de conteudo */
 	--ICON-PRIMARY: var(--TEXT-PRIMARY);
@@ -24,14 +23,12 @@
 	--TEXT-DANGER: var(--DANGER);
 	--TEXT-SUCCESS: var(--SUCCESS);
 	--TEXT-INFO: var(--INFO);
-	
 
 	/* Cores de destaque */
 	--DIVIDER: var(--SECONDARY);
 	--BACKGROUND: #f8f7f5;
 	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
-	
-	
+
 	/* Cores de navegação*/
 	--DANGER: rgb(180, 0, 0);
 	--DARK-DANGER: rgb(150, 0, 0);
@@ -41,5 +38,12 @@
 	--LIGHT-SUCCESS-TRANSPARENT: rgba(0, 150, 0, 0.5);
 	--INFO: rgb(0, 0, 128);
 	--INFO-TRANSPARENT: rgba(0, 0, 128, 0.5);
-	--SCROLL-BAR: #555
+	--SCROLL-BAR: #555;
 }
+/* DARK MODE - Em Progresso...
+@media (prefers-color-scheme: dark) {
+	:root {
+		--BACKGROUND: #212121;
+		--TEXT-PRIMARY: #FFF;
+	}
+}*/

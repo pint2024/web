@@ -16,9 +16,19 @@ export function Teste() {
 	const [data, setdata] = useState();
 	const [user, setuser] = useState();
 	const [selectedOptions, setSelectedOptions] = useState([]);
+	const [darkMode, setDarkMode] = useState(false);
 	const handleMultiSelectChange = (selectedOptions) => {
 		setSelectedOptions(selectedOptions);
 	};
+
+	const toggleDarkMode = () => {
+		setDarkMode(!darkMode);
+	};
+
+	useEffect(() => {
+		const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		setDarkMode(prefersDarkMode);
+	}, []);
 
 	useEffect(() => {
 		async function fetchUtilizador() {
@@ -88,6 +98,7 @@ export function Teste() {
 
 	return (
 		<div>
+			<button onClick={toggleDarkMode}>Toggle Dark Mode</button>
 			{conCreate()}
 			{puCreate()}
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>
@@ -119,18 +130,18 @@ export function Teste() {
 			<div>
 				<MultiSelectBox
 					options={[
-						{value: "1", label: "Opção 1"},
-						{value: "1", label: "Opção 2"},
-						{value: "1", label: "Opção 3"},
-						{value: "1", label: "Opção 5"},
-						{value: "1", label: "Opção 6"},
-						{value: "1", label: "Opção 7"},
-						{value: "1", label: "Opção 8"},
-						{value: "1", label: "Opção 9"},
-						{value: "1", label: "Opção 10"},
-						{value: "1", label: "Opção 11"},
-						{value: "1", label: "Opção 12"},
-						{value: "1", label: "Opção 13"},
+						{ value: "1", label: "Opção 1" },
+						{ value: "1", label: "Opção 2" },
+						{ value: "1", label: "Opção 3" },
+						{ value: "1", label: "Opção 5" },
+						{ value: "1", label: "Opção 6" },
+						{ value: "1", label: "Opção 7" },
+						{ value: "1", label: "Opção 8" },
+						{ value: "1", label: "Opção 9" },
+						{ value: "1", label: "Opção 10" },
+						{ value: "1", label: "Opção 11" },
+						{ value: "1", label: "Opção 12" },
+						{ value: "1", label: "Opção 13" },
 					]}
 					onChange={handleMultiSelectChange}
 				/>
