@@ -10,3 +10,4 @@ export { MultiSelectBox } from "./selectBox/multiSelectBox";
 export { OTPVerification } from "./otp/OTPverification";
 export { TextArea } from "./caixaTexto/textArea";
 export { TimePicker } from "./dateBox/TimePicker";
+export { ItemControl } from "./itemControl/itemControl";

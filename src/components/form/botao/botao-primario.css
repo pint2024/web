@@ -10,12 +10,6 @@
 	border-color: var(--LIGHT-PRIMARY);
 }
 
-.botao-primario:focus {
-	color: var(--WHITE);
-	background-color: var(--LIGHT-PRIMARY);
-	border-color: var(--LIGHT-PRIMARY);
-}
-
 .botao-primario:active {
 	color: var(--WHITE);
 	background-color: var(--LIGHT-PRIMARY);

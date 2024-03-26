@@ -10,12 +10,6 @@
 	border-color: var(--LIGHT-SECONDARY);
 }
 
-.botao-secundario:focus {
-	color: var(--WHITE);
-	background-color: var(--LIGHT-SECONDARY);
-	border-color: var(--LIGHT-SECONDARY);
-}
-
 .botao-secundario:active {
 	color: var(--WHITE);
 	background-color: var(--LIGHT-SECONDARY);
