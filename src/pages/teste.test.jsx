@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { usePopup } from "hooks/usePopup";
-import { Botao, CaixaTexto, CheckBox, DatePicker, TimePicker, MultiSelectBox, OTPVerification, ItemControl } from "components/form";
+import {
+	Botao,
+	CaixaTexto,
+	CheckBox,
+	DatePicker,
+	TimePicker,
+	MultiSelectBox,
+	OTPVerification,
+	ItemControl,
+} from "components/form";
 import { useConfirmation } from "hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import { useLoading } from "hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
 import { SwitchToggle } from "components/form/switchToggle/switchToggle";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 
 export function Teste() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -96,6 +108,11 @@ export function Teste() {
 
 	return (
 		<div>
+			<Editor
+				toolbarClassName="toolbarClassName"
+				wrapperClassName="wrapperClassName"
+				editorClassName="editorClassName"
+			/>
 			<ItemControl
 				options={[
 					{ id: 0, text: "Philosopher’s Path", done: true },

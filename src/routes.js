@@ -14,21 +14,25 @@ export const DataRoutes = [
 		title: "Página Inicial",
 		path: "/",
 		element: <PaginaInicial />,
+		perfis: [],
 	},
 	{
 		title: "Teste",
 		path: "/teste",
 		element: <Teste />,
+		perfis: [],
 	},
 	{
 		title: "Atividade",
 		path: "/atividade",
 		element: <Atividade />,
+		perfis: [],
 		children: [
 			{
 				title: "Criar Atividade",
 				path: "/criar",
 				element: <AtividadeCriar />,
+				perfis: [],
 			},
 		],
 	},
@@ -36,21 +40,25 @@ export const DataRoutes = [
 		title: "Conversa",
 		path: "/conversa",
 		element: <Conversa />,
+		perfis: [],
 	},
 	{
 		title: "Calendário",
 		path: "/calendario",
 		element: <Calendario />,
+		perfis: [],
 	},
 	{
 		title: "Conta",
 		path: "/conta/:id",
 		element: <Conta />,
+		perfis: [],
 		children: [
 			{
 				title: "Editar",
 				path: "/editar",
 				element: <Conta />,
+				perfis: [],
 			},
 		],
 	},
@@ -58,11 +66,13 @@ export const DataRoutes = [
 		title: "Criar Conta",
 		path: "/criar-conta",
 		element: <CriarConta />,
+		perfis: [],
 	},
 	{
 		title: "Iniciar Sessão",
 		path: "/iniciar-sessao",
 		element: <IniciarSessao />,
+		perfis: [],
 	},
 	{
 		title: "Terminar Sessão",
@@ -72,6 +82,7 @@ export const DataRoutes = [
 		title: "Não encontrado",
 		path: "*",
 		element: <NotFound />,
+		perfis: [],
 	},
 ];
 

@@ -1,4 +1,3 @@
-import "./post.css";
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "hooks/usePopup";
@@ -8,6 +7,8 @@ import { CartaoInfo, Rotulo } from "components/info/index";
 import User from "assets/images/logo2.png";
 import { Icon, Texto } from "components/elementos/index";
 import { Comentario } from "../comentario/comentario";
+
+import "./post.css";
 
 export function Post({ data }) {
 	const [formComentario, setFormComentario] = useState("");
