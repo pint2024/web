@@ -8,6 +8,7 @@ import { PLACEHOLDER_TEXT } from "data/constants";
 import { useLoading } from "modules/hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
 import { SwitchToggle } from "components/form/switchToggle/switchToggle";
+import TaskApp from "components/form/multipleItems/task";
 
 export function Teste() {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -88,6 +89,13 @@ export function Teste() {
 
 	return (
 		<div>
+			<TaskApp
+				options={[
+					{ id: 0, text: "Philosopher’s Path", done: true },
+					{ id: 1, text: "Visit the temple", done: false },
+					{ id: 2, text: "Drink matcha", done: false },
+				]}
+			/>
 			{conCreate()}
 			{puCreate()}
 			<Botao handleClick={handleOpenPopup}>Popup</Botao>

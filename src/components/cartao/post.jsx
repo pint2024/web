@@ -40,6 +40,7 @@ function Post({ id, titulo, descricao, topico = null, utilizador = "", date = ""
 	};
 
 	const handleOpenPopup = () => {
+		setFormComentario("ola");
 		puSet({
 			headerInfo: <CartaoInfo titulo={"Joaumzin Gaimeplais"} subtitulo={"à 1h"} imagem={User} />,
 			headerTitle: titulo,
