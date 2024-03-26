@@ -9,13 +9,12 @@ import App from "./App";
 import { ToastContainer } from "react-toastify";
 import { LoadingProvider } from "hooks/useLoading";
 import { AutenticacaoProvider } from "hooks/useAutenticacao";
+import { render } from "react-dom";
 
 /// Global Styles
 import "assets/styles/main.css";
 
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+render(
 	<React.StrictMode>
 			<AutenticacaoProvider>
 		<LoadingProvider >
@@ -24,7 +23,8 @@ root.render(
 		</LoadingProvider>
 		</AutenticacaoProvider>
 		
-	</React.StrictMode>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 
 reportWebVitals();
