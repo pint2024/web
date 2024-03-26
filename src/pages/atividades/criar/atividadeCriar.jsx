@@ -1,5 +1,5 @@
 import { listarRequest } from "api/listarRequest";
-import { Botao, CaixaTexto, ComboBox, DatePicker, ImageBox, TextArea } from "components/form/__init__";
+import { Botao, CaixaTexto, ComboBox, DatePicker, ImageBox, TextArea } from "components/form";
 import { DTO } from "dto/dto";
 import { TopicoDTO } from "dto/topico.dot";
 import { useLoading } from "hooks/useLoading";

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Icon } from "components/icons/icon";
 import { LOG } from "utils/log.utils";
 
 export const CaixaTexto = ({ handleChange, value, label, type, prefix, placeholder, disabled, handleKeyDown }) => {

@@ -1,4 +1,4 @@
-import { Botao, ComboBox } from "components/form/__init__";
+import { Botao, ComboBox } from "components/form";
 import { useEffect, useState } from "react";
 import { listarRequest } from "api/listarRequest";
 import { TopicoDTO } from "dto/topico.dot";

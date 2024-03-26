@@ -1,4 +1,4 @@
-import { Botao, CaixaTexto } from "components/form/__init__";
+import { Botao, CaixaTexto } from "components/form";
 import { useState } from "react";
 import "./iniciarSessao.css";
 import AutenticacaoRequest from "api/autenticacaoRequest";

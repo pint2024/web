@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { usePopup } from "hooks/usePopup";
-import { Botao, CaixaTexto, CheckBox, DatePicker, TimePicker, MultiSelectBox, OTPVerification } from "components/form/__init__";
+import { Botao, CaixaTexto, CheckBox, DatePicker, TimePicker, MultiSelectBox, OTPVerification } from "components/form";
 import { useConfirmation } from "hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import { Post } from "pages/atividades/index";

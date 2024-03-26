@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Botao, CaixaTexto, CheckBox } from "../__init__";
+import { Botao, CaixaTexto, CheckBox } from "../index";
 
 export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
 	return (
-		<ul>
+		<ul className="remove-bullet">
 			{tasks.map((task) => (
 				<li key={task.id}>
 					<Task task={task} onChange={onChangeTask} onDelete={onDeleteTask} />

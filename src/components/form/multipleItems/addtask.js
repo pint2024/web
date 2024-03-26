@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Botao, CaixaTexto } from "../__init__";
+import { Botao, CaixaTexto } from "../index";
 
 export default function AddTask({ onAddTask }) {
 	const [text, setText] = useState("");

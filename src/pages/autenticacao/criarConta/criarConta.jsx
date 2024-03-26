@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Botao, CaixaTexto, ImageBox } from "components/form/__init__";
+import { Botao, CaixaTexto, ImageBox } from "components/form";
 
 export const CriarConta = () => {
     const [formNome, setFormNome] = useState("");
