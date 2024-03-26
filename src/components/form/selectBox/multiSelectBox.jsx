@@ -53,13 +53,13 @@ export const MultiSelectBox = ({ options, onChange }) => {
                         <input
                             className="form-check-input"
                             type="checkbox"
-                            value={option}
-                            id={`option-${index}`}
-                            checked={selectedOptions.includes(option)}
-                            onChange={() => handleOptionToggle(option)}
+                            value={option.label}
+                            id={option.value}
+                            checked={selectedOptions.includes(option.label)}
+                            onChange={() => handleOptionToggle(option.label)}
                         />
                         <label className="form-check-label" htmlFor={`option-${index}`}>
-                            {option}
+                            {option.label}
                         </label>
                     </div>
                 ))}

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import * as Icon from "react-bootstrap-icons";
-import Texto from "components/texto/texto";
+import { Texto, Icon } from "components/elementos/index";
 
 function Popup({ headerTitle, headerSubtitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);
@@ -49,7 +48,7 @@ function Popup({ headerTitle, headerSubtitle, headerIcons, body, footer, onClose
 						</div>
 						<div className="d-flex align-items-center">
 							{headerIcons}
-							<Icon.X className="icon-hover icon" title="Fechar" onClick={handlePopupClose} />
+							<Icon iconName="X" className="icon-hover icon" title="Fechar" onClick={handlePopupClose} />
 						</div>
 					</section>
 					{body && (

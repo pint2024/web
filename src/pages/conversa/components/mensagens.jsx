@@ -2,14 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import jaumzin from "assets/images/logo2.png";
 import { MyMensagem } from "./myMensagem";
 import { OthersMensagem } from "./othersMensagem";
-import Texto from "components/texto/texto";
 import { CaixaTexto } from "components/form/__init__";
 import { isEmpty } from "utils/utils";
-import { CONTENT_VH, SEND_MESSAGE_DELAY } from "data/constants";
-import { Icon } from "components/icons/icon";
+import { SEND_MESSAGE_DELAY } from "data/constants";
+import { Icon, Texto } from "components/elementos/index";
 import { obterRequest } from "api/obterRequest";
 import { ConversaDTO } from "dto/conversa.dto";
-import { useLoading } from "modules/hooks/useLoading";
+import { useLoading } from "hooks/useLoading";
 
 export const Mensagens = ({ id }) => {
 	const { startLoading, stopLoading } = useLoading();

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import * as Icon from "react-bootstrap-icons";
+import { Icon } from "components/elementos/index";
 import "./popup.css";
-import { CaixaTexto } from "components/form/__init__";
 
 export const ModalBase = ({ headerTitle, headerInfo, headerIcons, children, footer, onClose, styles, className, id }) => {
 	return (
@@ -38,7 +37,7 @@ const ModalHeaderIcons = ({ headerIcons, onClose, isVisible }) => {
 	return isVisible ? (
 		<div className="d-flex align-items-center modal-header-icons">
 			{headerIcons}
-			<Icon.XLg title="Fechar" onClick={onClose} />
+			<Icon iconName="XLg" title="Fechar" onClick={onClose} />
 		</div>
 	) : (
 		""

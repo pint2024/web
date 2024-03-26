@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { usePopup } from "modules/hooks/usePopup";
+import { usePopup } from "hooks/usePopup";
 import { Botao, CaixaTexto, CheckBox, DatePicker, TimePicker, MultiSelectBox, OTPVerification } from "components/form/__init__";
-import { useConfirmation } from "modules/hooks/useConfirmation";
+import { useConfirmation } from "hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
-import Post from "components/cartao/post";
+import { Post } from "pages/atividades/index";
 import { PLACEHOLDER_TEXT } from "data/constants";
-import { useLoading } from "modules/hooks/useLoading";
+import { useLoading } from "hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
 import { SwitchToggle } from "components/form/switchToggle/switchToggle";
 import TaskApp from "components/form/multipleItems/task";
@@ -17,9 +17,19 @@ export function Teste() {
 	const [data, setdata] = useState();
 	const [user, setuser] = useState();
 	const [selectedOptions, setSelectedOptions] = useState([]);
+	const [darkMode, setDarkMode] = useState(false);
 	const handleMultiSelectChange = (selectedOptions) => {
 		setSelectedOptions(selectedOptions);
 	};
+
+	const toggleDarkMode = () => {
+		setDarkMode(!darkMode);
+	};
+
+	useEffect(() => {
+		const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		setDarkMode(prefersDarkMode);
+	}, []);
 
 	useEffect(() => {
 		async function fetchUtilizador() {
@@ -125,33 +135,24 @@ export function Teste() {
 			<div>{user}</div>
 
 			<div>
-				<h1>Selecione suas opções:</h1>
 				<MultiSelectBox
 					options={[
-						"Opção 1",
-						"Opção 2",
-						"Opção 3",
-						"Opção 5",
-						"Opção 6",
-						"Opção 7",
-						"Opção 8",
-						"Opção 9",
-						"Opção 10",
-						"Opção 11",
-						"Opção 12",
-						"Opção 13",
+						{ value: "1", label: "Opção 1" },
+						{ value: "1", label: "Opção 2" },
+						{ value: "1", label: "Opção 3" },
+						{ value: "1", label: "Opção 5" },
+						{ value: "1", label: "Opção 6" },
+						{ value: "1", label: "Opção 7" },
+						{ value: "1", label: "Opção 8" },
+						{ value: "1", label: "Opção 9" },
+						{ value: "1", label: "Opção 10" },
+						{ value: "1", label: "Opção 11" },
+						{ value: "1", label: "Opção 12" },
+						{ value: "1", label: "Opção 13" },
 					]}
 					onChange={handleMultiSelectChange}
 				/>
 			</div>
-			<Post
-				id={1}
-				titulo={"Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
-				descricao={PLACEHOLDER_TEXT + PLACEHOLDER_TEXT + PLACEHOLDER_TEXT}
-				date={"à 1h"}
-				utilizador={"Joaumzin Gaimeplais"}
-				topico={"DESPORTO"}
-			/>
 		</div>
 	);
 }

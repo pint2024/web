@@ -1,7 +1,5 @@
-import Texto from "components/texto/texto";
 import "../conversa.css";
-import { ContactoInfo } from "components/utilizador-info/contactoInfo";
-import { Link } from "react-router-dom";
+import { ContactoInfo } from "components/info/index";
 
 export function Contacto({ id, imagem, nome, data, mensagem }) {
 	return (

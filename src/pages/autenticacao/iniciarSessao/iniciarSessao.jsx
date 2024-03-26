@@ -4,13 +4,11 @@ import "./iniciarSessao.css";
 import AutenticacaoRequest from "api/autenticacaoRequest";
 
 export function IniciarSessao() {
-	const [formData, setFormData] = useState({
-		login: "",
-		senha: "",
-	});
+	const [formLogin, setFormLogin] = useState("");
+	const [formSenha, setFormSenha] = useState("");
 
 	const handleChange = async (e) => {
-		await AutenticacaoRequest.entrar(formData.login, formData.senha);
+		await AutenticacaoRequest.entrar(formLogin, formSenha);
 	};
 
 	return (
@@ -19,19 +17,19 @@ export function IniciarSessao() {
 				<form>
 				<div className="form-container">
 					<CaixaTexto
-						handleChange={(e) => setFormData({ ...formData, login: e })}
-						value={formData.login}
+						handleChange={(e) => setFormLogin(e)}
+						value={formLogin}
 						label="Email ou Tag"
 					/>
 					<CaixaTexto
-						handleChange={(e) => setFormData({ ...formData, senha: e })}
-						value={formData.senha}
+						handleChange={(e) => setFormSenha(e)}
+						value={formSenha}
 						label="Senha"
 						type="password"
 					/>
 					</div>
 					<div className="form-container mt-1">
-					<Botao handleClick={handleChange} >Entrar</Botao>
+						<Botao handleClick={handleChange} >Entrar</Botao>
 					</div >
 				</form>
 

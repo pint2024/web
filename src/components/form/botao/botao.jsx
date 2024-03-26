@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import "./botao.css";
-import Texto from "components/texto/texto";
+import { Texto } from "components/elementos/index";
 
 export function Botao({ variant = "primario", route = null, handleClick = null, disabled = false, children }) {
 	const validVariants = ["primario", "secundario", "sucesso", "perigo"];
