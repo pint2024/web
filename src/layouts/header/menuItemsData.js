@@ -2,6 +2,7 @@ const navItems = [
 	{
 		title: "Área de Testes",
 		route: "/teste",
+		submenu: [{ title: "Rei", route: "/rei" }],
 	},
 	{
 		title: "Atividades",

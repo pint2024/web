@@ -1,7 +1,8 @@
 import { listarRequest } from "api/listarRequest";
 import { Botao, CaixaTexto, ComboBox, DatePicker, ImageBox, TextArea } from "components/form";
+import { DraftEditor } from "components/form/draft-editor/draftEditor";
 import { DTO } from "dto/dto";
-import { TopicoDTO } from "dto/topico.dot";
+import { TopicoDTO } from "dto/topico.dto";
 import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 import { isEmpty } from "utils/utils";
@@ -46,18 +47,14 @@ export const AtividadeCriar = () => {
 	return (
 		<section>
 			<form>
-				<CaixaTexto label="Título" handleChange={(e) => setFormTitulo(e)} />
-				<TextArea label="Descrição" handleChange={(e) => setFormDescricao(e)} />
-				<CaixaTexto label="Endreço" handleChange={(e) => setFormEndereco(e)} />
-				<CaixaTexto label="Preço" type="number" handleChange={(e) => setFormPreco(e)} />
-				<DatePicker label="Data Evento" handleChange={(e) => setFormDataEvento(e)} />
-				<ImageBox label="Imagem" handleChange={(e) => setFormImagem(e)} />
-				<TextArea label="Formulário" handleChange={(e) => setFormFormulario(e)} />
-				<ComboBox
-					label="Subtópico"
-					handleChange={(e) => setFormSubtopico(e)}
-					options={formatSubtopicoData()}
-				/>
+				<CaixaTexto placeholder="Título" handleChange={(e) => setFormTitulo(e)} />
+				<DraftEditor/>
+				<CaixaTexto placeholder="Endreço" handleChange={(e) => setFormEndereco(e)} />
+				<CaixaTexto placeholder="Preço" type="number" handleChange={(e) => setFormPreco(e)} />
+				<DatePicker placeholder="Data Evento" handleChange={(e) => setFormDataEvento(e)} />
+				<ImageBox placeholder="Imagem" handleChange={(e) => setFormImagem(e)} />
+				<TextArea placeholder="Formulário" handleChange={(e) => setFormFormulario(e)} />
+				<ComboBox placeholder="Escolha o subtópico" handleChange={(e) => setFormSubtopico(e)} options={formatSubtopicoData()} />
 				<Botao>Criar</Botao>
 			</form>
 		</section>

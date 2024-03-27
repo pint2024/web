@@ -1,7 +1,7 @@
 import { Botao, ComboBox } from "components/form";
 import { useEffect, useState } from "react";
 import { listarRequest } from "api/listarRequest";
-import { TopicoDTO } from "dto/topico.dot";
+import { TopicoDTO } from "dto/topico.dto";
 import { DTO } from "dto/dto";
 import { waitData } from "utils/utils";
 import { useLoading } from "hooks/useLoading";
@@ -9,6 +9,7 @@ import { AtividadeDTO } from "dto/atividade.dto";
 import { Icon, Divider } from "components/elementos/index";
 import { usePopup } from "hooks/usePopup";
 import { Post } from "./components/post/post";
+import { ORDER_OPTIONS } from "data/constants";
 
 export const Atividade = () => {
 	const { puSet, puCreate, puOpen } = usePopup();
@@ -58,10 +59,7 @@ export const Atividade = () => {
 				<div className="d-flex justify-content-end gap-2">
 					<ComboBox
 						placeholder="Recentes"
-						options={[
-							{ label: "Mais Gostos", value: "1" },
-							{ label: "Mais Comentários", value: "2" },
-						]}
+						options={ORDER_OPTIONS}
 					/>
 					<ComboBox
 						handleChange={filter}

@@ -30,7 +30,7 @@ export function ComboBox({
 				<option value={0}>{placeholder}</option>
 				{options?.map((option, index) => (
 					<option key={index} value={option.value}>
-						{option.value}
+						{option.label}
 					</option>
 				))}
 			</select>

@@ -15,13 +15,11 @@ import { Notificacao } from "components/notificacao/notificacao";
 import { useLoading } from "hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
 import { SwitchToggle } from "components/form/switchToggle/switchToggle";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState } from "draft-js";
 import { EMOJI_LIST } from "data/constants";
+import { DraftEditor } from "components/form/draft-editor/draftEditor";
+
 
 export function Teste() {
-	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 	const { puSet, puCreate, puOpen } = usePopup();
 	const { conSet, conOpen, conCreate } = useConfirmation(false);
 	const { startLoading, stopLoading } = useLoading();
@@ -110,34 +108,7 @@ export function Teste() {
 
 	return (
 		<div>
-			{/*https://jpuri.github.io/react-draft-wysiwyg/#/docs*/}
-			<Editor
-				editorState={editorState}
-				onEditorStateChange={setEditorState}
-				toolbar={{
-					options: [
-						"inline",
-						"blockType",
-						"fontSize",
-						//"fontFamily",
-						"list",
-						//"textAlign",
-						//"colorPicker",
-						"link",
-						"embedded",
-						"emoji",
-						//"image",
-						//"remove",
-						"history",
-					],
-				}}
-				emoji={{
-					className: undefined,
-					component: undefined,
-					popupClassName: undefined,
-					emojis: EMOJI_LIST,
-				  }}
-			/>
+			<DraftEditor/>
 			<ItemControl
 				options={[
 					{ id: 0, text: "Philosopher’s Path", done: true },

@@ -8,6 +8,7 @@ import { IniciarSessao, CriarConta } from "pages/autenticacao/index";
 import { Atividade, AtividadeCriar } from "pages/atividades/index";
 import { Conta } from "pages/conta/index";
 import { PaginaInicial } from "pages/paginaInicial";
+import { Rei } from "pages/rei.test";
 
 export const DataRoutes = [
 	{
@@ -21,6 +22,13 @@ export const DataRoutes = [
 		path: "/teste",
 		element: <Teste />,
 		perfis: [],
+		children: [
+			{
+				title: "Rei",
+				path: "/rei",
+				element: <Rei />,
+			},
+		],
 	},
 	{
 		title: "Atividade",
@@ -100,7 +108,7 @@ export const renderRoutes = criarRoutes(DataRoutes);
 export function findRouteByPath(path) {
 	const findRecursive = (routes, currentPath) => {
 		for (const route of routes) {
-			if (route.path === currentPath || route.path.split('/:')[0] === currentPath) {
+			if (route.path === currentPath || route.path.split("/:")[0] === currentPath) {
 				return route;
 			} else if (route.children) {
 				const childRoute = findRecursive(route.children, currentPath);

@@ -35,6 +35,11 @@ export const STATUS = {
 	SEM_DATA: -1,
 };
 
+export const ORDER_OPTIONS = [
+	{ label: "Mais Gostos", value: "1" },
+	{ label: "Mais Comentários", value: "2" },
+];
+
 export const EMOJI_LIST = [
 	'😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌', '🤓',
 	'😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉',
