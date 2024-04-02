@@ -14,7 +14,7 @@ import { useConfirmation } from "hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/notificacao";
 import { useLoading } from "hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
-import { SwitchToggle } from "components/form/switchToggle/switchToggle";
+import { SwitchToggle } from "components/form/select/switchToggle/switchToggle";
 import { EMOJI_LIST } from "data/constants";
 import { DraftEditor } from "components/form/draft-editor/draftEditor";
 
@@ -108,7 +108,6 @@ export function Teste() {
 
 	return (
 		<div>
-			<DraftEditor/>
 			<ItemControl
 				options={[
 					{ id: 0, text: "Philosopher’s Path", done: true },

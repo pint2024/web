@@ -1,10 +1,15 @@
-import { DraftEditor } from "components/form/draft-editor/draftEditor";
-
+import { DraftEditor, SelectOptions } from "components/form";
 
 export function Rei() {
 	return (
 		<>
-			<DraftEditor/>
+			<DraftEditor />
+			<SelectOptions
+				options={[
+					{ id: 1, option: "x1" },
+					{ id: 2, option: "x2" },
+				]}
+			/>
 		</>
 	);
 }
