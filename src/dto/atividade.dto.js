@@ -37,10 +37,16 @@ export class AtividadeDTO {
 			facebook: data.atividade_utilizador.facebook,
 			perfil: data.atividade_utilizador.perfil,
 		};
+		this.comentarios = {
+			id: data.comentario_atividade.id,
+			data_criacao: data.comentario_atividade.data_criacao,
+			subcomentarios: data.comentario_atividade.subcomentario_comentario,
+			comentario: data.comentario_atividade.comentario,
+			utilizador: data.comentario_atividade.utilizador,
+		}
 		
 		
 		this.gostos = data.gosto_atividade;
-		this.comentarios = data.comentario_atividade;
 		this.revisoes = data.revisao_atividade;
 		this.notificacoes = data.notificacao_atividade;
 		this.denuncias = data.denuncia_atividade;

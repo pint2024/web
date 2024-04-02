@@ -82,7 +82,12 @@ export function Post({ data }) {
 					<div className="comentario-modal-comments">
 						{data.comentarios.map((comentario) => (
 							<div className="mt-3">
-								<Comentario comentario={comentario.comentario} />
+								<Comentario imagem={User} comentario={comentario.comentario} />
+								{/*comentario.subcomentarios.map((subcomentario) => (
+									<>
+										<Comentario imagem={User} comentario={subcomentario.subcomentario} />
+									</>
+								))*/}
 							</div>
 						))}
 					</div>
