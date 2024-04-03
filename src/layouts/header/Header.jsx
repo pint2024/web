@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import MobileNav from "./mobile/1NavMobile";
-import Navbar from "./1Navbar";
+import MobileNav from "./mobile/NavMobile";
+import Navbar from "./Navbar";
 import { Dropdown } from "components/dropdown/dropdown";
 import { userItems } from "./headerData";
 

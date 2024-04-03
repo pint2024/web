@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Contacto } from "./1Contacto";
+import { Contacto } from "./Contacto";
 import { listarRequest } from "api/listarRequest";
 import { ParticipanteDTO } from "dto/participante.dto";
 import { isEmpty } from "utils/utils";

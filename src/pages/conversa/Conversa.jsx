@@ -1,6 +1,6 @@
 import { CONTENT_VH } from "data/constants";
-import { Contactos } from "./components/1Contactos";
-import { Mensagens } from "./components/1Mensagens";
+import { Contactos } from "./components/Contactos";
+import { Mensagens } from "./components/Mensagens";
 import { useState } from "react";
 import { isEmpty } from "utils/utils";
 import { getSizes } from "data/cssVars";

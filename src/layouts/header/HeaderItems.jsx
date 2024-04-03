@@ -1,4 +1,4 @@
-import Dropdown from "./1NavDropdown";
+import Dropdown from "./NavDropdown";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "components/elementos/index";
