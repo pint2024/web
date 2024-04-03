@@ -7,7 +7,7 @@ import { Conversa } from "pages/conversa/index";
 import { IniciarSessao, CriarConta } from "pages/autenticacao/index";
 import { Atividade, AtividadeCriar } from "pages/atividades/index";
 import { Conta } from "pages/conta/index";
-import { PaginaInicial } from "pages/paginaInicial";
+import { PaginaInicial } from "pages/1PaginaInicial";
 import { Rei } from "pages/rei.test";
 import { Dashboard } from "pages/dashboard/dashboard";
 

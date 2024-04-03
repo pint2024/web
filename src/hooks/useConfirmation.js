@@ -1,4 +1,4 @@
-import { Confirmacao } from "components/popup/Confirmacao";
+import { Confirmacao } from "components/popup/confirmacao";
 import { useState } from "react";
 
 export const useConfirmation = () => {
