@@ -1,9 +1,8 @@
 import { getSizes } from "./cssVars";
 
-export const PROJETO = {
-	NAME: "Projeto Integrado",
-	LOGO: "assets/images/logo.png",
-};
+export const PROJETO_NAME = "SoftShares";
+
+export const PROJETO_LOGO = "assets/images/logo.png";
 
 export const GOSTO_ANIMATION = "animation-bounce";
 
@@ -39,6 +38,10 @@ export const ORDER_OPTIONS = [
 	{ label: "Mais Gostos", value: "1" },
 	{ label: "Mais Comentários", value: "2" },
 ];
+
+export const TEXT_SIZES = [0, 1, 2, 3, 4, 5];
+
+export const TEXT_TYPES = ["primary", "secondary", "success", "danger", "inverse"];
 
 export const EMOJI_LIST = [
 	'😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌', '🤓',

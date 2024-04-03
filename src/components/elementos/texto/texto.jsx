@@ -1,9 +1,8 @@
-export const Texto = ({ className = "", style = "", size = 1, type = "primary", children }) => {
-	const validSizes = [0, 1, 2, 3, 4, 5];
-	const isSizeValid = validSizes.includes(size) ? true : false;
+import { TEXT_SIZES, TEXT_TYPES } from "data/constants";
 
-	const validTypes = ["primary", "secondary", "success", "danger", "inverse"];
-	const isTypeValid = validTypes.includes(type) ? true : false;
+export const Texto = ({ className = "", style = "", size = 1, type = "primary", children }) => {
+	const isSizeValid = TEXT_SIZES.includes(size) ? true : false;
+	const isTypeValid = TEXT_TYPES.includes(type) ? true : false;
 
 	return (
 		<>

@@ -38,28 +38,34 @@ const MenuItems = ({ items, depthLevel }) => {
 		dropdown && setDropdown(false);
 	};
 
+	console.log("x", items);
+
 	return (
 		<li className="menu-items" ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={closeDropdown}>
 			{items.submenu ? (
 				<>
 					<Link
-						className="link"
+						className="d-flex align-items-center gap-2 link"
 						aria-haspopup="menu"
 						aria-expanded={dropdown ? "true" : "false"}
 						onClick={() => toggleDropdown()}
-						to={items.route 
-							? items.route 
-							: null}
+						to={items.route ? items.route : null}
 					>
+						{items.icon ? <Icon iconName={items.icon} /> : null}
 						{items.title}
-						{depthLevel > 0 
-							? <Icon iconName="CaretRightFill" className="header-submenu-arrow icon-inverse" /> 
-							: <Icon iconName="CaretDownFill" className="header-menu-arrow icon-inverse" />}
+						{depthLevel > 0 ? (
+							<Icon iconName="CaretRightFill" className="header-submenu-arrow icon-inverse" />
+						) : (
+							<Icon iconName="CaretDownFill" className="header-menu-arrow icon-inverse" />
+						)}
 					</Link>
 					<Dropdown depthLevel={depthLevel} submenus={items.submenu} dropdown={dropdown} />
 				</>
 			) : (
-				<Link to={items.route}>{items.title}</Link>
+				<Link to={items.route} className="d-flex align-items-center gap-2">
+					{items.icon ? <Icon iconName={items.icon} /> : null}
+					{items.title}
+				</Link>
 			)}
 		</li>
 	);

@@ -12,7 +12,7 @@ import {
 	Botao,
 } from ".";
 
-export const Input = ({ type, label, placeholder }) => {
+export const Input = ({ key, type, label, placeholder }) => {
 	const options = { label, placeholder };
 	let inputRender = null;
 	switch (type) {
@@ -53,5 +53,5 @@ export const Input = ({ type, label, placeholder }) => {
 			return null;
 	}
 
-	return <>{inputRender}</>;
+	return <div key={key}>{inputRender}</div>;
 };

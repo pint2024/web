@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import MobileNav from "./mobile/navMobile";
 import Navbar from "./navbar";
 import { Dropdown } from "components/dropdown/dropdown";
-import { userItems } from "./menuItemsData";
+import { userItems } from "./headerData";
 
 import userDefault from "assets/images/user-default.png";
 import logo from "assets/images/logo.png";
@@ -14,7 +14,7 @@ const Header = () => {
 		<section id="Header">
 			<div className="nav-area">
 				<Link to="/" className="header-logo">
-					<img src={logo} alt="Imagem do utilizador" className="header-site-logo" />
+					<img src={logo} alt="Logo" className="header-site-logo" />
 				</Link>
 				<Navbar />
 				<MobileNav />

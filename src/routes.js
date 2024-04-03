@@ -9,6 +9,7 @@ import { Atividade, AtividadeCriar } from "pages/atividades/index";
 import { Conta } from "pages/conta/index";
 import { PaginaInicial } from "pages/paginaInicial";
 import { Rei } from "pages/rei.test";
+import { Dashboard } from "pages/dashboard/dashboard";
 
 export const DataRoutes = [
 	{
@@ -54,6 +55,12 @@ export const DataRoutes = [
 		title: "Calendário",
 		path: "/calendario",
 		element: <Calendario />,
+		perfis: [],
+	},
+	{
+		title: "Dashboard",
+		path: "/dashboard",
+		element: <Dashboard />,
 		perfis: [],
 	},
 	{
