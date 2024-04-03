@@ -1,6 +1,6 @@
 import { listarRequest } from "api/listarRequest";
 import { Botao, CaixaTexto, ComboBox, DatePicker, ImageBox, TextArea } from "components/form";
-import { DraftEditor } from "components/form/draft-editor/draftEditor";
+import { DraftEditor } from "components/form/draft-editor/1DraftEditor";
 import { DTO } from "dto/dto";
 import { TopicoDTO } from "dto/topico.dto";
 import { useLoading } from "hooks/useLoading";

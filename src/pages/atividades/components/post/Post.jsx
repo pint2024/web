@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "hooks/usePopup";
-import { CaixaTexto } from "components/form/caixaTexto/caixaTexto";
+import { CaixaTexto } from "components/form/caixaTexto/1CaixaTexto";
 import { Link } from "react-router-dom";
 import { CartaoInfo, Rotulo } from "components/info/index";
 import User from "assets/images/logo2.png";

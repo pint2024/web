@@ -1,5 +1,5 @@
 import { menuItemsData } from "./headerData";
-import MenuItems from "./1HeaderItems";
+import MenuItems from "./HeaderItems";
 
 const Navbar = () => {
 	const depthLevel = 0;

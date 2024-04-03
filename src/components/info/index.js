@@ -1,5 +1,5 @@
-export { InfoLayout } from "./infoLayout";
-export { CartaoInfo } from "./cartaoInfo";
-export { ContactoInfo } from "./contactoInfo";
-export { ComentarioInfo } from "./comentarioInfo";
-export { Rotulo } from "./rotulo";
+export { InfoLayout } from "./1InfoLayout";
+export { CartaoInfo } from "./1CartaoInfo";
+export { ContactoInfo } from "./1ContactoInfo";
+export { ComentarioInfo } from "./1ComentarioInfo";
+export { Rotulo } from "./1Rotulo";

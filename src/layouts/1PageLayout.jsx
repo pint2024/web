@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Header from "layouts/header/Header";
 import Footer from "layouts/footer/Footer";
-import PageContent from "./pageContent";
-import { Breadcrumb } from "./breadcrumb";
+import PageContent from "./1PageContent";
+import { Breadcrumb } from "./1Breadcrumb";
 
 export function PageLayout() {
 	return (

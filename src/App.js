@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 /// Componentes
 import { renderRoutes } from "./routes";
-import { PageLayout } from "layouts/pageLayout";
+import { PageLayout } from "layouts/1PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { useAutenticacao } from "hooks/useAutenticacao";
 

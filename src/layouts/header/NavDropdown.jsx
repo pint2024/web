@@ -1,4 +1,4 @@
-import MenuItems from "./1HeaderItems";
+import MenuItems from "./HeaderItems";
 
 const Dropdown = ({ submenus, dropdown, depthLevel }) => {
 	depthLevel = depthLevel + 1;

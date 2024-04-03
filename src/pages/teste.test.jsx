@@ -11,12 +11,12 @@ import {
 	ItemControl,
 } from "components/form";
 import { useConfirmation } from "hooks/useConfirmation";
-import { Notificacao } from "components/notificacao/notificacao";
+import { Notificacao } from "components/notificacao/1Notificacao";
 import { useLoading } from "hooks/useLoading";
 import { DataRelativa } from "utils/date.utils";
-import { SwitchToggle } from "components/form/select/switchToggle/switchToggle";
+import { SwitchToggle } from "components/form/select/switchToggle/1SwitchToggle";
 import { EMOJI_LIST } from "data/constants";
-import { DraftEditor } from "components/form/draft-editor/draftEditor";
+import { DraftEditor } from "components/form/draft-editor/1DraftEditor";
 
 
 export function Teste() {
