@@ -9,7 +9,7 @@ import { Atividade, AtividadeCriar } from "pages/atividades/index";
 import { Conta } from "pages/conta/index";
 import { PaginaInicial } from "pages/1PaginaInicial";
 import { Rei } from "pages/rei.test";
-import { Dashboard } from "pages/dashboard/dashboard";
+import { Dashboard } from "pages/dashboard/1Dashboard";
 
 export const DataRoutes = [
 	{
