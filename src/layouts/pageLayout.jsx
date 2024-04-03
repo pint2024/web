@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Header from "layouts/header/header";
+import Header from "layouts/header/Header";
 import Footer from "layouts/footer/footer";
 import PageContent from "./pageContent";
 import { Breadcrumb } from "./breadcrumb";

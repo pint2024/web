@@ -1,6 +1,6 @@
 import { useReducer } from "react";
-import { ItemControlAdd } from "./itemControlAdd.js";
-import { ItemControlList } from "./itemControlList.js";
+import { ItemControlAdd } from "./itemControlAdd";
+import { ItemControlList } from "./itemControlList";
 
 
 export function ItemControl({ options }) {

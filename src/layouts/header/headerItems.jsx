@@ -38,8 +38,6 @@ const MenuItems = ({ items, depthLevel }) => {
 		dropdown && setDropdown(false);
 	};
 
-	console.log("x", items);
-
 	return (
 		<li className="menu-items" ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={closeDropdown}>
 			{items.submenu ? (
@@ -51,7 +49,6 @@ const MenuItems = ({ items, depthLevel }) => {
 						onClick={() => toggleDropdown()}
 						to={items.route ? items.route : null}
 					>
-						{items.icon ? <Icon iconName={items.icon} /> : null}
 						{items.title}
 						{depthLevel > 0 ? (
 							<Icon iconName="CaretRightFill" className="header-submenu-arrow icon-inverse" />
@@ -63,7 +60,6 @@ const MenuItems = ({ items, depthLevel }) => {
 				</>
 			) : (
 				<Link to={items.route} className="d-flex align-items-center gap-2">
-					{items.icon ? <Icon iconName={items.icon} /> : null}
 					{items.title}
 				</Link>
 			)}

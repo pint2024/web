@@ -43,6 +43,8 @@ export const TEXT_SIZES = [0, 1, 2, 3, 4, 5];
 
 export const TEXT_TYPES = ["primary", "secondary", "success", "danger", "inverse"];
 
+export const NOTIFICATIONS_TYPES = ['success', 'info', 'warn', 'error'];
+
 export const EMOJI_LIST = [
 	'😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌', '🤓',
 	'😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉',

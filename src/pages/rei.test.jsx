@@ -1,22 +1,46 @@
-import { DraftEditor, Form, Input, SelectOptions } from "components/form";
+import { Input } from "components/form/input";
+import {
+	name_validation,
+	email_validation,
+	number_validation,
+	password_validation,
+} from "utils/inputValidations";
+import { Form } from "components/form";
+import { Notificacao } from "components/notificacao/notificacao";
 
-export function Rei() {
+export const Rei = () => {
+
+	const handleData = (data) => {
+		console.log("opa", data);
+	}
+
 	return (
-		<>
-			<DraftEditor />
-			<SelectOptions
-				options={[
-					{ id: 1, option: "op1" },
-					{ id: 2, option: "op2" },
-				]}
+		<Form handleData={handleData} mensagemSucesso={"Criado com sucesso"}>
+			<Input name="name" label="name" type="text" id="name" placeholder="write your name ..." {...name_validation} />
+			<Input
+				name="email"
+				label="email"
+				type="email"
+				id="email"
+				placeholder="write your email ..."
+				{...email_validation}
 			/>
-
-			<h3>FORM & INPUT TESTE</h3>
-			<Form>
-				<Input key={1} type={"text"} label={"label1"} placeholder={"placeholder1"}/>
-				<Input key={2} type={"text"} label={"label2"} placeholder={"placeholder2"}/>
-				<Input key={3} type={"text"} label={"label3"} placeholder={"placeholder3"}/>
-			</Form>
-		</>
+			<Input
+				name="number"
+				label="number"
+				type="number"
+				id="number"
+				placeholder="write your number ..."
+				{...number_validation}
+			/>
+			<Input
+				name="password"
+				label="password"
+				type="password"
+				id="password"
+				placeholder="write your password ..."
+				{...password_validation}
+			/>
+		</Form>
 	);
-}
+};

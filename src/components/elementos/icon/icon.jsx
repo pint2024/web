@@ -1,8 +1,12 @@
 import * as Icons from "react-bootstrap-icons";
 
 export const Icon = ({ iconName = "", size = 1, type = "primary", className = "", ...props}) => {
-	const IconVariant = Icons[iconName];
-
+	let IconVariant = null;
+	try {
+		IconVariant = Icons[iconName];
+	} catch (e) {
+		throw new Error(iconName);
+	}
 	const validSizes = [0, 1, 2, 3, 4];
 	const isSizeValid = validSizes.includes(size) ? true : false;
 
@@ -11,7 +15,7 @@ export const Icon = ({ iconName = "", size = 1, type = "primary", className = ""
 
 	return (
 		<>
-			{isTypeValid && isSizeValid ? (
+			{IconVariant && isTypeValid && isSizeValid ? (
 				<IconVariant className={`text-size-${size} text-types-${type} ${className}`} {...props}/>
 			) : (
 				<h1>Icon invalido</h1>

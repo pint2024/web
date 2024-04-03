@@ -1,57 +1,49 @@
-import {
-	CaixaTexto,
-	CheckBox,
-	ComboBox,
-	DatePicker,
-	FileBox,
-	ImageBox,
-	MultiSelectBox,
-	TextArea,
-	TimePicker,
-	SwitchToggle,
-	Botao,
-} from ".";
+/*-------------------------------------------------------------------
+|  🐼 React FC Input
+|
+|  🐯 Purpose: RE-USEABLE INPUT COMPOENT
+|
+|  🐸 Returns:  JSX
+*-------------------------------------------------------------------*/
 
-export const Input = ({ key, type, label, placeholder }) => {
-	const options = { label, placeholder };
-	let inputRender = null;
-	switch (type) {
-		case "date":
-			inputRender = <DatePicker {...options} />;
-			break;
-		case "time":
-			inputRender = <TimePicker {...options} />;
-			break;
-		case "text":
-			inputRender = <CaixaTexto {...options} />;
-			break;
-		case "checkbox":
-			inputRender = <CheckBox {...options} />;
-			break;
-		case "combobox":
-			inputRender = <ComboBox {...options} />;
-			break;
-		case "multiselect":
-			inputRender = <MultiSelectBox {...options} />;
-			break;
-		case "switch":
-			inputRender = <SwitchToggle {...options} />;
-			break;
-		case "file":
-			inputRender = <FileBox {...options} />;
-			break;
-		case "image":
-			inputRender = <ImageBox {...options} />;
-			break;
-		case "textarea":
-			inputRender = <TextArea {...options} />;
-			break;
-		case "button":
-			inputRender = <Botao {...options} />;
-			break;
-		default:
-			return null;
-	}
+import cn from "classnames";
+import { findInputError, isFormInvalid } from "utils";
+import { useFormContext } from "react-hook-form";
+import { Icon } from "components/elementos";
 
-	return <div key={key}>{inputRender}</div>;
+export const Input = ({ name, label, type, id, placeholder, validation }) => {
+	const {
+		register,
+		formState: { errors },
+	} = useFormContext();
+
+	const inputErrors = findInputError(errors, name);
+	const isInvalid = isFormInvalid(inputErrors);
+
+	return (
+		<div>
+			<div className="d-flex justify-content-between">
+				<label htmlFor={id}>
+					{label}
+				</label>
+				{isInvalid && <InputError message={inputErrors.error.message} key={inputErrors.error.message} />}
+			</div>
+
+			<input
+				id={id}
+				type={type}
+				placeholder={placeholder}
+				{...register(name, validation)}
+			/>
+		</div>
+	);
+};
+
+const InputError = ({ message }) => {
+	return (
+		<>
+			<Icon iconName="X" />
+			{message}
+		</>
+	);
 };

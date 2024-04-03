@@ -10,7 +10,7 @@ export { MultiSelectBox } from "./select/selectBox/multiSelectBox";
 export { OTPVerification } from "./otp/OTPverification";
 export { TextArea } from "./caixaTexto/textArea";
 export { TimePicker } from "./dateBox/TimePicker";
-export { ItemControl } from "./itemControl/itemControl";
+export { ItemControl } from "./itemControl/ItemControl";
 export { SwitchToggle } from "./select/switchToggle/switchToggle";
 export { Form } from "./form";
 export { Input } from "./input";

@@ -11,6 +11,14 @@ import { LoadingProvider } from "hooks/useLoading";
 import { AutenticacaoProvider } from "hooks/useAutenticacao";
 import { render } from "react-dom";
 
+/// Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "bootstrap/dist/js/bootstrap.min.js";
+
+/// Toastify
+import "react-toastify/dist/ReactToastify.css";
+
 /// Global Styles
 import "assets/styles/main.css";
 

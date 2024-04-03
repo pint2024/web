@@ -1,5 +1,5 @@
 import { menuItemsData } from "./headerData";
-import MenuItems from "./headerItems";
+import MenuItems from "./HeaderItems";
 
 const Navbar = () => {
 	const depthLevel = 0;
@@ -8,7 +8,6 @@ const Navbar = () => {
 		<nav className="desktop-nav">
 			<ul className="menus d-flex">
 				{menuItemsData.map((item, index) => {
-					console.log("y", item)
 					return <MenuItems items={item} key={index} depthLevel={depthLevel} />;
 				})}
 			</ul>

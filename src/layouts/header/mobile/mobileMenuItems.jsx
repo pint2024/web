@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import MobileDropdown from "./mobileDropdown";
+import MobileDropdown from "./MobileDropdown";
 
 const MobileMenuItems = ({ items, depthLevel, showMenu, setShowMenu }) => {
 	const [dropdown, setDropdown] = useState(false);
