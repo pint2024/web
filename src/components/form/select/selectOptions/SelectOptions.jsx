@@ -1,6 +1,6 @@
 import { Texto } from "components/elementos";
 import { isEmpty } from "utils/utils";
-import { CheckBox } from "../checkBox/1CheckBox";
+import { CheckBox } from "../checkBox/CheckBox";
 
 export const SelectOptions = ({ evento, options }) => {
 	if (isEmpty(options)) return;

@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { Botao } from "components/form";
-import { Notificacao } from "components/notificacao/1Notificacao";
+import { Notificacao } from "components/notificacao/Notificacao";
 
 export const Form = ({ route, handleData, mensagemSucesso, children }) => {
 	const methods = useForm();

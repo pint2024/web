@@ -1,3 +1,3 @@
-export { Divider } from "./divider/1Divider";
-export { Texto } from "./texto/1Texto";
-export { Icon } from "./icon/1Icon";
+export { Divider } from "./divider/Divider";
+export { Texto } from "./texto/Texto";
+export { Icon } from "./icon/Icon";

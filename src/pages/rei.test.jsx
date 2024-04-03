@@ -1,4 +1,4 @@
-import { Input } from "components/form/1Input";
+import { Input } from "components/form/Input";
 import {
 	name_validation,
 	email_validation,
@@ -6,7 +6,6 @@ import {
 	password_validation,
 } from "utils/inputValidations";
 import { Form } from "components/form";
-import { Notificacao } from "components/notificacao/1Notificacao";
 
 export const Rei = () => {
 

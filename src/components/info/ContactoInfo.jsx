@@ -1,5 +1,5 @@
 import { Texto } from "components/elementos/index";
-import { InfoLayout } from "./1InfoLayout";
+import { InfoLayout } from "./InfoLayout";
 import { useEffect, useState } from "react";
 import { DataRelativa } from "utils/date.utils";
 

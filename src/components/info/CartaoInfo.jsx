@@ -1,5 +1,5 @@
 import { Texto } from "components/elementos/index";
-import { InfoLayout } from "./1InfoLayout";
+import { InfoLayout } from "./InfoLayout";
 
 export const CartaoInfo = ({ imagem, titulo, subtitulo }) => {
 	return (

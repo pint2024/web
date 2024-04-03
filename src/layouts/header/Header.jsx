@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import MobileNav from "./mobile/NavMobile";
 import Navbar from "./Navbar";
-import { Dropdown } from "components/dropdown/1Dropdown";
+import { Dropdown } from "components/dropdown/Dropdown";
 import { userItems } from "./headerData";
 
 import userDefault from "assets/images/user-default.png";

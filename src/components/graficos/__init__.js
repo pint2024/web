@@ -1,3 +1,3 @@
-export { GraficoBarras } from "./1GraficoBarras";
-export { GraficoLinhas } from "./1GraficoLinhas";
-export { GraficoPizza } from "./1GraficoPizza";
+export { GraficoBarras } from "./GraficoBarras";
+export { GraficoLinhas } from "./GraficoLinhas";
+export { GraficoPizza } from "./GraficoPizza";

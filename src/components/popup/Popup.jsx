@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Texto } from "components/elementos/index";
-import { ModalBase } from "./1ModalBase";
+import { ModalBase } from "./ModalBase";
 
 export default function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);
