@@ -1,12 +1,10 @@
 import "./loading.css";
-import LoadingAnimation from "./LoadingAnimation";
+import { LoadingAnimation } from "./LoadingAnimation";
 
-const Loading = () => {
+export const Loading = () => {
 	return (
 		<div className="loading-operation">
 			<LoadingAnimation />
 		</div>
 	);
 };
-
-export default Loading;

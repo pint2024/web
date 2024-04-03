@@ -1,5 +1,5 @@
 import { useMemo, useState, useContext, createContext } from "react";
-import Loading from "layouts/loading/Loading";
+import { Loading } from "layouts/loading/Loading";
 
 
 
