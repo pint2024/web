@@ -1,5 +1,5 @@
 import "./loading.css";
-import LoadingAnimation from "./loadingAnimation";
+import LoadingAnimation from "./1LoadingAnimation";
 
 const Loading = () => {
 	return (
