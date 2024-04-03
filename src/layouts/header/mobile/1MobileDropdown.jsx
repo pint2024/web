@@ -1,4 +1,4 @@
-import MobileMenuItems from "./mobileMenuItems";
+import MobileMenuItems from "./1MobileMenuItems";
 
 const MobileDropdown = ({ submenus, dropdown, depthLevel }) => {
 	depthLevel = depthLevel + 1;

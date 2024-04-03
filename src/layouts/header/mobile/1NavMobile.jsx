@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { menuItemsData } from "../headerData";
-import MobileMenuItems from "./mobileMenuItems";
+import MobileMenuItems from "./1MobileMenuItems";
 
 const MobileNav = () => {
 	const depthLevel = 0;

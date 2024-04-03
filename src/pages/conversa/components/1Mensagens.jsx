@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import jaumzin from "assets/images/logo2.png";
-import { MyMensagem } from "./myMensagem";
-import { OthersMensagem } from "./othersMensagem";
+import { MyMensagem } from "./1MyMensagem";
+import { OthersMensagem } from "./1OthersMensagem";
 import { CaixaTexto } from "components/form";
 import { isEmpty } from "utils/utils";
 import { SEND_MESSAGE_DELAY } from "data/constants";

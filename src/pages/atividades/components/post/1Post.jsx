@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { CartaoInfo, Rotulo } from "components/info/index";
 import User from "assets/images/logo2.png";
 import { Icon, Texto } from "components/elementos/index";
-import { Comentario } from "../comentario/comentario";
+import { Comentario } from "../comentario/1Comentario";
 
 import "./post.css";
 

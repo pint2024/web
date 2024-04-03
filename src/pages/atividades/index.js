@@ -1,4 +1,4 @@
-export { Atividade } from "./atividade";
-export { AtividadeCriar } from "./criar/atividadeCriar";
-export { Comentario } from "./components/comentario/comentario";
-export { Post } from "./components/post/post";
+export { Atividade } from "./1Atividade";
+export { AtividadeCriar } from "./criar/1AtividadeCriar";
+export { Comentario } from "./components/comentario/1Comentario";
+export { Post } from "./components/post/1Post";

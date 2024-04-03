@@ -1,6 +1,6 @@
-export { Conversa } from "./conversa";
-export { Contacto } from "./components/contacto";
-export { Contactos } from "./components/contactos";
-export { Mensagens } from "./components/mensagens";
-export { MyMensagem } from "./components/myMensagem";
-export { OthersMensagem } from "./components/othersMensagem";
+export { Conversa } from "./1Conversa";
+export { Contacto } from "./components/1Contacto";
+export { Contactos } from "./components/1Contactos";
+export { Mensagens } from "./components/1Mensagens";
+export { MyMensagem } from "./components/1MyMensagem";
+export { OthersMensagem } from "./components/1OthersMensagem";
