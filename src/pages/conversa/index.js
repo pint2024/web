@@ -1,4 +1,4 @@
-export { Conversa } from "./Conversa";
+export { Conversa } from "./conversa";
 export { Contacto } from "./components/contacto";
 export { Contactos } from "./components/contactos";
 export { Mensagens } from "./components/mensagens";
