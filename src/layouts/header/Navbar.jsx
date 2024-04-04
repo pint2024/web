@@ -1,7 +1,7 @@
 import { menuItemsData } from "./headerData";
 import MenuItems from "./HeaderItems";
 
-const Navbar = () => {
+export const Navbar = () => {
 	const depthLevel = 0;
 
 	return (
@@ -14,5 +14,3 @@ const Navbar = () => {
 		</nav>
 	);
 };
-
-export default Navbar;

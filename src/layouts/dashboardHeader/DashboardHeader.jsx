@@ -18,7 +18,7 @@ export function DashboardHeader() {
 
 				<Dropdown
 					items={[
-						{ nome: "Utilizadores", icon: "envelope", rota: "/dashboard/reporting/utilizadores" },
+						{ nome: "Utilizadores", icon: "envelope", rota: "/dashboard/tabelas/utilizadores" },
 						{ nome: "Atividades", icon: "envelope", rota: "/dashboard/tabelas/atividades" },
 					]}
 				>

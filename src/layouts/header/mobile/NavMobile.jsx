@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { menuItemsData } from "../headerData";
 import MobileMenuItems from "./MobileMenuItems";
 
-const MobileNav = () => {
+export const MobileNav = () => {
 	const depthLevel = 0;
 	const [showMenu, setShowMenu] = useState(false);
 	let ref = useRef();
@@ -45,5 +45,3 @@ const MobileNav = () => {
 		</nav>
 	);
 };
-
-export default MobileNav;

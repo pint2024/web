@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import MobileNav from "./mobile/NavMobile";
-import Navbar from "./Navbar";
+import { MobileNav } from "./mobile/NavMobile";
+import { Navbar } from "./Navbar";
 import { Dropdown } from "components/dropdown/Dropdown";
 import { userItems } from "./headerData";
 
@@ -9,7 +9,7 @@ import logo from "assets/images/logo.png";
 
 import "./styles.css";
 
-const Header = () => {
+export const Header = () => {
 	return (
 		<section id="Header">
 			<div className="nav-area">
@@ -27,5 +27,3 @@ const Header = () => {
 		</section>
 	);
 };
-
-export default Header;

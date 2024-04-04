@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./footer.css";
 import { Icon, Texto } from "components/elementos";
 
-function Footer() {
+export const Footer = () => {
 	return (
 		<section id="Footer" className="footer-content d-flex justify-content-between">
 			<div className="align-items-left d-flex gap-4 align-items-center">
@@ -27,6 +27,4 @@ function Footer() {
 			</div>
 		</section>
 	);
-}
-
-export default Footer;
+};

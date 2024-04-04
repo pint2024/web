@@ -10,6 +10,10 @@ import { Conta } from "pages/conta";
 import { PaginaInicial } from "pages/PaginaInicial";
 import { Rei } from "pages/rei.test";
 import { Dashboard } from "pages/dashboard/Dashboard";
+import { TabelaAtividadeListar } from "pages/dashboard/Tabelas/atividades/AtividadeListar";
+import { TabelaAtividadeEditar } from "pages/dashboard/Tabelas/atividades/AtividadeEditar";
+import { TabelaUtilizadorCriar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorCriar";
+import { TabelaUtilizadorEditar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorEditar";
 
 export const DataRoutes = [
 	{
@@ -113,12 +117,74 @@ export const DashboardDataRoutes = [
 				path: "/reporting",
 				element: null,
 				perfis: [],
+				children: [
+					{
+						title: "Postagens",
+						path: "/postagens",
+						element: null,
+						perfis: [],
+					},
+					{
+						title: "Registos",
+						path: "/registos",
+						element: null,
+						perfis: [],
+					},
+					{
+						title: "Movimentação",
+						path: "/movimentacao",
+						element: null,
+						perfis: [],
+					},
+				],
 			},
 			{
 				title: "Tabelas",
 				path: "/tabelas",
 				element: null,
 				perfis: [],
+				children: [
+					{
+						title: "Utilizadores",
+						path: "/utilizadores",
+						element: null,
+						perfis: [],
+						children: [
+							{
+								title: "Criar",
+								path: "/criar",
+								element: <TabelaUtilizadorCriar />,
+								perfis: [],
+							},
+							{
+								title: "Editar",
+								path: "/editar",
+								element: <TabelaUtilizadorEditar />,
+								perfis: [],
+							},
+						],
+					},
+					{
+						title: "Atividades",
+						path: "/atividades",
+						element: <TabelaAtividadeListar />,
+						perfis: [],
+						children: [
+							{
+								title: "Criar",
+								path: "/criar",
+								element: <TabelaAtividadeListar />,
+								perfis: [],
+							},
+							{
+								title: "Editar",
+								path: "/editar",
+								element: <TabelaAtividadeEditar />,
+								perfis: [],
+							},
+						],
+					},
+				],
 			},
 		],
 	},
@@ -134,6 +200,7 @@ const criarRoutes = (route, parentRoute = "") => {
 };
 
 export const renderRoutes = criarRoutes(DataRoutes);
+
 export const renderDashboardRoutes = criarRoutes(DashboardDataRoutes);
 
 export function findRouteByPath(path) {

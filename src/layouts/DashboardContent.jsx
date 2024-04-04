@@ -1,10 +1,11 @@
+import { Outlet } from "react-router-dom";
 import { DashboardHeader } from "./dashboardHeader/DashboardHeader";
 
-export const DashboardContent = ({ children }) => {
+export const DashboardContent = () => {
 	return (
 		<section id="DashboardContent">
 			<DashboardHeader />
-			{children}
+			<Outlet />
 		</section>
 	);
 };

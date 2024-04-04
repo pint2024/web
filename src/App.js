@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React, { useEffect } from "react";
 
 /// Componentes
-import { renderRoutes } from "./routes";
+import { renderDashboardRoutes, renderRoutes } from "./routes";
 import { PageLayout } from "layouts/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { useAutenticacao } from "hooks/useAutenticacao";
@@ -21,8 +21,8 @@ function App() {
 			<Routes>
 				<Route path="/" element={<PageLayout />}>
 					{renderRoutes}
-					<Route path="/dashboard" element={<DashboardContent />} >
-						
+					<Route path="/dashboard" element={<DashboardContent />}>
+						{renderDashboardRoutes}
 					</Route>
 				</Route>
 			</Routes>
