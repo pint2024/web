@@ -101,6 +101,29 @@ export const DataRoutes = [
 	},
 ];
 
+export const DashboardDataRoutes = [
+	{
+		title: "Dashboard",
+		path: "/dashboard",
+		element: <Dashboard />,
+		perfis: [],
+		children: [
+			{
+				title: "Reporting",
+				path: "/reporting",
+				element: null,
+				perfis: [],
+			},
+			{
+				title: "Tabelas",
+				path: "/tabelas",
+				element: null,
+				perfis: [],
+			},
+		],
+	},
+];
+
 const criarRoutes = (route, parentRoute = "") => {
 	return route.map((route, index) => (
 		<>
@@ -111,6 +134,7 @@ const criarRoutes = (route, parentRoute = "") => {
 };
 
 export const renderRoutes = criarRoutes(DataRoutes);
+export const renderDashboardRoutes = criarRoutes(DashboardDataRoutes);
 
 export function findRouteByPath(path) {
 	const findRecursive = (routes, currentPath) => {

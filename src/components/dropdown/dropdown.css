@@ -1,4 +1,4 @@
-.dropdown-content {
+.c-dropdown-content {
 	position: absolute;
 	background-color: var(--BACKGROUND);
 	border-radius: 20px;
@@ -7,6 +7,10 @@
 	top: 120%;
 }
 
-.dropdown-item {
+.c-dropdown-item {
 	padding: 12px 16px;
+}
+
+.c-dropdown {
+	background-color: inherit;
 }

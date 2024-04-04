@@ -26,7 +26,7 @@
 	z-index: var(--HEADER-DROPDOWN);
 }
 
-.dropdown-content {
+.c-dropdown-content {
 	z-index: var(--REGULAR-DROPDOWN);
 }
 

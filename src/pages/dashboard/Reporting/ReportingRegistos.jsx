@@ -3,7 +3,7 @@ import React from "react";
 import './reporting.css'
 
 /** Componentes */
-import { ReportingComponent } from "./1ReportingComponent";
+import { ReportingComponent } from "./ReportingComponent";
 
 
 function ReportingRegistos() {

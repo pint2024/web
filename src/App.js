@@ -7,6 +7,7 @@ import { renderRoutes } from "./routes";
 import { PageLayout } from "layouts/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { useAutenticacao } from "hooks/useAutenticacao";
+import { DashboardContent } from "layouts/DashboardContent";
 
 function App() {
 	const utilizadorAtual = useAutenticacao();
@@ -20,6 +21,9 @@ function App() {
 			<Routes>
 				<Route path="/" element={<PageLayout />}>
 					{renderRoutes}
+					<Route path="/dashboard" element={<DashboardContent />} >
+						
+					</Route>
 				</Route>
 			</Routes>
 		</Router>

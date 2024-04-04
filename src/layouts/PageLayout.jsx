@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "layouts/header/Header";
 import Footer from "layouts/footer/Footer";
-import PageContent from "./PageContent";
+import { PageContent } from "./PageContent";
 import { Breadcrumb } from "./Breadcrumb";
 
 export function PageLayout() {

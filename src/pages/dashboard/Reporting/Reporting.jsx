@@ -5,10 +5,10 @@ import './reporting.css'
 /** Componentes */
 import { ReportingComponent } from "./reportingComponent";
 import BarChart from "src/components/Graficos/barChart";
-import SubheaderMenu from "../dashboard/components/subHeaderMenu";
+import SubheaderMenu from "../../../layouts/dashboardHeader/DashboardHeader";
 
 
-function Reporting() {
+export function Reporting() {
 	const chartLabels = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5', 'Label 6'];
 	const chartDatasets = [
 		{
@@ -38,5 +38,3 @@ function Reporting() {
 		</div>
 	);
 }
-
-export default Reporting;
