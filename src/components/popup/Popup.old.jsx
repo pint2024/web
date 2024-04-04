@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Texto, Icon } from "components/elementos/index";
+import { Texto, Icon } from "components/elementos";
 
 function Popup({ headerTitle, headerSubtitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);

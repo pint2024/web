@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
-import { Icon } from "components/elementos/index";
+import { Icon } from "components/elementos";
 import "./popup.css";
 
 export const ModalBase = ({ headerTitle, headerInfo, headerIcons, children, footer, onClose, styles, className, id }) => {

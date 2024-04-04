@@ -1,22 +1,25 @@
 import { Input } from "components/form/Input";
-import {
-	name_validation,
-	email_validation,
-	number_validation,
-	password_validation,
-} from "utils/inputValidations";
+import { name_validation, email_validation, number_validation, password_validation } from "utils/inputValidations";
 import { Form } from "components/form";
 
 export const Rei = () => {
-
 	const handleData = (data) => {
 		console.log("opa", data);
-	}
+	};
 
 	return (
 		<Form handleData={handleData} mensagemSucesso={"Criado com sucesso"}>
-			<Input name="name" label="name" type="text" id="name" placeholder="write your name ..." {...name_validation} />
 			<Input
+				input="text"
+				name="name"
+				label="name"
+				type="text"
+				id="name"
+				placeholder="write your name ..."
+				{...name_validation}
+			/>
+			<Input
+				input="text"
 				name="email"
 				label="email"
 				type="email"
@@ -25,6 +28,7 @@ export const Rei = () => {
 				{...email_validation}
 			/>
 			<Input
+				input="text"
 				name="number"
 				label="number"
 				type="number"
@@ -33,6 +37,7 @@ export const Rei = () => {
 				{...number_validation}
 			/>
 			<Input
+				input="text"
 				name="password"
 				label="password"
 				type="password"

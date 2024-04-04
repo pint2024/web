@@ -5,7 +5,7 @@ import { OthersMensagem } from "./OthersMensagem";
 import { CaixaTexto } from "components/form";
 import { isEmpty } from "utils/utils";
 import { SEND_MESSAGE_DELAY } from "data/constants";
-import { Icon, Texto } from "components/elementos/index";
+import { Icon, Texto } from "components/elementos";
 import { obterRequest } from "api/obterRequest";
 import { ConversaDTO } from "dto/conversa.dto";
 import { useLoading } from "hooks/useLoading";

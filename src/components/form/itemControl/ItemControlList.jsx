@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Botao, CaixaTexto, CheckBox } from "../index";
+import { Botao, CaixaTexto, CheckBox } from "../";
 import { Icon } from "components/elementos";
 
 export function ItemControlList({ items, onChangeItem, onDeleteItem }) {

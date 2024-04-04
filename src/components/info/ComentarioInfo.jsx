@@ -1,4 +1,4 @@
-import { Texto } from "components/elementos/index";
+import { Texto } from "components/elementos";
 import { InfoLayout } from "./InfoLayout";
 
 export const ComentarioInfo = ({ imagem, comentario }) => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Botao, CaixaTexto } from "../index";
+import { Botao, CaixaTexto } from "../";
 import { Icon } from "components/elementos";
 
 export function ItemControlAdd({ onAddItem }) {

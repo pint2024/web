@@ -1,4 +1,4 @@
-import { Texto } from "components/elementos/index";
+import { Texto } from "components/elementos";
 import { useEffect, useState } from "react";
 import { DataRelativa } from "utils/date.utils";
 

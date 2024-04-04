@@ -6,7 +6,7 @@ import { DTO } from "dto/dto";
 import { waitData } from "utils/utils";
 import { useLoading } from "hooks/useLoading";
 import { AtividadeDTO } from "dto/atividade.dto";
-import { Icon, Divider } from "components/elementos/index";
+import { Icon, Divider } from "components/elementos";
 import { usePopup } from "hooks/usePopup";
 import { Post } from "./components/post/Post";
 import { ORDER_OPTIONS } from "data/constants";

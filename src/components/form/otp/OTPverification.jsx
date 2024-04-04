@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import otpimg from "assets/images/otp.png";
-import { Botao } from "../index";
+import { Botao } from "../";
 import { Texto } from "components/elementos";
 
 export function OTPVerification() {

@@ -1,0 +1,31 @@
+@import url(../../../assets/styles/color-styles.css);
+
+.subheader {
+	text-align: center;
+}
+
+.subheader {
+	list-style-type: none;
+	justify-content: center;
+}
+
+.subheader li {
+	margin: 0 10px;
+	display: inline-block;
+}
+
+.subheader ul {
+	list-style-type: none;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid #000;
+}
+
+.ativo {
+	color: var(--primary-color);
+}
+
+.chart-size {
+	width: 60vh;
+}

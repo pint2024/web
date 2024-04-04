@@ -3,9 +3,9 @@ import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "hooks/usePopup";
 import { CaixaTexto } from "components/form/caixaTexto/CaixaTexto";
 import { Link } from "react-router-dom";
-import { CartaoInfo, Rotulo } from "components/info/index";
+import { CartaoInfo, Rotulo } from "components/info";
 import User from "assets/images/logo2.png";
-import { Icon, Texto } from "components/elementos/index";
+import { Icon, Texto } from "components/elementos";
 import { Comentario } from "../comentario/Comentario";
 
 import "./post.css";

@@ -1,7 +1,7 @@
 import "./cartao.css";
 import User from "assets/images/logo2.png";
-import { Texto } from "components/elementos/index";
-import { CartaoInfo } from "components/info/index";
+import { Texto } from "components/elementos";
+import { CartaoInfo } from "components/info";
 
 function Cartao({
 	id = 0,

@@ -1,4 +1,4 @@
-import { Texto } from "components/elementos/index";
+import { Texto } from "components/elementos";
 import React from "react";
 
 export function NotFound() {

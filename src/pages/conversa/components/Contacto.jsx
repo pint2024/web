@@ -1,5 +1,5 @@
 import "../conversa.css";
-import { ContactoInfo } from "components/info/index";
+import { ContactoInfo } from "components/info";
 
 export function Contacto({ id, imagem, nome, data, mensagem }) {
 	return (
