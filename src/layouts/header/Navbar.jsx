@@ -6,7 +6,7 @@ export const Navbar = () => {
 
 	return (
 		<nav className="desktop-nav">
-			<ul className="menus d-flex">
+			<ul className="menus d-flex remove-padding">
 				{menuItemsData.map((item, index) => {
 					return <MenuItems items={item} key={index} depthLevel={depthLevel} />;
 				})}

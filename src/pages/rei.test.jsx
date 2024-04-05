@@ -1,6 +1,7 @@
 import { Input } from "components/form/Input";
-import { name_validation, email_validation, number_validation, password_validation } from "utils/inputValidations";
+import { name_validation, email_validation, number_validation, password_validation, combobox_validation } from "utils/inputValidations";
 import { Form } from "components/form";
+import { ORDER_OPTIONS } from "data/constants";
 
 export const Rei = () => {
 	const handleData = (data) => {
@@ -44,6 +45,16 @@ export const Rei = () => {
 				id="password"
 				placeholder="write your password ..."
 				{...password_validation}
+			/>
+			<Input
+				input="combobox"
+				name="combobox"
+				label="combobox"
+				type="combobox"
+				id="combobox"
+				placeholder="write your combobox ..."
+				options={ORDER_OPTIONS}
+				{...combobox_validation}
 			/>
 		</Form>
 	);

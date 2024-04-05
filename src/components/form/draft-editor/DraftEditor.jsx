@@ -19,6 +19,7 @@ export function DraftEditor({ label }) {
 				wrapperClassName="draft-wrapper"
 				editorClassName="draft-editor"
 				toolbarClassName="draft-toolbar"
+				placeholder="Escreva a sua atividade"
 				toolbar={{
 					options: [
 						//"blockType",
@@ -33,7 +34,7 @@ export function DraftEditor({ label }) {
 						"emoji",
 						//"image",
 						//"remove",
-						"history",
+						//"history",
 					],
 					inline: {
 						//inDropdown: true,

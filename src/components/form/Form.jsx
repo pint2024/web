@@ -7,6 +7,7 @@ export const Form = ({ route, handleData, mensagemSucesso, children }) => {
 
 	const onSubmit = methods.handleSubmit((data) => {
 		methods.reset();
+		console.log(data);
 		if (typeof handleSubmit === "function") handleData(data);
 		Notificacao(mensagemSucesso);
 	});

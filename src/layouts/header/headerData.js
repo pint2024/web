@@ -1,12 +1,13 @@
 const navItems = [
-	{
+	/*{
 		title: "Área de Testes",
 		route: "/teste",
 		submenu: [{ title: "Rei", route: "/rei" }],
-	},
+	},*/
 	{ title: "Atividades", route: "/atividade" },
-	{ title: "Conversa", route: "/conversa" },
+	{ title: "Mapa", route: "/mapa" },
 	{ title: "Calendário", route: "/calendario" },
+	{ title: "Conversa", route: "/conversa" },
 	{ title: "Dashboard", route: "/dashboard" },
 ];
 

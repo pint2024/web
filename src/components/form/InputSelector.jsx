@@ -1,4 +1,4 @@
-import { INPUT_TYPES } from "data/constants";
+import React from "react";
 import {
 	CaixaTexto,
 	CheckBox,
@@ -14,46 +14,46 @@ import {
 } from ".";
 import { Texto } from "components/elementos";
 
-export const InputSelector = ({ input, ...props }) => {
-	console.log("ola", props);
+export const InputSelector = React.forwardRef(({ input, ...props }, ref) => {
+	//console.log("InputSelector", props);
 	let inputRender = null;
 	switch (input) {
 		case "date":
-			inputRender = <DatePicker {...props} />;
+			inputRender = <DatePicker {...props} ref={ref} />;
 			break;
 		case "time":
-			inputRender = <TimePicker {...props} />;
+			inputRender = <TimePicker {...props} ref={ref} />;
 			break;
 		case "text":
-			inputRender = <CaixaTexto {...props} />;
+			inputRender = <CaixaTexto {...props} ref={ref} />;
 			break;
 		case "checkbox":
-			inputRender = <CheckBox {...props} />;
+			inputRender = <CheckBox {...props} ref={ref} />;
 			break;
 		case "combobox":
-			inputRender = <ComboBox {...props} />;
+			inputRender = <ComboBox {...props} ref={ref} />;
 			break;
 		case "multiselect":
-			inputRender = <MultiSelectBox {...props} />;
+			inputRender = <MultiSelectBox {...props} ref={ref} />;
 			break;
 		case "switch":
-			inputRender = <SwitchToggle {...props} />;
+			inputRender = <SwitchToggle {...props} ref={ref} />;
 			break;
 		case "file":
-			inputRender = <FileBox {...props} />;
+			inputRender = <FileBox {...props} ref={ref} />;
 			break;
 		case "image":
-			inputRender = <ImageBox {...props} />;
+			inputRender = <ImageBox {...props} ref={ref} />;
 			break;
 		case "textarea":
-			inputRender = <TextArea {...props} />;
+			inputRender = <TextArea {...props} ref={ref} />;
 			break;
 		case "button":
-			inputRender = <Botao {...props} />;
+			inputRender = <Botao {...props} ref={ref} />;
 			break;
 		default:
 			return <Texto type="danger">Não existe esse Input!</Texto>;
 	}
 
 	return <>{inputRender}</>;
-};
+});

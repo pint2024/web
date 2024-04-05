@@ -13,7 +13,6 @@ export const AtividadeCriar = () => {
 	const [formTitulo, setFormTitulo] = useState(null);
 	const [formDescricao, setFormDescricao] = useState(null);
 	const [formEndereco, setFormEndereco] = useState(null);
-	const [formPreco, setFormPreco] = useState(null);
 	const [formDataEvento, setFormDataEvento] = useState(null);
 	const [formImagem, setFormImagem] = useState(null);
 	const [formFormulario, setFormFormulario] = useState(null);
@@ -47,14 +46,21 @@ export const AtividadeCriar = () => {
 	return (
 		<section>
 			<form>
-				<CaixaTexto placeholder="Título" handleChange={(e) => setFormTitulo(e)} />
-				<DraftEditor/>
+				<div className="d-flex gap-3">
+					<CaixaTexto placeholder="Título" handleChange={(e) => setFormTitulo(e)} />
+					<ComboBox
+						placeholder="Escolha o subtópico"
+						handleChange={(e) => setFormSubtopico(e)}
+						options={formatSubtopicoData()}
+					/>
+				</div>
+				<div className="mt-3">
+					<DraftEditor />
+				</div>
 				<CaixaTexto placeholder="Endreço" handleChange={(e) => setFormEndereco(e)} />
-				<CaixaTexto placeholder="Preço" type="number" handleChange={(e) => setFormPreco(e)} />
 				<DatePicker placeholder="Data Evento" handleChange={(e) => setFormDataEvento(e)} />
 				<ImageBox placeholder="Imagem" handleChange={(e) => setFormImagem(e)} />
 				<TextArea placeholder="Formulário" handleChange={(e) => setFormFormulario(e)} />
-				<ComboBox placeholder="Escolha o subtópico" handleChange={(e) => setFormSubtopico(e)} options={formatSubtopicoData()} />
 				<Botao>Criar</Botao>
 			</form>
 		</section>

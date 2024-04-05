@@ -13,7 +13,7 @@ export const Header = () => {
 	return (
 		<section id="Header">
 			<div className="nav-area">
-				<Link to="/" className="header-logo">
+				<Link to="/" className="header-logo remove-margin">
 					<img src={logo} alt="Logo" className="header-site-logo" />
 				</Link>
 				<Navbar />
