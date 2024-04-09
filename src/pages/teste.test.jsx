@@ -66,7 +66,7 @@ export function Teste() {
 					/>
 				</section>
 			),
-			footer: <Botao handleClick={handleOpenConfirmation}>Adicionar</Botao>,
+			footer: <Botao onClick={handleOpenConfirmation}>Adicionar</Botao>,
 		});
 		puOpen();
 	};
@@ -117,9 +117,9 @@ export function Teste() {
 			/>
 			{conCreate()}
 			{puCreate()}
-			<Botao handleClick={handleOpenPopup}>Popup</Botao>
-			<Botao handleClick={handleOpenConfirmation}>Confirmação</Botao>
-			<Botao handleClick={handleConfirmationAccepted}>Notificações</Botao>
+			<Botao onClick={handleOpenPopup}>Popup</Botao>
+			<Botao onClick={handleOpenConfirmation}>Confirmação</Botao>
+			<Botao onClick={handleConfirmationAccepted}>Notificações</Botao>
 			<SwitchToggle />
 			<br />
 			<br />

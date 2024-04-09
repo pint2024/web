@@ -84,8 +84,8 @@ export function OTPVerification() {
 							))}
 						</div>
 						<div style={styles.buttonContainer}>
-							<Botao handleClick={handleVerify}>Verificar</Botao>
-							<Botao handleClick={handleResendemail}>Reenviar</Botao>
+							<Botao onClick={handleVerify}>Verificar</Botao>
+							<Botao onClick={handleResendemail}>Reenviar</Botao>
 						</div>
 					</div>
 				) : (

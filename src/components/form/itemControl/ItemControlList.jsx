@@ -30,14 +30,14 @@ function Item({ item, onChange, onDelete }) {
 					}}
 				/>
 
-				<Botao handleClick={() => setIsEditing(false)}><Icon iconName="CheckCircleFill" type="inverse" /></Botao>
+				<Botao onClick={() => setIsEditing(false)}><Icon iconName="CheckCircleFill" type="inverse" /></Botao>
 			</>
 		);
 	} else {
 		itemContent = (
 			<>
 				{item.text}
-				<Botao handleClick={() => setIsEditing(true)}><Icon iconName="PenFill" type="inverse" /></Botao>
+				<Botao onClick={() => setIsEditing(true)}><Icon iconName="PenFill" type="inverse" /></Botao>
 			</>
 		);
 	}
@@ -54,7 +54,7 @@ function Item({ item, onChange, onDelete }) {
 				}}
 			/>
 			{itemContent}
-			<Botao handleClick={() => onDelete(item.id)}><Icon iconName="TrashFill" type="inverse" /></Botao>
+			<Botao onClick={() => onDelete(item.id)}><Icon iconName="TrashFill" type="inverse" /></Botao>
 		</label>
 	);
 }

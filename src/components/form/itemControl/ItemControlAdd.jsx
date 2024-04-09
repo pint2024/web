@@ -14,7 +14,7 @@ export function ItemControlAdd({ onAddItem }) {
 		<div className="d-flex">
 			<CaixaTexto placeholder="Adicionar" value={text} handleChange={(e) => setText(e)} />
 			<Botao
-				handleClick={() => handleAdicionar()}
+				onClick={() => handleAdicionar()}
 			>
 				<Icon iconName="PlusCircleFill" type="inverse" />
 			</Botao>

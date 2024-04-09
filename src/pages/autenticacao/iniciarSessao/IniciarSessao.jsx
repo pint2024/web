@@ -29,7 +29,7 @@ export function IniciarSessao() {
 					/>
 					</div>
 					<div className="form-container mt-1">
-						<Botao handleClick={handleChange} >Entrar</Botao>
+						<Botao onClick={handleChange} >Entrar</Botao>
 					</div >
 				</form>
 

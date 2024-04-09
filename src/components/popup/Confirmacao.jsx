@@ -16,10 +16,10 @@ export const Confirmacao = ({ title, body, onSuccess, onClose }) => {
 				onClose={onClose}
 				footer={
 					<div className="d-flex gap-2">
-						<Botao variant="sucesso" handleClick={handleSuccessClick}>
+						<Botao variant="sucesso" onClick={handleSuccessClick}>
 							<Icon iconName="CheckLg" className="icon-inverse" /> Sim
 						</Botao>
-						<Botao variant="perigo" handleClick={onClose}>
+						<Botao variant="perigo" onClick={onClose}>
 							<Icon iconName="XLg" className="icon-inverse" /> Não
 						</Botao>
 					</div>
