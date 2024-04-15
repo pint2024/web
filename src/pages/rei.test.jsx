@@ -7,13 +7,16 @@ import {
 	combobox_validation,
 } from "utils/inputValidations";
 import { Form } from "components/form";
-import { FormInput } from "components/form/FormInput";
+import { ORDER_OPTIONS } from "data/constants";
+
 
 export const Rei = () => {
 	return (
-		<Form>
-			<FormInput label="Email Address" name="email" type="email" />
-			<FormInput label="Password" name="password" type="password" />
-		</Form>
+		<Form
+			fields={[
+				{ input: "text", label: "Email Address", type: "email", name: "email", required: true, ...email_validation },
+				{ input: "text", label: "Password", type: "password", name: "password", required: true, ...password_validation },
+			]}
+		/>
 	);
 };

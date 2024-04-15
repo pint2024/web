@@ -15,7 +15,6 @@ import {
 import { Texto } from "components/elementos";
 
 export const InputSelector = React.forwardRef(({ input, ...props }, ref) => {
-	//console.log("InputSelector", props);
 	let inputRender = null;
 	switch (input) {
 		case "date":

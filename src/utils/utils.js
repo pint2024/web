@@ -11,7 +11,7 @@ export function isEmpty(...variaveis) {
 				variavel === null ||
 				isWhitespaces(variavel)
 			) {
-				return true; // se algum for verdadeiro devolve que é vazio
+				return true; // se algum for verdadeiro devolve true
 			}
 		}
 		return false;
@@ -37,4 +37,24 @@ export function isWhitespaces(variavel) {
 	} catch {
 		return false;
 	}
+}
+
+export function CompareRegex(regex, string) {
+	if (typeof regex !== "object" || typeof string !== "string") {
+		console.log("A", typeof regex !== "object");
+		console.log("G", typeof string !== "string");
+		return false;
+	}
+
+	if (!(regex instanceof RegExp)) {
+		regex = new RegExp(regex);
+		console.log("D", !(regex instanceof RegExp));
+	}
+
+	if (regex.test(string)) {
+		console.log("b");
+		return true;
+	}
+	console.log("c");
+	return false;
 }

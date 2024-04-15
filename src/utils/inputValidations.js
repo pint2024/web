@@ -20,7 +20,7 @@ export const name_validation = {
 
 export const password_validation = {
 	validation: {
-		required: isRequired,
+		required: notRequired,
 		minLength: {
 			value: 6,
 			message: "min 6 characters",
@@ -36,7 +36,7 @@ export const combobox_validation = {
 
 export const number_validation = {
 	validation: {
-		required: notRequired
+		required: notRequired,
 	},
 };
 
@@ -44,7 +44,7 @@ export const email_validation = {
 	validation: {
 		required: isRequired,
 		pattern: {
-			value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+			value: /\S+@\S+\.\S+/,
 			message: "not valid",
 		},
 	},
