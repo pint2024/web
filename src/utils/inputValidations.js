@@ -30,7 +30,7 @@ export const password_validation = {
 
 export const combobox_validation = {
 	validation: {
-		required: notRequired,
+		required: isRequired,
 	},
 };
 

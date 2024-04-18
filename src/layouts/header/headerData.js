@@ -5,6 +5,7 @@ const navItems = [
 		submenu: [{ title: "Rei", route: "/rei" }],
 	},*/
 	{ title: "Atividades", route: "/atividade" },
+	{ title: "Formulário", route: "/formulario" },
 	{ title: "Mapa", route: "/mapa" },
 	{ title: "Calendário", route: "/calendario" },
 	{ title: "Conversa", route: "/conversa" },

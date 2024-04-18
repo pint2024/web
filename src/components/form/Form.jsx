@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "./useForm";
-import validate from "./LoginFormValidationRules";
 import { Notificacao } from "components/notificacao/Notificacao";
-import { Botao, Input } from ".";
+import { Botao } from ".";
+import { FormFields } from "./FormFields";
 
 export const Form = ({ fields }) => {
+	const [disableBtn, setdisableBtn] = useState(false);
 	const { values, errors, handleChange, handleSubmit } = useForm(login, fields);
 
 	function login() {
@@ -12,7 +13,9 @@ export const Form = ({ fields }) => {
 		Notificacao("Sucesso filho");
 	}
 
-	console.log("opa", fields);
+	function blockButton() {
+		setdisableBtn(true);
+	}
 
 	return (
 		<div className="section is-fullheight">
@@ -20,27 +23,10 @@ export const Form = ({ fields }) => {
 				<div className="column is-4 is-offset-4">
 					<div className="box">
 						<form onSubmit={handleSubmit} noValidate>
-							{fields.map((field, index) => (
-								<div className="field" key={index}>
-									<label className="label">{field.label}</label>
-									<div className="control">
-										<Input
-											autoComplete="off"
-											input={field.input}
-											type={field.type}
-											name={field.name}
-											onChange={handleChange}
-											value={values[field.name] || ""}
-											required={field?.validation?.required?.value || null}
-											minLength={field?.validation?.minLength?.value || null}
-											maxLength={field?.validation?.maxLength?.value || null}
-											pattern={field?.validation?.pattern?.value || null}
-										/>
-										{errors[field.name] && <p className="help is-danger">{errors[field.name]}</p>}
-									</div>
-								</div>
-							))}
-							<Botao type="submit">Submeter</Botao>
+							<FormFields fields={fields} values={values} handleChange={handleChange} errors={errors} />
+							<Botao type="submit" disabled={disableBtn}>
+								Submeter
+							</Botao>
 						</form>
 					</div>
 				</div>

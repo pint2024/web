@@ -9,13 +9,19 @@ import {
 import { Form } from "components/form";
 import { ORDER_OPTIONS } from "data/constants";
 
-
 export const Rei = () => {
 	return (
 		<Form
 			fields={[
-				{ input: "text", label: "Email Address", type: "email", name: "email", required: true, ...email_validation },
-				{ input: "text", label: "Password", type: "password", name: "password", required: true, ...password_validation },
+				{ input: "text", label: "Label Email Address", type: "email", name: "email", ...email_validation },
+				{ input: "text", label: "Label Password", type: "password", name: "password", ...password_validation },
+				{
+					input: "combobox",
+					label: "Label ComboBox",
+					name: "combobox",
+					options: ORDER_OPTIONS,
+					...combobox_validation,
+				},
 			]}
 		/>
 	);

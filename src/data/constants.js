@@ -39,6 +39,13 @@ export const ORDER_OPTIONS = [
 	{ label: "Mais Comentários", value: "2" },
 ];
 
+export const FORM_OPTIONS = [
+	{ label: "Resposta", value: "1" },
+	{ label: "Escolha múltipla", value: "2" },
+	{ label: "Caixas de Verificação", value: "3" },
+	{ label: "Pendente", value: "4" },
+];
+
 export const TEXT_SIZES = [0, 1, 2, 3, 4, 5];
 
 export const TEXT_TYPES = ["primary", "secondary", "success", "danger", "inverse"];

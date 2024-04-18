@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { LOG } from "utils/log.utils";
+import React from "react";
 
-export const CaixaTexto = React.forwardRef(({ label = "", prefix = false, ...props }, ref) => {
-	//console.log("CaixaTexto", props);
-
+export const CaixaTexto = ({ label = "", prefix = false, ...props }) => {
 	return (
 		<>
 			{label && <label htmlFor="inputNome">{label}</label>}
@@ -13,12 +10,8 @@ export const CaixaTexto = React.forwardRef(({ label = "", prefix = false, ...pro
 						{prefix}
 					</span>
 				)}
-				<input
-					className="form-control"
-					{...props}
-					ref={ref}
-				/>
+				<input className="form-control" {...props} />
 			</div>
 		</>
 	);
-});
+};
