@@ -8,7 +8,6 @@ const navItems = [
 	{ title: "Formulário", route: "/formulario" },
 	{ title: "Mapa", route: "/mapa" },
 	{ title: "Calendário", route: "/calendario" },
-	{ title: "Conversa", route: "/conversa" },
 	{ title: "Dashboard", route: "/dashboard" },
 ];
 

@@ -1,13 +1,7 @@
-.post-icon:hover {
-	background-color: var(--WHITE-HOVER);
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-.post-icon {
-	padding: 5px;
+.cartao-imagem {
+	border-radius: 4px;
 }
 
 .post-content {
-	padding: 10px;
+	padding: 100px;
 }

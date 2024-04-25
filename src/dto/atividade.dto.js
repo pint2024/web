@@ -1,4 +1,3 @@
-import jaumzin from "assets/images/logo2.png";
 import { DataRelativa } from "utils/date.utils";
 
 export class AtividadeDTO {

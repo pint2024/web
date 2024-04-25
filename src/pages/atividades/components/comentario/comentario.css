@@ -1,5 +1,5 @@
 .comentario-conteudo {
-	border: 1px solid var(--WHITE);
+	border: 2px solid var(--DIVIDER);
 	border-radius: 20px;
 	background-color: var(--WHITE);
 	padding: 10px;

@@ -15,6 +15,7 @@ import { TabelaAtividadeEditar } from "pages/dashboard/Tabelas/atividades/Ativid
 import { TabelaUtilizadorCriar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorCriar";
 import { TabelaUtilizadorEditar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorEditar";
 import { Formulario } from "pages/formularios/Formulario";
+import { AtividadeDetalhe } from "pages/atividades/detalhe/AtividadeDetalhe";
 
 export const DataRoutes = [
 	{
@@ -54,13 +55,13 @@ export const DataRoutes = [
 				element: <AtividadeCriar />,
 				perfis: [],
 			},
+			{
+				title: "Atividade",
+				path: "/:id",
+				element: <AtividadeDetalhe />,
+				perfis: [],
+			},
 		],
-	},
-	{
-		title: "Conversa",
-		path: "/conversa",
-		element: <Conversa />,
-		perfis: [],
 	},
 	{
 		title: "Calendário",

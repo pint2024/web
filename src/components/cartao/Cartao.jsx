@@ -1,5 +1,5 @@
 import "./cartao.css";
-import User from "assets/images/logo2.png";
+import User from "assets/images/user-placeholder.png";
 import { Texto } from "components/elementos";
 import { CartaoInfo } from "components/info";
 

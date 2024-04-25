@@ -1,4 +1,5 @@
 import { Texto } from "components/elementos";
+import { Imagem } from "components/elementos/imagem/Imagem";
 import { useEffect, useState } from "react";
 import { DataRelativa } from "utils/date.utils";
 
@@ -23,7 +24,7 @@ export function MyMensagem({ id, imagem, nome, data, mensagem }) {
 					<Texto>{mensagem}</Texto>
 				</div>
 			</div>
-			<img src={imagem} alt="" className="card-user-picture" />
+			<Imagem src={imagem} alt="" className="card-user-picture" />
 		</li>
 	);
 }

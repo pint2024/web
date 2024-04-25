@@ -1,5 +1,3 @@
-import jaumzin from "assets/images/logo2.png";
-
 export class UtilizadorDTO {
 	constructor(data) {
 		this.id = data.participante_utilizador.id;

@@ -1,4 +1,4 @@
-import jaumzin from "assets/images/logo2.png";
+import jaumzin from "assets/images/user-placeholder.png";
 
 export class ParticipanteDTO {
 	constructor(data) {

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import jaumzin from "assets/images/logo2.png";
+import jaumzin from "assets/images/user-placeholder.png";
 import { MyMensagem } from "./MyMensagem";
 import { OthersMensagem } from "./OthersMensagem";
 import { CaixaTexto } from "components/form";

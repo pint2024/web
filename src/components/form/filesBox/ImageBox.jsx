@@ -1,3 +1,4 @@
+import { Imagem } from "components/elementos/imagem/Imagem";
 import React, { useState } from "react";
 
 export function ImageBox({
@@ -29,7 +30,7 @@ export function ImageBox({
 				/>
 			</div>
 			{value && (
-				<img
+				<Imagem
 					src={URL.createObjectURL(value)}
 					alt="Imagem selecionada"
 					style={{ width: "100%", height: "auto" }}

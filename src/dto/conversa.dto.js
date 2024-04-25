@@ -1,10 +1,9 @@
-import jaumzin from "assets/images/logo2.png";
-
 export class ConversaDTO {
 	constructor(data) {
 		this.id = data.id;
 		this.data_criacao = data.data_criacao;
 		this.titulo = data.titulo;
+		this.imagem = data.imagem;
 		this.descricao = data.descricao;
 		this.topico = data.conversa_topico;
 		this.participantes = data.participante_conversa;
@@ -21,7 +20,7 @@ export class ConversaDTO {
 
 			novaMensagem.push({
 				id: this.id,
-				imagem: jaumzin,
+				imagem: this.imagem,
 				nome: msg_autor,
 				data: this.data_criacao,
 				mensagem: msg.mensagem,
