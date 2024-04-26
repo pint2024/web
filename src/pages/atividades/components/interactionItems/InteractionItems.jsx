@@ -2,7 +2,7 @@ import { Icon, Texto } from "components/elementos";
 import { GOSTO_ANIMATION } from "data/constants";
 import { useState } from "react";
 
-export function InteractionItems() {
+export function InteractionItems({ hideComentario = false }) {
 	const [isClassificado, setisClassificado] = useState();
 	const [classificacao, setclassificacao] = useState();
 	const [comentarios, setcomentarios] = useState();
@@ -35,16 +35,18 @@ export function InteractionItems() {
 				onClick={handleLikesClick}
 			>
 				{isClassificado ? (
-					<Icon iconName="HandThumbsUpFill" className="icon-color" />
+					<Icon iconName="HandThumbsUpFill" className="icon-color cursor-pointer" />
 				) : (
-					<Icon iconName="HandThumbsUp" />
+					<Icon iconName="HandThumbsUp" className="cursor-pointer" />
 				)}
 				<Texto size={0}>{classificacao}</Texto>
 			</div>
-			<div className="d-flex align-items-center gap-2 post-icon">
-				<Icon iconName="ChatLeft" />
-				<Texto size={0}>{comentarios}</Texto>
-			</div>
+			{!hideComentario ? (
+				<div className="d-flex align-items-center gap-2 post-icon">
+					<Icon iconName="ChatLeft" />
+					<Texto size={0}>{comentarios}</Texto>
+				</div>
+			) : null}
 		</div>
 	);
-};
+}

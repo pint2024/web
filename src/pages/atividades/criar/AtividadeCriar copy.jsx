@@ -17,6 +17,31 @@ export const AtividadeCriar = () => {
 	const [formImagem, setFormImagem] = useState(null);
 	const [formFormulario, setFormFormulario] = useState(null);
 	const [formSubtopico, setFormSubtopico] = useState(null);
+	useEffect(() => {
+		const fetchSubtopico = async () => {
+			const data = await listarRequest("topico");
+			const subtopicos = DTO.createDTOs(data, TopicoDTO);
+			setSubtopicoData(subtopicos);
+		};
+
+		fetchSubtopico();
+	}, []);
+
+	if (isEmpty(subtopicoData)) {
+		startLoading();
+		return;
+	} else {
+		stopLoading();
+	}
+
+	const formatSubtopicoData = () => {
+		let options = [];
+		subtopicoData.forEach((item) => {
+			options = options.concat(item.formatComboBoxData());
+		});
+		console.log(options);
+		return options;
+	};
 
 	return (
 		<section>
@@ -26,6 +51,7 @@ export const AtividadeCriar = () => {
 					<ComboBox
 						placeholder="Escolha o subtópico"
 						handleChange={(e) => setFormSubtopico(e)}
+						options={formatSubtopicoData()}
 					/>
 				</div>
 				<div className="mt-3">

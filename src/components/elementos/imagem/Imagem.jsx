@@ -1,4 +1,4 @@
-export function Imagem({...props}) {
+export function Imagem(props) {
 	return (
 		<>
 			<img alt="" {...props}/>

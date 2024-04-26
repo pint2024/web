@@ -4,7 +4,7 @@ export const InfoLayout = ({ imagem, header, info }) => {
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<div>
-				<Imagem src={imagem} alt="" className="card-user-picture" />
+				<Imagem src={imagem} className="card-user-picture" />
 			</div>
 			<div className="col" style={{ marginLeft: "8px" }}>
 				{header ? <div>{header}</div> : null}

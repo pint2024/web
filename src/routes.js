@@ -50,13 +50,13 @@ export const DataRoutes = [
 		perfis: [],
 		children: [
 			{
-				title: "Criar Atividade",
+				title: "Criar",
 				path: "/criar",
 				element: <AtividadeCriar />,
 				perfis: [],
 			},
 			{
-				title: "Atividade",
+				title: "Detalhe",
 				path: "/:id",
 				element: <AtividadeDetalhe />,
 				perfis: [],

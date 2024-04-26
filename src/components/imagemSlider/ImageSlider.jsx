@@ -1,18 +1,30 @@
 import { Icon } from "components/elementos";
 import { Imagem } from "components/elementos/imagem/Imagem";
 import { Botao } from "components/form";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import "./imageSlider.css";
 
 export const ImageSlider = ({ images }) => {
+	const [imagesArray, setimagesArray] = useState([]);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+	useEffect(() => {
+		setimagesArray(images);
+	}, []);
+
 	const nextSlide = () => {
-		const newIndex = (currentImageIndex + 1) % images.length;
+		const newIndex = (currentImageIndex + 1) % imagesArray.length;
 		setCurrentImageIndex(newIndex);
 	};
 
 	const prevSlide = () => {
-		const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+		const newIndex = (currentImageIndex - 1 + imagesArray.length) % imagesArray.length;
+		setCurrentImageIndex(newIndex);
+	};
+
+	const changeSlide = (index) => {
+		const newIndex = index;
 		setCurrentImageIndex(newIndex);
 	};
 
@@ -22,25 +34,25 @@ export const ImageSlider = ({ images }) => {
 				<Botao variant="secundario" onClick={prevSlide}>
 					&lt;
 				</Botao>
-				{images.map((image, index) => (
-					<div key={index} style={{ display: index === currentImageIndex ? "block" : "none" }}>
-						<Imagem src={image} alt="" style={{ width: "500px", height: "500px" }} />
+				{imagesArray.map((image, index) => (
+					<div key={index} style={{ display: index === currentImageIndex ? "flex" : "none" }}>
+						<img src={image} className="image-slider-image" />
 					</div>
 				))}
 				<Botao variant="secundario" onClick={nextSlide}>
 					&gt;
 				</Botao>
 			</div>
-			{/*<div className="image-slider-dots gap-3">
-				{images.map((_, index) => (
+			<div className="gap-3 d-flex align-items-center">
+				{imagesArray.map((_, index) => (
 					<Icon
 						key={index}
-						className={`${index === currentImageIndex ? "active" : ""}`}
-						iconName="Circle"
-						onClick={() => setCurrentImageIndex(index)}
+						className="cursor-pointer"
+						iconName={`${index === currentImageIndex ? "Circle" : "CircleFill"}`}
+						onClick={() => changeSlide(index)}
 					/>
 				))}
-			</div>*/}
+			</div>
 		</article>
 	);
 };

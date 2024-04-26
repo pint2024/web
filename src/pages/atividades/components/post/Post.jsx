@@ -58,7 +58,7 @@ export function Post() {
 							</div>
 						</div>
 						<div className="cartao-corpo-imagem">
-							<Imagem className="cartao-imagem" src={data.imagem} alt="" style={{ width: "90px", height: "90px" }} />
+							<Imagem className="cartao-imagem" src={data.imagem} style={{ width: "90px", height: "90px" }} />
 						</div>
 					</div>
 					<InteractionItems />

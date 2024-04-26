@@ -13,6 +13,7 @@ import { Botao } from "components/form";
 import { Imagem } from "components/elementos/imagem/Imagem";
 import { DetalheComentario } from "../components/detalhe/DetalheComentario";
 import { Album } from "../components/detalhe/Album";
+import { InteractionItems } from "../components/interactionItems/InteractionItems";
 
 export function AtividadeDetalhe() {
 	const [data, setdata] = useState(0);
@@ -32,13 +33,7 @@ export function AtividadeDetalhe() {
 		});
 	}, []);
 
-	const images = [
-		Placeholder2,
-		Placeholder3,
-		Placeholder4,
-		Placeholder5,
-		Placeholder6
-	  ];
+	const images = [Placeholder2, Placeholder3, Placeholder4, Placeholder5, Placeholder6];
 
 	return (
 		<article className="AtividadeDetalhe" id={data.id}>
@@ -55,15 +50,20 @@ export function AtividadeDetalhe() {
 					<Texto className="">{data.descricao}</Texto>
 				</div>
 				<div className="atividade-detalhe-imagem">
-					<Imagem src={Placeholder} style={{ width: "100px", height: "100px" }} alt="" />
+					<Imagem src={Placeholder} style={{ width: "100px", height: "100px" }} />
 				</div>
 				<div className="atividade-detalhe-botoes">
-					<Botao>Formulário</Botao>
+					<InteractionItems hideComentario={true}/>
+					<div className="d-flex gap-2 mt-2">
+						<Botao>Formulário</Botao>
+						<Botao>Editar</Botao>
+						<Botao>Apagar</Botao>
+					</div>
 				</div>
 			</section>
 			<section className="atividade-detalhe-interacoes">
-				<Album imagens={images}/>
-				<DetalheComentario/>
+				<Album imagens={images} />
+				<DetalheComentario />
 			</section>
 		</article>
 	);

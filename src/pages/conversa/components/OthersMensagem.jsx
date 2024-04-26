@@ -15,7 +15,7 @@ export function OthersMensagem({ id, imagem, nome, data, mensagem }) {
 
 	return (
 		<li className="conversa-mensagem d-flex align-items-center gap-2 mt-3">
-			<Imagem src={imagem} alt="" className="card-user-picture" />
+			<Imagem src={imagem} className="card-user-picture" />
 			<div>
 				<div className="d-flex gap-2 align-items-center">
 					<Texto size={3}>{nome}</Texto>

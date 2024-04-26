@@ -24,7 +24,7 @@ export function MyMensagem({ id, imagem, nome, data, mensagem }) {
 					<Texto>{mensagem}</Texto>
 				</div>
 			</div>
-			<Imagem src={imagem} alt="" className="card-user-picture" />
+			<Imagem src={imagem} className="card-user-picture" />
 		</li>
 	);
 }
