@@ -16,6 +16,7 @@ import { TabelaUtilizadorCriar } from "pages/dashboard/Tabelas/utilizadores/Util
 import { TabelaUtilizadorEditar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorEditar";
 import { Formulario } from "pages/formularios/Formulario";
 import { AtividadeDetalhe } from "pages/atividades/detalhe/AtividadeDetalhe";
+import { Mapa } from "pages/mapa/Mapa";
 
 export const DataRoutes = [
 	{
@@ -41,6 +42,12 @@ export const DataRoutes = [
 		title: "Formulário",
 		path: "/formulario",
 		element: <Formulario />,
+		perfis: [],
+	},
+	{
+		title: "Mapa",
+		path: "/mapa",
+		element: <Mapa />,
 		perfis: [],
 	},
 	{
