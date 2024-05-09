@@ -33,7 +33,7 @@
 
 .icon-hover:hover {
 	background-color: var(--WHITE-HOVER);
-	border-radius: 50px;
+	border-radius: 50%;
 	cursor: pointer;
 }
 

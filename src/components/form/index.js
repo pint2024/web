@@ -1,5 +1,5 @@
 export { Botao } from "./botao/Botao";
-export { CaixaTexto } from "./caixaTexto/CaixaTexto";
+export { TextBox } from "./caixaTexto/TextBox";
 export { CheckBox } from "./select/checkBox/CheckBox";
 export { ComboBox } from "./select/selectBox/ComboBox";
 export { DatePicker } from "./dateBox/DatePicker";

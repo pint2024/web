@@ -1,6 +1,6 @@
 import React from "react";
 import {
-	CaixaTexto,
+	TextBox,
 	CheckBox,
 	ComboBox,
 	DatePicker,
@@ -24,7 +24,7 @@ export const InputSelector = ({ input, ...props }) => {
 			inputRender = <TimePicker {...props} />;
 			break;
 		case "text":
-			inputRender = <CaixaTexto {...props} />;
+			inputRender = <TextBox {...props} />;
 			break;
 		case "checkbox":
 			inputRender = <CheckBox {...props} />;

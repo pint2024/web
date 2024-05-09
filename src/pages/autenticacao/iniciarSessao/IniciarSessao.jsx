@@ -1,4 +1,4 @@
-import { Botao, CaixaTexto } from "components/form";
+import { Botao, TextBox } from "components/form";
 import { useState } from "react";
 import "./iniciarSessao.css";
 import AutenticacaoRequest from "api/autenticacaoRequest";
@@ -16,12 +16,12 @@ export function IniciarSessao() {
 			
 				<form>
 				<div className="form-container">
-					<CaixaTexto
+					<TextBox
 						handleChange={(e) => setFormLogin(e)}
 						value={formLogin}
 						label="Email ou Tag"
 					/>
-					<CaixaTexto
+					<TextBox
 						handleChange={(e) => setFormSenha(e)}
 						value={formSenha}
 						label="Senha"

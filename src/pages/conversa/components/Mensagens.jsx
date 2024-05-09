@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import jaumzin from "assets/images/user-placeholder.png";
 import { MyMensagem } from "./MyMensagem";
 import { OthersMensagem } from "./OthersMensagem";
-import { CaixaTexto } from "components/form";
+import { TextBox } from "components/form";
 import { isEmpty } from "utils/utils";
 import { SEND_MESSAGE_DELAY } from "data/constants";
 import { Icon, Texto } from "components/elementos";
@@ -88,7 +88,7 @@ export const Mensagens = ({ id }) => {
 			</div>
 			<div className="card-footer">
 				<div className="d-flex gap-2">
-					<CaixaTexto
+					<TextBox
 						placeholder="Escrever uma mensagem"
 						handleChange={(e) => setsendMessage(e)}
 						handleKeyDown={enviarMensagem}

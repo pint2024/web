@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { usePopup } from "hooks/usePopup";
 import {
 	Botao,
-	CaixaTexto,
+	TextBox,
 	CheckBox,
 	DatePicker,
 	TimePicker,
@@ -56,7 +56,7 @@ export function Teste() {
 			headerIcons: null,
 			body: (
 				<section>
-					<CaixaTexto
+					<TextBox
 						title={"ola"}
 						prefix={"asd2"}
 						inputType={"number"}

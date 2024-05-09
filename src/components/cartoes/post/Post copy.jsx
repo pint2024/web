@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GOSTO_ANIMATION } from "data/constants";
 import { usePopup } from "hooks/usePopup";
-import { CaixaTexto } from "components/form/caixaTexto/CaixaTexto";
+import { TextBox } from "components/form/caixaTexto/TextBox";
 import { Link } from "react-router-dom";
 import { CartaoInfo, Rotulo } from "components/info";
 import User from "assets/images/user-placeholder.png";
@@ -73,7 +73,7 @@ export function Post({ data }) {
 						</div>
 					</div>
 					<div className="comentario-modal-add-comment gap-4 mt-2">
-						<CaixaTexto
+						<TextBox
 							handleChange={(e) => setFormComentario(e)}
 							value={formComentario}
 							placeholder="Adicionar Comentário"

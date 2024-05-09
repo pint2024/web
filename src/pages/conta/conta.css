@@ -12,4 +12,6 @@
 
 .mb-content-image {
 	margin-bottom: 25px;
+	/*background-image: url("../../assets/images/header-placeholder.png");
+	background-size: cover;*/
 }

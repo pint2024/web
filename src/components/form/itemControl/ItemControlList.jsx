@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Botao, CaixaTexto, CheckBox } from "../";
+import { Botao, TextBox } from "../";
 import { Icon } from "components/elementos";
 
 export function ItemControlList({ items, onChangeItem, onDeleteItem }) {
@@ -14,19 +14,23 @@ export function ItemControlList({ items, onChangeItem, onDeleteItem }) {
 	);
 }
 
+function handleChange(e, onChange, item) {
+	onChange({
+		...item,
+		text: e.target.value,
+	});
+}
+
 function Item({ item, onChange, onDelete }) {
 	const [isEditing, setIsEditing] = useState(false);
 	let itemContent;
 	if (isEditing) {
 		itemContent = (
 			<>
-				<CaixaTexto
+				<TextBox
 					value={item.text}
-					handleChange={(e) => {
-						onChange({
-							...item,
-							text: e,
-						});
+					onChange={(e) => {
+						handleChange(e, onChange, item);
 					}}
 				/>
 
@@ -42,18 +46,8 @@ function Item({ item, onChange, onDelete }) {
 		);
 	}
 	return (
-		<label className="d-flex">
-			
-			<CheckBox
-				checked={item.done}
-				handleChange={(e) => {
-					onChange({
-						...item,
-						done: e.target.checked,
-					});
-				}}
-			/>
-			{itemContent}
+		<label className="d-flex align-content-center">
+			{item.id++}. {itemContent}
 			<Botao onClick={() => onDelete(item.id)}><Icon iconName="TrashFill" type="inverse" /></Botao>
 		</label>
 	);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Botao, CaixaTexto, ImageBox } from "components/form";
+import { Botao, TextBox, ImageBox } from "components/form";
 
 export const CriarConta = () => {
     const [formNome, setFormNome] = useState("");
@@ -27,27 +27,27 @@ export const CriarConta = () => {
             <div className="col-lg-6">
                 <h2 className="text-center mb-4">Criar Conta</h2>
                 <form onSubmit={handleSubmit}>
-                    <CaixaTexto
+                    <TextBox
                         handleChange={(e) => setFormNome(e)}
                         value={formNome}
                         label="Nome"
                     />
-                    <CaixaTexto
+                    <TextBox
                         handleChange={(e) => setFormSobrenome(e)}
                         value={formSobrenome}
                         label="Sobrenome"
                     />
-                    <CaixaTexto
+                    <TextBox
                         handleChange={(e) => setFormEmail(e)}
                         value={formEmail}
                         label="Email"
                     />
-                    <CaixaTexto
+                    <TextBox
                         handleChange={(e) => setFormSenha(e)}
                         value={formSenha}
                         label="Senha"
                     />
-					<CaixaTexto
+					<TextBox
                         handleChange={(e) => setFormConfSenha(e)}
                         value={formConfSenha}
                         label="Confirmar senha"
