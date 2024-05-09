@@ -1,9 +1,9 @@
 import { Texto } from "components/elementos";
 import { CaixaTexto } from "components/form";
 import User from "assets/images/user-placeholder.png";
-import { Comentario } from "../comentario/Comentario";
+import { Comentario } from "./Comentario";
 
-export function DetalheComentario() {
+export function ComentarioSeccao() {
 	return (
 		<div className="atividade-detalhe-comentario">
 			<Texto size={4}>Comentário (10)</Texto>

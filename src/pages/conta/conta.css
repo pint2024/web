@@ -1,0 +1,15 @@
+.main-box {
+	background-color: White;
+	border-radius: 6px;
+	border: 1px solid var(--DIVIDER);
+	padding: 25px;
+}
+
+.image-size {
+	width: 160px;
+	height: 160px;
+}
+
+.mb-content-image {
+	margin-bottom: 25px;
+}

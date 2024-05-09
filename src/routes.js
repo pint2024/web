@@ -8,7 +8,6 @@ import { IniciarSessao, CriarConta } from "pages/autenticacao";
 import { Atividade, AtividadeCriar } from "pages/atividades";
 import { Conta } from "pages/conta";
 import { PaginaInicial } from "pages/PaginaInicial";
-import { Rei } from "pages/rei.test";
 import { Dashboard } from "pages/dashboard/Dashboard";
 import { TabelaAtividadeListar } from "pages/dashboard/Tabelas/atividades/AtividadeListar";
 import { TabelaAtividadeEditar } from "pages/dashboard/Tabelas/atividades/AtividadeEditar";
@@ -30,13 +29,6 @@ export const DataRoutes = [
 		path: "/teste",
 		element: <Teste />,
 		perfis: [],
-		children: [
-			{
-				title: "Rei",
-				path: "/rei",
-				element: <Rei />,
-			},
-		],
 	},
 	{
 		title: "Formulário",
@@ -200,6 +192,13 @@ export const DashboardDataRoutes = [
 						],
 					},
 				],
+			},
+			{
+				title: "Revisões",
+				path: "/revisoes",
+				element: null,
+				perfis: [],
+				children: [],
 			},
 		],
 	},

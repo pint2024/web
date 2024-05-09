@@ -37,6 +37,12 @@
 	cursor: pointer;
 }
 
+.icon-darker-hover:hover {
+	background-color: var(--DARKER-WHITE-HOVER);
+	border-radius: 50px;
+	cursor: pointer;
+}
+
 .icon-square-hover:hover {
 	background-color: var(--WHITE-HOVER);
 	border-radius: 10px;
@@ -105,4 +111,8 @@
 	-webkit-line-clamp: 1; /* Limita o texto a um número específico de linhas */
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
+}
+
+.circular-image {
+	border-radius: 50%;
 }

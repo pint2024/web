@@ -11,9 +11,9 @@ import Placeholder6 from "assets/images/placeholder6.jpg";
 import { CartaoInfo } from "components/info";
 import { Botao } from "components/form";
 import { Imagem } from "components/elementos/imagem/Imagem";
-import { DetalheComentario } from "../components/detalhe/DetalheComentario";
-import { Album } from "../components/detalhe/Album";
-import { InteractionItems } from "../components/interactionItems/InteractionItems";
+import { ComentarioSeccao } from "../components/comentario/ComentarioSeccao";
+import { Album } from "../components/Album";
+import { ActionBar } from "../components/ActionBar";
 
 export function AtividadeDetalhe() {
 	const [data, setdata] = useState(0);
@@ -53,7 +53,7 @@ export function AtividadeDetalhe() {
 					<Imagem src={Placeholder} style={{ width: "100px", height: "100px" }} />
 				</div>
 				<div className="atividade-detalhe-botoes">
-					<InteractionItems hideComentario={true}/>
+					<ActionBar hideComentario={true}/>
 					<div className="d-flex gap-2 mt-2">
 						<Botao>Formulário</Botao>
 						<Botao>Editar</Botao>
@@ -63,7 +63,7 @@ export function AtividadeDetalhe() {
 			</section>
 			<section className="atividade-detalhe-interacoes">
 				<Album imagens={images} />
-				<DetalheComentario />
+				<ComentarioSeccao />
 			</section>
 		</article>
 	);

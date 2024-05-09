@@ -8,7 +8,7 @@ import { useLoading } from "hooks/useLoading";
 import { AtividadeDTO } from "dto/atividade.dto";
 import { Icon, Divider } from "components/elementos";
 import { usePopup } from "hooks/usePopup";
-import { Post } from "./components/post/Post";
+import { Post } from "../../components/cartoes/post/Post";
 import { ORDER_OPTIONS } from "data/constants";
 
 export const Atividade = () => {

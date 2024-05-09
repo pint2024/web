@@ -2,7 +2,7 @@ import { Icon, Texto } from "components/elementos";
 import { GOSTO_ANIMATION } from "data/constants";
 import { useState } from "react";
 
-export function InteractionItems({ hideComentario = false }) {
+export function ActionBar({ hideComentario = false }) {
 	const [isClassificado, setisClassificado] = useState();
 	const [classificacao, setclassificacao] = useState();
 	const [comentarios, setcomentarios] = useState();

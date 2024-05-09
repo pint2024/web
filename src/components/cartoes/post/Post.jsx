@@ -7,7 +7,7 @@ import Placeholder from "assets/images/placeholder.jpg";
 import { Icon, Texto } from "components/elementos";
 
 import "./post.css";
-import { InteractionItems } from "../interactionItems/InteractionItems";
+import { ActionBar } from "../../../pages/atividades/components/ActionBar";
 import { Imagem } from "components/elementos/imagem/Imagem";
 
 export function Post() {
@@ -37,10 +37,7 @@ export function Post() {
 							<Rotulo info={data.topico} />
 						</div>
 						<div>
-							<Link className="icon-hover" to={data.id}>
-								<Icon iconName="ArrowsAngleExpand" />
-							</Link>
-							<Icon iconName="ThreeDotsVertical" className="icon-hover" size={3} />
+							<Icon iconName="ThreeDotsVertical" className="icon-darker-hover" size={3} />
 						</div>
 					</div>
 					<div className="d-flex mt-2">
@@ -61,7 +58,7 @@ export function Post() {
 							<Imagem className="cartao-imagem" src={data.imagem} style={{ width: "90px", height: "90px" }} />
 						</div>
 					</div>
-					<InteractionItems />
+					<ActionBar />
 				</div>
 			</Link>
 		</article>

@@ -1,6 +1,6 @@
 import * as Icons from "react-bootstrap-icons";
 
-export const Icon = ({ iconName = "", size = 1, type = "primary", className = "", ...props}) => {
+export const Icon = ({ iconName, size = 1, type = "primary", className = "", ...props}) => {
 	let IconVariant = null;
 	try {
 		IconVariant = Icons[iconName];

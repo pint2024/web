@@ -1,6 +1,6 @@
 import { Botao, ComboBox } from "components/form";
 import { Icon, Divider } from "components/elementos";
-import { Post } from "./components/post/Post";
+import { Post } from "../../components/cartoes/post/Post";
 import { ORDER_OPTIONS } from "data/constants";
 
 export const Atividade = () => {

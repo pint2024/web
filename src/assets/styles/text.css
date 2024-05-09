@@ -1,8 +1,15 @@
 /* Font Sizes */
-.text-size-5 {
+.text-size-6 {
 	font-weight: bold;
 	font-style: normal;
 	font-size: 40px;
+	line-height: 1.5;
+}
+
+.text-size-5 {
+	font-weight: bold;
+	font-style: normal;
+	font-size: 23px;
 	line-height: 1.5;
 }
 
