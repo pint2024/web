@@ -3,11 +3,12 @@ import { Botao } from "components/form";
 import { ModalBase } from "./ModalBase";
 import { Icon } from "components/elementos";
 
-export const Confirmacao = ({ title, body, onSuccess, onClose }) => {
+export const Confirmacao = ({ title = "Título da Confirmação", body = "Corpo da Confirmação", onSuccess, onClose }) => {
 	const handleSuccessClick = () => {
 		onSuccess();
 		onClose();
 	};
+
 	return (
 		<section>
 			<ModalBase

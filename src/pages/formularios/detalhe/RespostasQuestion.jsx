@@ -1,7 +1,7 @@
 import { Texto } from "components/elementos";
 import { Bloco } from "components/elementos/blocos/Bloco";
 
-import "./form_detalhe.css";
+import "./form-detalhe.css";
 import { TextoDestaque } from "components/elementos/textoDestaque/TextoDestaque";
 
 export const RespostasQuestion = () => {

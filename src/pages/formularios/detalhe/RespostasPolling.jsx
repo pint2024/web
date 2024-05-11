@@ -2,7 +2,7 @@ import { Texto } from "components/elementos";
 import { Bloco } from "components/elementos/blocos/Bloco";
 import { GraficoPizza } from "components/graficos/GraficoPizza";
 
-import "./form_detalhe.css";
+import "./form-detalhe.css";
 
 export const RespostasPolling = () => {
 	const dadosFicticios = {
