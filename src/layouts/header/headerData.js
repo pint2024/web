@@ -6,7 +6,6 @@ const navItems = [
 	},*/
 	{ title: "Atividades", route: "/atividade" },
 	{ title: "Formulário", route: "/formulario" },
-	{ title: "Mapa", route: "/mapa" },
 	{ title: "Calendário", route: "/calendario" },
 	{ title: "Dashboard", route: "/dashboard" },
 ];

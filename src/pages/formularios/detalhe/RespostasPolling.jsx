@@ -6,10 +6,10 @@ import "./form-detalhe.css";
 
 export const RespostasPolling = () => {
 	const dadosFicticios = {
-		labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+		labels: ["Op1", "Op2", "Op3", "Op4", "Op5", "Op6"],
 		datasets: [
 			{
-				label: "My First Dataset",
+				label: "Nº respostas",
 				data: [12, 19, 3, 5, 2, 3],
 				backgroundColor: ["red", "blue", "yellow", "green", "purple", "orange"],
 				hoverOffset: 4,
@@ -23,7 +23,7 @@ export const RespostasPolling = () => {
 				<Texto size={3}>Pergunta?</Texto>
 				<Texto size={0}>9 respostas</Texto>
 			</div>
-			<GraficoPizza chartData={dadosFicticios} Nome="Exemplo de Gráfico de Pizza" className="grafico-tamanho" />
+			<GraficoPizza chartData={dadosFicticios} className="grafico-tamanho" />
 		</Bloco>
 	);
 };

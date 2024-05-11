@@ -15,7 +15,6 @@ import { TabelaUtilizadorCriar } from "pages/dashboard/Tabelas/utilizadores/Util
 import { TabelaUtilizadorEditar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorEditar";
 import { FormularioCriar } from "pages/formularios/criar/FormularioCriar";
 import { AtividadeDetalhe } from "pages/atividades/detalhe/AtividadeDetalhe";
-import { Mapa } from "pages/mapa/Mapa";
 import { Formulario } from "pages/formularios/Formulario";
 import { FormularioDetalhe } from "pages/formularios/detalhe/FormularioDetalhe";
 import { FormularioEditar } from "pages/formularios/editar/FormularioEditar";
@@ -60,12 +59,6 @@ export const DataRoutes = [
 				],
 			},
 		],
-	},
-	{
-		title: "Mapa",
-		path: "/mapa",
-		element: <Mapa />,
-		perfis: [],
 	},
 	{
 		title: "Atividade",

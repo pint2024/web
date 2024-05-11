@@ -5,6 +5,7 @@ import { RespostasQuestion } from "./RespostasQuestion";
 import { useConfirmation } from "hooks/useConfirmation";
 import { Notificacao } from "components/notificacao/Notificacao";
 import { Texto } from "components/elementos";
+import { AddMarginTop } from "layouts/margins/AddMarginTop";
 
 export const FormularioDetalhe = () => {
 	const { conSet, conOpen, conCreate } = useConfirmation(false);
@@ -24,13 +25,15 @@ export const FormularioDetalhe = () => {
 
 	const handleExportarDados = () => {
 		Notificacao("Dados foram exportados!", "info");
-	}
+	};
 
 	return (
 		<>
 			{conCreate()}
 			<Bloco>
-				<div><Texto size={4}>9 respostas</Texto></div>
+				<div>
+					<Texto size={4}>9 respostas</Texto>
+				</div>
 				<div className="d-flex gap-3">
 					<ComboBox placeholder={"Filtrar por utilizador"} />
 					<Botao variant="secundario" onClick={handleExportarDados}>
@@ -41,12 +44,10 @@ export const FormularioDetalhe = () => {
 					</Botao>
 				</div>
 			</Bloco>
-			<div className="mt-3">
+			<AddMarginTop>
 				<RespostasPolling />
-			</div>
-			<div className="mt-3">
 				<RespostasQuestion />
-			</div>
+			</AddMarginTop>
 		</>
 	);
 };

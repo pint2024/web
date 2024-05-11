@@ -1,7 +1,7 @@
 import { Pie } from "react-chartjs-2";
 import "chart.js/auto";
 
-export function GraficoPizza({ chartData, Nome, className }) {
+export function GraficoPizza({ chartData, title = "", className = "" }) {
 	return (
 		<div className={`chart-container ${className}`}>
 			{chartData ? (
@@ -11,7 +11,7 @@ export function GraficoPizza({ chartData, Nome, className }) {
 						plugins: {
 							title: {
 								display: true,
-								text: Nome,
+								text: title,
 								font: {
 									weight: "bold",
 								},
