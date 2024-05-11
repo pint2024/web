@@ -2,22 +2,24 @@ import "./cartao.css";
 import User from "assets/images/user-placeholder.png";
 import { Texto } from "components/elementos";
 import { CartaoInfo } from "components/info";
+import { Link } from "react-router-dom";
 
 function Cartao({
 	id = 0,
 	titulo = "Por definir",
 	descricao = "Por definir",
-	utilizador = "",
-	date = "",
+	utilizador = "João Santos",
+	date = "11/05/2024",
 	handleClick = null,
-	footer = null,
-	utilizadorImage = User,
+	footer = "teste",
+	imagem = User,
+	route = ""
 }) {
 	return (
-		<div className="main-cartao" onClick={handleClick} id={id}>
+		<Link className="main-cartao" to={route} onClick={handleClick} id={id}>
 			<div className="card active cartao-corpo card-body">
 				<div className="d-flex">
-					<CartaoInfo imagem={utilizadorImage} titulo={utilizador} subtitulo={date} />
+					<CartaoInfo imagem={imagem} titulo={utilizador} subtitulo={date} />
 				</div>
 				<div className="cartao-corpo-titulo" title={titulo}>
 					<Texto size={3} className="card-title-header">
@@ -29,7 +31,7 @@ function Cartao({
 				</div>
 				{footer ? <div className="remove-user-select">{footer}</div> : null}
 			</div>
-		</div>
+		</Link>
 	);
 }
 

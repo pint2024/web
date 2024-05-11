@@ -13,10 +13,12 @@ import { TabelaAtividadeListar } from "pages/dashboard/Tabelas/atividades/Ativid
 import { TabelaAtividadeEditar } from "pages/dashboard/Tabelas/atividades/AtividadeEditar";
 import { TabelaUtilizadorCriar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorCriar";
 import { TabelaUtilizadorEditar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorEditar";
-import { FormularioCriar } from "pages/formularios/criacao/FormularioCriar";
+import { FormularioCriar } from "pages/formularios/criar/FormularioCriar";
 import { AtividadeDetalhe } from "pages/atividades/detalhe/AtividadeDetalhe";
 import { Mapa } from "pages/mapa/Mapa";
 import { Formulario } from "pages/formularios/Formulario";
+import { FormularioDetalhe } from "pages/formularios/detalhe/FormularioDetalhe";
+import { FormularioEditar } from "pages/formularios/editar/FormularioEditar";
 
 export const DataRoutes = [
 	{
@@ -42,6 +44,20 @@ export const DataRoutes = [
 				path: "/criar",
 				element: <FormularioCriar />,
 				perfis: [],
+			},
+			{
+				title: "Detalhe",
+				path: "/:id",
+				element: <FormularioDetalhe />,
+				perfis: [],
+				children: [
+					{
+						title: "Editar",
+						path: "/editar",
+						element: <FormularioEditar />,
+						perfis: [],
+					},
+				],
 			},
 		],
 	},

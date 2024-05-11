@@ -10,7 +10,7 @@ export function NotFound() {
 				</Texto>
 				<Texto size={6}>Pagina não foi encontrada</Texto>
 			</div>
-			<p className="lead">O que estas aqui a fazer mongoloide? Vai po caralho</p>
+			<p className="lead">O que estas aqui a fazer mongoloide? Vai po caralho!</p>
 		</section>
 	);
 }

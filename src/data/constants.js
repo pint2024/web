@@ -49,7 +49,7 @@ export const FORM_OPTIONS = [
 	{ label: "Pendente", value: "4" },
 ];
 
-export const TEXT_SIZES = [0, 1, 2, 3, 4, 5];
+export const TEXT_SIZES = [0, 1, 2, 3, 4, 5, 6];
 
 export const TEXT_TYPES = ["primary", "secondary", "success", "danger", "inverse"];
 

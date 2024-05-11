@@ -4,10 +4,10 @@ import React, { useEffect } from "react";
 
 /// Componentes
 import { renderDashboardRoutes, renderRoutes } from "./routes";
-import { PageLayout } from "layouts/PageLayout";
+import { PageLayout } from "layouts/pageBase/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { useAutenticacao } from "hooks/useAutenticacao";
-import { DashboardContent } from "layouts/DashboardContent";
+import { DashboardContent } from "layouts/pageBase/DashboardContent";
 
 function App() {
 	const utilizadorAtual = useAutenticacao();

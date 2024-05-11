@@ -1,23 +1,23 @@
 :root {
 	/* Cores principais */
-	--DARK-PRIMARY: #00396d;
-	--LIGHT-PRIMARY: #6c90cd;
+	--DARK-PRIMARY: rgb(0, 57, 109);
+	--LIGHT-PRIMARY: rgb(108,144,205);
 	--LIGHT-PRIMARY-TRANSPARENT: rgba(108, 144, 205, 0.5);
-	--PRIMARY: #39639c;
-	--SECONDARY: #909090;
+	--PRIMARY: rgb(57,99,156);
+	--SECONDARY: rgb(144,144,144);
 	--LIGHT-SECONDARY: rgb(165, 165, 165);
 	--LIGHT-SECONDARY-TRANSPARENT: rgba(165, 165, 165, 0.5);
-	--ACCENT: #00b8e0;
-	--BLACK: #212121;
-	--BLACK-AUX: #181818;
-	--WHITE: #ffffff;
-	--DARKER-WHITE: #d5d5d5;
+	--ACCENT: rgb(0,184,224);
+	--BLACK: rgb(33,33,33);
+	--BLACK-AUX: rgb(24,24,24);
+	--WHITE: rgb(255,255,255);
+	--DARKER-WHITE: rgb(213,213,213);
 
 	/* Cores de conteudo */
 	--ICON-PRIMARY: var(--TEXT-PRIMARY);
 	--ICON-SECONDARY: var(--SECONDARY);
 	--ICON-INVERSE: var(--TEXT-INVERSE);
-	--TEXT-PRIMARY: #202124;
+	--TEXT-PRIMARY: rgb(32,33,36);
 	--TEXT-SECONDARY: var(--SECONDARY);
 	--TEXT-INVERSE: var(--WHITE);
 	--TEXT-DANGER: var(--DANGER);
@@ -26,7 +26,7 @@
 
 	/* Cores de destaque */
 	--DIVIDER: rgb(218, 220, 224);
-	--BACKGROUND: #f8f7f5;
+	--BACKGROUND: rgb(248,249,250);
 	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
 	--DARKER-WHITE-HOVER: rgba(113, 113, 113, 0.3);
 
@@ -39,8 +39,9 @@
 	--LIGHT-SUCCESS-TRANSPARENT: rgba(0, 150, 0, 0.5);
 	--INFO: rgb(0, 0, 128);
 	--INFO-TRANSPARENT: rgba(0, 0, 128, 0.5);
-	--SCROLL-BAR: #555;
+	--SCROLL-BAR: rgb(85,85,85);
 }
+
 /* DARK MODE - Em Progresso...
 @media (prefers-color-scheme: dark) {
 	:root {

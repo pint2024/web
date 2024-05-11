@@ -1,9 +1,9 @@
 import { Pie } from "react-chartjs-2";
 import "chart.js/auto";
 
-export function GraficoPizza({ chartData, Nome }) {
+export function GraficoPizza({ chartData, Nome, className }) {
 	return (
-		<div className="chart-container">
+		<div className={`chart-container ${className}`}>
 			{chartData ? (
 				<Pie
 					data={chartData}

@@ -2,10 +2,11 @@ import { Icon, Texto } from "components/elementos";
 import { Link } from "react-router-dom";
 import Image from "assets/images/user-default.png";
 import "./conta.css";
+import { Bloco } from "components/elementos/blocos/Bloco";
 
-export const ContaDetalheBloco = () => {
+export const BlocoDetalhe = () => {
 	return (
-		<div className="main-box">
+		<Bloco>
 			<div className="main-box-content">
 				<div className="mb-content-image">
 					<img src={Image} alt="" className="image-size circular-image" />
@@ -61,6 +62,6 @@ export const ContaDetalheBloco = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</Bloco>
 	);
 };
