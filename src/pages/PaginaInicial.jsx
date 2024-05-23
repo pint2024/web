@@ -1,5 +1,5 @@
 
-export const PaginaInicial = () => {
+export function PaginaInicial() {
 	return (
 		<>
 			Página Inicial

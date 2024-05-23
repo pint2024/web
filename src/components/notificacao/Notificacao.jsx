@@ -1,4 +1,4 @@
-import { NOTIFICATIONS_TYPES } from "data/constants";
+import { NOTIFICATIONS_TYPES } from "data/data";
 import "./notificacao.css";
 import { toast } from "react-toastify";
 

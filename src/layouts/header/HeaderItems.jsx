@@ -1,7 +1,7 @@
 import Dropdown from "./NavDropdown";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Icon } from "components/ui";
+import { Icon } from "components/index";
 
 const MenuItems = ({ items, depthLevel }) => {
 	const [dropdown, setDropdown] = useState(false);

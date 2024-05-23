@@ -4,7 +4,7 @@ import { BlocoEventos } from "./BlocoEventos";
 import { BlocoEstatisticas } from "./BlocoEstatisticas";
 import { BlocoComentarios } from "./BlocoComentario";
 
-export const Conta = () => {
+export function Conta() {
 	return (
 		<div>
 			<BlocoPrincipal />

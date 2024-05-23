@@ -1,7 +1,7 @@
-import { Imagem } from "components/ui/imagem/Imagem";
+import { Imagem } from "components/index";
 import "./comentario.css"
 
-export const Comentario = ({ imagem, comentario }) => {
+export function Comentario({ imagem, comentario }) {
 	return (
 		<div className="comentario" style={{ display: "flex" }}>
 			<div className="comentario-imagem">

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Texto } from "components/ui";
+import { Texto } from "components/index";
 import { ModalBase } from "./ModalBase";
 
 export function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onClose }) {

@@ -1,9 +1,8 @@
 import React from "react";
 import { ModalBase } from "./ModalBase";
-import { Icon } from "components/ui";
-import { Botao } from "components/botao/Botao";
+import { Icon, Botao } from "components/index";
 
-export const Confirmacao = ({ title = "Título da Confirmação", body = "Corpo da Confirmação", onSuccess, onClose }) => {
+export function Confirmacao({ title = "Título da Confirmação", body = "Corpo da Confirmação", onSuccess, onClose }) {
 	const handleSuccessClick = () => {
 		onSuccess();
 		onClose();

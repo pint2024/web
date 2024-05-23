@@ -1,5 +1,5 @@
 import "./loading.css";
 
-export const LoadingAnimation = () => {
+export function LoadingAnimation() {
 	return <div className="loading-circle"></div>;
 };

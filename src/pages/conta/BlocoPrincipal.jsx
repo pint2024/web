@@ -1,10 +1,9 @@
-import { Icon, Texto } from "components/ui";
+import { Icon, Texto, Contentor } from "components/index";
 import { Link } from "react-router-dom";
 import Image from "assets/images/user-default.png";
 import "./conta.css";
-import { Contentor } from "components/ui/contentor/Contentor";
 
-export const BlocoPrincipal = () => {
+export function BlocoPrincipal() {
 	return (
 		<Contentor>
 			<div className="main-box-content">

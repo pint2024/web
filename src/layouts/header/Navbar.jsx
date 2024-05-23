@@ -1,7 +1,7 @@
 import { menuItemsData } from "./headerData";
 import MenuItems from "./HeaderItems";
 
-export const Navbar = () => {
+export function Navbar() {
 	const depthLevel = 0;
 
 	return (

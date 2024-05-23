@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./dropdown.css";
-import { Texto } from "components/ui";
+import { Texto } from "components/index";
 
 export function Dropdown({ items, children }) {
 	const menuDropdownRef = useRef(null);

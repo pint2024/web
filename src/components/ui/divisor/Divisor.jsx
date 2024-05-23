@@ -1,6 +1,6 @@
 import "./divisor.css";
 
-export const Divisor = () => {
+export function Divisor() {
 	return (
 		<>
 			<hr className="divisor" />

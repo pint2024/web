@@ -1,7 +1,6 @@
-import { Texto } from "components/ui";
-import { Imagem } from "components/ui/imagem/Imagem";
+import { Texto, Imagem } from "components/index";
 
-export const PequenoPerfil = ({ imagem, titulo, subtitulo }) => {
+export function PequenoPerfil({ imagem, titulo, subtitulo }) {
 	return (
 		<>
 			<div style={{ display: "flex", alignItems: "center" }}>

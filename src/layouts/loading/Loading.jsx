@@ -1,7 +1,7 @@
 import "./loading.css";
 import { LoadingAnimation } from "./LoadingAnimation";
 
-export const Loading = () => {
+export function Loading() {
 	return (
 		<div className="loading-operation">
 			<LoadingAnimation />

@@ -1,4 +1,4 @@
-import { Icon, Texto } from "components/ui";
+import { Icon, Texto } from "components/index";
 import { GOSTO_ANIMATION } from "data/constants";
 import { useState } from "react";
 

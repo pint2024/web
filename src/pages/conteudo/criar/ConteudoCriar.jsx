@@ -2,7 +2,7 @@ import { AreaTexto, CaixaTexto, DatePicker, ImageBox, ComboBox, Botao } from "co
 import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 
-export const ConteudoCriar = () => {
+export function ConteudoCriar() {
 	const [subtopicoData, setSubtopicoData] = useState(null);
 	const { startLoading, stopLoading } = useLoading();
 	const [formTitulo, setFormTitulo] = useState(null);

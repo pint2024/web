@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import "./botao.css";
-import { Texto } from "components/ui";
+import { Texto } from "components/index";
 
 export function Botao({ variant = "primario", route = null, children, ...props }) {
 	const validVariants = ["primario", "secundario", "sucesso", "perigo"];

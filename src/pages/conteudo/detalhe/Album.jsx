@@ -1,6 +1,4 @@
-import { Texto } from "components/ui";
-import { ImageSlider } from "components/ui/imagemSlider/ImageSlider";
-import { Botao } from "components/botao/Botao";
+import { Texto, ImageSlider, Botao } from "components/index";
 
 export function Album({ imagens }) {
 	return (

@@ -1,4 +1,4 @@
-import { Contentor } from "components/ui/contentor/Contentor";
+import { Contentor } from "components/index";
 
 export function BlocoEstatisticas() {
 	return (

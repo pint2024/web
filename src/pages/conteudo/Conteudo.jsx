@@ -1,7 +1,7 @@
-import { ORDER_OPTIONS } from "data/constants";
 import { ComboBox, Divisor, Icon, Post, Botao } from "components/index";
+import { ORDER_OPTIONS } from "data/data";
 
-export const Conteudo = () => {
+export function Conteudo() {
 	return (
 		<div>
 			<section className="d-flex">

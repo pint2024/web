@@ -6,7 +6,7 @@ import { IniciarSessao, CriarConta } from "pages/autenticacao";
 import { Conteudo, ConteudoCriar } from "pages/conteudo";
 import { Conta } from "pages/conta";
 import { PaginaInicial } from "pages/PaginaInicial";
-import { ConteudoDetalhe } from "pages/conteudo/ConteudoDetalhe";
+import { ConteudoDetalhe } from "pages/conteudo/detalhe/ConteudoDetalhe";
 
 export const DataRoutes = [
 	{

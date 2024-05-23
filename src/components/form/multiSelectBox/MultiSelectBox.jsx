@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 
-export const MultiSelectBox = ({ options, onChange }) => {
+export function MultiSelectBox({ options, onChange }) {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);

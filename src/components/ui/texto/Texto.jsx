@@ -1,6 +1,6 @@
-import { TEXT_SIZES, TEXT_TYPES } from "data/constants";
+import { TEXT_SIZES, TEXT_TYPES } from "data/data";
 
-export const Texto = ({ className = "", style = "", size = 1, type = "primary", children }) => {
+export function Texto({ className = "", style = "", size = 1, type = "primary", children }) {
 	const isSizeValid = TEXT_SIZES.includes(size) ? true : false;
 	const isTypeValid = TEXT_TYPES.includes(type) ? true : false;
 

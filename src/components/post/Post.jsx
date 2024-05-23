@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { Link } from "react-router-dom";
-import { PequenoPerfil } from "components/ui/pequenoPerfil/PequenoPerfil";
+import { PequenoPerfil, Icon, Texto, Imagem, Rotulo } from "components/index";
 import User from "assets/images/user-placeholder.png";
 import Placeholder from "assets/images/placeholder.jpg";
-import { Icon, Texto } from "components/ui";
+import { ControlosInteracao } from "components/index";
 
 import "./post.css";
-import { Imagem } from "components/ui/imagem/Imagem";
-import { ControlosInteracao } from "pages/conteudo/ControlosInteracao";
-import { Rotulo } from "components/ui/rotulo/Rotulo";
 
 export function Post() {
 	const [data, setdata] = useState(0);

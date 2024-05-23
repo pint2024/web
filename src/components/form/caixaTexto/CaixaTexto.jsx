@@ -1,6 +1,6 @@
 import React from "react";
 
-export const CaixaTexto = ({ label = "", prefix = false, ...props }) => {
+export function CaixaTexto({ label = "", prefix = false, ...props }) {
 	return (
 		<>
 			{label && <label htmlFor="inputNome">{label}</label>}

@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import { Navbar } from "./Navbar";
-import { Dropdown } from "components/dropdown/Dropdown";
+import { Dropdown, Imagem } from "components/index";
 import { userItems } from "./headerData";
-
 import userDefault from "assets/images/user-default.png";
 import logo from "assets/images/logo.png";
 
 import "./header.css";
-import { Imagem } from "components/ui/imagem/Imagem";
 
-export const Header = () => {
+export function Header() {
 	return (
 		<section id="Header">
 			<div className="nav-area">

@@ -1,4 +1,4 @@
-import { Texto } from "components/ui";
+import { Texto, PequenoPerfil, Imagem} from "components/index";
 import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { useEffect, useState } from "react";
 import User from "assets/images/user-placeholder.png";
@@ -8,12 +8,10 @@ import Placeholder3 from "assets/images/placeholder3.jpg";
 import Placeholder4 from "assets/images/placeholder4.png";
 import Placeholder5 from "assets/images/placeholder5.png";
 import Placeholder6 from "assets/images/placeholder6.jpg";
-import { PequenoPerfil } from "components/ui/pequenoPerfil/PequenoPerfil";
 import { Botao } from "components/botao/Botao";
-import { Imagem } from "components/ui/imagem/Imagem";
-import { ComentarioSeccao } from "./ComentarioSeccao";
 import { Album } from "./Album";
-import { ControlosInteracao } from "./ControlosInteracao";
+import { ControlosInteracao } from "../../../components/ui/controlosInterecao/ControlosInteracao";
+import { ComentarioSeccao } from "./ComentarioSeccao";
 
 export function ConteudoDetalhe() {
 	const [data, setdata] = useState(0);

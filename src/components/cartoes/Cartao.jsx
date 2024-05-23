@@ -1,7 +1,6 @@
 import "./cartao.css";
 import User from "assets/images/user-placeholder.png";
-import { Texto } from "components/ui";
-import { PequenoPerfil } from "components/ui/pequenoPerfil/PequenoPerfil";
+import { Texto, PequenoPerfil } from "components/index";
 import { Link } from "react-router-dom";
 
 export function Cartao({

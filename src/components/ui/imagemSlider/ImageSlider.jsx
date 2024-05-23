@@ -1,11 +1,9 @@
-import { Icon } from "components/ui";
-import { Imagem } from "components/ui/imagem/Imagem";
+import { Icon, Imagem, Botao } from "components/index";
 import React, { useEffect, useState } from "react";
 
 import "./image-slider.css";
-import { Botao } from "components/botao/Botao";
 
-export const ImageSlider = ({ images }) => {
+export function ImageSlider({ images }) {
 	const [imagesArray, setimagesArray] = useState([]);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -29,7 +27,7 @@ export const ImageSlider = ({ images }) => {
 	};
 
 	return (
-		<article>
+		<article className="remove-user-select">
 			<div className="image-slider d-flex">
 				<Botao variant="secundario" onClick={prevSlide}>
 					&lt;

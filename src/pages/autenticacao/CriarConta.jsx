@@ -1,8 +1,8 @@
-import { CaixaTexto } from "components/form/index";
+import { CaixaTexto } from "components/index";
 import { Botao } from "components/botao/Botao";
 import React, { useState } from "react";
 
-export const CriarConta = () => {
+export function CriarConta() {
     const [formNome, setFormNome] = useState("");
     const [formSobrenome, setFormSobrenome] = useState("");
     const [formEmail, setFormEmail] = useState("");

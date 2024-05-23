@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
-import { Icon, Texto } from "components/ui";
+import { Icon, Texto } from "components/index";
 
-export const Footer = () => {
+export function Footer() {
 	return (
 		<section id="Footer" className="footer-content d-flex justify-content-between">
 			<div className="align-items-left d-flex gap-4 align-items-center">

@@ -1,3 +1,3 @@
 export { Conteudo } from "./Conteudo";
-export { ConteudoCriar } from "./ConteudoCriar";
-export { Comentario } from "./Comentario";
+export { ConteudoCriar } from "./criar/ConteudoCriar";
+export { Comentario } from "../../components/comentario/Comentario";
