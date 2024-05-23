@@ -1,5 +1,5 @@
 import { Botao } from "components/botao/Botao";
-import { Post } from "../../components/post/posat";
+import { Post } from "../../components/post/Post";
 import { ORDER_OPTIONS } from "data/constants";
 import { Divisor, Icon } from "components/ui";
 import { ComboBox } from "components/form/index";
