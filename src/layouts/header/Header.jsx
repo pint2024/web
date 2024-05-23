@@ -6,7 +6,7 @@ import { userItems } from "./headerData";
 import userDefault from "assets/images/user-default.png";
 import logo from "assets/images/logo.png";
 
-import "./styles.css";
+import "./header.css";
 import { Imagem } from "components/ui/imagem/Imagem";
 
 export const Header = () => {

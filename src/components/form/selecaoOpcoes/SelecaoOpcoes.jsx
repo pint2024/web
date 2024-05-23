@@ -1,8 +1,7 @@
-import { Texto } from "components/ui";
+import { Texto, CheckBox } from "components/index";
 import { Utils } from "utils/utils";
-import { CheckBox } from "../index";
 
-export const SelecaoOpcoes = ({ evento, options }) => {
+export function SelecaoOpcoes({ evento, options }) {
 	if (Utils.isEmpty(options)) return;
 	return (
 		<>

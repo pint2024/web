@@ -1,8 +1,5 @@
-import { Botao } from "components/botao/Botao";
-import { Post } from "../../components/post/Post";
 import { ORDER_OPTIONS } from "data/constants";
-import { Divisor, Icon } from "components/ui";
-import { ComboBox } from "components/form/index";
+import { ComboBox, Divisor, Icon, Post, Botao } from "components/index";
 
 export const Conteudo = () => {
 	return (

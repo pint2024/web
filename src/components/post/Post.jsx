@@ -8,7 +8,7 @@ import { Icon, Texto } from "components/ui";
 
 import "./post.css";
 import { Imagem } from "components/ui/imagem/Imagem";
-import { ActionBar } from "pages/conteudo/ActionBar";
+import { ControlosInteracao } from "pages/conteudo/ControlosInteracao";
 import { Rotulo } from "components/ui/rotulo/Rotulo";
 
 export function Post() {
@@ -59,7 +59,7 @@ export function Post() {
 							<Imagem className="cartao-imagem" src={data.imagem} style={{ width: "90px", height: "90px" }} />
 						</div>
 					</div>
-					<ActionBar />
+					<ControlosInteracao />
 				</div>
 			</Link>
 		</article>

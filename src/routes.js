@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { NotFound } from "pages/NotFound";
+import { NotFound } from "layouts/errors/NotFound";
 import { Calendario } from "pages/calendario";
 import { IniciarSessao, CriarConta } from "pages/autenticacao";
 import { Conteudo, ConteudoCriar } from "pages/conteudo";

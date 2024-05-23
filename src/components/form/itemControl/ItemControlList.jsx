@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Botao } from "components/botao/Botao";
-import { Icon } from "components/ui";
-import { CaixaTexto } from "../index";
+import { Icon, CaixaTexto, Botao } from "components/index";
 
 export function ItemControlList({ items, onChangeItem, onDeleteItem }) {
 	return (
@@ -35,21 +33,27 @@ function Item({ item, onChange, onDelete }) {
 					}}
 				/>
 
-				<Botao onClick={() => setIsEditing(false)}><Icon iconName="CheckCircleFill" type="inverse" /></Botao>
+				<Botao onClick={() => setIsEditing(false)}>
+					<Icon iconName="CheckCircleFill" type="inverse" />
+				</Botao>
 			</>
 		);
 	} else {
 		itemContent = (
 			<>
 				{item.text}
-				<Botao onClick={() => setIsEditing(true)}><Icon iconName="PenFill" type="inverse" /></Botao>
+				<Botao onClick={() => setIsEditing(true)}>
+					<Icon iconName="PenFill" type="inverse" />
+				</Botao>
 			</>
 		);
 	}
 	return (
 		<label className="d-flex align-content-center">
 			{item.id++}. {itemContent}
-			<Botao onClick={() => onDelete(item.id)}><Icon iconName="TrashFill" type="inverse" /></Botao>
+			<Botao onClick={() => onDelete(item.id)}>
+				<Icon iconName="TrashFill" type="inverse" />
+			</Botao>
 		</label>
 	);
 }

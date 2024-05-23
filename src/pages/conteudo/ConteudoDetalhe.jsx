@@ -13,7 +13,7 @@ import { Botao } from "components/botao/Botao";
 import { Imagem } from "components/ui/imagem/Imagem";
 import { ComentarioSeccao } from "./ComentarioSeccao";
 import { Album } from "./Album";
-import { ActionBar } from "./ActionBar";
+import { ControlosInteracao } from "./ControlosInteracao";
 
 export function ConteudoDetalhe() {
 	const [data, setdata] = useState(0);
@@ -53,7 +53,7 @@ export function ConteudoDetalhe() {
 					<Imagem src={Placeholder} style={{ width: "100px", height: "100px" }} />
 				</div>
 				<div className="conteudo-detalhe-botoes">
-					<ActionBar hideComentario={true}/>
+					<ControlosInteracao hideComentario={true}/>
 					<div className="d-flex gap-2 mt-2">
 						<Botao>Formulário</Botao>
 						<Botao>Editar</Botao>

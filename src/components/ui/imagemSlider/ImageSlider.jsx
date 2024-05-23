@@ -2,7 +2,7 @@ import { Icon } from "components/ui";
 import { Imagem } from "components/ui/imagem/Imagem";
 import React, { useEffect, useState } from "react";
 
-import "./imageSlider.css";
+import "./image-slider.css";
 import { Botao } from "components/botao/Botao";
 
 export const ImageSlider = ({ images }) => {

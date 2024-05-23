@@ -1,5 +1,5 @@
 import { Texto } from "components/ui";
-import { ImageSlider } from "components/imagemSlider/ImageSlider";
+import { ImageSlider } from "components/ui/imagemSlider/ImageSlider";
 import { Botao } from "components/botao/Botao";
 
 export function Album({ imagens }) {

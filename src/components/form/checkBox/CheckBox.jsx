@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./checkBox.css";
+import "./check-box.css";
 import { Utils } from "utils/utils";
 
 export function CheckBox({ label, checked, handleChange }) {

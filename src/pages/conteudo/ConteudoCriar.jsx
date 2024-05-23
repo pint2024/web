@@ -1,5 +1,4 @@
-import { AreaTexto, CaixaTexto, DatePicker, ImageBox, ComboBox } from "components/form/index";
-import { Botao } from "components/botao/Botao";
+import { AreaTexto, CaixaTexto, DatePicker, ImageBox, ComboBox, Botao } from "components/index";
 import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 

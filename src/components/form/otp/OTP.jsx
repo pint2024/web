@@ -4,7 +4,7 @@ import { Botao } from "components/botao/Botao";
 import { Imagem } from "components/ui/imagem/Imagem";
 import { Texto } from "components/ui";
 
-export function OTPVerification() {
+export function OTP() {
 	const [otp, setOTP] = useState(["", "", "", "", ""]);
 	const [verificationCode, setVerificationCode] = useState("");
 	const [isVerified, setIsVerified] = useState(false);

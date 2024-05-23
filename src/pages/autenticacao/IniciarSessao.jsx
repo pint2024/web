@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./iniciarSessao.css";
+import "./iniciar-sessao.css";
 import { AutenticacaoRequest } from "api/autenticacaoRequest";
 import { CaixaTexto } from "components/form/index";
 import { Botao } from "components/botao/Botao";

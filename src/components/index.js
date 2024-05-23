@@ -1,10 +1,21 @@
 export { Cartao } from "./cartoes/Cartao";
 export { Dropdown } from "./dropdown/Dropdown";
-export { ImageSlider } from "./imagemSlider/ImageSlider";
+export { ImageSlider } from "./ui/imagemSlider/ImageSlider";
 export { Notificacao } from "./notificacao/Notificacao";
-
 export { Botao } from "./botao/Botao";
-export * from "./form/index";
-export * from "./graficos/index";
+export * from "./ui/graficos/index";
 export { Post } from "./post/Post";
 export * from "./ui/index";
+export { AreaTexto } from "./form/caixaTexto/AreaTexto";
+export { CaixaTexto } from "./form/caixaTexto/CaixaTexto";
+export { CheckBox } from "./form/checkBox/CheckBox";
+export { ComboBox } from "./form/comboBox/ComboBox";
+export { DatePicker } from "./form/dateBox/DatePicker";
+export { TimePicker } from "./form/dateBox/TimePicker";
+export { FileBox } from "./form/filesBox/FileBox";
+export { ImageBox } from "./form/filesBox/ImageBox";
+export { ItemControl } from "./form/itemControl/ItemControl";
+export { MultiSelectBox } from "./form/multiSelectBox/MultiSelectBox";
+export { OTP } from "./form/otp/OTP";
+export { SelecaoOpcoes } from "./form/selecaoOpcoes/SelecaoOpcoes";
+export { Seletor } from "./form/seletor/Seletor";
