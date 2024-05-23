@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
-import { Icon, Texto } from "components/elementos";
+import { Icon, Texto } from "components/ui";
 
 export const Footer = () => {
 	return (

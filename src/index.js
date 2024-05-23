@@ -24,13 +24,12 @@ import "assets/styles/main.css";
 
 render(
 	<React.StrictMode>
-			<AutenticacaoProvider>
-		<LoadingProvider >
+		<AutenticacaoProvider>
+			<LoadingProvider>
 				<ToastContainer />
 				<App />
-		</LoadingProvider>
+			</LoadingProvider>
 		</AutenticacaoProvider>
-		
 	</React.StrictMode>,
 	document.getElementById("root")
 );

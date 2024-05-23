@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Botao, TextBox } from "../";
-import { Icon } from "components/elementos";
+import { Botao } from "components/botao/Botao";
+import { Icon } from "components/ui";
+import { CaixaTexto } from "../index";
 
 export function ItemControlList({ items, onChangeItem, onDeleteItem }) {
 	return (
@@ -27,7 +28,7 @@ function Item({ item, onChange, onDelete }) {
 	if (isEditing) {
 		itemContent = (
 			<>
-				<TextBox
+				<CaixaTexto
 					value={item.text}
 					onChange={(e) => {
 						handleChange(e, onChange, item);

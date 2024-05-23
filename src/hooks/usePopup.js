@@ -1,4 +1,4 @@
-import Popup from "components/popup/Popup";
+import { Popup } from "components/popup/Popup";
 import { useEffect, useState } from "react";
 
 export const usePopup = () => {
@@ -10,8 +10,14 @@ export const usePopup = () => {
 	const [puFooter, setpuFooter] = useState(null);
 
 	useEffect(() => {
-        puSet({headerTitle: puHeaderTitle, headerInfo: puHeaderInfo, headerIcons: puHeaderIcons, body: puBody, footer: puFooter});
-    }, [puHeaderTitle, puHeaderInfo, puHeaderIcons, puBody, puFooter]);
+		puSet({
+			headerTitle: puHeaderTitle,
+			headerInfo: puHeaderInfo,
+			headerIcons: puHeaderIcons,
+			body: puBody,
+			footer: puFooter,
+		});
+	}, [puHeaderTitle, puHeaderInfo, puHeaderIcons, puBody, puFooter]);
 
 	const puOpen = () => {
 		setpuIsOpen(true);
@@ -24,7 +30,7 @@ export const usePopup = () => {
 	const puCloseAndClear = () => {
 		puClose();
 		puClear();
-	} 
+	};
 
 	const puSet = ({ footer, body, headerTitle, headerInfo, headerIcons }) => {
 		setpuHeaderInfo(headerInfo);

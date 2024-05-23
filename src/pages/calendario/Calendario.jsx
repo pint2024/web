@@ -7,8 +7,8 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { usePopup } from "hooks/usePopup";
 import { Link, useNavigate } from "react-router-dom";
 
-import { DataCompleta, DataRelativa, DiffDatas } from "utils/date.utils";
-import { Icon } from "components/elementos";
+import { DateUtils } from "utils/date.utils";
+import { Icon } from "components/ui";
 
 export function Calendario() {
 	const navigate = useNavigate();
@@ -29,8 +29,8 @@ export function Calendario() {
 		dataReunioes &&
 		dataReunioes?.map((evento) => {
 			if (evento === null) return null;
-			const dataInicio = DataRelativa(evento.data_inicio);
-			const dataFim = evento.data_fim ? DataCompleta(evento.data_fim) : dataInicio;
+			const dataInicio = DateUtils.DataRelativa(evento.data_inicio);
+			const dataFim = evento.data_fim ? DateUtils.DataCompleta(evento.data_fim) : dataInicio;
 			return {
 				title: evento.titulo,
 				start: new Date(dataInicio.year, dataInicio.month, dataInicio.day, dataInicio.hour, dataInicio.minute),
@@ -50,15 +50,15 @@ export function Calendario() {
 		setpuSubtitulo(
 			<div className="d-flex">
 				UTILIZADOR
-				<p>&nbsp;{"· " + DiffDatas(data.reuniao_datacriacao)}</p>
+				<p>&nbsp;{"· " + DateUtils.DiffDatas(data.reuniao_datacriacao)}</p>
 			</div>
 		);
 		setpuBody(
 			<div>
 				<div className="gap-4">
-					<p> Hóra início: {DataRelativa(DataCompleta(data.reuniao_datainicio))}</p>
-					<p> Hora fim (expectado): {DataRelativa(DataCompleta(data.reuniao_datafim))} </p>
-					<p> Duração (expectada): {DataRelativa(data.reuniao_datainicio, data.reuniao_datafim)}</p>
+					<p> Hóra início: {DateUtils.DataRelativa(DateUtils.DataCompleta(data.reuniao_datainicio))}</p>
+					<p> Hora fim (expectado): {DateUtils.DataRelativa(DateUtils.DataCompleta(data.reuniao_datafim))} </p>
+					<p> Duração (expectada): {DateUtils.DataRelativa(data.reuniao_datainicio, data.reuniao_datafim)}</p>
 				</div>
 				<div>
 					<p>Local: {data.reuniao_local}</p>
@@ -109,8 +109,8 @@ export function Calendario() {
 
 	const handleDateSelect = (arg) => {
 		const { start, end } = arg;
-		const parsedDateStart = DataCompleta(start);
-		const parsedDateEnd = DataCompleta(end);
+		const parsedDateStart = DateUtils.DataCompleta(start);
+		const parsedDateEnd = DateUtils.DataCompleta(end);
 
 		const formatedParsedDateStart = formatParsedDate(parsedDateStart);
 		const formatedParsedDateEnd = formatParsedDate(parsedDateEnd);

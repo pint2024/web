@@ -1,4 +1,4 @@
-import { Imagem } from "components/elementos/imagem/Imagem";
+import { Imagem } from "components/ui/imagem/Imagem";
 import React, { useState } from "react";
 
 export function ImageBox({

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Icon, Texto } from "components/elementos";
+import { Icon, Texto } from "components/ui";
 import { findRouteByPath } from "routes";
 import { useEffect, useState } from "react";
 export function Breadcrumb() {

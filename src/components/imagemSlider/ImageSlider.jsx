@@ -1,9 +1,9 @@
-import { Icon } from "components/elementos";
-import { Imagem } from "components/elementos/imagem/Imagem";
-import { Botao } from "components/form";
+import { Icon } from "components/ui";
+import { Imagem } from "components/ui/imagem/Imagem";
 import React, { useEffect, useState } from "react";
 
 import "./imageSlider.css";
+import { Botao } from "components/botao/Botao";
 
 export const ImageSlider = ({ images }) => {
 	const [imagesArray, setimagesArray] = useState([]);

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext, createContext } from "react";
-import AutenticacaoRequest from "api/autenticacaoRequest";
-import { LOG } from "utils/log.utils";
+import { AutenticacaoRequest } from "api/autenticacaoRequest";
+import { Log } from "utils/log.utils";
 
 export const AutenticacaoContext = createContext();
 
@@ -17,7 +17,7 @@ export const AutenticacaoProvider = ({ children }) => {
 				const data = await AutenticacaoRequest.obterUtilizadorAtual();
 				setUserData(data);
 			} catch (error) {
-				LOG.erro("Error fetching user data:", error);
+				Log.erro("Error fetching user data:", error);
 			}
 		};
 		getUserData();

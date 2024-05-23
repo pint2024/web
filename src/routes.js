@@ -1,23 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { Teste } from "pages/teste.test";
 import { NotFound } from "pages/NotFound";
 import { Calendario } from "pages/calendario";
-import { Conversa } from "pages/conversa";
 import { IniciarSessao, CriarConta } from "pages/autenticacao";
-import { Atividade, AtividadeCriar } from "pages/atividades";
+import { Conteudo, ConteudoCriar } from "pages/conteudo";
 import { Conta } from "pages/conta";
 import { PaginaInicial } from "pages/PaginaInicial";
-import { Dashboard } from "pages/dashboard/Dashboard";
-import { TabelaAtividadeListar } from "pages/dashboard/Tabelas/atividades/AtividadeListar";
-import { TabelaAtividadeEditar } from "pages/dashboard/Tabelas/atividades/AtividadeEditar";
-import { TabelaUtilizadorCriar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorCriar";
-import { TabelaUtilizadorEditar } from "pages/dashboard/Tabelas/utilizadores/UtilizadorEditar";
-import { FormularioCriar } from "pages/formularios/criar/FormularioCriar";
-import { AtividadeDetalhe } from "pages/atividades/detalhe/AtividadeDetalhe";
-import { Formulario } from "pages/formularios/Formulario";
-import { FormularioDetalhe } from "pages/formularios/detalhe/FormularioDetalhe";
-import { FormularioEditar } from "pages/formularios/editar/FormularioEditar";
+import { ConteudoDetalhe } from "pages/conteudo/ConteudoDetalhe";
 
 export const DataRoutes = [
 	{
@@ -27,55 +16,21 @@ export const DataRoutes = [
 		perfis: [],
 	},
 	{
-		title: "Teste",
-		path: "/teste",
-		element: <Teste />,
-		perfis: [],
-	},
-	{
-		title: "Formulário",
-		path: "/formulario",
-		element: <Formulario />,
+		title: "Conteudos",
+		path: "/conteudos",
+		element: <Conteudo />,
 		perfis: [],
 		children: [
 			{
 				title: "Criar",
 				path: "/criar",
-				element: <FormularioCriar />,
+				element: <ConteudoCriar />,
 				perfis: [],
 			},
 			{
 				title: "Detalhe",
 				path: "/:id",
-				element: <FormularioDetalhe />,
-				perfis: [],
-				children: [
-					{
-						title: "Editar",
-						path: "/editar",
-						element: <FormularioEditar />,
-						perfis: [],
-					},
-				],
-			},
-		],
-	},
-	{
-		title: "Atividade",
-		path: "/atividade",
-		element: <Atividade />,
-		perfis: [],
-		children: [
-			{
-				title: "Criar",
-				path: "/criar",
-				element: <AtividadeCriar />,
-				perfis: [],
-			},
-			{
-				title: "Detalhe",
-				path: "/:id",
-				element: <AtividadeDetalhe />,
+				element: <ConteudoDetalhe />,
 				perfis: [],
 			},
 		],
@@ -84,12 +39,6 @@ export const DataRoutes = [
 		title: "Calendário",
 		path: "/calendario",
 		element: <Calendario />,
-		perfis: [],
-	},
-	{
-		title: "Dashboard",
-		path: "/dashboard",
-		element: <Dashboard />,
 		perfis: [],
 	},
 	{
@@ -130,98 +79,6 @@ export const DataRoutes = [
 	},
 ];
 
-export const DashboardDataRoutes = [
-	{
-		title: "Dashboard",
-		path: "/dashboard",
-		element: <Dashboard />,
-		perfis: [],
-		children: [
-			{
-				title: "Reporting",
-				path: "/reporting",
-				element: null,
-				perfis: [],
-				children: [
-					{
-						title: "Postagens",
-						path: "/postagens",
-						element: null,
-						perfis: [],
-					},
-					{
-						title: "Registos",
-						path: "/registos",
-						element: null,
-						perfis: [],
-					},
-					{
-						title: "Movimentação",
-						path: "/movimentacao",
-						element: null,
-						perfis: [],
-					},
-				],
-			},
-			{
-				title: "Tabelas",
-				path: "/tabelas",
-				element: null,
-				perfis: [],
-				children: [
-					{
-						title: "Utilizadores",
-						path: "/utilizadores",
-						element: null,
-						perfis: [],
-						children: [
-							{
-								title: "Criar",
-								path: "/criar",
-								element: <TabelaUtilizadorCriar />,
-								perfis: [],
-							},
-							{
-								title: "Editar",
-								path: "/editar",
-								element: <TabelaUtilizadorEditar />,
-								perfis: [],
-							},
-						],
-					},
-					{
-						title: "Atividades",
-						path: "/atividades",
-						element: <TabelaAtividadeListar />,
-						perfis: [],
-						children: [
-							{
-								title: "Criar",
-								path: "/criar",
-								element: <TabelaAtividadeListar />,
-								perfis: [],
-							},
-							{
-								title: "Editar",
-								path: "/editar",
-								element: <TabelaAtividadeEditar />,
-								perfis: [],
-							},
-						],
-					},
-				],
-			},
-			{
-				title: "Revisões",
-				path: "/revisoes",
-				element: null,
-				perfis: [],
-				children: [],
-			},
-		],
-	},
-];
-
 const criarRoutes = (route, parentRoute = "") => {
 	return route.map((route, index) => (
 		<>
@@ -232,8 +89,6 @@ const criarRoutes = (route, parentRoute = "") => {
 };
 
 export const renderRoutes = criarRoutes(DataRoutes);
-
-export const renderDashboardRoutes = criarRoutes(DashboardDataRoutes);
 
 export function findRouteByPath(path) {
 	const findRecursive = (routes, currentPath) => {

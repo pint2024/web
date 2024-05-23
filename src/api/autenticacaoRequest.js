@@ -1,10 +1,9 @@
-import axios from "axios";
-import { API_URL, AUTH_KEY, STATUS } from "../data/constants";
-import { LOG } from "utils/log.utils";
+import { AUTH_KEY, STATUS } from "../data/constants";
+import { Log } from "utils/log.utils";
 import { myAxios } from "./axios";
-import { isEmpty } from "utils/utils";
+import { Utils } from "utils/utils";
 
-class AutenticacaoRequest {
+export class AutenticacaoRequest {
 	async entrar(login, senha) {
 		try {
 			const response = await myAxios({ url: "/autenticacao/entrar", method: "post", data: { login, senha } });
@@ -13,7 +12,7 @@ class AutenticacaoRequest {
 			}
 			return response;
 		} catch (error) {
-			LOG.erro(error);
+			Log.erro(error);
 			return STATUS.SEM_DATA;
 		}
 		/*return axios.post(`${API_URL}/autenticacao/entrar`, { login, senha }).then(
@@ -26,12 +25,12 @@ class AutenticacaoRequest {
 					}
 					return res.data.data;
 				} catch (error) {
-					LOG.erro(error);
+					Log.erro(error);
 					return null;
 				}
 			},
 			(reason) => {
-				LOG.erro("Utilizador inválido.", reason);
+				Log.erro("Utilizador inválido.", reason);
 			}
 		);*/
 	}
@@ -41,8 +40,8 @@ class AutenticacaoRequest {
 	async obterUtilizadorAtual() {
 		try {
 			const token = this.getToken();
-			console.log("token", token)
-			if (isEmpty(token)) return false;
+			console.log("token", token);
+			if (Utils.isEmpty(token)) return false;
 			const response = await myAxios({
 				url: "/autenticacao/obter",
 				method: "get",
@@ -50,7 +49,7 @@ class AutenticacaoRequest {
 			});
 			return response;
 		} catch (error) {
-			LOG.erro(error);
+			Log.erro(error);
 			return STATUS.SEM_DATA;
 		}
 	}
@@ -96,5 +95,3 @@ class AutenticacaoRequest {
 		return JSON.parse(localStorage.getItem(AUTH_KEY));
 	}
 }
-
-export default new AutenticacaoRequest();

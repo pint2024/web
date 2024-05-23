@@ -1,2 +1,2 @@
-export { CriarConta } from "./criarConta/CriarConta";
-export { IniciarSessao } from "./iniciarSessao/IniciarSessao";
+export { CriarConta } from "./CriarConta";
+export { IniciarSessao } from "./IniciarSessao";

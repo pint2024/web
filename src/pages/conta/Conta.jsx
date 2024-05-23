@@ -1,13 +1,13 @@
-import { BlocoDetalhe } from "./blocos/BlocoDetalhe";
-import { BlocoAtividade } from "./blocos/BlocoAtividade";
-import { BlocoEventos } from "./blocos/BlocoEventos";
-import { BlocoEstatisticas } from "./blocos/BlocoEstatisticas";
-import { BlocoComentarios } from "./blocos/BlocoComentario";
+import { BlocoPrincipal } from "./BlocoPrincipal";
+import { BlocoAtividade } from "./BlocoAtividade";
+import { BlocoEventos } from "./BlocoEventos";
+import { BlocoEstatisticas } from "./BlocoEstatisticas";
+import { BlocoComentarios } from "./BlocoComentario";
 
 export const Conta = () => {
 	return (
 		<div>
-			<BlocoDetalhe />
+			<BlocoPrincipal />
 			<div className="mt-3">
 				<BlocoAtividade />
 			</div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { Texto } from "components/elementos";
+import { Texto } from "components/ui";
 import { ModalBase } from "./ModalBase";
 
-export default function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onClose }) {
+export function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);
 
 	function handlePopupClose() {

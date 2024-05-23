@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import otpimg from "assets/images/otp.png";
-import { Botao } from "../";
-import { Texto } from "components/elementos";
-import { Imagem } from "components/elementos/imagem/Imagem";
+import { Botao } from "components/botao/Botao";
+import { Imagem } from "components/ui/imagem/Imagem";
+import { Texto } from "components/ui";
 
 export function OTPVerification() {
 	const [otp, setOTP] = useState(["", "", "", "", ""]);

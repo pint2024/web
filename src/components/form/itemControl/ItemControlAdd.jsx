@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Botao, TextBox } from "../";
-import { Icon } from "components/elementos";
+import { Icon } from "components/ui";
+import { CaixaTexto } from "../index";
+import { Botao } from "components/index";
 
 export function ItemControlAdd({ onAddItem }) {
 	const [text, setText] = useState("");
@@ -16,7 +17,7 @@ export function ItemControlAdd({ onAddItem }) {
 
 	return (
 		<div className="d-flex">
-			<TextBox placeholder="Adicionar" value={text} onChange={(e) => handleChange(e)} />
+			<CaixaTexto placeholder="Adicionar" value={text} onChange={(e) => handleChange(e)} />
 			<Botao onClick={() => handleAdicionar()}>
 				<Icon iconName="PlusCircleFill" type="inverse" />
 			</Botao>

@@ -1,5 +1,5 @@
-export class LOG {
-	static log(log, prefix = "LOG: ") {
+export class Log {
+	static log(log, prefix = "Log: ") {
 		console.log("> " + prefix + log);
 	}
 
@@ -9,7 +9,6 @@ export class LOG {
 
 	static erro(log) {
 		this.log(log, "ERRO: ");
-		//throw new Error(log);
 	}
 
 	static debug(log) {
