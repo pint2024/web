@@ -39,7 +39,7 @@ export function Post() {
 						</div>
 					</div>
 					<div className="d-flex mt-2">
-						<PequenoPerfil imagem={data.utilizador_imagem} titulo={data.utilizador} subtitulo={data.date} />
+						<PequenoPerfil imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
 					</div>
 					<div className="cartao-corpo d-flex justify-content-between align-items-center gap-3">
 						<div className="cartao-corpo-text">

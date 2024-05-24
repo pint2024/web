@@ -1,4 +1,3 @@
-/* Font Sizes */
 .text-size-6 {
 	font-weight: bold;
 	font-style: normal;
@@ -46,25 +45,4 @@
 	font-style: normal;
 	font-size: 13px;
 	line-height: 1.0;
-}
-
-/* Font Types */
-.text-types-primary {
-	color: var(--TEXT-PRIMARY);
-}
-
-.text-types-secondary {
-	color: var(--TEXT-SECONDARY);
-}
-
-.text-types-success {
-	color: var(--TEXT-SUCCESS);
-}
-
-.text-types-danger {
-	color: var(--TEXT-DANGER);
-}
-
-.text-types-inverse {
-	color: var(--TEXT-INVERSE);
 }

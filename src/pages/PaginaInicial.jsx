@@ -10,8 +10,8 @@ export function PaginaInicial() {
 					content={
 						<PequenoPerfil
 							imagem={Imagem}
-							titulo={"JoazumzinBarbeitaPT2001"}
-							subtitulo={"Sou o João e sou o rei deles."}
+							nome={"JoazumzinBarbeitaPT2001"}
+							data={"Sou o João e sou o rei deles."}
 						/>
 					}
 					direction="right"

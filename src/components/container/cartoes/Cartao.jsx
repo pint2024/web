@@ -31,7 +31,7 @@ export function Cartao({
 		<Link className="main-cartao" to={route} onClick={handleClick} id={id}>
 			<div className="card active cartao-corpo card-body">
 				<div className="d-flex">
-					<PequenoPerfil imagem={imagem} titulo={utilizador} subtitulo={date} />
+					<PequenoPerfil imagem={imagem} nome={utilizador} data={date} />
 				</div>
 				<div className="cartao-corpo-titulo" title={titulo}>
 					<Texto size={3} className="card-title-header">

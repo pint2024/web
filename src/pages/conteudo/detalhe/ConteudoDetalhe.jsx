@@ -35,7 +35,7 @@ export function ConteudoDetalhe() {
 		<article className="AtividadeDetalhe" id={data.id}>
 			<section className="conteudo-detalhe-conteudo">
 				<div className="conteudo-detalhe-info">
-					<PequenoPerfil imagem={data.utilizador_imagem} titulo={data.utilizador} subtitulo={data.date} />
+					<PequenoPerfil imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
 				</div>
 				<div className="conteudo-detalhe-titulo">
 					<Texto size={3} className="">

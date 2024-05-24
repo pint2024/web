@@ -2,7 +2,8 @@
 @import url(color.css);
 @import url(scroll-bar.css);
 @import url(sizes.css);
-@import url(text.css);
+@import url(text-sizes.css);
+@import url(text-types.css);
 @import url(utils.css);
 @import url(z-index.css);
 

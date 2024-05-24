@@ -1,6 +1,6 @@
-import { Texto, Imagem } from "components/index";
+import { Texto, Imagem, Navegar, Tooltip, OverlayPerfil } from "components/index";
 
-export function PequenoPerfil({ imagem, titulo, subtitulo }) {
+export function PequenoPerfil({ imagem, nome, data }) {
 	return (
 		<>
 			<div style={{ display: "flex", alignItems: "center" }}>
@@ -8,16 +8,18 @@ export function PequenoPerfil({ imagem, titulo, subtitulo }) {
 					<Imagem src={imagem} className="card-user-picture" />
 				</div>
 				<div className="col" style={{ marginLeft: "8px" }}>
-					<div>
-						<Texto>{titulo}</Texto>
-					</div>
+					<Tooltip content={<OverlayPerfil imagem={imagem} nome={nome} tag={data}/>}>
+						<Navegar>
+							<Texto>{nome}</Texto>
+						</Navegar>
+					</Tooltip>
 					<div>
 						<Texto size={0} type="secondary">
-							{subtitulo}
+							{data}
 						</Texto>
 					</div>
 				</div>
 			</div>
 		</>
 	);
-};
+}
