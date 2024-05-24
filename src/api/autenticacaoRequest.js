@@ -1,4 +1,4 @@
-import { AUTH_KEY, STATUS } from "../data/constants";
+import { AUTH_KEY, STATUS } from "data/constants";
 import { Log } from "utils/log.utils";
 import { myAxios } from "./axios";
 import { Utils } from "utils/utils";

@@ -1,7 +1,20 @@
+import PropTypes from "prop-types";
 import "./cartao.css";
 import User from "assets/images/user-placeholder.png";
 import { Texto, PequenoPerfil } from "components/index";
 import { Link } from "react-router-dom";
+
+Cartao.propTypes = {
+	id: PropTypes.number.isRequired,
+	titulo: PropTypes.string.isRequired,
+	descricao: PropTypes.node.isRequired,
+	utilizador: PropTypes.string.isRequired,
+	date: PropTypes.string.isRequired,
+	handleClick: PropTypes.func,
+	footer: PropTypes.node,
+	imagem: PropTypes.string,
+	route: PropTypes.string,
+};
 
 export function Cartao({
 	id = 0,

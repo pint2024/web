@@ -1,6 +1,5 @@
 import User from "assets/images/user-placeholder.png";
-import { Comentario } from "../../../components/comentario/Comentario";
-import { CaixaTexto, Texto } from "components/index";
+import { Comentario, CaixaTexto, Texto } from "components/index";
 
 export function ComentarioSeccao() {
 	return (

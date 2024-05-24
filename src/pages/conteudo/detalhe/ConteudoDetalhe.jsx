@@ -1,4 +1,4 @@
-import { Texto, PequenoPerfil, Imagem} from "components/index";
+import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao } from "components/index";
 import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { useEffect, useState } from "react";
 import User from "assets/images/user-placeholder.png";
@@ -8,9 +8,7 @@ import Placeholder3 from "assets/images/placeholder3.jpg";
 import Placeholder4 from "assets/images/placeholder4.png";
 import Placeholder5 from "assets/images/placeholder5.png";
 import Placeholder6 from "assets/images/placeholder6.jpg";
-import { Botao } from "components/botao/Botao";
 import { Album } from "./Album";
-import { ControlosInteracao } from "../../../components/ui/controlosInterecao/ControlosInteracao";
 import { ComentarioSeccao } from "./ComentarioSeccao";
 
 export function ConteudoDetalhe() {
@@ -51,7 +49,7 @@ export function ConteudoDetalhe() {
 					<Imagem src={Placeholder} style={{ width: "100px", height: "100px" }} />
 				</div>
 				<div className="conteudo-detalhe-botoes">
-					<ControlosInteracao hideComentario={true}/>
+					<ControlosInteracao hideComentario={true} />
 					<div className="d-flex gap-2 mt-2">
 						<Botao>Formulário</Botao>
 						<Botao>Editar</Botao>

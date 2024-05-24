@@ -1,4 +1,4 @@
-import { Popup } from "components/popup/Popup";
+import { Popup } from "components/index";
 import { useEffect, useState } from "react";
 
 export const usePopup = () => {

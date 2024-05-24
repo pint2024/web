@@ -15,9 +15,19 @@ export function Dropdown({ items, children }) {
 		const handleOutsideClick = (event) => {
 			if (menuDropdownRef.current && !menuDropdownRef.current.contains(event.target)) setIsOpen(false);
 		};
+
+		const handleKeyPress = (event) => {
+			if (event.key === "Escape") {
+				setIsOpen(false);
+			}
+		};
+
 		window.addEventListener("mouseup", handleOutsideClick);
+		window.addEventListener("keydown", handleKeyPress);
+
 		return () => {
 			window.removeEventListener("mouseup", handleOutsideClick);
+			window.removeEventListener("keydown", handleKeyPress);
 		};
 	});
 
@@ -29,8 +39,8 @@ export function Dropdown({ items, children }) {
 					{items &&
 						items.map((item, index) => (
 							<div className="card-hover">
-								<Link to={item.rota} className="c-dropdown-item" key={index}>
-									<Texto>{item.nome}</Texto>
+								<Link to={item.rota} key={index}>
+									<Texto className="c-dropdown-text">{item.nome}</Texto>
 								</Link>
 							</div>
 						))}

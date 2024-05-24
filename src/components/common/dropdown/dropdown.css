@@ -5,12 +5,17 @@
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	right: 0%;
 	top: 120%;
-}
-
-.c-dropdown-item {
-	padding: 12px 16px;
+    white-space: nowrap;
+	width: auto;
 }
 
 .c-dropdown {
 	background-color: inherit;
+}
+
+.c-dropdown-text {
+	display: flex;
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Alinha horizontalmente */
+	padding: 12px 10px 12px 10px;
 }

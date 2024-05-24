@@ -1,5 +1,4 @@
-import { CaixaTexto } from "components/index";
-import { Botao } from "components/botao/Botao";
+import { Botao, CaixaTexto } from "components/index";
 import React, { useState } from "react";
 
 export function CriarConta() {

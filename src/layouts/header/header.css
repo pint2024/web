@@ -99,17 +99,6 @@ header * {
 	border-left: 0.32em solid transparent;
 }
 
-.desktop-nav .dropdown {
-	position: absolute;
-	right: 0;
-	left: auto;
-	font-size: 0.875rem;
-	min-width: 10rem;
-	padding: 0.5rem 0;
-	list-style: none;
-	border-radius: 10px;
-	display: none;
-}
 
 .desktop-nav .dropdown.show {
 	display: block;
@@ -123,102 +112,6 @@ header * {
 
 .nav-dropdown {
 	background-color: var(--BLACK);
-}
-
-.mobile-nav {
-	display: none;
-}
-
-/* menu on mobile */
-@media screen and (max-width: 960px) {
-	.nav-area {
-		justify-content: space-between;
-	}
-
-	.desktop-nav {
-		display: none;
-		text-align: right;
-	}
-
-	.mobile-nav {
-		display: block;
-	}
-	.mobile-nav .mobile-nav__menu-button {
-		color: inherit;
-		font-size: inherit;
-		border: none;
-		cursor: pointer;
-		position: relative;
-	}
-	.mobile-nav .menus {
-		list-style: none;
-		position: absolute;
-		top: 50px;
-		right: 20px;
-		min-width: 12rem;
-		padding: 0.5rem 0;
-		border-radius: 0.5rem;
-	}
-
-	.mobile-nav .menu-items a {
-		display: block;
-		font-size: inherit;
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.mobile-nav .menu-items button {
-		display: flex;
-		align-items: center;
-		color: inherit;
-		font-size: inherit;
-		border: none;
-		cursor: pointer;
-		width: 100%;
-	}
-
-	.mobile-nav .menu-items > a,
-	.mobile-nav .menu-items button {
-		text-align: left;
-		padding: 0.7rem 1rem;
-	}
-
-	.mobile-nav .menu-items a:hover,
-	.mobile-nav .menu-items button:hover {
-		background-color: var(--WHITE-HOVER);
-		border-radius: 10px;
-	}
-
-	.mobile-nav .arrow::after {
-		content: "";
-		display: inline-block;
-		margin-left: 1.2em;
-		vertical-align: 0.09em;
-		border-top: 0.42em solid;
-		border-right: 0.32em solid transparent;
-		border-left: 0.32em solid transparent;
-	}
-	.mobile-nav .arrow-close::after {
-		content: "";
-		display: inline-block;
-		margin-left: 1.2em;
-		vertical-align: 0.09em;
-		border-bottom: 0.42em solid;
-		border-right: 0.32em solid transparent;
-		border-left: 0.32em solid transparent;
-	}
-
-	.mobile-nav .dropdown {
-		margin-left: 1.2em;
-		font-size: 0.9rem;
-		padding: 0.5rem 0;
-		list-style: none;
-		display: none;
-	}
-
-	.mobile-nav .dropdown.show {
-		display: block;
-	}
 }
 
 /* page content */

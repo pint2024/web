@@ -1,6 +1,11 @@
+import PropTypes from "prop-types";
 import * as Icons from "react-bootstrap-icons";
 
-export function Icon({ iconName, size = 1, type = "primary", className = "", ...props}) {
+Icon.propTypes = {
+	iconName: PropTypes.string.isRequired,
+};
+
+export function Icon({ iconName, size = 1, type = "primary", className = "", ...props }) {
 	let IconVariant = null;
 	try {
 		IconVariant = Icons[iconName];
@@ -16,10 +21,10 @@ export function Icon({ iconName, size = 1, type = "primary", className = "", ...
 	return (
 		<>
 			{IconVariant && isTypeValid && isSizeValid ? (
-				<IconVariant className={`text-size-${size} text-types-${type} ${className}`} {...props}/>
+				<IconVariant className={`text-size-${size} text-types-${type} ${className}`} {...props} />
 			) : (
 				<h1>Icon invalido</h1>
 			)}
 		</>
 	);
-};
+}
