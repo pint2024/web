@@ -7,8 +7,8 @@ Os componentes em containers envolvem lógica de negócio, como manipulação de
 forms/
 Os componentes em forms são específicos para entradas de formulário e controle de dados do usuário. Mantê-los separados ajuda a modularizar e reutilizar lógicas comuns de entrada de dados.
 
-overlays/
-Os componentes em overlays são usados para camadas que aparecem sobre o conteúdo principal, como notificações e popups. Separá-los facilita a sua gestão e reutilização em diferentes partes da aplicação.
+overlay/
+Os componentes em overlay são usados para camadas que aparecem sobre o conteúdo principal, como notificações e popups. Separá-los facilita a sua gestão e reutilização em diferentes partes da aplicação.
 
 ui/
 Os componentes em ui são elementos de interface de usuário que ajudam a compor a estrutura visual da aplicação. Eles não têm lógica complexa e são usados para organização visual.

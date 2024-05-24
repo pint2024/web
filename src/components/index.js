@@ -1,12 +1,13 @@
+export { Tooltip } from "./overlay/tooltip/Tooltip";
 export { Form } from "./form/Form";
 export { Comentario } from "./container/comentario/Comentario";
 export { ControlosInteracao } from "./ui/controlosInterecao/ControlosInteracao";
 export { Cartao } from "./container/cartoes/Cartao";
 export { Dropdown } from "./common/dropdown/Dropdown";
 export { ImageSlider } from "./container/imagemSlider/ImageSlider";
-export { Notificacao } from "./overlays/notificacao/Notificacao";
-export { Popup } from "./overlays/popup/Popup";
-export { Confirmacao } from "./overlays/popup/Confirmacao";
+export { Notificacao } from "./overlay/notificacao/Notificacao";
+export { Popup } from "./overlay/popup/Popup";
+export { Confirmacao } from "./overlay/popup/Confirmacao";
 export { Botao } from "./common/botao/Botao";
 export { GraficoBarras } from "./ui/graficos/GraficoBarras";
 export { GraficoLinhas } from "./ui/graficos/GraficoLinhas";
