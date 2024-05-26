@@ -1,4 +1,4 @@
-import { monthName, weekName } from "data/data";
+import { MONTH_NAME, WEEK_NAME } from "data/data";
 
 export class DateUtils {
 	static DataCompleta(data = new Date()) {
@@ -6,9 +6,9 @@ export class DateUtils {
 		return {
 			data: dateObj,
 			ano: dateObj.getFullYear(),
-			mesNome: monthName[dateObj.getMonth()],
+			mesNome: MONTH_NAME[dateObj.getMonth()],
 			mes: dateObj.getMonth() + 1,
-			semana: weekName[dateObj.getDay()],
+			semana: WEEK_NAME[dateObj.getDay()],
 			dia: dateObj.getDate(),
 			hora: dateObj.getHours(),
 			minuto: dateObj.getMinutes(),

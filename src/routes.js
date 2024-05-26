@@ -23,7 +23,7 @@ export const DataRoutes = [
 		children: [
 			{
 				title: "Criar",
-				path: "/criar",
+				path: "/criar/:id",
 				element: <ConteudoCriar />,
 				perfis: [],
 			},

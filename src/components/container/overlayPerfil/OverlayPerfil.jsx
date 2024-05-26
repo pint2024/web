@@ -1,4 +1,4 @@
-import { Texto, Imagem, Navegar, Tooltip } from "components/index";
+import { Texto, Imagem } from "components/index";
 
 export function OverlayPerfil({ imagem, nome, tag }) {
 	return (
