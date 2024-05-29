@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
-import { Texto, Imagem } from "components/index";
+import { Texto, Imagem, PequenoPerfil } from "components/index";
 
 import "./post.css";
 
-export function Post({ id, titulo, descricao, topico, utilizador, date, imagem }) {
-
+export function Post({ id, titulo, topico, utilizador_imagem, utilizador_nome, date, imagem }) {
 	return (
-		<article className="Post" id={id} >
+		<article className="Post" id={id}>
 			<Link to={`${id}`}>
-				<div className="card" style={{ width: "18rem" }}>
+				<div className="card" style={{ width: "16rem" }}>
 					<Imagem src={imagem} className="card-img-top" />
 					<div className="card-body">
-						<Texto size={2} className="line-limit-tittle">
+						<div className="mb-2">
+							<PequenoPerfil imagem={utilizador_imagem} nome={utilizador_nome} data={date} />
+						</div>
+						<Texto size={2} className="line-limit-text">
 							{titulo}
 						</Texto>
-						<Texto className="line-limit-text">{descricao}</Texto>
 					</div>
 				</div>
 			</Link>

@@ -100,7 +100,7 @@
 .line-limit-text {
 	overflow: hidden;
 	text-overflow: ellipsis; /* Adiciona reticências (...) para indicar que o texto foi truncado */
-	-webkit-line-clamp: 3; /* Limita o texto a um número específico de linhas */
+	-webkit-line-clamp: 2; /* Limita o texto a um número específico de linhas */
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
 }
