@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import "./cartao.css";
-import User from "assets/images/user-placeholder.png";
+import User from "assets/images/user-default.png";
 import { Texto, PequenoPerfil } from "components/index";
 import { Link } from "react-router-dom";
 

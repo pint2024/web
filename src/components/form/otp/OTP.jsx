@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import otpimg from "assets/images/otp.png";
+import otpimg from "assets/images/user-default.png";
 import { Imagem, Texto, Botao } from "components/index";
 
 export function OTP() {
@@ -7,12 +7,6 @@ export function OTP() {
 	const [verificationCode, setVerificationCode] = useState("");
 	const [isVerified, setIsVerified] = useState(false);
 	const [emailSentTo, setEmailSentTo] = useState("");
-
-	/*
-    useEffect(() => {
-      handleResendemail(); // pk que isto manda duas vezes?!?!
-    }, []);
-    */
 
 	useEffect(() => {
 		const generateOTP = () => {

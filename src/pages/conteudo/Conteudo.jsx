@@ -1,7 +1,7 @@
 import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
 import { ComboBox, Divisor, Icon, Post, Botao, Dropdown, Texto, Rotulo } from "components/index";
 import { CONTEUDO_TIPOS, ORDER_OPTIONS, TOPICOS_OPTIONS } from "data/data";
-import Placeholder from "assets/images/placeholder.jpg";
+import Placeholder from "assets/images/placeholder.png";
 import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { ConteudoSeccoes } from "./ConteudoSeccoes";
 

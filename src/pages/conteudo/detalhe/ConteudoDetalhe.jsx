@@ -1,13 +1,13 @@
 import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao } from "components/index";
 import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { useEffect, useState } from "react";
-import User from "assets/images/user-placeholder.png";
-import Placeholder from "assets/images/placeholder.jpg";
-import Placeholder2 from "assets/images/placeholder2.png";
-import Placeholder3 from "assets/images/placeholder3.jpg";
-import Placeholder4 from "assets/images/placeholder4.png";
-import Placeholder5 from "assets/images/placeholder5.png";
-import Placeholder6 from "assets/images/placeholder6.jpg";
+import User from "assets/images/user-default.png";
+import Placeholder from "assets/images/placeholder.png";
+import Ex1 from "assets/images/examples/e-1.jpg";
+import Ex2 from "assets/images/examples/e-2.jpg";
+import Ex3 from "assets/images/examples/e-3.jpg";
+import Ex4 from "assets/images/examples/e-4.jpg";
+import Ex5 from "assets/images/examples/e-5.jpg";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
 
@@ -24,12 +24,12 @@ export function ConteudoDetalhe() {
 			date: "25/04/2024",
 			gostos: 10,
 			comentarios: 20,
-			imagem: Placeholder,
+			imagem: Ex5,
 			utilizador_imagem: User,
 		});
 	}, []);
 
-	const images = [Placeholder2, Placeholder3, Placeholder4, Placeholder5, Placeholder6];
+	const images = [Ex1, Ex2, Ex3, Ex4];
 
 	return (
 		<article className="AtividadeDetalhe" id={data.id}>
@@ -46,7 +46,7 @@ export function ConteudoDetalhe() {
 					<Texto className="">{data.descricao}</Texto>
 				</div>
 				<div className="conteudo-detalhe-imagem">
-					<Imagem src={Placeholder} style={{ width: "100px", height: "100px" }} />
+					<Imagem src={data.imagem} style={{ width: "100px", height: "100px" }} />
 				</div>
 				<div className="conteudo-detalhe-botoes">
 					<ControlosInteracao hideComentario={true} />

@@ -1,8 +1,8 @@
 import { getSizes } from "./cssVars";
 
-export const PROJETO_NAME = "SoftShares";
+export const PROJETO_NAME = "The SoftShares";
 
-export const PROJETO_LOGO = "assets/images/logo.png";
+export const PROJETO_LOGO = "assets/images/logo-shadow.png";
 
 export const GOSTO_ANIMATION = "animation-bounce";
 

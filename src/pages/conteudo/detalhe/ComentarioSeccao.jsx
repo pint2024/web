@@ -1,4 +1,4 @@
-import User from "assets/images/user-placeholder.png";
+import User from "assets/images/user-default.png";
 import { Comentario, CaixaTexto, Texto } from "components/index";
 
 export function ComentarioSeccao() {

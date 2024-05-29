@@ -1,7 +1,7 @@
 import { Icon, Navegar, Post, Texto } from "components";
 import { PLACEHOLDER_TITLE } from "data/constants";
-import Placeholder from "assets/images/placeholder.jpg";
-import Image from "assets/images/image.png";
+import Placeholder from "assets/images/placeholder.png";
+import Image from "assets/images/user-default.png";
 import "./conteudo-seccoes.css";
 
 export function ConteudoSeccoes({ titulo, routeTo }) {
