@@ -22,6 +22,30 @@ export const DataRoutes = [
 		perfis: [],
 		children: [
 			{
+				title: "Atividades",
+				path: "/atividades",
+				element: <ConteudoCriar />,
+				perfis: [],
+			},
+			{
+				title: "Eventos",
+				path: "/eventos",
+				element: <ConteudoCriar />,
+				perfis: [],
+			},
+			{
+				title: "Recomendações",
+				path: "/recomendacoes",
+				element: <ConteudoCriar />,
+				perfis: [],
+			},
+			{
+				title: "Espaços",
+				path: "/espacos",
+				element: <ConteudoCriar />,
+				perfis: [],
+			},
+			{
 				title: "Criar",
 				path: "/criar/:id",
 				element: <ConteudoCriar />,

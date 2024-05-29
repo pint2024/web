@@ -1,7 +1,7 @@
-export function Imagem(props) {
+export function Imagem({alt = "", ...props}) {
 	return (
 		<>
-			<img alt="" {...props}/>
+			<img alt={alt} {...props}/>
 		</>
 	);
 };
