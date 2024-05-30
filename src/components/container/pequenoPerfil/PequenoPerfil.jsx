@@ -1,4 +1,5 @@
 import { Texto, Imagem, Navegar, Tooltip, OverlayPerfil } from "components/index";
+import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 
 export function PequenoPerfil({ imagem, nome, data }) {
 	return (
@@ -14,7 +15,7 @@ export function PequenoPerfil({ imagem, nome, data }) {
 						</Navegar>
 					</Tooltip>
 					<div>
-						<Texto size={0} type="secondary">
+						<Texto size={COMMON_SIZES.FS0} type={COMMON_TYPES.SECUNDARIO}>
 							{data}
 						</Texto>
 					</div>

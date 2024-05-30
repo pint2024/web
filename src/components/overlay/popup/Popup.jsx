@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Texto } from "components/index";
 import { ModalBase } from "./ModalBase";
+import { COMMON_SIZES } from "data/data";
 
 export function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onClose }) {
 	const popupRef = useRef(null);
@@ -39,7 +40,7 @@ export function Popup({ headerInfo, headerTitle, headerIcons, body, footer, onCl
 				headerInfo={headerInfo}
 				headerTitle={
 					<section className="popup-title">
-						<Texto size={3}>{headerTitle}</Texto>
+						<Texto size={COMMON_SIZES.FS3}>{headerTitle}</Texto>
 					</section>
 				}
 				headerIcons={headerIcons}

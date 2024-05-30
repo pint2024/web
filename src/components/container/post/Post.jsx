@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Texto, Imagem, PequenoPerfil } from "components/index";
 
 import "./post.css";
+import { COMMON_SIZES } from "data/data";
 
 export function Post({ id, titulo, topico, utilizador_imagem, utilizador_nome, date, imagem }) {
 	return (
@@ -13,7 +14,7 @@ export function Post({ id, titulo, topico, utilizador_imagem, utilizador_nome, d
 						<div className="mb-2">
 							<PequenoPerfil imagem={utilizador_imagem} nome={utilizador_nome} data={date} />
 						</div>
-						<Texto size={2} className="line-limit-text">
+						<Texto size={COMMON_SIZES.FS2} className="line-limit-text">
 							{titulo}
 						</Texto>
 					</div>

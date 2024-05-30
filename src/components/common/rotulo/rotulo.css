@@ -1,7 +1,8 @@
 .rotulo {
 	border-radius: 20px;
-	background-color: var(--LIGHT-PRIMARY);
+	background-color: var(--rotulo-background, var(--LIGHT-PRIMARY));
 	display: inline-block;
 	padding: 5px 10px;
-	color: var(--TEXT-INVERSE);
+	background-color: var(--rotulo-background, var(--LIGHT-PRIMARY));
+	color: var(--rotulo-color, var(--TEXT-INVERSE));
 }

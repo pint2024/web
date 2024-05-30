@@ -2,6 +2,7 @@ import { Icon, Imagem, Botao } from "components/index";
 import React, { useEffect, useState } from "react";
 
 import "./image-slider.css";
+import { BUTTON_VARIANTS } from "data/data";
 
 export function ImageSlider({ images }) {
 	const [imagesArray, setimagesArray] = useState([]);
@@ -29,15 +30,15 @@ export function ImageSlider({ images }) {
 	return (
 		<article className="remove-user-select">
 			<div className="image-slider d-flex">
-				<Botao variant="secundario" onClick={prevSlide}>
+				<Botao variant={BUTTON_VARIANTS.SECUNDARIO } onClick={prevSlide}>
 					&lt;
 				</Botao>
 				{imagesArray.map((image, index) => (
 					<div key={index} style={{ display: index === currentImageIndex ? "flex" : "none" }}>
-						<img src={image} className="image-slider-image" />
+						<Imagem src={image} className="image-slider-image" />
 					</div>
 				))}
-				<Botao variant="secundario" onClick={nextSlide}>
+				<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={nextSlide}>
 					&gt;
 				</Botao>
 			</div>

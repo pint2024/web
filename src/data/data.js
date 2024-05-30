@@ -20,6 +20,38 @@ export const ORDER_OPTIONS = [
 	{ label: "Mais Comentários", value: "2" },
 ];
 
+export const BUTTON_VARIANTS = Object.freeze({
+    PRIMARIO: "primario",
+    SECUNDARIO: "secundario",
+    SUCESSO: "sucesso",
+    PERIGO: "perigo",
+});
+
+export const COMMON_TYPES = Object.freeze({
+    PRIMARIO: "primary",
+    SECUNDARIO: "secondary",
+    SUCESSO: "success",
+    PERIGO: "danger",
+    INVERSO: "inverse",
+});
+
+export const COMMON_SIZES = Object.freeze({
+    FS0: 0,
+    FS1: 1,
+    FS2: 2,
+    FS3: 3,
+    FS4: 4,
+    FS5: 5,
+    FS6: 6,
+});
+
+export const NOTIFICATIONS_TYPES = Object.freeze({
+    SUCESSO: "success",
+    INFO: "info",
+    AVISO: "warn",
+    ERRO: "error",
+});
+
 export const TOPICOS_OPTIONS = [
 	{
 		id: 1,
@@ -128,12 +160,6 @@ export const TOPICOS_OPTIONS = [
 		],
 	},
 ];
-
-export const TEXT_SIZES = [0, 1, 2, 3, 4, 5, 6];
-
-export const TEXT_TYPES = ["primary", "secondary", "success", "danger", "inverse"];
-
-export const NOTIFICATIONS_TYPES = ["success", "info", "warn", "error"];
 
 export const CONTEUDO_TIPOS = {
 	EVENTO: 1,

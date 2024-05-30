@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./footer.css";
 import { Icon, Texto } from "components/index";
+import { COMMON_TYPES } from "data/data";
 
 export function Footer() {
 	return (
@@ -18,10 +19,10 @@ export function Footer() {
 				<Link to="/contacte-nos">Contacte-nos:</Link>
 				<div className="d-flex gap-2">
 					<Link to="https://www.facebook.com/">
-						<Icon iconName="Facebook" type="inverse" />
+						<Icon iconName="Facebook" type={COMMON_TYPES.INVERSO} />
 					</Link>
 					<Link to="https://x.com">
-						<Icon iconName="TwitterX" type="inverse" />
+						<Icon iconName="TwitterX" type={COMMON_TYPES.INVERSO} />
 					</Link>
 				</div>
 			</div>

@@ -1,6 +1,19 @@
+import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import { Texto } from "../texto/Texto";
 import "./rotulo.css";
 
-export function Rotulo({ info }) {
-	return <>{info && <div className="rotulo"><Texto size={0} type="inverse">{info}</Texto></div>}</>;
-};
+export function Rotulo({ info, backgroundColor, textColor = COMMON_TYPES.INVERSO }) {
+	const style = { "--rotulo-background": backgroundColor };
+
+	return (
+		<>
+			{info && (
+				<div className="rotulo" style={style}>
+					<Texto size={COMMON_SIZES.FS0} type={textColor}>
+						{info}
+					</Texto>
+				</div>
+			)}
+		</>
+	);
+}

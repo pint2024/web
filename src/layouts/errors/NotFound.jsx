@@ -1,14 +1,15 @@
 import { Texto } from "components/index";
+import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import React from "react";
 
 export function NotFound() {
 	return (
 		<section>
 			<div className="d-flex gap-3">
-				<Texto size={6} type="danger">
+				<Texto size={COMMON_SIZES.FS6} type={COMMON_TYPES.PERIGO}>
 					404
 				</Texto>
-				<Texto size={6}>Pagina não foi encontrada</Texto>
+				<Texto size={COMMON_SIZES.FS6}>Pagina não foi encontrada</Texto>
 			</div>
 			<p className="lead">O que estas aqui a fazer mongoloide? Vai po caralho!</p>
 		</section>

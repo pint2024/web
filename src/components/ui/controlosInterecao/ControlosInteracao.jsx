@@ -1,5 +1,6 @@
 import { Icon, Texto } from "components/index";
 import { GOSTO_ANIMATION } from "data/constants";
+import { COMMON_SIZES } from "data/data";
 import { useState } from "react";
 
 export function ControlosInteracao({ hideComentario = false }) {
@@ -39,12 +40,12 @@ export function ControlosInteracao({ hideComentario = false }) {
 				) : (
 					<Icon iconName="HandThumbsUp" className="cursor-pointer" />
 				)}
-				<Texto size={0}>{classificacao}</Texto>
+				<Texto size={COMMON_SIZES.FS4}>{classificacao}</Texto>
 			</div>
 			{!hideComentario ? (
 				<div className="d-flex align-items-center gap-2 post-icon">
 					<Icon iconName="ChatLeft" />
-					<Texto size={0}>{comentarios}</Texto>
+					<Texto size={COMMON_SIZES.FS4}>{comentarios}</Texto>
 				</div>
 			) : null}
 		</div>

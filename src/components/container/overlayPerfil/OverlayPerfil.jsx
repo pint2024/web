@@ -1,4 +1,5 @@
 import { Texto, Imagem } from "components/index";
+import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 
 export function OverlayPerfil({ imagem, nome, tag }) {
 	return (
@@ -11,7 +12,7 @@ export function OverlayPerfil({ imagem, nome, tag }) {
 						<Texto>{nome}</Texto>
 					</div>
 					<div>
-						<Texto size={0} type="secondary">
+						<Texto size={COMMON_SIZES.FS0} type={COMMON_TYPES.SECUNDARIO}>
 							{tag}
 						</Texto>
 					</div>

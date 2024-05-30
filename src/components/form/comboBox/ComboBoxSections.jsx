@@ -1,4 +1,5 @@
 import { Texto } from "components";
+import { COMMON_SIZES } from "data/data";
 import React, { useEffect, useRef, useState } from "react";
 
 export function ComboBoxSections({ items, placeholder = "Escolha uma opção" }) {
@@ -151,7 +152,7 @@ export function ComboBoxSections({ items, placeholder = "Escolha uma opção" })
 					{items.map((group, index) => (
 						<div key={index} style={styles.section}>
 							<div style={styles.sectionTitle}>
-								<Texto size={2}>{group.section}</Texto>
+								<Texto size={COMMON_SIZES.FS2}>{group.section}</Texto>
 							</div>
 							{group.options.map((option, idx) => (
 								<div key={idx} style={styles.option} onClick={() => handleSelect(option)}>

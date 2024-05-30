@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./iniciar-sessao.css";
 import { AutenticacaoRequest } from "api/autenticacaoRequest";
 import { CaixaTexto, Botao } from "components/index";
+import { BUTTON_VARIANTS } from "data/data";
 
 export function IniciarSessao() {
 	const [formLogin, setFormLogin] = useState("");
@@ -23,7 +24,7 @@ export function IniciarSessao() {
 				</div>
 			</form>
 
-			<Botao variant="secundario" route="/criar-conta">
+			<Botao variant={BUTTON_VARIANTS.SECUNDARIO} route="/criar-conta">
 				Registrar
 			</Botao>
 			<a href="/forgot-password">Esqueceu-se da senha?</a>

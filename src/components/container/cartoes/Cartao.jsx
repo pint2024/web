@@ -3,6 +3,7 @@ import "./cartao.css";
 import User from "assets/images/user-default.png";
 import { Texto, PequenoPerfil } from "components/index";
 import { Link } from "react-router-dom";
+import { COMMON_SIZES } from "data/data";
 
 Cartao.propTypes = {
 	id: PropTypes.number.isRequired,
@@ -34,7 +35,7 @@ export function Cartao({
 					<PequenoPerfil imagem={imagem} nome={utilizador} data={date} />
 				</div>
 				<div className="cartao-corpo-titulo" title={titulo}>
-					<Texto size={3} className="card-title-header">
+					<Texto size={COMMON_SIZES.FS3} className="card-title-header">
 						{titulo}
 					</Texto>
 				</div>

@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 
 import "./botao.css";
 import { Texto } from "components/index";
+import { COMMON_SIZES } from "data/data";
 
 export function Botao({ variant = "primario", route = null, children, ...props }) {
 	const validVariants = ["primario", "secundario", "sucesso", "perigo"];
 	const isVariantValid = validVariants.includes(variant) ? true : false;
-
-	console.log(props);
 
 	const renderBotao = () => {
 		return (
@@ -28,7 +27,7 @@ export function Botao({ variant = "primario", route = null, children, ...props }
 					renderBotao()
 				)
 			) : (
-				<Texto size={4}>Variante inválida</Texto>
+				<Texto size={COMMON_SIZES.FS4}>Variante inválida</Texto>
 			)}
 		</>
 	);

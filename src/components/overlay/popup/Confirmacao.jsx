@@ -1,6 +1,7 @@
 import React from "react";
 import { ModalBase } from "./ModalBase";
 import { Icon, Botao } from "components/index";
+import { BUTTON_VARIANTS } from "data/data";
 
 export function Confirmacao({ title = "Título da Confirmação", body = "Corpo da Confirmação", onSuccess, onClose }) {
 	const handleSuccessClick = () => {
@@ -16,10 +17,10 @@ export function Confirmacao({ title = "Título da Confirmação", body = "Corpo 
 				onClose={onClose}
 				footer={
 					<div className="d-flex gap-2">
-						<Botao variant="sucesso" onClick={handleSuccessClick}>
+						<Botao variant={BUTTON_VARIANTS.SUCESSO} onClick={handleSuccessClick}>
 							<Icon iconName="CheckLg" className="icon-inverse" /> Sim
 						</Botao>
-						<Botao variant="perigo" onClick={onClose}>
+						<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={onClose}>
 							<Icon iconName="XLg" className="icon-inverse" /> Não
 						</Botao>
 					</div>

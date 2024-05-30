@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import otpimg from "assets/images/user-default.png";
 import { Imagem, Texto, Botao } from "components/index";
+import { COMMON_SIZES } from "data/data";
 
 export function OTP() {
 	const [otp, setOTP] = useState(["", "", "", "", ""]);
@@ -58,7 +59,7 @@ export function OTP() {
 				{!isVerified ? (
 					<div style={styles.insideBox}>
 						<Imagem src={otpimg} alt="Imagem" style={styles.image} />
-						<Texto size={4}>Verificação OTP</Texto>
+						<Texto size={COMMON_SIZES.FS4}>Verificação OTP</Texto>
 						<Texto>
 							One Time Password (OTP) foi enviada via email para:{" "}
 							{emailSentTo ? <span style={styles.email}>{emailSentTo}</span> : ""}
@@ -83,7 +84,7 @@ export function OTP() {
 					</div>
 				) : (
 					<div>
-						<Texto size={4}>Verificação concluída com sucesso!</Texto>
+						<Texto size={COMMON_SIZES.FS4}>Verificação concluída com sucesso!</Texto>
 						<Texto>O OTP foi verificado com sucesso.</Texto>
 					</div>
 				)}

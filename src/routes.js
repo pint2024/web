@@ -3,9 +3,10 @@ import { NotFound } from "layouts/errors/NotFound";
 import { Calendario } from "pages/calendario";
 import { IniciarSessao, CriarConta } from "pages/autenticacao";
 import { Conteudo, ConteudoCriar } from "pages/conteudo";
-import { Conta } from "pages/conta";
+import { Conta } from "pages/conta/Conta";
 import { PaginaInicial } from "pages/PaginaInicial";
 import { ConteudoDetalhe } from "pages/conteudo/detalhe/ConteudoDetalhe";
+import { ContaEditar } from "pages/conta/editar/ContaEditar";
 
 export class Routes {
 	static InicialRoutes = [
@@ -83,7 +84,7 @@ export class Routes {
 				{
 					title: "Editar",
 					path: "/editar",
-					element: <Conta />,
+					element: <ContaEditar />,
 					perfis: [],
 				},
 			],
@@ -117,4 +118,8 @@ export class Routes {
 			perfis: [],
 		},
 	];
+}
+
+export class BackofficeRoutes {
+	static Routes = {};
 }

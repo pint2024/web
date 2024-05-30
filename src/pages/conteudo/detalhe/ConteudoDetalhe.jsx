@@ -10,6 +10,7 @@ import Ex5 from "assets/images/examples/e-5.jpg";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
 import "./conteudo-detalhe.css"
+import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
 
 export function ConteudoDetalhe() {
 	const [data, setdata] = useState(0);
@@ -35,8 +36,12 @@ export function ConteudoDetalhe() {
 				<div className="conteudo-detalhe-info">
 					<PequenoPerfil imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
 				</div>
+				<div className="gap-2 d-flex mt-3 mb-2">
+					<Rotulo info={"Tipo de Conteudo"} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
+					<Rotulo info={"Subtópico"} />
+				</div>
 				<div className="conteudo-detalhe-titulo">
-					<Texto size={3} className="">
+					<Texto size={COMMON_SIZES.FS3} className="">
 						{data.titulo}
 					</Texto>
 				</div>
@@ -46,16 +51,12 @@ export function ConteudoDetalhe() {
 				<div className="conteudo-detalhe-imagem">
 					<Imagem src={data.imagem} className={'conteudo-detalhe-imagem'}/>
 				</div>
-				<div className="gap-2 d-flex mt-3">
-					<Rotulo info={"Atividade"} />
-					<Rotulo info={"Desporto"} />
-				</div>
 				<div className="conteudo-detalhe-botoes">
 					<ControlosInteracao hideComentario={true} />
 					<div className="d-flex gap-2 mt-2">
 						<Botao>Participar</Botao>
-						<Botao>Editar</Botao>
-						<Botao>Apagar</Botao>
+						<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
+						<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 					</div>
 				</div>
 			</section>
