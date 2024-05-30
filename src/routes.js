@@ -1,5 +1,4 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import { NotFound } from "layouts/errors/NotFound";
 import { Calendario } from "pages/calendario";
 import { IniciarSessao, CriarConta } from "pages/autenticacao";
@@ -8,126 +7,114 @@ import { Conta } from "pages/conta";
 import { PaginaInicial } from "pages/PaginaInicial";
 import { ConteudoDetalhe } from "pages/conteudo/detalhe/ConteudoDetalhe";
 
-export const DataRoutes = [
-	{
-		title: "Página Inicial",
-		path: "/",
-		element: <PaginaInicial />,
-		perfis: [],
-	},
-	{
-		title: "Conteudos",
-		path: "/conteudos",
-		element: <Conteudo />,
-		perfis: [],
-		children: [
-			{
-				title: "Atividades",
-				path: "/atividades",
-				element: <ConteudoCriar />,
-				perfis: [],
-			},
-			{
-				title: "Eventos",
-				path: "/eventos",
-				element: <ConteudoCriar />,
-				perfis: [],
-			},
-			{
-				title: "Recomendações",
-				path: "/recomendacoes",
-				element: <ConteudoCriar />,
-				perfis: [],
-			},
-			{
-				title: "Espaços",
-				path: "/espacos",
-				element: <ConteudoCriar />,
-				perfis: [],
-			},
-			{
-				title: "Criar",
-				path: "/criar/:id",
-				element: <ConteudoCriar />,
-				perfis: [],
-			},
-			{
-				title: "Detalhe",
-				path: "/:id",
-				element: <ConteudoDetalhe />,
-				perfis: [],
-			},
-		],
-	},
-	{
-		title: "Calendário",
-		path: "/calendario",
-		element: <Calendario />,
-		perfis: [],
-	},
-	{
-		title: "Conta",
-		path: "/conta/:id",
-		element: <Conta />,
-		perfis: [],
-		children: [
-			{
-				title: "Editar",
-				path: "/editar",
-				element: <Conta />,
-				perfis: [],
-			},
-		],
-	},
-	{
-		title: "Criar Conta",
-		path: "/criar-conta",
-		element: <CriarConta />,
-		perfis: [],
-	},
-	{
-		title: "Iniciar Sessão",
-		path: "/iniciar-sessao",
-		element: <IniciarSessao />,
-		perfis: [],
-	},
-	{
-		title: "Terminar Sessão",
-		path: "/terminar-sessao",
-	},
-	{
-		title: "Não encontrado",
-		path: "*",
-		element: <NotFound />,
-		perfis: [],
-	},
-];
+export class Routes {
+	static InicialRoutes = [
+		{
+			title: "Página Inicial",
+			path: "/",
+			element: <PaginaInicial />,
+			perfis: [],
+		},
+	];
 
-const criarRoutes = (route, parentRoute = "") => {
-	return route.map((route, index) => (
-		<>
-			<Route key={index} path={parentRoute + route.path} element={route.element} />
-			{route.children && criarRoutes(route.children, parentRoute + route.path)}
-		</>
-	));
-};
+	static ConteudoRoutes = [
+		{
+			title: "Conteudos",
+			path: "/conteudos",
+			element: <Conteudo />,
+			perfis: [],
+			children: [
+				{
+					title: "Atividades",
+					path: "/atividades",
+					element: <ConteudoCriar />,
+					perfis: [],
+				},
+				{
+					title: "Eventos",
+					path: "/eventos",
+					element: <ConteudoCriar />,
+					perfis: [],
+				},
+				{
+					title: "Recomendações",
+					path: "/recomendacoes",
+					element: <ConteudoCriar />,
+					perfis: [],
+				},
+				{
+					title: "Espaços",
+					path: "/espacos",
+					element: <ConteudoCriar />,
+					perfis: [],
+				},
+				{
+					title: "Criar",
+					path: "/criar/:id",
+					element: <ConteudoCriar />,
+					perfis: [],
+				},
+				{
+					title: "Detalhe",
+					path: "/:id",
+					element: <ConteudoDetalhe />,
+					perfis: [],
+				},
+			],
+		},
+	];
 
-export const renderRoutes = criarRoutes(DataRoutes);
+	static CalendarioRoutes = [
+		{
+			title: "Calendário",
+			path: "/calendario",
+			element: <Calendario />,
+			perfis: [],
+		},
+	];
 
-export function findRouteByPath(path) {
-	const findRecursive = (routes, currentPath) => {
-		for (const route of routes) {
-			if (route.path === currentPath || route.path.split("/:")[0] === currentPath) {
-				return route;
-			} else if (route.children) {
-				const childRoute = findRecursive(route.children, currentPath);
-				if (childRoute) {
-					return childRoute;
-				}
-			}
-		}
-		return null;
-	};
+	static UtilizadorRoutes = [
+		{
+			title: "Conta",
+			path: "/conta/:id",
+			element: <Conta />,
+			perfis: [],
+			children: [
+				{
+					title: "Editar",
+					path: "/editar",
+					element: <Conta />,
+					perfis: [],
+				},
+			],
+		},
+	];
 
-	return findRecursive(DataRoutes, path);
+	static AutenticacaoRoutes = [
+		{
+			title: "Criar Conta",
+			path: "/criar-conta",
+			element: <CriarConta />,
+			perfis: [],
+		},
+		{
+			title: "Iniciar Sessão",
+			path: "/iniciar-sessao",
+			element: <IniciarSessao />,
+			perfis: [],
+		},
+		{
+			title: "Terminar Sessão",
+			path: "/terminar-sessao",
+		},
+	];
+
+	static ErrosRoutes = [
+		{
+			title: "Não encontrado",
+			path: "*",
+			element: <NotFound />,
+			perfis: [],
+		},
+	];
 }

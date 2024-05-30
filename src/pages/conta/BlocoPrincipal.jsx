@@ -1,4 +1,4 @@
-import { Icon, Texto, Contentor } from "components/index";
+import { Icon, Texto, Contentor, Botao, Navegar } from "components/index";
 import { Link } from "react-router-dom";
 import Image from "assets/images/user-default.png";
 import "./conta.css";
@@ -45,9 +45,12 @@ export function BlocoPrincipal() {
 					</div>
 					<div className="details-right">
 						<div className="d-flex gap-2">
-							<Link>
+							<Botao>asd</Botao>
+						</div>
+						<div className="d-flex gap-2">
+							<Navegar to={'twitter.com'}>
 								<Icon iconName="TwitterX" />
-							</Link>
+							</Navegar>
 							<Link>
 								<Icon iconName="Instagram" />
 							</Link>

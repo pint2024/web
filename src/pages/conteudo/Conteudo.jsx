@@ -1,8 +1,6 @@
 import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
-import { ComboBox, Divisor, Icon, Post, Botao, Dropdown, Texto, Rotulo } from "components/index";
+import { ComboBox, Icon, Botao, Dropdown } from "components/index";
 import { CONTEUDO_TIPOS, ORDER_OPTIONS, TOPICOS_OPTIONS } from "data/data";
-import Placeholder from "assets/images/placeholder.png";
-import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { ConteudoSeccoes } from "./ConteudoSeccoes";
 
 export function Conteudo() {
@@ -25,14 +23,14 @@ export function Conteudo() {
 					</Dropdown>
 				</div>
 				<div className="d-flex justify-content-end gap-3">
-					<ComboBox placeholder="Recentes" options={ORDER_OPTIONS} />
+					<ComboBox placeholder="Centros" options={ORDER_OPTIONS} />
 					<ComboBoxSections items={TOPICOS_OPTIONS} />
 				</div>
 			</section>
 			<section>
-				<ConteudoSeccoes titulo={"Espaço"} routeTo={"espacos"} />
-				<ConteudoSeccoes titulo={"Atividade"} routeTo={"atividades"} />
-				<ConteudoSeccoes titulo={"Evento"} routeTo={"eventos"} />
+				<ConteudoSeccoes titulo={"Espaços"} routeTo={"espacos"} />
+				<ConteudoSeccoes titulo={"Atividades"} routeTo={"atividades"} />
+				<ConteudoSeccoes titulo={"Eventos"} routeTo={"eventos"} />
 				<ConteudoSeccoes titulo={"Recomendações"} routeTo={"recomendacoes"}/>
 			</section>
 		</div>

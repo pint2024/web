@@ -1,1 +1,1 @@
-export { Conta } from "./Conta";
+export { Conta } from "./Coanta";

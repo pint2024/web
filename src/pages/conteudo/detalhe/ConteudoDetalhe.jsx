@@ -1,8 +1,7 @@
-import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao } from "components/index";
+import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo } from "components/index";
 import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { useEffect, useState } from "react";
 import User from "assets/images/user-default.png";
-import Placeholder from "assets/images/placeholder.png";
 import Ex1 from "assets/images/examples/e-1.jpg";
 import Ex2 from "assets/images/examples/e-2.jpg";
 import Ex3 from "assets/images/examples/e-3.jpg";
@@ -10,6 +9,7 @@ import Ex4 from "assets/images/examples/e-4.jpg";
 import Ex5 from "assets/images/examples/e-5.jpg";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
+import "./conteudo-detalhe.css"
 
 export function ConteudoDetalhe() {
 	const [data, setdata] = useState(0);
@@ -29,8 +29,6 @@ export function ConteudoDetalhe() {
 		});
 	}, []);
 
-	const images = [Ex1, Ex2, Ex3, Ex4];
-
 	return (
 		<article className="AtividadeDetalhe" id={data.id}>
 			<section className="conteudo-detalhe-conteudo">
@@ -46,19 +44,23 @@ export function ConteudoDetalhe() {
 					<Texto className="">{data.descricao}</Texto>
 				</div>
 				<div className="conteudo-detalhe-imagem">
-					<Imagem src={data.imagem} style={{ width: "100px", height: "100px" }} />
+					<Imagem src={data.imagem} className={'conteudo-detalhe-imagem'}/>
+				</div>
+				<div className="gap-2 d-flex mt-3">
+					<Rotulo info={"Atividade"} />
+					<Rotulo info={"Desporto"} />
 				</div>
 				<div className="conteudo-detalhe-botoes">
 					<ControlosInteracao hideComentario={true} />
 					<div className="d-flex gap-2 mt-2">
-						<Botao>Formulário</Botao>
+						<Botao>Participar</Botao>
 						<Botao>Editar</Botao>
 						<Botao>Apagar</Botao>
 					</div>
 				</div>
 			</section>
 			<section className="conteudo-detalhe-interacoes">
-				<Album imagens={images} />
+				<Album imagens={[Ex1, Ex2, Ex3, Ex4]} />
 				<ComentarioSeccao />
 			</section>
 		</article>

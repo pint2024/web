@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { Icon, Texto } from "components/index";
-import { findRouteByPath } from "routes";
 import { useEffect, useState } from "react";
+import { findRouteByPath } from "utils/routes.utils";
+
 export function Breadcrumb() {
 	const [breadcrumbPath, setBreadcrumbPath] = useState([]);
 	const location = useLocation();

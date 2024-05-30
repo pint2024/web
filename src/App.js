@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React, { useEffect } from "react";
 
 /// Componentes
-import { renderRoutes } from "./routes";
+import { renderRoutes } from "utils/routes.utils";
 import { PageLayout } from "layouts/pageBase/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { useAutenticacao } from "hooks/useAutenticacao";
