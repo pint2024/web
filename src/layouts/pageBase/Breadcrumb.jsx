@@ -13,9 +13,16 @@ export function Breadcrumb() {
 			const pathnames = location.pathname.split("/").filter((path) => path !== "");
 			const breadcrumb = [];
 
+			console.log("1", pathnames);
+
 			for (const path of pathnames) {
+				console.log("2", path);
 				const route = findRouteByPath("/" + path);
-				if (route) breadcrumb.push(route);
+				console.log("3", route);
+				if (route) {
+				console.log("3", route);
+					breadcrumb.push(route);
+				}
 			}
 
 			setBreadcrumbPath(breadcrumb);
@@ -34,7 +41,7 @@ export function Breadcrumb() {
 					<Texto size={0} type={COMMON_TYPES.SECUNDARIO}>
 						{">"}
 					</Texto>
-					
+
 					<Link to={item.path}>
 						<Texto size={0} type={COMMON_TYPES.SECUNDARIO} className="link-hover underline-hover">
 							{item.title}

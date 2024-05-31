@@ -132,24 +132,62 @@ export class Routes {
 					path: "/tabelas",
 					element: <Temporary />,
 					perfis: [],
+					children: [
+						{
+							title: "x",
+							path: "/x",
+							element: <Temporary />,
+							perfis: [],
+						},
+					],
 				},
 				{
 					title: "Estatísticas",
 					path: "/estatisticas",
 					element: <Temporary />,
 					perfis: [],
+					children: [
+						{
+							title: "x",
+							path: "/x",
+							element: <Temporary />,
+							perfis: [],
+						},
+					],
 				},
 				{
-					title: "Revisão",
-					path: "/revisao",
+					title: "Revisões",
+					path: "/revisoes",
 					element: <Temporary />,
 					perfis: [],
+					children: [
+						{
+							title: "Conteudo",
+							path: "/conteudo",
+							element: <Temporary />,
+							perfis: [],
+						},
+						{
+							title: "Comentário",
+							path: "/comentario",
+							element: <Temporary />,
+							perfis: [],
+						},
+					],
 				},
 				{
 					title: "Denuncias",
 					path: "/denuncias",
 					element: <Temporary />,
 					perfis: [],
+					children: [
+						{
+							title: "x",
+							path: "/x",
+							element: <Temporary />,
+							perfis: [],
+						},
+					],
 				},
 			],
 		},

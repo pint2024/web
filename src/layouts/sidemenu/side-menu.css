@@ -58,12 +58,6 @@
 	align-items: center;
 }
 
-.nome-item {
-	margin: 0;
-	margin-left: 16px;
-	padding: 0;
-}
-
 .item-list {
 	height: 90vh;
 }

@@ -2,65 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./side-menu.css";
 import logo from "assets/images/logo.png";
+import { Header } from "layouts/header/Header";
+import { Imagem, Texto } from "components";
+import { COMMON_TYPES } from "data/data";
 
-function SideBarItems({ titulo, icon, route }) {
+function SideBarItems({ titulo, icon, route, children }) {
 	return (
 		<li key={route} className="nav-text align-items-center">
 			<Link to={route}>
-				<h4 className="nome-item text-white">{titulo}</h4>
+				<Texto type={COMMON_TYPES.INVERSO} size={3}>
+					{titulo}
+				</Texto>
 			</Link>
+			{children && <ul className="submenu-items">{children}</ul>}
 		</li>
 	);
 }
 
 export function SideMenu() {
-	const Header = () => (
-		<header className="header d-flex justify-content-between align-items-center">
-			<div className="d-flex align-items-center bars-logo">
-				<div>
-					<Link className="navbar-brand" to="/">
-						<img src={logo} className="navbar-logo-size d-inline-block align-top" alt="Logo do Site" />
-					</Link>
-				</div>
-			</div>
-			<div>
-				<ul className="d-flex sem-ponto gap-3 header-items">
-					<li className="header-item"></li>
-					<li className="header-item"></li>
-				</ul>
-			</div>
-		</header>
-	);
-
-	const SideMenu = () => (
-		<nav className="nav-menu">
-				<ul className="nav-menu-items">
-					<li className="navbar-toggle">
-						<div className="d-flex align-items-center bars-logo">
-							<Link className="navbar-brand" to="/">
-								<img src={logo} className="navbar-logo-size d-inline-block align-top" alt="Logo do Site" />
-							</Link>
-						</div>
-					</li>
+	return (
+		<div className="remove-user-select">
+			<Header />
+			<nav className="nav-menu">
+				<section className="nav-menu-items">
+					<div className="navbar-toggle d-flex align-items-center">
+						<Link className="navbar-brand" to="/">
+							<Imagem src={logo} className="navbar-logo-size d-inline-block align-top" alt="Logo do Site" />
+						</Link>
+					</div>
 					<div className="d-flex flex-column justify-content-between item-list">
 						<div>
 							<SideBarItems titulo={"Tabelas"} route={"tabelas"} />
 							<SideBarItems titulo={"Estatísticas"} route={"estatisticas"} />
-							<SideBarItems titulo={"Revisão"} route={"revisao"} />
+							<SideBarItems titulo={"Revisão"} route={"revisoes"} />
 							<SideBarItems titulo={"Denuncias"} route={"denuncias"} />
 						</div>
-						<div>
-							<SideBarItems titulo={"Dashboard"} route={"/dashboard"} />
-						</div>
+						<div>{/*<SideBarItems titulo={"Dashboard"} route={"/dashboard"} />*/}</div>
 					</div>
-				</ul>
+				</section>
 			</nav>
-	);
-
-	return (
-		<div className="no-select">
-			{Header()}
-			{SideMenu()}
 		</div>
 	);
 }

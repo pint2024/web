@@ -11,8 +11,8 @@ export function DashboardLayout() {
 				<SideMenu />
 			</header>
 			<div className="content-area">
-				<main className="content-min-height">
-					<Breadcrumb />
+				<Breadcrumb />
+				<main className="container content-min-height">
 					<Outlet />
 				</main>
 				<footer className="footer-height">

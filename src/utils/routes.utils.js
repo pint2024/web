@@ -44,6 +44,7 @@ export function findRouteByPath(path) {
 			...Routes.UtilizadorRoutes,
 			...Routes.AutenticacaoRoutes,
 			...Routes.ErrosRoutes,
+			...Routes.DashboardRoutes,
 		],
 		path
 	);
