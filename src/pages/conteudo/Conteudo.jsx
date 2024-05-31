@@ -1,5 +1,5 @@
 import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
-import { ComboBox, Icon, Botao, Dropdown } from "components/index";
+import { ComboBox, Icone, Botao, Dropdown } from "components/index";
 import { CONTEUDO_TIPOS, ORDER_OPTIONS, TOPICOS_OPTIONS } from "data/data";
 import { ConteudoSeccoes } from "./ConteudoSeccoes";
 
@@ -17,7 +17,7 @@ export function Conteudo() {
 						]}
 					>
 						<Botao>
-							<Icon iconName="Plus" className="text-types-inverse" />
+							<Icone iconName="Plus" className="text-types-inverse" />
 							Adicionar
 						</Botao>
 					</Dropdown>

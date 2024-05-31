@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import * as Icons from "react-bootstrap-icons";
 
-Icon.propTypes = {
+Icone.propTypes = {
 	iconName: PropTypes.string.isRequired,
 };
 
-export function Icon({ iconName, size = 1, type = "primary", className = "", ...props }) {
+export function Icone({ iconName, size = 1, type = "primary", className = "", ...props }) {
 	let IconVariant = null;
 	try {
 		IconVariant = Icons[iconName];

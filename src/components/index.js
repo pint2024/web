@@ -21,7 +21,7 @@ export { PequenoPerfil } from "./container/pequenoPerfil/PequenoPerfil";
 export { Rotulo } from "./common/rotulo/Rotulo";
 export { Divisor } from "./ui/divisor/Divisor";
 export { Texto } from "./common/texto/Texto";
-export { Icon } from "./common/icone/Icone";
+export { Icone } from "./common/icone/Icone";
 export { AreaTexto } from "./form/caixaTexto/AreaTexto";
 export { CaixaTexto } from "./form/caixaTexto/CaixaTexto";
 export { CheckBox } from "./form/checkBox/CheckBox";

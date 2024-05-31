@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import { Icon } from "components/index";
+import { Icone } from "components/index";
 import "./popup.css";
 
 export function ModalBase({ headerTitle, headerInfo, headerIcons, children, footer, onClose, styles, className, id }) {
@@ -37,7 +37,7 @@ const ModalHeaderIcons = ({ headerIcons, onClose, isVisible }) => {
 	return isVisible ? (
 		<div className="d-flex align-items-center modal-header-icons">
 			{headerIcons}
-			<Icon iconName="XLg" title="Fechar" onClick={onClose} />
+			<Icone iconName="XLg" title="Fechar" onClick={onClose} />
 		</div>
 	) : (
 		""

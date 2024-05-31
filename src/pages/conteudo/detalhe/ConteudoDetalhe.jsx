@@ -52,7 +52,7 @@ export function ConteudoDetalhe() {
 					<Imagem src={data.imagem} className={'conteudo-detalhe-imagem'}/>
 				</div>
 				<div className="conteudo-detalhe-botoes">
-					<ControlosInteracao hideComentario={true} />
+					<ControlosInteracao/>
 					<div className="d-flex gap-2 mt-2">
 						<Botao>Participar</Botao>
 						<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>

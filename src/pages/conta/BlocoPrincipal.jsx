@@ -1,5 +1,4 @@
-import { Icon, Texto, Contentor, Botao, Navegar } from "components/index";
-import { Link } from "react-router-dom";
+import { Icone, Texto, Contentor, Botao, Navegar } from "components/index";
 import Image from "assets/images/user-default.png";
 import "./conta.css";
 import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
@@ -23,26 +22,26 @@ export function BlocoPrincipal() {
 						<div className="d-flex gap-3">
 							<div className="d-flex align-items-center gap-2">
 								<Texto className="d-flex gap-1 align-items-center">
-									<Icon iconName="PinMap" />
+									<Icone iconName="PinMap" />
 									Portugal
 								</Texto>
 							</div>
 							<div className="d-flex align-items-center gap-2">
 								<Texto className="d-flex gap-1 align-items-center">
-									<Icon iconName="Buildings" />
+									<Icone iconName="Buildings" />
 									Viseu
 								</Texto>
 							</div>
 						</div>
 						<div className="d-flex align-items-center gap-2">
 							<Texto className="d-flex gap-1 align-items-center">
-								<Icon iconName="HandThumbsUp" />
+								<Icone iconName="HandThumbsUp" />
 								Desporto, Saúde...
 							</Texto>
 						</div>
 						<div className="d-flex align-items-center gap-2">
 							<Texto className="d-flex gap-1 align-items-center">
-								<Icon iconName="Calendar3" />
+								<Icone iconName="Calendar3" />
 								01/01/2024
 							</Texto>
 						</div>
@@ -54,16 +53,16 @@ export function BlocoPrincipal() {
 						</div>
 						<div className="d-flex gap-3 ">
 							<Navegar to={'https://www.twitter.com'}>
-								<Icon size={COMMON_SIZES.FS4} iconName="TwitterX" />
+								<Icone size={COMMON_SIZES.FS4} iconName="TwitterX" />
 							</Navegar>
 							<Navegar to={'https://www.instagram.com'}>
-								<Icon size={COMMON_SIZES.FS4} iconName="Instagram" />
+								<Icone size={COMMON_SIZES.FS4} iconName="Instagram" />
 							</Navegar>
 							<Navegar to={'https://www.linkedin.com'}>
-								<Icon size={COMMON_SIZES.FS4} iconName="Linkedin" />
+								<Icone size={COMMON_SIZES.FS4} iconName="Linkedin" />
 							</Navegar>
 							<Navegar to={'https://www.facebook.com'}>
-								<Icon size={COMMON_SIZES.FS4} iconName="Facebook" />
+								<Icone size={COMMON_SIZES.FS4} iconName="Facebook" />
 							</Navegar>
 						</div>
 					</div>

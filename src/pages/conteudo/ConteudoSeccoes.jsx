@@ -1,4 +1,4 @@
-import { Icon, Navegar, Post, Texto } from "components";
+import { Icone, Navegar, Post, Texto } from "components";
 import { PLACEHOLDER_TITLE } from "data/constants";
 import Placeholder from "assets/images/placeholder.png";
 import Image from "assets/images/user-default.png";
@@ -11,7 +11,7 @@ export function ConteudoSeccoes({ titulo, routeTo }) {
 			<Navegar to={routeTo} className="navegar">
 				<div className="navegar-content">
 					<Texto size={COMMON_SIZES.FS5}>{titulo}</Texto>
-					<Icon size={COMMON_SIZES.FS4} iconName={"ArrowRightShort"} />
+					<Icone size={COMMON_SIZES.FS4} iconName={"ArrowRightShort"} />
 				</div>
 			</Navegar>
 			<div className="d-flex gap-4 horizontal-cards">

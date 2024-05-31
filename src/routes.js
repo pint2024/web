@@ -7,6 +7,7 @@ import { Conta } from "pages/conta/Conta";
 import { PaginaInicial } from "pages/PaginaInicial";
 import { ConteudoDetalhe } from "pages/conteudo/detalhe/ConteudoDetalhe";
 import { ContaEditar } from "pages/conta/editar/ContaEditar";
+import { Temporary } from "layouts/errors/Temporary";
 
 export class Routes {
 	static InicialRoutes = [
@@ -118,8 +119,39 @@ export class Routes {
 			perfis: [],
 		},
 	];
-}
 
-export class BackofficeRoutes {
-	static Routes = {};
+	static DashboardRoutes = [
+		{
+			title: "Dashboard",
+			path: "/dashboard",
+			element: <Temporary />,
+			perfis: [],
+			children: [
+				{
+					title: "Tabelas",
+					path: "/tabelas",
+					element: <Temporary />,
+					perfis: [],
+				},
+				{
+					title: "Estatísticas",
+					path: "/estatisticas",
+					element: <Temporary />,
+					perfis: [],
+				},
+				{
+					title: "Revisão",
+					path: "/revisao",
+					element: <Temporary />,
+					perfis: [],
+				},
+				{
+					title: "Denuncias",
+					path: "/denuncias",
+					element: <Temporary />,
+					perfis: [],
+				},
+			],
+		},
+	];
 }

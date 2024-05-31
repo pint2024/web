@@ -8,7 +8,7 @@ import { usePopup } from "hooks/usePopup";
 import { Link, useNavigate } from "react-router-dom";
 
 import { DateUtils } from "utils/date.utils";
-import { Icon } from "components/index";
+import { Icone } from "components/index";
 
 export function Calendario() {
 	const navigate = useNavigate();
@@ -44,7 +44,7 @@ export function Calendario() {
 		setpuTitulo(data.reuniao_titulo);
 		setpuIcons(
 			<Link to={`/reunioes/${data.reuniao_id}`}>
-				<Icon iconName="expand" className="align-self-center" />
+				<Icone iconName="expand" className="align-self-center" />
 			</Link>
 		);
 		setpuSubtitulo(

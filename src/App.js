@@ -3,10 +3,11 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React, { useEffect } from "react";
 
 /// Componentes
-import { renderRoutes } from "utils/routes.utils";
+import { renderDashboardRoutes, renderRoutes } from "utils/routes.utils";
 import { PageLayout } from "layouts/pageBase/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { useAutenticacao } from "hooks/useAutenticacao";
+import { DashboardLayout } from "layouts/pageBase/DashboardLayout";
 
 function App() {
 	const utilizadorAtual = useAutenticacao();
@@ -18,6 +19,9 @@ function App() {
 	return (
 		<Router>
 			<Routes>
+				<Route path="/dashboard" element={<DashboardLayout />}>
+					{renderDashboardRoutes}
+				</Route>
 				<Route path="/" element={<PageLayout />}>
 					{renderRoutes}
 				</Route>

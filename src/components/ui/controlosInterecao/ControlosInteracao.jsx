@@ -1,9 +1,10 @@
-import { Icon, Texto } from "components/index";
+import { Icone, Texto } from "components/index";
 import { GOSTO_ANIMATION } from "data/constants";
 import { COMMON_SIZES } from "data/data";
 import { useState } from "react";
+import { Classificacao } from "./classificacao/Classificacao";
 
-export function ControlosInteracao({ hideComentario = false }) {
+export function ControlosInteracao() {
 	const [isClassificado, setisClassificado] = useState();
 	const [classificacao, setclassificacao] = useState();
 	const [comentarios, setcomentarios] = useState();
@@ -35,19 +36,13 @@ export function ControlosInteracao({ hideComentario = false }) {
 				className={`d-flex align-items-center gap-2 post-icon ${animate ? GOSTO_ANIMATION : ""}`}
 				onClick={handleLikesClick}
 			>
-				{isClassificado ? (
-					<Icon iconName="HandThumbsUpFill" className="icon-color cursor-pointer" />
-				) : (
-					<Icon iconName="HandThumbsUp" className="cursor-pointer" />
-				)}
+				<Classificacao />
 				<Texto size={COMMON_SIZES.FS4}>{classificacao}</Texto>
 			</div>
-			{!hideComentario ? (
-				<div className="d-flex align-items-center gap-2 post-icon">
-					<Icon iconName="ChatLeft" />
-					<Texto size={COMMON_SIZES.FS4}>{comentarios}</Texto>
-				</div>
-			) : null}
+			<div className="d-flex align-items-center gap-2 post-icon">
+				<Icone iconName="ChatLeft" />
+				<Texto size={COMMON_SIZES.FS4}>{comentarios}</Texto>
+			</div>
 		</div>
 	);
 }

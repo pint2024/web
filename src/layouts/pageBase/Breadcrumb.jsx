@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Icon, Texto } from "components/index";
+import { Icone, Texto } from "components/index";
 import { useEffect, useState } from "react";
 import { findRouteByPath } from "utils/routes.utils";
 import { COMMON_TYPES } from "data/data";
@@ -27,7 +27,7 @@ export function Breadcrumb() {
 	return (
 		<section id="Breadcrumb" className="d-flex gap-2 align-items-center ms-3 breadcrumb-height">
 			<Link to="/" className="d-flex align-items-center">
-				<Icon iconName="HouseFill" size={0} type={COMMON_TYPES.SECUNDARIO} className="link-hover" />
+				<Icone iconName="HouseFill" size={0} type={COMMON_TYPES.SECUNDARIO} className="link-hover" />
 			</Link>
 			{breadcrumbPath.map((item, index) => (
 				<div className="d-flex align-items-center gap-2" key={index}>

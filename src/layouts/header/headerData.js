@@ -1,7 +1,7 @@
 const navItems = [
-	{ title: "Conteudos", route: "/conteudos" },
-	{ title: "Calendário", route: "/calendario" },
-	{ title: "Dashboard", route: "/dashboard" },
+	{ title: "Conteudos", icon: "Star", selectedIcon: "StarFill", route: "/conteudos" },
+	{ title: "Calendário", icon: "Calendar", selectedIcon: "CalendarFill", route: "/calendario" },
+	{ title: "Dashboard", icon: "PersonBadge", selectedIcon: "PersonBadgeFill", route: "/dashboard" },
 ];
 
 export const userItems = [
@@ -13,6 +13,8 @@ export const userItems = [
 const criarObjeto = (data, parentRoute = null) => {
 	return data.map((item) => ({
 		title: item.title,
+		icon: item.icon,
+		selectedIcon: item.selectedIcon,
 		route: parentRoute ? parentRoute + item.route : item.route,
 		submenu: item.submenu ? criarObjeto(item.submenu, parentRoute ? parentRoute + item.route : item.route) : undefined,
 	}));

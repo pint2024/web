@@ -19,6 +19,8 @@ export const renderRoutes = criarRoutes([
 	...Routes.ErrosRoutes,
 ]);
 
+export const renderDashboardRoutes = criarRoutes([...Routes.DashboardRoutes]);
+
 export function findRouteByPath(path) {
 	const findRecursive = (routes, currentPath) => {
 		for (const route of routes) {

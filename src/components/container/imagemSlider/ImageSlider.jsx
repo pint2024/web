@@ -1,4 +1,4 @@
-import { Icon, Imagem, Botao } from "components/index";
+import { Icone, Imagem, Botao } from "components/index";
 import React, { useEffect, useState } from "react";
 
 import "./image-slider.css";
@@ -44,7 +44,7 @@ export function ImageSlider({ images }) {
 			</div>
 			<div className="gap-3 d-flex align-items-center">
 				{imagesArray.map((_, index) => (
-					<Icon
+					<Icone
 						key={index}
 						className="cursor-pointer"
 						iconName={`${index === currentImageIndex ? "Circle" : "CircleFill"}`}

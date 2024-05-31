@@ -1,10 +1,11 @@
 import Dropdown from "./NavDropdown";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { Icon } from "components/index";
+import { Link, useLocation } from "react-router-dom";
+import { Icone } from "components/index";
 
 const MenuItems = ({ items, depthLevel }) => {
 	const [dropdown, setDropdown] = useState(false);
+	const location = useLocation();
 	let ref = useRef();
 
 	useEffect(() => {
@@ -16,7 +17,6 @@ const MenuItems = ({ items, depthLevel }) => {
 		document.addEventListener("mousedown", handler);
 		document.addEventListener("touchstart", handler);
 		return () => {
-			// Cleanup the event listener
 			document.removeEventListener("mousedown", handler);
 			document.removeEventListener("touchstart", handler);
 		};
@@ -38,6 +38,8 @@ const MenuItems = ({ items, depthLevel }) => {
 		dropdown && setDropdown(false);
 	};
 
+	const isSelected = location.pathname === items.route;
+
 	return (
 		<li className="menu-items" ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={closeDropdown}>
 			{items.submenu ? (
@@ -51,15 +53,16 @@ const MenuItems = ({ items, depthLevel }) => {
 					>
 						{items.title}
 						{depthLevel > 0 ? (
-							<Icon iconName="CaretRightFill" className="header-submenu-arrow icon-inverse" />
+							<Icone iconName="CaretRightFill" className="header-submenu-arrow icon-inverse" />
 						) : (
-							<Icon iconName="CaretDownFill" className="header-menu-arrow icon-inverse" />
+							<Icone iconName="CaretDownFill" className="header-menu-arrow icon-inverse" />
 						)}
 					</Link>
 					<Dropdown depthLevel={depthLevel} submenus={items.submenu} dropdown={dropdown} />
 				</>
 			) : (
 				<Link to={items.route} className="d-flex align-items-center gap-2">
+					<Icone iconName={isSelected ? items.selectedIcon : items.icon} />
 					{items.title}
 				</Link>
 			)}
