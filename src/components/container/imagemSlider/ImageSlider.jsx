@@ -22,6 +22,10 @@ export function ImageSlider({ images }) {
 		setCurrentImageIndex(newIndex);
 	};
 
+	const openSlide = () => {
+		console.log("openSlide");
+	};
+
 	const changeSlide = (index) => {
 		const newIndex = index;
 		setCurrentImageIndex(newIndex);
@@ -30,11 +34,11 @@ export function ImageSlider({ images }) {
 	return (
 		<article className="remove-user-select">
 			<div className="image-slider d-flex">
-				<Botao variant={BUTTON_VARIANTS.SECUNDARIO } onClick={prevSlide}>
+				<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={prevSlide}>
 					&lt;
 				</Botao>
 				{imagesArray.map((image, index) => (
-					<div key={index} style={{ display: index === currentImageIndex ? "flex" : "none" }}>
+					<div key={index} onClick={openSlide} style={{ display: index === currentImageIndex ? "flex" : "none" }}>
 						<Imagem src={image} className="image-slider-image" />
 					</div>
 				))}
@@ -54,4 +58,4 @@ export function ImageSlider({ images }) {
 			</div>
 		</article>
 	);
-};
+}

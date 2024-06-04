@@ -9,8 +9,9 @@ import Ex4 from "assets/images/examples/e-4.jpg";
 import Ex5 from "assets/images/examples/e-5.jpg";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
-import "./conteudo-detalhe.css"
 import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
+import "./conteudo-detalhe.css";
+import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 
 export function ConteudoDetalhe() {
 	const [data, setdata] = useState(0);
@@ -45,14 +46,17 @@ export function ConteudoDetalhe() {
 						{data.titulo}
 					</Texto>
 				</div>
+				<div className="d-flex align-items-center">
+					<ImagemModal imageSrc={data.imagem}>
+							<Imagem src={data.imagem} className="conteudo-detalhe-imagem" style={{ objectFit: "cover" }} />
+					</ImagemModal>
+				</div>
 				<div className="conteudo-detalhe-descricao">
 					<Texto className="">{data.descricao}</Texto>
 				</div>
-				<div className="conteudo-detalhe-imagem">
-					<Imagem src={data.imagem} className={'conteudo-detalhe-imagem'}/>
-				</div>
+
 				<div className="conteudo-detalhe-botoes">
-					<ControlosInteracao/>
+					<ControlosInteracao />
 					<div className="d-flex gap-2 mt-2">
 						<Botao>Participar</Botao>
 						<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
