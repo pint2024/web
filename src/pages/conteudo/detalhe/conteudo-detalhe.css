@@ -4,3 +4,29 @@
 	border-radius: 20px;
 	border: 3px;
 }
+
+.AtividadeDetalhe {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px; /* Espaço entre as colunas, ajuste conforme necessário */
+}
+
+.conteudo-detalhe-conteudo,
+.conteudo-detalhe-interacoes {
+	flex: 1; /* Ambas as seções ocupam a mesma largura */
+	min-width: 300px; /* Ajuste conforme necessário */
+}
+
+.imagem-container {
+	display: flex;
+	justify-content: center; /* Centro horizontalmente */
+	align-items: center; /* Centro verticalmente */
+	width: 100%; /* Garantir que a div ocupa 100% da largura disponível */
+}
+
+@media (max-width: 768px) {
+	/* Ajuste para telas menores */
+	.AtividadeDetalhe {
+		flex-direction: column;
+	}
+}

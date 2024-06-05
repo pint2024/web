@@ -9,9 +9,10 @@ import Ex4 from "assets/images/examples/e-4.jpg";
 import Ex5 from "assets/images/examples/e-5.jpg";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
-import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
+import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES, CONTEUDO_TIPOS } from "data/data";
 import "./conteudo-detalhe.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
+import { Classificacao } from "components/ui/controlosInterecao/classificacao/Classificacao";
 
 export function ConteudoDetalhe() {
 	const [data, setdata] = useState(0);
@@ -28,45 +29,55 @@ export function ConteudoDetalhe() {
 			comentarios: 20,
 			imagem: Ex5,
 			utilizador_imagem: User,
+			tipo: 1,
 		});
 	}, []);
+
+	const galeria = [Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4];
 
 	return (
 		<article className="AtividadeDetalhe" id={data.id}>
 			<section className="conteudo-detalhe-conteudo">
 				<div className="conteudo-detalhe-info">
-					<PequenoPerfil imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
-				</div>
-				<div className="gap-2 d-flex mt-3 mb-2">
-					<Rotulo info={"Tipo de Conteudo"} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
-					<Rotulo info={"Subtópico"} />
+					<PequenoPerfil id={data.id} imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
 				</div>
 				<div className="conteudo-detalhe-titulo">
 					<Texto size={COMMON_SIZES.FS3} className="">
 						{data.titulo}
 					</Texto>
 				</div>
-				<div className="d-flex align-items-center">
-					<ImagemModal imageSrc={data.imagem}>
-							<Imagem src={data.imagem} className="conteudo-detalhe-imagem" style={{ objectFit: "cover" }} />
+				<div className="imagem-container">
+					<ImagemModal imagemSelecionada={data.imagem} description={data.titulo}>
+						<Imagem src={data.imagem} className="conteudo-detalhe-imagem" style={{ objectFit: "cover" }} />
 					</ImagemModal>
 				</div>
 				<div className="conteudo-detalhe-descricao">
 					<Texto className="">{data.descricao}</Texto>
 				</div>
-
-				<div className="conteudo-detalhe-botoes">
+				<div className="conteudo-detalhe-botoes"></div>
+				<div className="conteudo-detalhe-interacoes">
+					<Album imagens={galeria} />
 					<ControlosInteracao />
 					<div className="d-flex gap-2 mt-2">
-						<Botao>Participar</Botao>
+						<Botao>Adicionar Imagem</Botao>
 						<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
 						<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 					</div>
 				</div>
+				<div>
+					<ComentarioSeccao />
+				</div>
 			</section>
-			<section className="conteudo-detalhe-interacoes">
-				<Album imagens={[Ex1, Ex2, Ex3, Ex4]} />
-				<ComentarioSeccao />
+			<section className="conteudo-detalhe-informacoes">
+				<div className="gap-2 d-flex mt-3 mb-2">
+					<Rotulo info={"Tipo de Conteudo"} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
+					<Rotulo info={"Subtópico"} />
+				</div>
+				<div>Preço: 30€</div>
+				<div>Classificação: 5e</div>
+				<div>
+					<Botao>Participar</Botao>
+				</div>
 			</section>
 		</article>
 	);

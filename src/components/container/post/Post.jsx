@@ -12,7 +12,7 @@ export function Post({ id, titulo, topico, utilizador_imagem, utilizador_nome, d
 					<Imagem src={imagem} className="card-img-top" />
 					<div className="card-body">
 						<div className="mb-2">
-							<PequenoPerfil imagem={utilizador_imagem} nome={utilizador_nome} data={date} />
+							<PequenoPerfil id={id} imagem={utilizador_imagem} nome={utilizador_nome} data={date} />
 						</div>
 						<Texto size={COMMON_SIZES.FS2} className="line-limit-text">
 							{titulo}

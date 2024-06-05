@@ -39,10 +39,6 @@ export function ControlosInteracao() {
 				<Classificacao />
 				<Texto size={COMMON_SIZES.FS4}>{classificacao}</Texto>
 			</div>
-			<div className="d-flex align-items-center gap-2 post-icon">
-				<Icone iconName="ChatLeft" />
-				<Texto size={COMMON_SIZES.FS4}>{comentarios}</Texto>
-			</div>
 		</div>
 	);
 }

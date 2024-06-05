@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import "./image-slider.css";
 import { BUTTON_VARIANTS } from "data/data";
+import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 
 export function ImageSlider({ images }) {
 	const [imagesArray, setimagesArray] = useState([]);
@@ -39,7 +40,9 @@ export function ImageSlider({ images }) {
 				</Botao>
 				{imagesArray.map((image, index) => (
 					<div key={index} onClick={openSlide} style={{ display: index === currentImageIndex ? "flex" : "none" }}>
-						<Imagem src={image} className="image-slider-image" />
+						<ImagemModal imagemSelecionada={image}>
+							<Imagem src={image} className="image-slider-image" />
+						</ImagemModal>
 					</div>
 				))}
 				<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={nextSlide}>

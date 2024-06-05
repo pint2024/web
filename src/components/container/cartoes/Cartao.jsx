@@ -32,7 +32,7 @@ export function Cartao({
 		<Link className="main-cartao" to={route} onClick={handleClick} id={id}>
 			<div className="card active cartao-corpo card-body">
 				<div className="d-flex">
-					<PequenoPerfil imagem={imagem} nome={utilizador} data={date} />
+					<PequenoPerfil id={id} imagem={imagem} nome={utilizador} data={date} />
 				</div>
 				<div className="cartao-corpo-titulo" title={titulo}>
 					<Texto size={COMMON_SIZES.FS3} className="card-title-header">
