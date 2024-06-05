@@ -8,6 +8,10 @@ import { PaginaInicial } from "pages/PaginaInicial";
 import { ConteudoDetalhe } from "pages/conteudo/detalhe/ConteudoDetalhe";
 import { ContaEditar } from "pages/conta/editar/ContaEditar";
 import { Temporary } from "layouts/errors/Temporary";
+import { RevisaoConteudo } from "pages/dashboard/revisao/conteudo/RevisaoConteudo";
+import { Denuncia } from "pages/dashboard/denuncia/Denuncia";
+import { RevisaoComentario } from "pages/dashboard/revisao/comentario/RevisaoComentario";
+import { Botao } from "components";
 
 export class Routes {
 	static InicialRoutes = [
@@ -130,12 +134,12 @@ export class Routes {
 				{
 					title: "Tabelas",
 					path: "/tabelas",
-					element: <Temporary />,
+					element: <Temporary><Botao route="utilizador">utilizador</Botao></Temporary>,
 					perfis: [],
 					children: [
 						{
-							title: "x",
-							path: "/x",
+							title: "tilizador",
+							path: "/utilizador",
 							element: <Temporary />,
 							perfis: [],
 						},
@@ -158,19 +162,19 @@ export class Routes {
 				{
 					title: "Revisões",
 					path: "/revisoes",
-					element: <Temporary />,
+					element: <Temporary><Botao route="conteudo">conteudo</Botao><Botao route="comentario">comentario</Botao></Temporary>,
 					perfis: [],
 					children: [
 						{
 							title: "Conteudo",
 							path: "/conteudo",
-							element: <Temporary />,
+							element: <RevisaoConteudo />,
 							perfis: [],
 						},
 						{
 							title: "Comentário",
 							path: "/comentario",
-							element: <Temporary />,
+							element: <RevisaoComentario />,
 							perfis: [],
 						},
 					],
@@ -178,7 +182,7 @@ export class Routes {
 				{
 					title: "Denuncias",
 					path: "/denuncias",
-					element: <Temporary />,
+					element: <Denuncia />,
 					perfis: [],
 					children: [
 						{

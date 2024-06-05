@@ -6,7 +6,11 @@ import { Icone } from "components/index";
 const MenuItems = ({ items, depthLevel }) => {
 	const [dropdown, setDropdown] = useState(false);
 	const location = useLocation();
+	const urlParams = location.pathname.split("/"); // Divide a URL em partes usando a barra como delimitador
+	const firstParam = urlParams[1]; // Obtém o primeiro parâmetro da URL
 	let ref = useRef();
+
+	console.log(urlParams, firstParam, items.route);
 
 	useEffect(() => {
 		const handler = (event) => {
@@ -38,7 +42,7 @@ const MenuItems = ({ items, depthLevel }) => {
 		dropdown && setDropdown(false);
 	};
 
-	const isSelected = location.pathname === items.route;
+	const isSelected = `/${firstParam}` === items.route;
 
 	return (
 		<li className="menu-items" ref={ref} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={closeDropdown}>

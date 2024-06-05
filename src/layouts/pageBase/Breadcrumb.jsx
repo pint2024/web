@@ -13,14 +13,9 @@ export function Breadcrumb() {
 			const pathnames = location.pathname.split("/").filter((path) => path !== "");
 			const breadcrumb = [];
 
-			console.log("1", pathnames);
-
 			for (const path of pathnames) {
-				console.log("2", path);
 				const route = findRouteByPath("/" + path);
-				console.log("3", route);
 				if (route) {
-				console.log("3", route);
 					breadcrumb.push(route);
 				}
 			}
