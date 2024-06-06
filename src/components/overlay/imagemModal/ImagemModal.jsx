@@ -44,7 +44,7 @@ export function ImagemModal({ imagemSelecionada, description, children }) {
 						</Texto>
 					</div>
 					<Icone iconName="ArrowRight" type={COMMON_TYPES.INVERSO} className="arrow-right" />
-					<Icone iconName="X" type={COMMON_TYPES.INVERSO} className="close" onClick={closeModal} />
+					<Icone iconName="XLg" type={COMMON_TYPES.INVERSO} className="close" onClick={closeModal} />
 				</div>
 			)}
 		</>

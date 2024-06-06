@@ -59,15 +59,11 @@
 	position: absolute;
 	top: 15px;
 	right: 35px;
-	color: #f1f1f1;
-	font-size: 40px;
-	font-weight: bold;
-	transition: 0.3s;
 }
 
 .close:hover,
 .close:focus {
-	color: #bbb;
+	color: var(--WHITE-HOVER);
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -91,7 +87,7 @@
 	z-index: var(--POPUP-BACKGROUND);
 	animation: blurBackground 1s ease 0s forwards;
 }
-
+/*
 @keyframes blurBackground {
 	0% {
 		backdrop-filter: blur(0);
@@ -100,7 +96,7 @@
 		backdrop-filter: blur(10px);
 	}
 }
-
+*/
 .modal-content {
 	padding: 20px;
 	border-radius: 10px;

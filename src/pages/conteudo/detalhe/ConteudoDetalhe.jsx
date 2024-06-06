@@ -36,49 +36,56 @@ export function ConteudoDetalhe() {
 	const galeria = [Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4];
 
 	return (
-		<article className="AtividadeDetalhe" id={data.id}>
-			<section className="conteudo-detalhe-conteudo">
-				<div className="conteudo-detalhe-info">
-					<PequenoPerfil id={data.id} imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
-				</div>
-				<div className="conteudo-detalhe-titulo">
-					<Texto size={COMMON_SIZES.FS3} className="">
-						{data.titulo}
-					</Texto>
-				</div>
-				<div className="imagem-container">
-					<ImagemModal imagemSelecionada={data.imagem} description={data.titulo}>
-						<Imagem src={data.imagem} className="conteudo-detalhe-imagem" style={{ objectFit: "cover" }} />
-					</ImagemModal>
-				</div>
-				<div className="conteudo-detalhe-descricao">
-					<Texto className="">{data.descricao}</Texto>
-				</div>
-				<div className="conteudo-detalhe-botoes"></div>
-				<div className="conteudo-detalhe-interacoes">
-					<Album imagens={galeria} />
-					<ControlosInteracao />
-					<div className="d-flex gap-2 mt-2">
-						<Botao>Adicionar Imagem</Botao>
-						<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
-						<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
+		<>
+			<div className="AtividadeDetalhe" id={data.id}>
+				<section className="conteudo-detalhe-conteudo">
+					<div className="conteudo-detalhe-info">
+						<PequenoPerfil id={data.id} imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
 					</div>
-				</div>
-				<div>
+					<div className="conteudo-detalhe-titulo">
+						<Texto size={COMMON_SIZES.FS3} className="">
+							{data.titulo}
+						</Texto>
+					</div>
+					<div className="imagem-container">
+						<ImagemModal imagemSelecionada={data.imagem} description={data.titulo}>
+							<Imagem src={data.imagem} className="conteudo-detalhe-imagem" style={{ objectFit: "cover" }} />
+						</ImagemModal>
+					</div>
+					<div className="conteudo-detalhe-descricao">
+						<Texto className="">{data.descricao}</Texto>
+					</div>
+					<div className="conteudo-detalhe-botoes"></div>
+				</section>
+				<section className="conteudo-detalhe-informacoes">
+					<div className="gap-2 d-flex mt-3 mb-2">
+						<Rotulo info={"Tipo de Conteudo"} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
+						<Rotulo info={"Tópico"} />
+						<Rotulo info={"Subtópico"} />
+					</div>
+					<div>Preço: 30€</div>
+					<div>Classificação: 5e</div>
+					<div>
+						<Botao>Participar</Botao>
+					</div>
+					<div className="mt-3">
+						<Album imagens={galeria} />
+					</div>
+				</section>
+			</div>
+			<div className="conteudo-detalhe-interacoes">
+				<section>
+					<ControlosInteracao />
+				</section>
+				<section className="d-flex gap-2 mt-2">
+					<Botao>Adicionar Imagem</Botao>
+					<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
+					<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
+				</section>
+				<section>
 					<ComentarioSeccao />
-				</div>
-			</section>
-			<section className="conteudo-detalhe-informacoes">
-				<div className="gap-2 d-flex mt-3 mb-2">
-					<Rotulo info={"Tipo de Conteudo"} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
-					<Rotulo info={"Subtópico"} />
-				</div>
-				<div>Preço: 30€</div>
-				<div>Classificação: 5e</div>
-				<div>
-					<Botao>Participar</Botao>
-				</div>
-			</section>
-		</article>
+				</section>
+			</div>
+		</>
 	);
 }
