@@ -36,6 +36,7 @@ export const COMMON_TYPES = Object.freeze({
 });
 
 export const COMMON_SIZES = Object.freeze({
+    FSm1: "m1",
     FS0: 0,
     FS1: 1,
     FS2: 2,

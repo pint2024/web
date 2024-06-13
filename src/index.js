@@ -7,7 +7,7 @@ import App from "./App";
 
 /// Providers
 import { ToastContainer } from "react-toastify";
-import { LoadingProvider } from "hooks/useLoading";
+import { LoadingProvider } from "context/loadingContext";
 import { AutenticacaoProvider } from "hooks/useAutenticacao";
 import { render } from "react-dom";
 

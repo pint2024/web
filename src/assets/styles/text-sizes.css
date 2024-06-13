@@ -46,3 +46,10 @@
 	font-size: 13px;
 	line-height: 1.0;
 }
+
+.text-size-m1 {
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10px;
+	line-height: 1.0;
+}

@@ -16,6 +16,11 @@ export class DateUtils {
 		};
 	}
 
+	static MesNome_Ano(data) {
+		const formatedDate = this.DataCompleta(data);
+		return `${formatedDate.mesNome} de ${formatedDate.ano}`
+	}
+
 	static DiffDatas(data1, data2 = new Date()) {
 		const dataObj1 = new Date(data1);
 		const dataObj2 = new Date(data2);

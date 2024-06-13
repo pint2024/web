@@ -4,8 +4,15 @@ import Placeholder from "assets/images/placeholder.png";
 import Image from "assets/images/user-default.png";
 import "./conteudo-seccoes.css";
 import { COMMON_SIZES } from "data/data";
+import { useEffect, useState } from "react";
 
-export function ConteudoSeccoes({ titulo, routeTo }) {
+export function ConteudoSeccoes({ titulo, routeTo, data }) {
+	const [dataConteudo, setdataConteudo] = useState([]);
+
+	useEffect(() => {
+		setdataConteudo(data);
+	}, []);
+
 	return (
 		<article className="mt-4">
 			<Navegar to={routeTo} className="navegar">
@@ -15,55 +22,17 @@ export function ConteudoSeccoes({ titulo, routeTo }) {
 				</div>
 			</Navegar>
 			<div className="d-flex gap-4 horizontal-cards">
-				<Post
-					id={1}
-					titulo={PLACEHOLDER_TITLE + PLACEHOLDER_TITLE + PLACEHOLDER_TITLE}
-					topico={"Desporto"}
-					utilizador_imagem={Image}
-					utilizador_nome={"Lucas Sebastião"}
-					date={"25/04/2024"}
-					imagem={Placeholder}
-				/>
-
-				<Post
-					id={1}
-					titulo={PLACEHOLDER_TITLE + PLACEHOLDER_TITLE + PLACEHOLDER_TITLE}
-					topico={"Desporto"}
-					utilizador_imagem={Image}
-					utilizador_nome={"Lucas Sebastião"}
-					date={"25/04/2024"}
-					imagem={Placeholder}
-				/>
-
-				<Post
-					id={1}
-					titulo={PLACEHOLDER_TITLE + PLACEHOLDER_TITLE + PLACEHOLDER_TITLE}
-					topico={"Desporto"}
-					utilizador_imagem={Image}
-					utilizador_nome={"Lucas Sebastião"}
-					date={"25/04/2024"}
-					imagem={Placeholder}
-				/>
-
-				<Post
-					id={1}
-					titulo={PLACEHOLDER_TITLE + PLACEHOLDER_TITLE + PLACEHOLDER_TITLE}
-					topico={"Desporto"}
-					utilizador_imagem={Image}
-					utilizador_nome={"Lucas Sebastião"}
-					date={"25/04/2024"}
-					imagem={Placeholder}
-				/>
-
-				<Post
-					id={1}
-					titulo={PLACEHOLDER_TITLE + PLACEHOLDER_TITLE + PLACEHOLDER_TITLE}
-					topico={"Desporto"}
-					utilizador_imagem={Image}
-					utilizador_nome={"Lucas Sebastião"}
-					date={"25/04/2024"}
-					imagem={Placeholder}
-				/>
+				{dataConteudo?.map((item) => (
+					<Post
+						id={item.id}
+						titulo={item.titulo}
+						topico={item.conteudo_subtopico.area}
+						utilizador_imagem={item.conteudo_utilizador.imagem}
+						utilizador_nome={item.conteudo_utilizador.nome + " " + item.conteudo_utilizador.sobrenome}
+						date={item.data_criacao}
+						imagem={Placeholder} //item.imagem
+					/>
+				))}
 			</div>
 		</article>
 	);
