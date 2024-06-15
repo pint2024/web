@@ -91,8 +91,8 @@ export function ConteudoDetalhe() {
 					</div>
 					{dataDetalhe.preco && <div>Preço: {dataDetalhe.preco}</div>}
 					{dataDetalhe.classificacao && <div>Classificação: {dataDetalhe.classificacao}</div>}
-					{dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE ||
-					dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO ? (
+					{dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
+					dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID ? (
 						<div>
 							<Botao>Participar</Botao>
 						</div>

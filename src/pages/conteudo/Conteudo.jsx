@@ -9,17 +9,47 @@ import { EnumConstants } from "data/enum.constants";
 
 export function Conteudo() {
 	const [dataConteudo, setdataConteudo] = useState(null);
-	const { startLoading, stopLoading } = useCarregando();
+	const [dataTopicos, setdataTopicos] = useState(null);
+	const [selectedTopico, setselectedTopico] = useState(null);
+	const { startLoading, stopLoading, isLoading } = useCarregando();
 
 	useEffect(() => {
 		const fetchConteudoData = async () => {
 			startLoading();
-			const data = await Request.listar("tipo");
-			setdataConteudo(data);
-			stopLoading();
+
+			try {
+				const data = await Request.listar("tipo");
+				if (selectedTopico) {
+					const filteredData = data.map((tipo) => ({
+						...tipo,
+						conteudo_tipo: tipo.conteudo_tipo.filter(
+							(conteudo) => conteudo.conteudo_subtopico.id === selectedTopico.id
+						),
+					}));
+					console.log(filteredData);
+					setdataConteudo(filteredData);
+				} else {
+					setdataConteudo(data);
+				}
+			} catch (error) {
+				console.error("Erro ao buscar dados de conteúdo:", error);
+			} finally {
+				stopLoading();
+			}
+		};
+		fetchConteudoData();
+	}, [selectedTopico]);
+
+	useEffect(() => {
+		const fetchConteudoData = async () => {
+			startLoading();
+			const data = await Request.listar("topico");
+			setdataTopicos(data);
 		};
 		fetchConteudoData();
 	}, []);
+
+	if (!dataConteudo || !dataTopicos) return;
 
 	const getTipoById = (id) => {
 		for (let item of dataConteudo) {
@@ -30,7 +60,30 @@ export function Conteudo() {
 		return null;
 	};
 
-	if (!dataConteudo) return;
+	const existsTipo = (tipoId) => {
+		for (let item of dataConteudo) {
+			if (item.id === tipoId) {
+				console.log("asd", item.conteudo_tipo);
+				if (item.conteudo_tipo !== null && item.conteudo_tipo.length > 0) {
+					return true;
+				}
+			}
+		}
+		return false;
+	};
+
+	const formatArrayForComboBox = dataTopicos.map((item) => {
+		return {
+			id: item.id,
+			section: item.topico,
+			options: item.subtopico_topico.map((subItem) => {
+				return {
+					id: subItem.id,
+					label: subItem.area,
+				};
+			}),
+		};
+	});
 
 	return (
 		<div>
@@ -38,10 +91,10 @@ export function Conteudo() {
 				<div>
 					<Dropdown
 						items={[
-							{ nome: "Evento", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.EVENTO}` },
-							{ nome: "Atividade", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.ATIVIDADE}` },
-							{ nome: "Recomendação", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO}` },
-							{ nome: "Espaço", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.ESPACO}` },
+							{ nome: "Evento", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.EVENTO.ID}` },
+							{ nome: "Atividade", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID}` },
+							{ nome: "Recomendação", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO.ID}` },
+							{ nome: "Espaço", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.ESPACO.ID}` },
 						]}
 					>
 						<Botao>
@@ -51,18 +104,31 @@ export function Conteudo() {
 					</Dropdown>
 				</div>
 				<div className="d-flex justify-content-end gap-3">
-					<ComboBox placeholder="Centros" options={ORDER_OPTIONS} />
-					<ComboBoxSections items={TOPICOS_OPTIONS} />
+					<ComboBoxSections items={formatArrayForComboBox} handleChange={setselectedTopico} />
 				</div>
 			</section>
 			<section>
-				<ConteudoSeccoes titulo={"Espaços"} routeTo={"espacos"} data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ESPACO)} />
-				<ConteudoSeccoes titulo={"Atividades"} routeTo={"atividades"} data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ATIVIDADE)} />
-				<ConteudoSeccoes titulo={"Eventos"} routeTo={"eventos"} data={getTipoById(EnumConstants.CONTEUDO_TIPOS.EVENTO)} />
+				{existsTipo && (
+					<ConteudoSeccoes
+						titulo={"Espaços"}
+						routeTo={"tipo/espacos"}
+						data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ESPACO.ID)}
+					/>
+				)}
+				<ConteudoSeccoes
+					titulo={"Atividades"}
+					routeTo={"tipo/atividades"}
+					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID)}
+				/>
+				<ConteudoSeccoes
+					titulo={"Eventos"}
+					routeTo={"tipo/eventos"}
+					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.EVENTO.ID)}
+				/>
 				<ConteudoSeccoes
 					titulo={"Recomendações"}
-					routeTo={"recomendacoes"}
-					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO)}
+					routeTo={"tipo/recomendacoes"}
+					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO.ID)}
 				/>
 			</section>
 		</div>

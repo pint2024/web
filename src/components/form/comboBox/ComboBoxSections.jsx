@@ -2,89 +2,13 @@ import { Texto } from "components";
 import { COMMON_SIZES } from "data/data";
 import React, { useEffect, useRef, useState } from "react";
 
-export function ComboBoxSections({ items, placeholder = "Escolha uma opção" }) {
+export function ComboBoxSections({ handleChange, items, placeholder = "Escolha uma opção" }) {
 	const [selectedItem, setSelectedItem] = useState("");
 	const [isOpen, setIsOpen] = useState(false);
 	const comboBoxRef = useRef(null);
 
-	/*
-	const items = [
-		{
-			id: 1,
-			section: "Fruits",
-			options: [
-				{
-					id: 1,
-					label: "Apple",
-				},
-				{
-					id: 2,
-					label: "Banana",
-				},
-				{
-					id: 3,
-					label: "Orange",
-				},
-			],
-		},
-		{
-			id: 2,
-			section: "Vegetables",
-			options: [
-				{
-					id: 1,
-					label: "Carrot",
-				},
-				{
-					id: 2,
-					label: "Lettuce",
-				},
-				{
-					id: 3,
-					label: "Tomato",
-				},
-			],
-		},
-		{
-			id: 3,
-			section: "Vegetables",
-			options: [
-				{
-					id: 1,
-					label: "Carrot",
-				},
-				{
-					id: 2,
-					label: "Lettuce",
-				},
-				{
-					id: 3,
-					label: "Tomato",
-				},
-			],
-		},
-		{
-			id: 4,
-			section: "Vegetables",
-			options: [
-				{
-					id: 1,
-					label: "Carrot",
-				},
-				{
-					id: 2,
-					label: "Lettuce",
-				},
-				{
-					id: 3,
-					label: "Tomato",
-				},
-			],
-		},
-	];
-	*/
-
 	const handleSelect = (item) => {
+		handleChange({id: item.id, label: item.label});
 		setSelectedItem(item.label);
 		setIsOpen(false);
 	};
@@ -106,7 +30,6 @@ export function ComboBoxSections({ items, placeholder = "Escolha uma opção" })
 		combobox: {
 			width: "250px",
 			position: "relative",
-			fontFamily: "Arial, sans-serif",
 		},
 		selectedItem: {
 			padding: "10px",

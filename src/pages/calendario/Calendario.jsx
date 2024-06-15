@@ -25,7 +25,7 @@ export function Calendario() {
 			startLoading();
 			try {
 				const data = await Request.listar("conteudo", {
-					tipo: [EnumConstants.CONTEUDO_TIPOS.ATIVIDADE, EnumConstants.CONTEUDO_TIPOS.EVENTO],
+					tipo: [EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID, EnumConstants.CONTEUDO_TIPOS.EVENTO.ID],
 				});
 				setdataEventos(data);
 			} catch (error) {

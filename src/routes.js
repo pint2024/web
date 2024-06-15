@@ -12,6 +12,7 @@ import { RevisaoConteudo } from "pages/dashboard/revisao/conteudo/RevisaoConteud
 import { Denuncia } from "pages/dashboard/denuncia/Denuncia";
 import { RevisaoComentario } from "pages/dashboard/revisao/comentario/RevisaoComentario";
 import { Botao } from "components";
+import { ConteudoTipoListagem } from "pages/conteudo/ConteudoTipoListagem";
 
 export class Routes {
 	static InicialRoutes = [
@@ -31,30 +32,6 @@ export class Routes {
 			perfis: [],
 			children: [
 				{
-					title: "Atividades",
-					path: "/atividades",
-					element: <ConteudoCriar />,
-					perfis: [],
-				},
-				{
-					title: "Eventos",
-					path: "/eventos",
-					element: <ConteudoCriar />,
-					perfis: [],
-				},
-				{
-					title: "Recomendações",
-					path: "/recomendacoes",
-					element: <ConteudoCriar />,
-					perfis: [],
-				},
-				{
-					title: "Espaços",
-					path: "/espacos",
-					element: <ConteudoCriar />,
-					perfis: [],
-				},
-				{
 					title: "Criar",
 					path: "/criar/:id",
 					element: <ConteudoCriar />,
@@ -64,6 +41,12 @@ export class Routes {
 					title: "Detalhe",
 					path: "/:id",
 					element: <ConteudoDetalhe />,
+					perfis: [],
+				},
+				{
+					title: "Tipo",
+					path: "/tipo/:tipo",
+					element: <ConteudoTipoListagem />,
 					perfis: [],
 				},
 			],

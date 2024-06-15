@@ -11,7 +11,7 @@ export function ConteudoSeccoes({ titulo, routeTo, data }) {
 
 	useEffect(() => {
 		setdataConteudo(data);
-	}, []);
+	}, [data]);
 
 	return (
 		<article className="mt-4">
