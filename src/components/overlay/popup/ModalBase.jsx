@@ -13,7 +13,7 @@ export function ModalBase({ headerTitle, headerInfo, headerIcons, children, foot
 			className={`modal-modalbase ${className}`}
 			aria-hidden="true"
 		>
-			<div style={{ maxHeight: "94vh", overflowY: "auto" }}>
+			<div>
 				<Modal.Body>
 					<section className="modalbase-header d-flex justify-content-between">
 						<div>{headerInfo}</div>

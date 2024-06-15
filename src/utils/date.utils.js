@@ -50,8 +50,8 @@ export class DateUtils {
 
 		if (diff.ano > 0) return `${dataCriacao.mesNome} de ${dataCriacao.ano}`;
 		else if (diff.mes > 0 || diff.dia > 0) return `${dataCriacao.dia} de ${dataCriacao.mesNome}`;
-		else if (diff.hora > 0) return `${diff.hora}h`;
-		else if (diff.minuto > 0) return `${diff.minuto}m`;
-		else if (diff.segundo > 0) return `${diff.segundo}s`;
+		else if (diff.hora > 0) return `à ${diff.hora}h`;
+		else if (diff.minuto > 0) return `à ${diff.minuto}m`;
+		else if (diff.segundo > 0) return `à ${diff.segundo}s`;
 	}
 }

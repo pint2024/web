@@ -5,7 +5,11 @@ import { BUTTON_VARIANTS } from "data/data";
 
 export function Confirmacao({ title = "Título da Confirmação", body = "Corpo da Confirmação", onSuccess, onClose }) {
 	const handleSuccessClick = () => {
-		onSuccess();
+		try {
+			onSuccess();
+		} catch (e) {
+			console.error("<Confirmacao/> | onSucess() is not a function!");
+		}
 		onClose();
 	};
 
@@ -31,4 +35,4 @@ export function Confirmacao({ title = "Título da Confirmação", body = "Corpo 
 			</ModalBase>
 		</section>
 	);
-};
+}

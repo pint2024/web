@@ -35,7 +35,7 @@ export function ImagemModal({ imagemSelecionada, description, children }) {
 			{isOpen && (
 				<div className="modal-overlay" onClick={closeModal}>
 					<Icone iconName="ArrowLeft" type={COMMON_TYPES.INVERSO} className="arrow-left" />
-					<div className="modal-content" onClick={(e) => e.stopPropagation()}>
+					<div className="modal-conteudo" onClick={(e) => e.stopPropagation()}>
 						<div className="modal-navigation">
 							<Imagem src={imagemSelecionada} alt={description} className="modal-image" />
 						</div>

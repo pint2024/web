@@ -9,16 +9,6 @@ export const usePopup = () => {
 	const [puBody, setpuBody] = useState(null);
 	const [puFooter, setpuFooter] = useState(null);
 
-	useEffect(() => {
-		puSet({
-			headerTitle: puHeaderTitle,
-			headerInfo: puHeaderInfo,
-			headerIcons: puHeaderIcons,
-			body: puBody,
-			footer: puFooter,
-		});
-	}, [puHeaderTitle, puHeaderInfo, puHeaderIcons, puBody, puFooter]);
-
 	const puOpen = () => {
 		setpuIsOpen(true);
 	};
@@ -33,6 +23,7 @@ export const usePopup = () => {
 	};
 
 	const puSet = ({ footer, body, headerTitle, headerInfo, headerIcons }) => {
+		puClear();
 		setpuHeaderInfo(headerInfo);
 		setpuHeaderTitle(headerTitle);
 		setpuHeaderIcons(headerIcons);

@@ -21,7 +21,7 @@
 	background-color: rgba(0, 0, 0, 0.9);
 }
 
-.modal-content {
+.modal-conteudo {
 	margin: auto;
 	display: block;
 	width: 80%;
@@ -39,7 +39,7 @@
 	height: 150px;
 }
 
-.modal-content,
+.modal-conteudo,
 #caption {
 	animation-name: zoom;
 	animation-duration: 0.6s;
@@ -69,7 +69,7 @@
 }
 
 @media only screen and (max-width: 700px) {
-	.modal-content {
+	.modal-conteudo {
 		width: 100%;
 	}
 }
@@ -97,7 +97,7 @@
 	}
 }
 */
-.modal-content {
+.modal-conteudo {
 	padding: 20px;
 	border-radius: 10px;
 	position: relative;

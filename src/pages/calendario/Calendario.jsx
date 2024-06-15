@@ -4,136 +4,124 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-import { usePopup } from "hooks/usePopup";
-import { Link, useNavigate } from "react-router-dom";
-
 import { DateUtils } from "utils/date.utils";
-import { Icone } from "components/index";
+import { useCarregando } from "hooks/useCarregando";
+import { Request } from "api";
+import { EnumConstants } from "data/enum.constants";
+import { useConfirmation } from "hooks/useConfirmation";
+import { usePopup } from "hooks/usePopup";
+import { Link } from "react-router-dom";
+import { Icone, Navegar, Texto } from "components";
 
 export function Calendario() {
-	const navigate = useNavigate();
 	const [firstDay, setfirstDay] = useState(1);
-	const { puOpen, puClose, puClear, setpuTitulo, setpuSubtitulo, setpuIcons, setpuBody, setpuFooter, puCreate } = usePopup();
-	const [dataReunioes, setDataReunioes] = useState("");
+	const [dataEventos, setdataEventos] = useState([]);
+	const { startLoading, stopLoading } = useCarregando();
+	const { conCreate, conSet, conClear, conOpen } = useConfirmation();
+	const { puCreate, puSet, puClear, puOpen } = usePopup();
 
 	useEffect(() => {
-		/*const fetchData = async () => {
-			const response = await listarRequest({ "/reuniao/listUtilizador", {id: 1} });
-			setDataReunioes(response.data.data);
+		const fetchConteudoData = async () => {
+			startLoading();
+			try {
+				const data = await Request.listar("conteudo", {
+					tipo: [EnumConstants.CONTEUDO_TIPOS.ATIVIDADE, EnumConstants.CONTEUDO_TIPOS.EVENTO],
+				});
+				setdataEventos(data);
+			} catch (error) {
+				console.error("Erro ao buscar eventos:", error);
+			} finally {
+				stopLoading();
+			}
 		};
-
-		fetchData();*/
+		fetchConteudoData();
 	}, []);
 
-	const events =
-		dataReunioes &&
-		dataReunioes?.map((evento) => {
-			if (evento === null) return null;
-			const dataInicio = DateUtils.DataRelativa(evento.data_inicio);
-			const dataFim = evento.data_fim ? DateUtils.DataCompleta(evento.data_fim) : dataInicio;
-			return {
+	if (!dataEventos) {
+		return <div>Carregando...</div>;
+	}
+
+	const formatEvents = () => {
+		if (!dataEventos) return [];
+		const eventos_array = [];
+		for (let evento of dataEventos) {
+			const dataInicio = DateUtils.DataCompleta(evento.data_evento);
+			const formattedDate = new Date(
+				dataInicio.ano,
+				dataInicio.mes - 1,
+				dataInicio.dia,
+				dataInicio.hora,
+				dataInicio.minuto
+			);
+			eventos_array.push({
 				title: evento.titulo,
-				start: new Date(dataInicio.year, dataInicio.month, dataInicio.day, dataInicio.hour, dataInicio.minute),
-				end: new Date(dataFim.year, dataFim.month, dataFim.day, dataFim.hour, dataFim.minute),
+				start: formattedDate,
+				end: formattedDate,
 				key: evento.id,
 				data: evento,
-			};
-		});
-
-	const setEventData = (data) => {
-		setpuTitulo(data.reuniao_titulo);
-		setpuIcons(
-			<Link to={`/reunioes/${data.reuniao_id}`}>
-				<Icone iconName="expand" className="align-self-center" />
-			</Link>
-		);
-		setpuSubtitulo(
-			<div className="d-flex">
-				UTILIZADOR
-				<p>&nbsp;{"· " + DateUtils.DiffDatas(data.reuniao_datacriacao)}</p>
-			</div>
-		);
-		setpuBody(
-			<div>
-				<div className="gap-4">
-					<p> Hóra início: {DateUtils.DataRelativa(DateUtils.DataCompleta(data.reuniao_datainicio))}</p>
-					<p> Hora fim (expectado): {DateUtils.DataRelativa(DateUtils.DataCompleta(data.reuniao_datafim))} </p>
-					<p> Duração (expectada): {DateUtils.DataRelativa(data.reuniao_datainicio, data.reuniao_datafim)}</p>
-				</div>
-				<div>
-					<p>Local: {data.reuniao_local}</p>
-					<p>Descrição: {data.reuniao_assunto}</p>
-				</div>
-				<div className="mt-3">
-					<h4>Contactos</h4>
-					<div className="d-flex">
-						{data.reunutil_reun.map((user, index) => {
-							if (user.reunutil.utilizador_id === data.reun_util.utilizador_id) return null;
-							return (
-								<p>UTILIZADOR</p>
-							);
-						})}
-					</div>
-				</div>
-			</div>
-		);
+			});
+		}
+		console.log(eventos_array);
+		return eventos_array;
 	};
-
-	function handleEventDoubleClick(info) {
-		const data = info.event.extendedProps.data;
-		setEventData(data);
-		puOpen();
-	}
-
-	function handleDateDoubleClick(info) {
-		//// utilizar a confirmacao
-		/*Swal.fire({
-			title: "Criar reunião?",
-			text: "Você será redirecionado!",
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: "Confirmar",
-			cancelButtonText: "Cancelar",
-		}).then((result) => {
-			if (result.value) {
-				setTimeout(() => {
-					navigate(`/reunioes/criar?data-inicio=${info.dateStr}T09:00&data-fim=${info.dateStr}T10:00`);
-				}, 0);
-			}
-		});*/
-	}
-
-	function formatParsedDate(parsedDate) {
-		return `${parsedDate.year}-${parsedDate.month}-${parsedDate.day}T${parsedDate.hour}:${parsedDate.minute}`;
-	}
 
 	const handleDateSelect = (arg) => {
 		const { start, end } = arg;
-		const parsedDateStart = DateUtils.DataCompleta(start);
-		const parsedDateEnd = DateUtils.DataCompleta(end);
+		const formatedParsedDateStart = DateUtils.DataRelativa(start);
+		const formatedParsedDateEnd = DateUtils.DataRelativa(end);
+		console.log(formatedParsedDateStart, formatedParsedDateEnd);
+	};
 
-		const formatedParsedDateStart = formatParsedDate(parsedDateStart);
-		const formatedParsedDateEnd = formatParsedDate(parsedDateEnd);
+	const handleDateDoubleClick = (info) => {
+		conSet({
+			title: "ola",
+			body: "adeus",
+			onSuccess: null,
+		});
+		conOpen();
+	};
 
-		//// UTILIZAR CONFIRMACAO
-		/*Swal.fire({
-			title: "Criar reunião?",
-			text: "Você será redirecionado!",
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: "Confirmar",
-			cancelButtonText: "Cancelar",
-		}).then((result) => {
-			if (result.value) {
-				setTimeout(() => {
-					navigate(`/reunioes/criar?data-inicio=${formatedParsedDateStart}&data-fim=${formatedParsedDateEnd}`);
-				}, 0);
-			}
-		});*/
+	const setupPopup = (data) => {
+		console.log("k", data);
+		puClear();
+		puSet({
+			body: (
+				<div>
+					<div className="gap-4">
+						<Texto>Data do Evento: {DateUtils.DataRelativa(data.data_evento)}</Texto>
+						<Texto>Endereço: {data.endereco}</Texto>
+						<Texto className="mt-3">{data.descricao}</Texto>
+					</div>
+				</div>
+			),
+			headerTitle: (
+				<>
+					<div>{data.titulo}</div>
+					<div className="d-flex">
+						<Texto size={0}>
+							<Navegar to={`/conta/${data.conteudo_utilizador.id}`}>@{data.conteudo_utilizador.tag}</Navegar>
+							&nbsp;{"· " + DateUtils.DataRelativa(data.data_criacao)}
+						</Texto>
+					</div>
+				</>
+			),
+			headerIcons: (
+				<Link to={`/conteudos/${data.id}`}>
+					<Icone iconName="ArrowsAngleExpand" className="align-self-center" />
+				</Link>
+			),
+		});
+		puOpen();
+	};
+
+	const handleEventDoubleClick = (info) => {
+		const data = info.event.extendedProps.data;
+		setupPopup(data);
 	};
 
 	return (
-		<div className="fullcalendar-calendario content-height">
+		<div className="fullcalendar-calendario">
+			{conCreate()}
 			{puCreate()}
 			<div className="calendario-contentor">
 				<FullCalendar
@@ -147,7 +135,7 @@ export function Calendario() {
 					select={handleDateSelect}
 					dateClick={handleDateDoubleClick}
 					eventClick={handleEventDoubleClick}
-					events={events}
+					events={formatEvents()}
 					aspectRatio={3}
 					locale={"pt"}
 					firstDay={firstDay}
