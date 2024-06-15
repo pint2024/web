@@ -1,14 +1,14 @@
 import { Imagem } from "components/index";
 import "./comentario.css"
 
-export function Comentario({ imagem, comentario }) {
+export function Comentario({ utilizador, comentario }) {
 	return (
-		<div className="comentario" style={{ display: "flex" }}>
+		<div key={comentario.id} className="comentario" style={{ display: "flex" }}>
 			<div className="comentario-imagem">
-				<Imagem src={imagem} className="card-user-picture" />
+				<Imagem src={utilizador.imagem} className="card-user-picture" />
 			</div>
 			<div className="comentario-conteudo col" style={{ marginLeft: "8px" }}>
-				<div>{comentario}</div>
+				<div>{comentario.comentario}</div>
 			</div>
 		</div>
 	);

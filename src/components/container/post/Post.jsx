@@ -5,21 +5,21 @@ import "./post.css";
 import { COMMON_SIZES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 
-export function Post({ id, titulo, topico, utilizador_imagem, utilizador_nome, date, imagem }) {
+export function Post({ id, titulo, topico, utilizador, date, imagem }) {
 	return (
 		<article className="Post" id={id}>
 			<Link to={`${id}`}>
 				<div className="card" style={{ width: "16rem" }}>
-					<Imagem src={imagem} className="card-img-top" />
+					<Imagem src={imagem} className="card-img-top" style={{ height: "10rem", objectFit: "cover"  }} />
 					<div className="card-body">
 						<div className="mb-2">
 							<Rotulo info={topico} />
 						</div>
 						<div className="mb-2">
 							<PequenoPerfil
-								id={id}
-								imagem={utilizador_imagem}
-								nome={utilizador_nome}
+								id={utilizador.id}
+								imagem={utilizador.imagem}
+								nome={utilizador.nome + " " + utilizador.sobrenome}
 								data={DateUtils.DataRelativa(date)}
 							/>
 						</div>

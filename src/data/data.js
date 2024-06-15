@@ -161,10 +161,3 @@ export const TOPICOS_OPTIONS = [
 		],
 	},
 ];
-
-export const CONTEUDO_TIPOS = {
-	EVENTO: 1,
-	ATIVIDADE: 2,
-	RECOMENDACAO: 3,
-	ESPACO: 4,
-};

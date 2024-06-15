@@ -9,67 +9,96 @@ import Ex4 from "assets/images/examples/e-4.jpg";
 import Ex5 from "assets/images/examples/e-5.jpg";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
-import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES, CONTEUDO_TIPOS } from "data/data";
+import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
 import "./conteudo-detalhe.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { Classificacao } from "components/ui/controlosInterecao/classificacao/Classificacao";
+import { useCarregando } from "hooks/useCarregando";
+import { useParams } from "react-router-dom";
+import { Request } from "api";
+import { DateUtils } from "utils/date.utils";
+import { LabelError } from "layouts/labelWarnings/LabelError";
+import { EnumConstants } from "data/enum.constants";
+import { DBUtils } from "utils/db.utils";
 
 export function ConteudoDetalhe() {
-	const [data, setdata] = useState(0);
+	const [dataDetalhe, setdataDetalhe] = useState(null);
+	const { startLoading, stopLoading } = useCarregando();
+	const { id } = useParams();
 
 	useEffect(() => {
-		setdata({
-			id: "1",
-			titulo: PLACEHOLDER_TITLE + PLACEHOLDER_TITLE + PLACEHOLDER_TITLE,
-			descricao: PLACEHOLDER_TEXT + PLACEHOLDER_TEXT,
-			topico: "Desporto",
-			utilizador: "Lucas Sebastião",
-			date: "25/04/2024",
-			gostos: 10,
-			comentarios: 20,
-			imagem: Ex5,
-			utilizador_imagem: User,
-			tipo: 1,
-		});
+		const fetchConteudoData = async () => {
+			startLoading();
+			const data = await Request.obter("conteudo", id);
+			setdataDetalhe(data);
+			stopLoading();
+		};
+		fetchConteudoData();
 	}, []);
 
-	const galeria = [Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4, Ex1, Ex2, Ex3, Ex4];
+	if (!dataDetalhe) return;
+
+	const formatAlbumImages = () => {
+		const array_album = [];
+		for (let item of dataDetalhe.album_conteudo) {
+			console.log(item);
+			array_album.push(item.imagem);
+		}
+		return array_album;
+	};
 
 	return (
 		<>
-			<div className="AtividadeDetalhe" id={data.id}>
+			{DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) && <LabelError />}
+			<div className="AtividadeDetalhe" id={dataDetalhe.id}>
 				<section className="conteudo-detalhe-conteudo">
 					<div className="conteudo-detalhe-info">
-						<PequenoPerfil id={data.id} imagem={data.utilizador_imagem} nome={data.utilizador} data={data.date} />
+						<PequenoPerfil
+							id={dataDetalhe.conteudo_utilizador.id}
+							imagem={dataDetalhe.conteudo_utilizador.imagem}
+							nome={dataDetalhe.conteudo_utilizador.nome + " " + dataDetalhe.conteudo_utilizador.sobrenome}
+							data={DateUtils.DataRelativa(dataDetalhe.data_criacao)}
+						/>
 					</div>
 					<div className="conteudo-detalhe-titulo">
 						<Texto size={COMMON_SIZES.FS3} className="">
-							{data.titulo}
+							{dataDetalhe.titulo}
 						</Texto>
 					</div>
 					<div className="imagem-container">
-						<ImagemModal imagemSelecionada={data.imagem} description={data.titulo}>
-							<Imagem src={data.imagem} className="conteudo-detalhe-imagem" style={{ objectFit: "cover" }} />
+						<ImagemModal imagemSelecionada={dataDetalhe.imagem} description={dataDetalhe.titulo}>
+							<Imagem
+								src={dataDetalhe.imagem}
+								className="conteudo-detalhe-imagem"
+								style={{ objectFit: "cover" }}
+							/>
 						</ImagemModal>
 					</div>
 					<div className="conteudo-detalhe-descricao">
-						<Texto className="">{data.descricao}</Texto>
+						<Texto className="">{dataDetalhe.descricao}</Texto>
 					</div>
 					<div className="conteudo-detalhe-botoes"></div>
 				</section>
 				<section className="conteudo-detalhe-informacoes">
 					<div className="gap-2 d-flex mt-3 mb-2">
-						<Rotulo info={"Tipo de Conteudo"} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
-						<Rotulo info={"Tópico"} />
-						<Rotulo info={"Subtópico"} />
+						<Rotulo
+							info={dataDetalhe.conteudo_tipo.tipo}
+							backgroundColor={"gold"}
+							textColor={COMMON_TYPES.PRIMARIO}
+						/>
+						<Rotulo info={dataDetalhe.conteudo_subtopico.subtopico_topico.topico} />
+						<Rotulo info={dataDetalhe.conteudo_subtopico.area} />
 					</div>
-					<div>Preço: 30€</div>
-					<div>Classificação: 5e</div>
-					<div>
-						<Botao>Participar</Botao>
-					</div>
+					{dataDetalhe.preco && <div>Preço: {dataDetalhe.preco}</div>}
+					{dataDetalhe.classificacao && <div>Classificação: {dataDetalhe.classificacao}</div>}
+					{dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE ||
+					dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO ? (
+						<div>
+							<Botao>Participar</Botao>
+						</div>
+					) : null}
 					<div className="mt-3">
-						<Album imagens={galeria} />
+						<Album imagens={formatAlbumImages()} />
 					</div>
 				</section>
 			</div>
@@ -78,12 +107,12 @@ export function ConteudoDetalhe() {
 					<ControlosInteracao />
 				</section>
 				<section className="d-flex gap-2 mt-2">
-					<Botao>Adicionar Imagem</Botao>
+					<Botao>Adicionar ao Album</Botao>
 					<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
 					<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 				</section>
 				<section>
-					<ComentarioSeccao />
+					<ComentarioSeccao comentarios={dataDetalhe.comentario_conteudo} />
 				</section>
 			</div>
 		</>

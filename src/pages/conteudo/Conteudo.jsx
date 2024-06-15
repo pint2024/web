@@ -1,10 +1,11 @@
 import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
 import { ComboBox, Icone, Botao, Dropdown } from "components/index";
-import { CONTEUDO_TIPOS, ORDER_OPTIONS, TOPICOS_OPTIONS } from "data/data";
+import { ORDER_OPTIONS, TOPICOS_OPTIONS } from "data/data";
 import { ConteudoSeccoes } from "./ConteudoSeccoes";
 import { useEffect, useState } from "react";
 import { Request } from "api";
 import { useCarregando } from "hooks/useCarregando";
+import { EnumConstants } from "data/enum.constants";
 
 export function Conteudo() {
 	const [dataConteudo, setdataConteudo] = useState(null);
@@ -37,10 +38,10 @@ export function Conteudo() {
 				<div>
 					<Dropdown
 						items={[
-							{ nome: "Evento", rota: `criar/${CONTEUDO_TIPOS.EVENTO}` },
-							{ nome: "Atividade", rota: `criar/${CONTEUDO_TIPOS.ATIVIDADE}` },
-							{ nome: "Recomendação", rota: `criar/${CONTEUDO_TIPOS.RECOMENDACAO}` },
-							{ nome: "Espaço", rota: `criar/${CONTEUDO_TIPOS.ESPACO}` },
+							{ nome: "Evento", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.EVENTO}` },
+							{ nome: "Atividade", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.ATIVIDADE}` },
+							{ nome: "Recomendação", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO}` },
+							{ nome: "Espaço", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.ESPACO}` },
 						]}
 					>
 						<Botao>
@@ -55,13 +56,13 @@ export function Conteudo() {
 				</div>
 			</section>
 			<section>
-				<ConteudoSeccoes titulo={"Espaços"} routeTo={"espacos"} data={getTipoById(CONTEUDO_TIPOS.ESPACO)} />
-				<ConteudoSeccoes titulo={"Atividades"} routeTo={"atividades"} data={getTipoById(CONTEUDO_TIPOS.ATIVIDADE)} />
-				<ConteudoSeccoes titulo={"Eventos"} routeTo={"eventos"} data={getTipoById(CONTEUDO_TIPOS.EVENTO)} />
+				<ConteudoSeccoes titulo={"Espaços"} routeTo={"espacos"} data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ESPACO)} />
+				<ConteudoSeccoes titulo={"Atividades"} routeTo={"atividades"} data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ATIVIDADE)} />
+				<ConteudoSeccoes titulo={"Eventos"} routeTo={"eventos"} data={getTipoById(EnumConstants.CONTEUDO_TIPOS.EVENTO)} />
 				<ConteudoSeccoes
 					titulo={"Recomendações"}
 					routeTo={"recomendacoes"}
-					data={getTipoById(CONTEUDO_TIPOS.RECOMENDACAO)}
+					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO)}
 				/>
 			</section>
 		</div>

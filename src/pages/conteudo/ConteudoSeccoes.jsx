@@ -27,10 +27,9 @@ export function ConteudoSeccoes({ titulo, routeTo, data }) {
 						id={item.id}
 						titulo={item.titulo}
 						topico={item.conteudo_subtopico.area}
-						utilizador_imagem={item.conteudo_utilizador.imagem}
-						utilizador_nome={item.conteudo_utilizador.nome + " " + item.conteudo_utilizador.sobrenome}
+						utilizador={item.conteudo_utilizador}
 						date={item.data_criacao}
-						imagem={Placeholder} //item.imagem
+						imagem={item.imagem}
 					/>
 				))}
 			</div>
