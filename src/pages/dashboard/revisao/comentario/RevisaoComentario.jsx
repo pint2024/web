@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./revisao-comentario.css";
-
-const data = [
-	{ id: 1, data_criacao: "2024-06-05", motivo: "Lorem ipsum", estado: "Ativo", comentario: "Conteúdo" },
-	{ id: 2, data_criacao: "2024-06-04", motivo: "Dolor sit amet", estado: "Inativo", comentario: "Conteúdo" },
-	{ id: 3, data_criacao: "2024-06-03", motivo: "Consectetur adipiscing elit", estado: "Ativo", comentario: "Comentário" },
-];
+import { useCarregando } from "hooks/useCarregando";
+import { Request } from "api";
+import { Botao, Icone } from "components";
+import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
+import { EnumConstants } from "data/enum.constants";
+import { DateUtils } from "utils/date.utils";
 
 export function RevisaoComentario() {
+	const [dataConteudo, setdataConteudo] = useState(null);
+	const { startLoading, stopLoading } = useCarregando();
+
+	useEffect(() => {
+		fetchConteudoData();
+	}, []);
+
+	const fetchConteudoData = async () => {
+		startLoading();
+		const data = await Request.listar("revisao", { conteudo: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
+		setdataConteudo(data);
+		stopLoading();
+	};
+
+	if (!dataConteudo) return;
+
+	const handleRevisaoAprovada = async (id) => {
+		await Request.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
+		fetchConteudoData();
+	};
+
+	const handleRevisaoRejeitada = async (id) => {
+		await Request.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
+		fetchConteudoData();
+	};
+
 	return (
 		<table className="revisao-tabela">
 			<thead>
@@ -15,18 +41,39 @@ export function RevisaoComentario() {
 					<th>Motivo</th>
 					<th>Data de Criação</th>
 					<th>Estado</th>
-					<th>Comentário</th>
+					<th>Conteudo</th>
+					<th>Ações</th>
 				</tr>
 			</thead>
 			<tbody>
-				{data.map((item) => (
-					<tr key={item.id}>
-						<td>{item.motivo}</td>
-						<td>{item.data_criacao}</td>
-						<td>{item.estado}</td>
-						<td>{item.comentario}</td>
+				{dataConteudo ? (
+					dataConteudo.map((item) => (
+						<tr key={item.id}>
+							<td>{item.motivo}</td>
+							<td>{DateUtils.DataNormal(item.data_criacao)}</td>
+							<td>{item.revisao_estado.estado}</td>
+							<td>{item.revisao_comentario.comentario}</td>
+							<td>
+								<div className="d-flex gap-2">
+									<Botao onClick={() => handleRevisaoAprovada(item.id)} variant={BUTTON_VARIANTS.SUCESSO}>
+										<Icone iconName="Check" type={COMMON_TYPES.INVERSO} />
+									</Botao>
+
+									<Botao onClick={() => handleRevisaoRejeitada(item.id)} variant={BUTTON_VARIANTS.PERIGO}>
+										<Icone iconName="X" type={COMMON_TYPES.INVERSO} />
+									</Botao>
+									<Botao route={`/conteudos/${item.revisao_comentario.comentario_conteudo.id}`}>
+										<Icone iconName="ArrowRight" type={COMMON_TYPES.INVERSO} />
+									</Botao>
+								</div>
+							</td>
+						</tr>
+					))
+				) : (
+					<tr>
+						<td colSpan="4">Carregando...</td>
 					</tr>
-				))}
+				)}
 			</tbody>
 		</table>
 	);

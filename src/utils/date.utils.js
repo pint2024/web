@@ -1,24 +1,34 @@
 import { MONTH_NAME, WEEK_NAME } from "data/data";
 
 export class DateUtils {
+	static #padZero = (num) => {
+		return num < 10 ? `0${num}` : num;
+	};
+
 	static DataCompleta(data = new Date()) {
 		const dateObj = new Date(data);
+		const dia = DateUtils.#padZero(dateObj.getDate());
+		const mes = DateUtils.#padZero(dateObj.getMonth() + 1);
+		const hora = DateUtils.#padZero(dateObj.getHours());
+		const minuto = DateUtils.#padZero(dateObj.getMinutes());
+		const segundo = DateUtils.#padZero(dateObj.getSeconds());
+
 		return {
 			data: dateObj,
 			ano: dateObj.getFullYear(),
 			mesNome: MONTH_NAME[dateObj.getMonth()],
-			mes: dateObj.getMonth() + 1,
+			mes: mes, // Mesmo que já esteja formatado com dois dígitos
 			semana: WEEK_NAME[dateObj.getDay()],
-			dia: dateObj.getDate(),
-			hora: dateObj.getHours(),
-			minuto: dateObj.getMinutes(),
-			segundo: dateObj.getSeconds(),
+			dia: dia, // Formato com dois dígitos
+			hora: hora, // Formato com dois dígitos
+			minuto: minuto, // Formato com dois dígitos
+			segundo: segundo, // Formato com dois dígitos
 		};
 	}
 
 	static MesNome_Ano(data) {
 		const formatedDate = this.DataCompleta(data);
-		return `${formatedDate.mesNome} de ${formatedDate.ano}`
+		return `${formatedDate.mesNome} de ${formatedDate.ano}`;
 	}
 
 	static DiffDatas(data1, data2 = new Date()) {
@@ -53,5 +63,10 @@ export class DateUtils {
 		else if (diff.hora > 0) return `à ${diff.hora}h`;
 		else if (diff.minuto > 0) return `à ${diff.minuto}m`;
 		else if (diff.segundo > 0) return `à ${diff.segundo}s`;
+	}
+
+	static DataNormal(date) {
+		const dataCriacao = this.DataCompleta(date);
+		return `${dataCriacao.dia}/${dataCriacao.mes}/${dataCriacao.ano} ${dataCriacao.hora}:${dataCriacao.minuto}`;
 	}
 }

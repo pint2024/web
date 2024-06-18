@@ -1,7 +1,12 @@
 const navItems = [
 	{ title: "Conteudos", icon: "Star", selectedIcon: "StarFill", route: "/conteudos" },
 	{ title: "Calendário", icon: "Calendar", selectedIcon: "CalendarFill", route: "/calendario" },
-	{ title: "Dashboard", icon: "PersonBadge", selectedIcon: "PersonBadgeFill", route: "/dashboard" },
+	{
+		title: "Dashboard",
+		icon: "PersonBadge",
+		selectedIcon: "PersonBadgeFill",
+		route: "/dashboard",
+	},
 ];
 
 export const userItems = [

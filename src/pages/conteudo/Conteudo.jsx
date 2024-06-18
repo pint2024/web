@@ -60,18 +60,6 @@ export function Conteudo() {
 		return null;
 	};
 
-	const existsTipo = (tipoId) => {
-		for (let item of dataConteudo) {
-			if (item.id === tipoId) {
-				console.log("asd", item.conteudo_tipo);
-				if (item.conteudo_tipo !== null && item.conteudo_tipo.length > 0) {
-					return true;
-				}
-			}
-		}
-		return false;
-	};
-
 	const formatArrayForComboBox = dataTopicos.map((item) => {
 		return {
 			id: item.id,
