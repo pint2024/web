@@ -8,7 +8,7 @@ import { DateUtils } from "utils/date.utils";
 export function Post({ id, titulo, topico, utilizador, date, imagem }) {
 	return (
 		<article className="Post" id={id}>
-			<Link to={`${id}`}>
+			<Link to={`/conteudos/${id}`}>
 				<div className="card" style={{ width: "16rem" }}>
 					<Imagem src={imagem} className="card-img-top" style={{ height: "10rem", objectFit: "cover"  }} />
 					<div className="card-body">

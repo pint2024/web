@@ -1,18 +1,10 @@
 import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo } from "components/index";
-import { PLACEHOLDER_TEXT, PLACEHOLDER_TITLE } from "data/constants";
 import { useEffect, useState } from "react";
-import User from "assets/images/user-default.png";
-import Ex1 from "assets/images/examples/e-1.jpg";
-import Ex2 from "assets/images/examples/e-2.jpg";
-import Ex3 from "assets/images/examples/e-3.jpg";
-import Ex4 from "assets/images/examples/e-4.jpg";
-import Ex5 from "assets/images/examples/e-5.jpg";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
 import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
 import "./conteudo-detalhe.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
-import { Classificacao } from "components/ui/controlosInterecao/classificacao/Classificacao";
 import { useCarregando } from "hooks/useCarregando";
 import { useParams } from "react-router-dom";
 import { Request } from "api";
@@ -98,7 +90,7 @@ export function ConteudoDetalhe() {
 						</div>
 					) : null}
 					<div className="mt-3">
-						<Album imagens={formatAlbumImages()} />
+						<Album id={id} imagens={formatAlbumImages()} />
 					</div>
 				</section>
 			</div>
@@ -107,7 +99,6 @@ export function ConteudoDetalhe() {
 					<ControlosInteracao />
 				</section>
 				<section className="d-flex gap-2 mt-2">
-					<Botao>Adicionar ao Album</Botao>
 					<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
 					<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 				</section>

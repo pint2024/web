@@ -12,7 +12,7 @@ import { RevisaoConteudo } from "pages/dashboard/revisao/conteudo/RevisaoConteud
 import { Denuncia } from "pages/dashboard/denuncia/Denuncia";
 import { RevisaoComentario } from "pages/dashboard/revisao/comentario/RevisaoComentario";
 import { Botao } from "components";
-import { ConteudoTipoListagem } from "pages/conteudo/ConteudoTipoListagem";
+import { ConteudoTipoListagem } from "pages/conteudo/listagemByTipo/ConteudoTipoListagem";
 
 export class Routes {
 	static InicialRoutes = [

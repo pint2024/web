@@ -108,18 +108,17 @@ export function Conteudo() {
 				</div>
 			</section>
 			<section>
-				{existsTipo && (
-					<ConteudoSeccoes
-						titulo={"Espaços"}
-						routeTo={"tipo/espacos"}
-						data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ESPACO.ID)}
-					/>
-				)}
+				<ConteudoSeccoes
+					titulo={"Espaços"}
+					routeTo={"tipo/espacos"}
+					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ESPACO.ID)}
+				/>
 				<ConteudoSeccoes
 					titulo={"Atividades"}
 					routeTo={"tipo/atividades"}
 					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID)}
 				/>
+
 				<ConteudoSeccoes
 					titulo={"Eventos"}
 					routeTo={"tipo/eventos"}

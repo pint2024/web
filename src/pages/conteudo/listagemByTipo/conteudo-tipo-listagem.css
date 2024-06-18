@@ -1,0 +1,10 @@
+.post-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px; /* Espaçamento entre os posts */
+	justify-content: space-between; /* Distribui os posts igualmente */
+}
+
+.post-grid .Post {
+	margin-bottom: 10px;
+}

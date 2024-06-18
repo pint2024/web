@@ -5,6 +5,8 @@ import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import "./conteudo-tipo-listagem.css";
+
 export function ConteudoTipoListagem() {
 	const [dataTipo, setdataTipo] = useState(null);
 	const { startLoading, stopLoading } = useCarregando();
@@ -24,9 +26,10 @@ export function ConteudoTipoListagem() {
 
 	return (
 		<>
-			<div className="d-flex gap-4">
+			<div className="post-grid">
 				{dataTipo?.map((item) => (
 					<Post
+						key={item.id}
 						id={item.id}
 						titulo={item.titulo}
 						topico={item.conteudo_subtopico.area}
