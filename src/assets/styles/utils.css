@@ -32,8 +32,8 @@
 }
 
 .icon-hover:hover {
-	background-color: var(--WHITE-HOVER);
-	border-radius: 50%;
+	transform: scale(1.2);
+	color: var(--ACCENT);
 	cursor: pointer;
 }
 

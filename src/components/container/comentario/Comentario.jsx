@@ -1,5 +1,5 @@
 import { Imagem } from "components/index";
-import "./comentario.css"
+import "./comentario.css";
 
 export function Comentario({ utilizador, comentario }) {
 	return (
@@ -12,4 +12,4 @@ export function Comentario({ utilizador, comentario }) {
 			</div>
 		</div>
 	);
-};
+}

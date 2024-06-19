@@ -1,24 +1,23 @@
 import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
-import { ComboBox, Icone, Botao, Dropdown } from "components/index";
-import { ORDER_OPTIONS, TOPICOS_OPTIONS } from "data/data";
+import { Icone, Botao, Dropdown } from "components/index";
 import { ConteudoSeccoes } from "./ConteudoSeccoes";
 import { useEffect, useState } from "react";
-import { Request } from "api";
 import { useCarregando } from "hooks/useCarregando";
 import { EnumConstants } from "data/enum.constants";
+import { ApiRequest } from "api/apiRequest";
 
 export function Conteudo() {
 	const [dataConteudo, setdataConteudo] = useState(null);
 	const [dataTopicos, setdataTopicos] = useState(null);
 	const [selectedTopico, setselectedTopico] = useState(null);
-	const { startLoading, stopLoading, isLoading } = useCarregando();
+	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
 		const fetchConteudoData = async () => {
 			startLoading();
 
 			try {
-				const data = await Request.listar("tipo");
+				const data = await ApiRequest.listar("tipo");
 				if (selectedTopico) {
 					const filteredData = data.map((tipo) => ({
 						...tipo,
@@ -43,7 +42,7 @@ export function Conteudo() {
 	useEffect(() => {
 		const fetchConteudoData = async () => {
 			startLoading();
-			const data = await Request.listar("topico");
+			const data = await ApiRequest.listar("topico");
 			setdataTopicos(data);
 		};
 		fetchConteudoData();

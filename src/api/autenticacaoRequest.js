@@ -4,7 +4,7 @@ import { myAxios } from "./axios";
 import { Utils } from "utils/utils";
 
 export class AutenticacaoRequest {
-	async entrar(login, senha) {
+	static async entrar(login, senha) {
 		try {
 			const response = await myAxios({ url: "/autenticacao/entrar", method: "post", data: { login, senha } });
 			if (response.token) {
@@ -34,13 +34,12 @@ export class AutenticacaoRequest {
 			}
 		);*/
 	}
-	terminar_sessao() {
+	static terminar_sessao() {
 		localStorage.removeItem(AUTH_KEY);
 	}
-	async obterUtilizadorAtual() {
+	static async obterUtilizadorAtual() {
 		try {
 			const token = this.getToken();
-			console.log("token", token);
 			if (Utils.isEmpty(token)) return false;
 			const response = await myAxios({
 				url: "/autenticacao/obter",
@@ -91,7 +90,7 @@ export class AutenticacaoRequest {
 			}
 		);
 	}*/
-	getToken() {
+	static getToken() {
 		return JSON.parse(localStorage.getItem(AUTH_KEY));
 	}
 }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./revisao-comentario.css";
 import { useCarregando } from "hooks/useCarregando";
-import { Request } from "api";
 import { Botao, Icone } from "components";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { EnumConstants } from "data/enum.constants";
 import { DateUtils } from "utils/date.utils";
+import { ApiRequest } from "api/apiRequest";
 
 export function RevisaoComentario() {
 	const [dataConteudo, setdataConteudo] = useState(null);
@@ -17,7 +17,7 @@ export function RevisaoComentario() {
 
 	const fetchConteudoData = async () => {
 		startLoading();
-		const data = await Request.listar("revisao", { conteudo: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
+		const data = await ApiRequest.listar("revisao", { conteudo: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
 		setdataConteudo(data);
 		stopLoading();
 	};
@@ -25,12 +25,12 @@ export function RevisaoComentario() {
 	if (!dataConteudo) return;
 
 	const handleRevisaoAprovada = async (id) => {
-		await Request.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
+		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
 		fetchConteudoData();
 	};
 
 	const handleRevisaoRejeitada = async (id) => {
-		await Request.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
+		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
 		fetchConteudoData();
 	};
 

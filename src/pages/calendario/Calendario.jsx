@@ -6,12 +6,12 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 import { DateUtils } from "utils/date.utils";
 import { useCarregando } from "hooks/useCarregando";
-import { Request } from "api";
 import { EnumConstants } from "data/enum.constants";
 import { useConfirmation } from "hooks/useConfirmation";
 import { usePopup } from "hooks/usePopup";
 import { Link } from "react-router-dom";
 import { Icone, Navegar, Texto } from "components";
+import { ApiRequest } from "api/apiRequest";
 
 export function Calendario() {
 	const [firstDay, setfirstDay] = useState(1);
@@ -24,7 +24,7 @@ export function Calendario() {
 		const fetchConteudoData = async () => {
 			startLoading();
 			try {
-				const data = await Request.listar("conteudo", {
+				const data = await ApiRequest.listar("conteudo", {
 					tipo: [EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID, EnumConstants.CONTEUDO_TIPOS.EVENTO.ID],
 				});
 				setdataEventos(data);

@@ -5,8 +5,8 @@ import { BlocoEstatisticas } from "./BlocoEstatisticas";
 import { BlocoComentarios } from "./BlocoComentario";
 import { useEffect, useState } from "react";
 import { useCarregando } from "hooks/useCarregando";
-import { Request } from "api";
 import { useParams } from "react-router-dom";
+import { ApiRequest } from "api/apiRequest";
 
 export function Conta() {
 	const [dataConteudo, setdataConteudo] = useState(null);
@@ -16,7 +16,7 @@ export function Conta() {
 	useEffect(() => {
 		const fetchConteudoData = async () => {
 			startLoading();
-			const data = await Request.obter("utilizador", id);
+			const data = await ApiRequest.obter("utilizador", id);
 			setdataConteudo(data);
 			stopLoading();
 		};

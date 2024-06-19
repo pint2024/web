@@ -1,4 +1,3 @@
-import { Request } from "api";
 import { Post } from "components";
 import { EnumConstants } from "data/enum.constants";
 import { useCarregando } from "hooks/useCarregando";
@@ -6,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import "./conteudo-tipo-listagem.css";
+import { ApiRequest } from "api/apiRequest";
 
 export function ConteudoTipoListagem() {
 	const [dataTipo, setdataTipo] = useState(null);
@@ -15,7 +15,7 @@ export function ConteudoTipoListagem() {
 	useEffect(() => {
 		const fetchConteudoData = async () => {
 			startLoading();
-			const data = await Request.listar("conteudo", { tipo: EnumConstants.getTipoIdByRoute(tipo) });
+			const data = await ApiRequest.listar("conteudo", { tipo: EnumConstants.getTipoIdByRoute(tipo) });
 			setdataTipo(data);
 			stopLoading();
 		};

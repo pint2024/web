@@ -1,6 +1,6 @@
 import { myAxios } from "./axios";
 
-export class Request {
+export class ApiRequest {
 	static async atualizar(endpoint, id, data) {
 		try {
 			const url = `/${endpoint}/atualizar/${id}`;

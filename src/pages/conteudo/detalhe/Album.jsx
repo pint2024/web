@@ -3,7 +3,7 @@ import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
 import "./album.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { useState } from "react";
-import { Request } from "api";
+import { ApiRequest } from "api/apiRequest";
 
 export function Album({ id, imagens }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
@@ -18,9 +18,7 @@ export function Album({ id, imagens }) {
 	};
 
 	const handleAlbumAdd = async () => {
-		console.log("handleAlbumAdd");
-		console.log(newImagens);
-		await Request.criar("album", { conteudo: id, imagem: newImagens });
+		await ApiRequest.criar("album", { conteudo: id, imagem: newImagens });
 	};
 
 	const createPopupAddAlbum = () => {

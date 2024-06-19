@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useCarregando } from "hooks/useCarregando";
-import { Request } from "api";
 import { EnumConstants } from "data/enum.constants";
 import { RevisaoLinha } from "./RevisaoLinha";
+import { ApiRequest } from "api/apiRequest";
 
 export function RevisaoTabela() {
 	const [dataConteudo, setdataConteudo] = useState(null);
@@ -14,7 +14,7 @@ export function RevisaoTabela() {
 
 	const fetchConteudoData = async () => {
 		startLoading();
-		const data = await Request.listar("revisao", { conteudo: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
+		const data = await ApiRequest.listar("revisao", { conteudo: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
 		setdataConteudo(data);
 		stopLoading();
 	};
@@ -22,12 +22,12 @@ export function RevisaoTabela() {
 	if (!dataConteudo) return;
 
 	const handleRevisaoAprovada = async (id) => {
-		await Request.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
+		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
 		fetchConteudoData();
 	};
 
 	const handleRevisaoRejeitada = async (id) => {
-		await Request.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
+		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
 		fetchConteudoData();
 	};
 

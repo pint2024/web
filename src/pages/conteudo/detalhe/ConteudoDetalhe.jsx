@@ -1,4 +1,4 @@
-import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo } from "components/index";
+import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone } from "components/index";
 import { useEffect, useState } from "react";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
@@ -7,11 +7,11 @@ import "./conteudo-detalhe.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { useCarregando } from "hooks/useCarregando";
 import { useParams } from "react-router-dom";
-import { Request } from "api";
 import { DateUtils } from "utils/date.utils";
 import { LabelError } from "layouts/labelWarnings/LabelError";
 import { EnumConstants } from "data/enum.constants";
 import { DBUtils } from "utils/db.utils";
+import { ApiRequest } from "api/apiRequest";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
@@ -19,14 +19,15 @@ export function ConteudoDetalhe() {
 	const { id } = useParams();
 
 	useEffect(() => {
-		const fetchConteudoData = async () => {
-			startLoading();
-			const data = await Request.obter("conteudo", id);
-			setdataDetalhe(data);
-			stopLoading();
-		};
 		fetchConteudoData();
 	}, []);
+
+	const fetchConteudoData = async () => {
+		startLoading();
+		const data = await ApiRequest.obter("conteudo", id);
+		setdataDetalhe(data);
+		stopLoading();
+	};
 
 	if (!dataDetalhe) return;
 
@@ -37,6 +38,11 @@ export function ConteudoDetalhe() {
 			array_album.push(item.imagem);
 		}
 		return array_album;
+	};
+
+	const handleAddParticipante = async () => {
+		await ApiRequest.criar("participante", { utilizador: 1, conteudo: id });
+		fetchConteudoData();
 	};
 
 	return (
@@ -86,7 +92,7 @@ export function ConteudoDetalhe() {
 					{dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
 					dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID ? (
 						<div>
-							<Botao>Participar</Botao>
+							<Icone iconName={"BellFill"} className="icon-hover" onClick={handleAddParticipante} /> {/* arranjar maneira de se o utilizador tiver a participar mostrar o bell preenchido */}
 						</div>
 					) : null}
 					<div className="mt-3">
@@ -103,7 +109,7 @@ export function ConteudoDetalhe() {
 					<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 				</section>
 				<section>
-					<ComentarioSeccao comentarios={dataDetalhe.comentario_conteudo} />
+					<ComentarioSeccao id={id} />
 				</section>
 			</div>
 		</>
