@@ -12,6 +12,8 @@ import { LabelError } from "layouts/labelWarnings/LabelError";
 import { EnumConstants } from "data/enum.constants";
 import { DBUtils } from "utils/db.utils";
 import { ApiRequest } from "api/apiRequest";
+import { LabelInfo } from "layouts/labelWarnings/LabelInfo";
+import { LabelSucess } from "layouts/labelWarnings/LabelSucess";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
@@ -47,7 +49,8 @@ export function ConteudoDetalhe() {
 
 	return (
 		<>
-			{DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) && <LabelError />}
+			{DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) && <LabelError texto="Em revisão..." />}
+			{DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) && <LabelSucess texto="Você está inscrito!" />}
 			<div className="AtividadeDetalhe" id={dataDetalhe.id}>
 				<section className="conteudo-detalhe-conteudo">
 					<div className="conteudo-detalhe-info">
@@ -89,12 +92,6 @@ export function ConteudoDetalhe() {
 					</div>
 					{dataDetalhe.preco && <div>Preço: {dataDetalhe.preco}</div>}
 					{dataDetalhe.classificacao && <div>Classificação: {dataDetalhe.classificacao}</div>}
-					{dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
-					dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID ? (
-						<div>
-							<Icone iconName={"BellFill"} className="icon-hover" onClick={handleAddParticipante} /> {/* arranjar maneira de se o utilizador tiver a participar mostrar o bell preenchido */}
-						</div>
-					) : null}
 					<div className="mt-3">
 						<Album id={id} imagens={formatAlbumImages()} />
 					</div>
@@ -105,6 +102,15 @@ export function ConteudoDetalhe() {
 					<ControlosInteracao />
 				</section>
 				<section className="d-flex gap-2 mt-2">
+					{dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
+					dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID ? (
+						<div>
+							<Botao onClick={handleAddParticipante}>
+								{/* arranjar maneira de se o utilizador tiver a participar mostrar o bell preenchido */}
+								Participar
+							</Botao>
+						</div>
+					) : null}
 					<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
 					<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 				</section>
