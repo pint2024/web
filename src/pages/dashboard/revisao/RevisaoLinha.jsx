@@ -18,14 +18,16 @@ export function RevisaoLinha({
 			<td>{motivo}</td>
 			<td>
 				<Tooltip
-					content={<OverlayPerfil imagem={utilizador.imagem} nome={utilizador.nome} tag={`@${utilizador.tag}`} />}
+					content={<OverlayPerfil imagem={utilizador?.imagem} nome={utilizador?.nome} tag={`@${utilizador?.tag}`} />}
 				>
-					<Navegar to={`/conta/${utilizador.id}`}>@{utilizador.tag}</Navegar>
+					<Navegar to={`/conta/${utilizador?.id}`}>@{utilizador?.tag}</Navegar>
 				</Tooltip>
 			</td>
 			<td>{DateUtils.DataNormal(data_criacao)}</td>
 			<td>{estado}</td>
-			<td>{titulo}</td>
+			<td>
+				<Navegar to={`/conteudos/${id_conteudo}`}>{titulo}</Navegar>
+			</td>
 			<td>
 				<div className="d-flex gap-2">
 					<Botao onClick={() => handleAprovacao(id)} variant={BUTTON_VARIANTS.SUCESSO}>
@@ -34,9 +36,6 @@ export function RevisaoLinha({
 
 					<Botao onClick={() => handleRejeicao(id)} variant={BUTTON_VARIANTS.PERIGO}>
 						<Icone iconName="X" type={COMMON_TYPES.INVERSO} />
-					</Botao>
-					<Botao route={`/conteudos/${id_conteudo}`}>
-						<Icone iconName="ArrowRight" type={COMMON_TYPES.INVERSO} />
 					</Botao>
 				</div>
 			</td>

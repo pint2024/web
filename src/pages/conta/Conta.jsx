@@ -1,33 +1,49 @@
-import { BlocoPrincipal } from "./BlocoPrincipal";
-import { BlocoAtividade } from "./BlocoAtividade";
-import { BlocoEventos } from "./BlocoEventos";
-import { BlocoEstatisticas } from "./BlocoEstatisticas";
-import { BlocoComentarios } from "./BlocoComentario";
+import { BlocoPrincipal } from "./blocos/BlocoPrincipal";
+import { BlocoAtividade } from "./blocos/BlocoAtividade";
+import { BlocoEventos } from "./blocos/BlocoEventos";
+import { BlocoEstatisticas } from "./blocos/BlocoEstatisticas";
+import { BlocoComentarios } from "./blocos/BlocoComentario";
 import { useEffect, useState } from "react";
 import { useCarregando } from "hooks/useCarregando";
 import { useParams } from "react-router-dom";
 import { ApiRequest } from "api/apiRequest";
+import { BlocoParticipacoes } from "./blocos/BlocoParticipacoes";
 
 export function Conta() {
-	const [dataConteudo, setdataConteudo] = useState(null);
+	const [dataConta, setdataConta] = useState(null);
+	const [dataParticipacao, setdataParticipacao] = useState(null);
 	const { startLoading, stopLoading } = useCarregando();
 	const { id } = useParams();
 
 	useEffect(() => {
-		const fetchConteudoData = async () => {
-			startLoading();
-			const data = await ApiRequest.obter("utilizador", id);
-			setdataConteudo(data);
-			stopLoading();
-		};
-		fetchConteudoData();
+		fetchData();
 	}, []);
 
-	if (!dataConteudo) return;
+	const fetchData = async () => {
+		startLoading();
+		await fetchParticipacaoData();
+		await fetchContaData();
+		stopLoading();
+	};
+
+	const fetchContaData = async () => {
+		const data = await ApiRequest.obter("utilizador", id);
+		setdataConta(data);
+	};
+
+	const fetchParticipacaoData = async () => {
+		const data = await ApiRequest.listar("participante", { utilizador: 1 });
+		setdataParticipacao(data);
+	};
+
+	if (!dataConta || !dataParticipacao) return;
 
 	return (
 		<div>
-			<BlocoPrincipal data={dataConteudo} />
+			<BlocoPrincipal data={dataConta} />
+			<div className="mt-3">
+				<BlocoParticipacoes data={dataParticipacao} />
+			</div>
 			<div className="mt-3">
 				<BlocoAtividade />
 			</div>
@@ -42,4 +58,4 @@ export function Conta() {
 			</div>
 		</div>
 	);
-};
+}

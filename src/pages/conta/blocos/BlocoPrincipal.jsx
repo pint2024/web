@@ -1,6 +1,5 @@
 import { Icone, Texto, Contentor, Botao, Navegar } from "components/index";
-import Image from "assets/images/user-default.png";
-import "./conta.css";
+import "../conta.css";
 import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
@@ -56,17 +55,17 @@ export function BlocoPrincipal({ data }) {
 						</div>
 						<div className="d-flex gap-3 ">
 							{data.instagram && (
-								<Navegar to={"https://www.instagram.com"} target="_blank">
+								<Navegar to={data.instagram} target="_blank">
 									<Icone size={COMMON_SIZES.FS4} iconName="Instagram" />
 								</Navegar>
 							)}
 							{data.linkedin && (
-								<Navegar to={"https://www.linkedin.com"} target="_blank">
+								<Navegar to={data.linkedin} target="_blank">
 									<Icone size={COMMON_SIZES.FS4} iconName="Linkedin" />
 								</Navegar>
 							)}
 							{data.facebook && (
-								<Navegar to={"https://www.facebook.com"} target="_blank">
+								<Navegar to={data.facebook} target="_blank">
 									<Icone size={COMMON_SIZES.FS4} iconName="Facebook" />
 								</Navegar>
 							)}

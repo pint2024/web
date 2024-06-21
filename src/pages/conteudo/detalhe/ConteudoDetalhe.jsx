@@ -42,15 +42,23 @@ export function ConteudoDetalhe() {
 		return array_album;
 	};
 
-	const handleAddParticipante = async () => {
+	const handleAddParticipacao = async () => {
 		await ApiRequest.criar("participante", { utilizador: 1, conteudo: id });
+		fetchConteudoData();
+	};
+
+	const handleRemoverParticipacao = async () => {
+		const data = await ApiRequest.listar("participante", { utilizador: 1, conteudo: id });
+		await ApiRequest.remover("participante", data[0].id);
 		fetchConteudoData();
 	};
 
 	return (
 		<>
 			{DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) && <LabelError texto="Em revisão..." />}
-			{DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) && <LabelSucess texto="Você está inscrito!" />}
+			{DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, 1) && (
+				<LabelSucess texto="Você está inscrito!" />
+			)}
 			<div className="AtividadeDetalhe" id={dataDetalhe.id}>
 				<section className="conteudo-detalhe-conteudo">
 					<div className="conteudo-detalhe-info">
@@ -102,15 +110,17 @@ export function ConteudoDetalhe() {
 					<ControlosInteracao />
 				</section>
 				<section className="d-flex gap-2 mt-2">
-					{dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
-					dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID ? (
-						<div>
-							<Botao onClick={handleAddParticipante}>
-								{/* arranjar maneira de se o utilizador tiver a participar mostrar o bell preenchido */}
-								Participar
-							</Botao>
-						</div>
-					) : null}
+					{(dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
+						dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID) &&
+					DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, 1) ? (
+						<>
+							<Botao onClick={handleRemoverParticipacao} variant={BUTTON_VARIANTS.SECUNDARIO}>Remover Participação</Botao>
+						</>
+					) : (
+						<>
+							<Botao onClick={handleAddParticipacao} variant={BUTTON_VARIANTS.SUCESSO}>Participar</Botao>
+						</>
+					)}
 					<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
 					<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 				</section>

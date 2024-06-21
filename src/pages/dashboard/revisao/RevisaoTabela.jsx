@@ -14,7 +14,7 @@ export function RevisaoTabela() {
 
 	const fetchConteudoData = async () => {
 		startLoading();
-		const data = await ApiRequest.listar("revisao", { conteudo: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
+		const data = await ApiRequest.listar("revisao", { comentario: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
 		setdataConteudo(data);
 		stopLoading();
 	};
@@ -38,10 +38,10 @@ export function RevisaoTabela() {
 				<RevisaoLinha
 					id={item.id}
 					motivo={item.motivo}
-					utilizador={item.revisao_conteudo.conteudo_utilizador}
+					utilizador={item?.revisao_conteudo?.conteudo_utilizador}
 					data_criacao={item.data_criacao}
 					estado={item.revisao_estado.estado}
-					titulo={item.revisao_conteudo.titulo}
+					titulo={item?.revisao_conteudo?.titulo}
 					id_conteudo={item.id}
 					handleAprovacao={handleRevisaoAprovada}
 					handleRejeicao={handleRevisaoRejeitada}
