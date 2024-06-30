@@ -7,6 +7,7 @@ const api = axios.create({
 
 export async function myAxios({ url, method = "get", data = null, headers = {} }) {
 	try {
+		console.log(url, method, headers, data)
 		const response = await api.request({
 			url,
 			method,

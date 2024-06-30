@@ -33,15 +33,6 @@ export function ConteudoDetalhe() {
 
 	if (!dataDetalhe) return;
 
-	const formatAlbumImages = () => {
-		const array_album = [];
-		for (let item of dataDetalhe.album_conteudo) {
-			console.log(item);
-			array_album.push(item.imagem);
-		}
-		return array_album;
-	};
-
 	const handleAddParticipacao = async () => {
 		await ApiRequest.criar("participante", { utilizador: 1, conteudo: id });
 		fetchConteudoData();
@@ -101,7 +92,7 @@ export function ConteudoDetalhe() {
 					{dataDetalhe.preco && <div>Preço: {dataDetalhe.preco}</div>}
 					{dataDetalhe.classificacao && <div>Classificação: {dataDetalhe.classificacao}</div>}
 					<div className="mt-3">
-						<Album id={id} imagens={formatAlbumImages()} />
+						<Album id={id} />
 					</div>
 				</section>
 			</div>

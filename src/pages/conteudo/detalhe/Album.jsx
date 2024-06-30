@@ -2,12 +2,29 @@ import { Texto, Imagem, Icone, Popup, Botao, ImageBox } from "components/index";
 import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
 import "./album.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ApiRequest } from "api/apiRequest";
+import { useCarregando } from "hooks/useCarregando";
 
-export function Album({ id, imagens }) {
+export function Album({ id }) {
+	const [album, setalbum] = useState([]);
 	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const [newImagens, setnewImagens] = useState([]);
+	const { startLoading, stopLoading } = useCarregando();
+
+	useEffect(() => {
+		fetchAlbumData();
+	}, []);
+
+	const fetchAlbumData = async () => {
+		startLoading();
+		const data = await ApiRequest.listar("album", { conteudo: id });
+		console.log(data);
+		setalbum(data);
+		stopLoading();
+	};
+
+	if (!album) return;
 
 	const handleAlbumPopupOpen = () => {
 		setisPopupOpen(true);
@@ -18,7 +35,11 @@ export function Album({ id, imagens }) {
 	};
 
 	const handleAlbumAdd = async () => {
-		await ApiRequest.criar("album", { conteudo: id, imagem: newImagens });
+		startLoading();
+		await ApiRequest.criar_with_files("album", { conteudo: id, imagem: newImagens }, "imagem");
+		await fetchAlbumData();
+		console.log("Enviado")
+		stopLoading();
 	};
 
 	const createPopupAddAlbum = () => {
@@ -27,7 +48,7 @@ export function Album({ id, imagens }) {
 				<>
 					<Popup
 						onClose={handleAlbumPopupClose}
-						headerTitle={"Adicionar Album"}
+						headerTitle={"Adicionar Imagem"}
 						body={
 							<>
 								<ImageBox handleChange={setnewImagens} allowMultiple={true} />
@@ -58,9 +79,9 @@ export function Album({ id, imagens }) {
 			</div>
 			<div className="App">
 				<div className="galeria">
-					{imagens.map((imagem, index) => (
+					{Object.values(album).map(({ id, imagem }) => imagem && (
 						<ImagemModal imagemSelecionada={imagem}>
-							<Imagem key={index} className="galeria-imagem-item" src={imagem} />
+							<Imagem key={id} className="galeria-imagem-item" src={imagem} />
 						</ImagemModal>
 					))}
 				</div>

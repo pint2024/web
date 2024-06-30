@@ -19,6 +19,27 @@ export class ApiRequest {
 		}
 	}
 
+	static async criar_with_files(endpoint, data, file_key) {
+		try {
+			const url = `/${endpoint}/criar`;
+
+			const formData = new FormData();
+			for (const key in data) {
+				if (data.hasOwnProperty(key) && key !== file_key) {
+					formData.append(key, data[key]);
+				}
+			}
+
+			data[file_key].forEach((file, _) => {
+				formData.append(file_key, file);
+			});
+
+			return await myAxios({ url, data: formData, method: "post", headers: { "Content-Type": "multipart/form-data" } });
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	static async listar(endpoint, data = {}) {
 		try {
 			const url = `/${endpoint}/listar`;

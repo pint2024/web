@@ -19,6 +19,7 @@ export const ImageBox = ({ disabled, handleChange, allowMultiple = false }) => {
 				onChange={handleInputChange}
 				disabled={disabled}
 				multiple={allowMultiple}
+				accept="image/*"
 			/>
 			<div>
 				{selectedFiles.length > 0 && (

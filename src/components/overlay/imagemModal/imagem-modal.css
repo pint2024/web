@@ -87,16 +87,7 @@
 	z-index: var(--POPUP-BACKGROUND);
 	animation: blurBackground 1s ease 0s forwards;
 }
-/*
-@keyframes blurBackground {
-	0% {
-		backdrop-filter: blur(0);
-	}
-	100% {
-		backdrop-filter: blur(10px);
-	}
-}
-*/
+
 .modal-conteudo {
 	padding: 20px;
 	border-radius: 10px;
@@ -118,6 +109,8 @@
 	height: auto;
 	margin-bottom: 10px;
 	border-radius: 5px;
+	width: 60%;
+	height: 60%;
 }
 
 .arrow-left,

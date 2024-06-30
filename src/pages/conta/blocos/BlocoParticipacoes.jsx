@@ -1,10 +1,10 @@
-import { Cartao, Contentor, Navegar, Post, Texto } from "components/index";
+import { Contentor, Navegar, Texto } from "components/index";
 
 export function BlocoParticipacoes({ data }) {
 	console.log(data);
 	return (
 		<Contentor>
-			<Texto size={2}>Eventos em que estou a participar</Texto>
+			<Texto size={2}>Eventos em que estou a participar!</Texto>
 			<div>
 				{data?.map((item, index) => (
 					<>
