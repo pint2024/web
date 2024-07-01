@@ -43,6 +43,7 @@
 
 	/* Overlays */
 	--OVERLAY: rgba(0, 0, 0, 0.8);
+	--TRANSPARENT: rgba(0, 0, 0, 0);
 }
 
 /* DARK MODE - Em Progresso...

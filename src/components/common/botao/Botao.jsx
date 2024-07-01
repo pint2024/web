@@ -5,7 +5,7 @@ import { Texto } from "components/index";
 import { COMMON_SIZES } from "data/data";
 
 export function Botao({ variant = "primario", route = null, children, ...props }) {
-	const validVariants = ["primario", "secundario", "sucesso", "perigo"];
+	const validVariants = ["primario", "secundario", "sucesso", "perigo", "transparente"];
 	const isVariantValid = validVariants.includes(variant) ? true : false;
 
 	const renderBotao = () => {

@@ -38,7 +38,7 @@ export function Album({ id }) {
 		startLoading();
 		await ApiRequest.criar_with_files("album", { conteudo: id, imagem: newImagens }, "imagem");
 		await fetchAlbumData();
-		console.log("Enviado")
+		handleAlbumPopupClose();
 		stopLoading();
 	};
 

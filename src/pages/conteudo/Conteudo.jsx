@@ -74,7 +74,10 @@ export function Conteudo() {
 
 	return (
 		<div>
-			<section className="d-flex gap-3">
+			<section className="d-flex gap-3 align-items-center">
+				<div className="d-flex justify-content-end gap-3">
+					<ComboBoxSections items={formatArrayForComboBox} handleChange={setselectedTopico} />
+				</div>
 				<div>
 					<Dropdown
 						items={[
@@ -84,14 +87,13 @@ export function Conteudo() {
 							{ nome: "Espaço", rota: `criar/${EnumConstants.CONTEUDO_TIPOS.ESPACO.ID}` },
 						]}
 					>
-						<Botao>
-							<Icone iconName="Plus" className="text-types-inverse" />
-							Adicionar
+						<Botao variant="transparente">
+							<div className="d-flex">
+							<Icone iconName="Plus" />
+							<Icone iconName="CaretDownFill" style={{margin: "0px"}}/>
+							</div>
 						</Botao>
 					</Dropdown>
-				</div>
-				<div className="d-flex justify-content-end gap-3">
-					<ComboBoxSections items={formatArrayForComboBox} handleChange={setselectedTopico} />
 				</div>
 			</section>
 			<section>

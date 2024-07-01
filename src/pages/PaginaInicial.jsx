@@ -1,4 +1,4 @@
-import { Icone, Imagem, Popup } from "components/index";
+import { Botao, Icone, Imagem, Popup } from "components/index";
 import { useState } from "react";
 import user1 from "assets/images/examples/e-1.jpg";
 import user2 from "assets/images/examples/e-2.jpg";
