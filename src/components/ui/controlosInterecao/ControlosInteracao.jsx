@@ -4,7 +4,7 @@ import { COMMON_SIZES } from "data/data";
 import { useState } from "react";
 import { Classificacao } from "./classificacao/Classificacao";
 
-export function ControlosInteracao() {
+export function ControlosInteracao({ conteudo_id }) {
 	const [isClassificado, setisClassificado] = useState();
 	const [classificacao, setclassificacao] = useState();
 	const [comentarios, setcomentarios] = useState();
@@ -29,6 +29,10 @@ export function ControlosInteracao() {
 	const stopPropagation = (e) => {
 		e.stopPropagation();
 	};
+
+	const handleClassificacao = (e) => {
+		
+	}
 
 	return (
 		<div className="d-flex gap-5 mt-4">

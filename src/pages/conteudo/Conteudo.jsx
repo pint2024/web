@@ -89,8 +89,8 @@ export function Conteudo() {
 					>
 						<Botao variant="transparente">
 							<div className="d-flex">
-							<Icone iconName="Plus" />
-							<Icone iconName="CaretDownFill" style={{margin: "0px"}}/>
+								<Icone iconName="Plus" />
+								<Icone iconName="CaretDownFill" />
 							</div>
 						</Botao>
 					</Dropdown>
