@@ -93,6 +93,10 @@ export class Routes {
 			perfis: [],
 		},
 		{
+			title: "Esqueceu-se da Password",
+			path: "/forgot-password",
+		},
+		{
 			title: "Terminar Sessão",
 			path: "/terminar-sessao",
 		},

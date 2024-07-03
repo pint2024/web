@@ -10,10 +10,10 @@ import { ApiRequest } from "api/apiRequest";
 import { BlocoParticipacoes } from "./blocos/BlocoParticipacoes";
 
 export function Conta() {
+	const { id } = useParams();
 	const [dataConta, setdataConta] = useState(null);
 	const [dataParticipacao, setdataParticipacao] = useState(null);
 	const { startLoading, stopLoading } = useCarregando();
-	const { id } = useParams();
 
 	useEffect(() => {
 		fetchData();

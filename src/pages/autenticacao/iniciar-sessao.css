@@ -5,7 +5,6 @@
   align-items: center;
   padding: 2rem;
   width: 100%;
-  background-color: #f0f0f0;
 }
 /*
 .form-container {
@@ -15,13 +14,6 @@
   max-width: 400px;
 }*/
 
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-}
 
 .form-item {
   margin-bottom: 1rem;
@@ -35,7 +27,6 @@
 
 .form-input {
   padding: 0.5rem;
-  border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
   width: 100%;

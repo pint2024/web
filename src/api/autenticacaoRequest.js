@@ -6,6 +6,7 @@ import { Utils } from "utils/utils";
 export class AutenticacaoRequest {
 	static async entrar(login, senha) {
 		try {
+			console.log(login, senha)
 			const response = await myAxios({ url: "/autenticacao/entrar", method: "post", data: { login, senha } });
 			if (response.token) {
 				localStorage.setItem(AUTH_KEY, JSON.stringify(response.token));
@@ -15,24 +16,6 @@ export class AutenticacaoRequest {
 			Log.erro(error);
 			return STATUS.SEM_DATA;
 		}
-		/*return axios.post(`${API_URL}/autenticacao/entrar`, { login, senha }).then(
-			(res) => {
-				try {
-					if (res.data.data.token) {
-						console.log(res.data.data.token)
-						console.log(AUTH_KEY, JSON.stringify(res.data.data))
-						localStorage.setItem(AUTH_KEY, JSON.stringify(res.data.data));
-					}
-					return res.data.data;
-				} catch (error) {
-					Log.erro(error);
-					return null;
-				}
-			},
-			(reason) => {
-				Log.erro("Utilizador inválido.", reason);
-			}
-		);*/
 	}
 	static terminar_sessao() {
 		localStorage.removeItem(AUTH_KEY);

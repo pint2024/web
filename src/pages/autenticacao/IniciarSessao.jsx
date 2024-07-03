@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./iniciar-sessao.css";
 import { AutenticacaoRequest } from "api/autenticacaoRequest";
-import { CaixaTexto, Botao } from "components/index";
+import { CaixaTexto, Botao, Navegar } from "components/index";
 import { BUTTON_VARIANTS } from "data/data";
 
 export function IniciarSessao() {
@@ -16,18 +16,18 @@ export function IniciarSessao() {
 		<div className="iniciar-sessao-container">
 			<form>
 				<div className="form-container">
-					<CaixaTexto handleChange={(e) => setFormLogin(e)} value={formLogin} label="Email ou Tag" />
-					<CaixaTexto handleChange={(e) => setFormSenha(e)} value={formSenha} label="Senha" type="password" />
+					<CaixaTexto handleChange={(e) => setFormLogin(e)} value={formLogin} label="Tag" />
+					<CaixaTexto handleChange={(e) => setFormSenha(e)} value={formSenha} label="Password" type="password" />
 				</div>
-				<div className="form-container mt-1">
+				<div className="d-flex align-items-center gap-2 mt-4">
 					<Botao onClick={handleChange}>Entrar</Botao>
+					<Botao variant={BUTTON_VARIANTS.SECUNDARIO} route="/criar-conta">
+						Registrar
+					</Botao>
 				</div>
 			</form>
 
-			<Botao variant={BUTTON_VARIANTS.SECUNDARIO} route="/criar-conta">
-				Registrar
-			</Botao>
-			<a href="/forgot-password">Esqueceu-se da senha?</a>
+			<Navegar to="/forgot-password">Esqueceu-se da senha?</Navegar>
 		</div>
 	);
 }
