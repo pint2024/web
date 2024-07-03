@@ -16,7 +16,7 @@ export function ComboBox({ label, options, handleChange, value: propValue = "", 
 	const handleSelectChange = (e) => {
 		setValue(e.target.value);
 		if (typeof handleChange === "function") {
-			handleChange(e);
+			handleChange(e.target.value);
 		}
 	};
 

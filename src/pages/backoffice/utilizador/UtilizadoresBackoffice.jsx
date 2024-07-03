@@ -16,7 +16,7 @@ export function UtilizadorBackoffice() {
 	}, []);
 
 	const fetchConteudoData = async () => {
-		const data = await ApiRequest.listar("utilizador"); // filtra os conteudos apenas
+		const data = await ApiRequest.listar("utilizador/simples"); // filtra os conteudos apenas
 		setdataUtilizadores(data);
 	};
 
@@ -55,10 +55,10 @@ export function UtilizadorBackoffice() {
 								<td>{item.nome}</td>
 								<td>{item.sobrenome}</td>
 								<td>{item.email}</td>
-								<td>{item.inativo}</td>
-								<td>{item.verificado}</td>
+								<td>{item.inativo ? "Sim" : "Não"}</td>
+								<td>{item.verificado ? "Sim" : "Não"}</td>
 								<td>{item.utilizador_perfil.perfil}</td>
-								<td>{item.utilizador_centro.centro}</td>
+								<td>{item.centro ? item?.utilizador_centro?.centro : "Por definir." }</td>
 								<td>{DateUtils.DataNormal(item.data_criacao)}</td>
 								<td>
 									<div className="d-flex gap-2">
