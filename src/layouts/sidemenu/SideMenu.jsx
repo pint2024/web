@@ -32,12 +32,12 @@ export function SideMenu() {
 					</div>
 					<div className="d-flex flex-column justify-content-between item-list">
 						<div>
-							<SideBarItems titulo={"Tabelas"} route={"tabelas"} />
+							<SideBarItems titulo={"Utilizador"} route={"utilizadores"} />
 							<SideBarItems titulo={"Estatísticas"} route={"estatisticas"} />
 							<SideBarItems titulo={"Revisão"} route={"revisoes"} />
 							<SideBarItems titulo={"Denuncias"} route={"denuncias"} />
 						</div>
-						<div>{/*<SideBarItems titulo={"Dashboard"} route={"/dashboard"} />*/}</div>
+						<div>{/*<SideBarItems titulo={"Backoffice"} route={"/backoffice"} />*/}</div>
 					</div>
 				</section>
 			</nav>

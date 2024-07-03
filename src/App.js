@@ -3,11 +3,11 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React, { useEffect } from "react";
 
 /// Componentes
-import { renderDashboardRoutes, renderRoutes } from "utils/routes.utils";
+import { renderBackofficeRoutes, renderRoutes } from "utils/routes.utils";
 import { PageLayout } from "layouts/pageBase/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { useAutenticacao } from "hooks/useAutenticacao";
-import { DashboardLayout } from "layouts/pageBase/DashboardLayout";
+import { BackofficeLayout } from "layouts/pageBase/BackofficeLayout";
 
 function App() {
 	const utilizadorAtual = useAutenticacao();
@@ -19,8 +19,8 @@ function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/dashboard" element={<DashboardLayout />}>
-					{renderDashboardRoutes}
+				<Route path="/backoffice" element={<BackofficeLayout />}>
+					{renderBackofficeRoutes}
 				</Route>
 				<Route path="/" element={<PageLayout />}>
 					{renderRoutes}

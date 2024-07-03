@@ -1,5 +1,6 @@
 import { STATUS } from "data/constants";
 import { Log } from "./log.utils";
+import UtilizadorDefault from "assets/images/user-default.png";
 
 export class Utils {
 	static isEmpty(...variaveis) {
@@ -21,7 +22,7 @@ export class Utils {
 			return true;
 		}
 	}
-	
+
 	static waitData(setLoading, ...dataVars) {
 		if (this.isEmpty(...dataVars)) {
 			setLoading(true);
@@ -31,7 +32,7 @@ export class Utils {
 			return false;
 		}
 	}
-	
+
 	static isWhitespaces(variavel) {
 		try {
 			return variavel?.trim() === "";
@@ -39,11 +40,16 @@ export class Utils {
 			return false;
 		}
 	}
-	
+
 	static CompareRegex(regex, string) {
 		if (typeof regex !== "object" || typeof string !== "string") return false;
 		if (!(regex instanceof RegExp)) regex = new RegExp(regex);
 		if (regex.test(string)) return true;
 		return false;
-	}	
+	}
+
+	static SetImagemUtilizador(imagem) {
+		if (imagem) return imagem;
+		return UtilizadorDefault;
+	}
 }

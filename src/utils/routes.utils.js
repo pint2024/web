@@ -19,7 +19,7 @@ export const renderRoutes = criarRoutes([
 	...Routes.ErrosRoutes,
 ]);
 
-export const renderDashboardRoutes = criarRoutes([...Routes.DashboardRoutes]);
+export const renderBackofficeRoutes = criarRoutes([...Routes.BackofficeRoutes]);
 
 export function findRouteByPath(path) {
 	const findRecursive = (routes, currentPath) => {
@@ -44,7 +44,7 @@ export function findRouteByPath(path) {
 			...Routes.UtilizadorRoutes,
 			...Routes.AutenticacaoRoutes,
 			...Routes.ErrosRoutes,
-			...Routes.DashboardRoutes,
+			...Routes.BackofficeRoutes,
 		],
 		path
 	);

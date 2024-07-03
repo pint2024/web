@@ -2,10 +2,10 @@ const navItems = [
 	{ title: "Conteudos", icon: "Star", selectedIcon: "StarFill", route: "/conteudos" },
 	{ title: "Calendário", icon: "Calendar", selectedIcon: "CalendarFill", route: "/calendario" },
 	{
-		title: "Dashboard",
+		title: "Backoffice",
 		icon: "PersonBadge",
 		selectedIcon: "PersonBadgeFill",
-		route: "/dashboard",
+		route: "/backoffice",
 	},
 ];
 

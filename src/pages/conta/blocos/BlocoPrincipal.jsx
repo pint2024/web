@@ -2,12 +2,11 @@ import { Icone, Texto, Contentor, Botao, Navegar, Imagem } from "components/inde
 import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
-import UtilizadorDefault from "assets/images/user-default.png"
+import UtilizadorDefault from "assets/images/user-default.png";
 import "../conta.css";
+import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 
 export function BlocoPrincipal({ data }) {
-	const imagemUtilizador = data.imagem ? data.imagem : UtilizadorDefault;
-
 	const getInteresses = () => {
 		let interesses = "";
 		for (let interesse of data.interesse_utilizador) {
@@ -20,8 +19,8 @@ export function BlocoPrincipal({ data }) {
 		<Contentor>
 			<div className="main-box-content">
 				<div className="mb-content-image">
-					<ImagemModal imagemSelecionada={imagemUtilizador}>
-						<Imagem src={imagemUtilizador} className="image-size circular-image" />
+					<ImagemModal imagemSelecionada={data.imagem ? data.imagem : UtilizadorDefault}>
+						<ImagemUtilizador src={data.imagem} className="image-size circular-image" />
 					</ImagemModal>
 				</div>
 				<div>

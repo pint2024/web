@@ -1,18 +1,20 @@
 import React from "react";
 import { NotFound } from "layouts/errors/NotFound";
 import { Calendario } from "pages/calendario";
-import { IniciarSessao, CriarConta } from "pages/autenticacao";
+import { IniciarSessao } from "pages/autenticacao";
 import { Conteudo, ConteudoCriar } from "pages/conteudo";
 import { Conta } from "pages/conta/Conta";
 import { PaginaInicial } from "pages/PaginaInicial";
 import { ConteudoDetalhe } from "pages/conteudo/detalhe/ConteudoDetalhe";
 import { ContaEditar } from "pages/conta/editar/ContaEditar";
 import { Temporary } from "layouts/errors/Temporary";
-import { RevisaoConteudo } from "pages/dashboard/revisao/conteudo/RevisaoConteudo";
-import { Denuncia } from "pages/dashboard/denuncia/Denuncia";
-import { RevisaoComentario } from "pages/dashboard/revisao/comentario/RevisaoComentario";
+import { RevisaoConteudo } from "pages/backoffice/revisao/conteudo/RevisaoConteudo";
+import { Denuncia } from "pages/backoffice/denuncia/Denuncia";
+import { RevisaoComentario } from "pages/backoffice/revisao/comentario/RevisaoComentario";
 import { Botao } from "components";
 import { ConteudoTipoListagem } from "pages/conteudo/listagemByTipo/ConteudoTipoListagem";
+import { UtilizadorBackoffice } from "pages/backoffice/utilizador/UtilizadoresBackoffice";
+import { CriarUtilizadorBackoffice } from "pages/backoffice/utilizador/CriarUtilizadorBackoffice";
 
 export class Routes {
 	static InicialRoutes = [
@@ -81,12 +83,6 @@ export class Routes {
 
 	static AutenticacaoRoutes = [
 		{
-			title: "Criar Conta",
-			path: "/criar-conta",
-			element: <CriarConta />,
-			perfis: [],
-		},
-		{
 			title: "Iniciar Sessão",
 			path: "/iniciar-sessao",
 			element: <IniciarSessao />,
@@ -111,23 +107,23 @@ export class Routes {
 		},
 	];
 
-	static DashboardRoutes = [
+	static BackofficeRoutes = [
 		{
-			title: "Dashboard",
-			path: "/dashboard",
+			title: "Backoffice",
+			path: "/backoffice",
 			element: <Temporary />,
 			perfis: [],
 			children: [
 				{
-					title: "Tabelas",
-					path: "/tabelas",
-					element: <Temporary><Botao route="utilizador">utilizador</Botao></Temporary>,
+					title: "Utilizador",
+					path: "/utilizadores",
+					element: <UtilizadorBackoffice />,
 					perfis: [],
 					children: [
 						{
-							title: "tilizador",
-							path: "/utilizador",
-							element: <Temporary />,
+							title: "Criar",
+							path: "/criar",
+							element: <CriarUtilizadorBackoffice />,
 							perfis: [],
 						},
 					],
@@ -149,7 +145,12 @@ export class Routes {
 				{
 					title: "Revisões",
 					path: "/revisoes",
-					element: <Temporary><Botao route="conteudo">conteudo</Botao><Botao route="comentario">comentario</Botao></Temporary>,
+					element: (
+						<Temporary>
+							<Botao route="conteudo">conteudo</Botao>
+							<Botao route="comentario">comentario</Botao>
+						</Temporary>
+					),
 					perfis: [],
 					children: [
 						{

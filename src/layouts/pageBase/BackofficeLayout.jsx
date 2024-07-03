@@ -2,11 +2,11 @@ import { Outlet } from "react-router-dom";
 import { Footer } from "layouts/footer/Footer";
 import { Breadcrumb } from "./Breadcrumb";
 import { SideMenu } from "layouts/sidemenu/SideMenu";
-import "./dashboard-layout.css";
+import "./backoffice-layout.css";
 
-export function DashboardLayout() {
+export function BackofficeLayout() {
 	return (
-		<div id="DashboardLayout">
+		<div id="BackofficeLayout">
 			<header className="header-height">
 				<SideMenu />
 			</header>
