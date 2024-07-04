@@ -116,3 +116,7 @@
 .circular-image {
 	border-radius: 50%;
 }
+
+.form-is-invalid {
+	border-color: var(--DANGER);
+}

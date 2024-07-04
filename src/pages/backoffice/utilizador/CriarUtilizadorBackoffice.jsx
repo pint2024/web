@@ -1,8 +1,10 @@
 import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ComboBox, Notificacao } from "components";
+import { REGEX } from "data/regex";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Validador } from "utils/validator";
 
 export function CriarUtilizadorBackoffice() {
 	const [formNome, setFormNome] = useState("");
@@ -11,6 +13,13 @@ export function CriarUtilizadorBackoffice() {
 	const [formSenha, setFormSenha] = useState("");
 	const [formCentro, setFormCentro] = useState("");
 	const [dataCentro, setdataCentro] = useState(null);
+	const [erros, setErros] = useState({
+		nome: false,
+		sobrenome: false,
+		email: false,
+		senha: false,
+		centro: false,
+	});
 	const { startLoading, stopLoading } = useCarregando();
 	const navigate = useNavigate();
 
@@ -35,9 +44,21 @@ export function CriarUtilizadorBackoffice() {
 	};
 
 	const handleLogin = async () => {
-		startLoading();
+		const esquema = {
+			nome: { required: true, type: "string" },
+			sobrenome: { required: true, type: "string" },
+			email: { required: true, pattern: REGEX.EMAIL },
+			senha: { required: true },
+			centro: { required: true },
+		};
+
+		const validador = new Validador(esquema);
 		const data = { nome: formNome, sobrenome: formSobrenome, email: formEmail, senha: formSenha, centro: formCentro };
-		console.log(data)
+
+		setErros(validador.validar(data));
+		if (!validador.isValido(erros)) return;
+
+		startLoading();
 		const response = await ApiRequest.criar("utilizador", data);
 		if (response) {
 			Notificacao("Utilizador criado!");
@@ -48,11 +69,39 @@ export function CriarUtilizadorBackoffice() {
 
 	return (
 		<>
-			<CaixaTexto handleChange={(e) => setFormNome(e)} value={formNome} label="Nome" />
-			<CaixaTexto handleChange={(e) => setFormSobrenome(e)} value={formSobrenome} label="Sobrenome" />
-			<CaixaTexto handleChange={(e) => setFormEmail(e)} value={formEmail} label="Email" />
-			<CaixaTexto handleChange={(e) => setFormSenha(e)} value={formSenha} label="Senha" type="password" />
-			<ComboBox options={transformarDados()} placeholder="Escolha o centro..." handleChange={(e) => setFormCentro(e)} value={formCentro} label="Centro" />
+			<CaixaTexto
+				handleChange={(e) => setFormNome(e.target.value)}
+				value={formNome}
+				isInvalid={erros.nome}
+				label="Nome"
+			/>
+			<CaixaTexto
+				handleChange={(e) => setFormSobrenome(e.target.value)}
+				value={formSobrenome}
+				isInvalid={erros.sobrenome}
+				label="Sobrenome"
+			/>
+			<CaixaTexto
+				handleChange={(e) => setFormEmail(e.target.value)}
+				value={formEmail}
+				isInvalid={erros.email}
+				label="Email"
+			/>
+			<CaixaTexto
+				handleChange={(e) => setFormSenha(e.target.value)}
+				value={formSenha}
+				isInvalid={erros.senha}
+				label="Senha"
+				type="password"
+			/>
+			<ComboBox
+				options={transformarDados()}
+				placeholder="Escolha o centro..."
+				handleChange={(e) => setFormCentro(e)}
+				value={formCentro}
+				isInvalid={erros.centro}
+				label="Centro"
+			/>
 			<Botao onClick={handleLogin}>Entrar</Botao>
 		</>
 	);
