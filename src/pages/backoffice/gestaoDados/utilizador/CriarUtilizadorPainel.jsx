@@ -3,25 +3,17 @@ import { Botao, CaixaTexto, ComboBox, Notificacao } from "components";
 import { REGEX } from "data/regex";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Validador } from "utils/validator";
 
-export function CriarUtilizadorBackoffice() {
+export function CriarUtilizadorPainel({ handleCreated }) {
 	const [formNome, setFormNome] = useState("");
 	const [formSobrenome, setFormSobrenome] = useState("");
 	const [formEmail, setFormEmail] = useState("");
 	const [formSenha, setFormSenha] = useState("");
 	const [formCentro, setFormCentro] = useState("");
 	const [dataCentro, setdataCentro] = useState(null);
-	const [erros, setErros] = useState({
-		nome: false,
-		sobrenome: false,
-		email: false,
-		senha: false,
-		centro: false,
-	});
+	const [erros, setErros] = useState({});
 	const { startLoading, stopLoading } = useCarregando();
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetchCentro();
@@ -62,7 +54,7 @@ export function CriarUtilizadorBackoffice() {
 		const response = await ApiRequest.criar("utilizador", data);
 		if (response) {
 			Notificacao("Utilizador criado!");
-			navigate("/backoffice/utilizadores");
+			handleCreated();
 		}
 		stopLoading();
 	};
@@ -70,24 +62,28 @@ export function CriarUtilizadorBackoffice() {
 	return (
 		<>
 			<CaixaTexto
+				className="mt-2"
 				handleChange={(e) => setFormNome(e.target.value)}
 				value={formNome}
 				isInvalid={erros.nome}
 				label="Nome"
 			/>
 			<CaixaTexto
+				className="mt-2"
 				handleChange={(e) => setFormSobrenome(e.target.value)}
 				value={formSobrenome}
 				isInvalid={erros.sobrenome}
 				label="Sobrenome"
 			/>
 			<CaixaTexto
+				className="mt-2"
 				handleChange={(e) => setFormEmail(e.target.value)}
 				value={formEmail}
 				isInvalid={erros.email}
 				label="Email"
 			/>
 			<CaixaTexto
+				className="mt-2"
 				handleChange={(e) => setFormSenha(e.target.value)}
 				value={formSenha}
 				isInvalid={erros.senha}
@@ -95,6 +91,7 @@ export function CriarUtilizadorBackoffice() {
 				type="password"
 			/>
 			<ComboBox
+				className="mt-2"
 				options={transformarDados()}
 				placeholder="Escolha o centro..."
 				handleChange={(e) => setFormCentro(e)}
@@ -102,7 +99,7 @@ export function CriarUtilizadorBackoffice() {
 				isInvalid={erros.centro}
 				label="Centro"
 			/>
-			<Botao onClick={handleLogin}>Entrar</Botao>
+			<Botao className="mt-4" onClick={handleLogin}>Adicionar</Botao>
 		</>
 	);
 }

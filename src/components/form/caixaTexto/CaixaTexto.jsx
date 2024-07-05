@@ -2,9 +2,9 @@ import { Texto } from "components";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import React from "react";
 
-export function CaixaTexto({ label = "", prefix = false, value, isInvalid = false, handleChange, ...props }) {
+export function CaixaTexto({ label = "", prefix = false, value, className, isInvalid = false, handleChange, ...props }) {
 	return (
-		<div>
+		<div className={className}>
 			{label && (
 				<label htmlFor="inputNome">
 					{label}

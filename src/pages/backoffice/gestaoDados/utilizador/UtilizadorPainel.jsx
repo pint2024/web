@@ -2,29 +2,47 @@ import React, { useEffect, useState } from "react";
 import { useCarregando } from "hooks/useCarregando";
 import { DateUtils } from "utils/date.utils";
 import { ApiRequest } from "api/apiRequest";
-import { Botao, Icone, Imagem } from "components";
+import { Botao, Icone, Imagem, Popup } from "components";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { Utils } from "utils/utils";
+import { CriarUtilizadorPainel } from "./CriarUtilizadorPainel";
 
-export function UtilizadorBackoffice() {
+export function UtilizadorPainel() {
 	const [dataUtilizadores, setdataUtilizadores] = useState(null);
+	const [isPopupOpen, setisPopupOpen] = useState(false);
 
 	useEffect(() => {
 		fetchConteudoData();
 	}, []);
+
+	const closePopup = () => {
+		setisPopupOpen(false);
+	};
+
+	const openPopup = () => {
+		setisPopupOpen(true);
+	};
 
 	const fetchConteudoData = async () => {
 		const data = await ApiRequest.listar("utilizador/simples"); // filtra os conteudos apenas
 		setdataUtilizadores(data);
 	};
 
+	const handleCreated = () => {
+		fetchConteudoData();
+		setisPopupOpen(false);
+	}
+
 	return (
 		<>
-			<Botao route="criar">
+			{isPopupOpen && (
+				<Popup headerTitle={"Adicionar Utilizador"} onClose={() => closePopup()} body={<CriarUtilizadorPainel handleCreated={() => handleCreated()} />}/>
+			)}
+			<Botao onClick={() => openPopup()}>
 				<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
-				Criar
+				Adicionar
 			</Botao>
 			{dataUtilizadores ? (
 				<table className="revisao-tabela mt-4">
@@ -58,7 +76,7 @@ export function UtilizadorBackoffice() {
 								<td>{item.inativo ? "Sim" : "Não"}</td>
 								<td>{item.verificado ? "Sim" : "Não"}</td>
 								<td>{item.utilizador_perfil.perfil}</td>
-								<td>{item.centro ? item?.utilizador_centro?.centro : "Por definir." }</td>
+								<td>{item.centro ? item?.utilizador_centro?.centro : "Por definir."}</td>
 								<td>{DateUtils.DataNormal(item.data_criacao)}</td>
 								<td>
 									<div className="d-flex gap-2">

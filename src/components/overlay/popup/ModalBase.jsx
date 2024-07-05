@@ -26,7 +26,7 @@ export function ModalBase({ headerTitle, headerInfo, headerIcons, children, foot
 						<ModalHeaderIcons headerIcons={headerIcons} onClose={onClose} isVisible={!headerInfo} />
 					</section>
 					<section className="modalbase-body mt-2">{children}</section>
-					<section className="modalbase-footer mt-5">{footer}</section>
+					{footer && <section className="modalbase-footer mt-5">{footer}</section>}
 				</Modal.Body>
 			</div>
 		</Modal>
@@ -34,13 +34,11 @@ export function ModalBase({ headerTitle, headerInfo, headerIcons, children, foot
 };
 
 const ModalHeaderIcons = ({ headerIcons, onClose, isVisible }) => {
-	return isVisible ? (
+	return isVisible && (
 		<div className="d-flex align-items-center modal-header-icons">
 			{headerIcons}
 			<Icone iconName="XLg" title="Fechar" onClick={onClose} />
 		</div>
-	) : (
-		""
 	);
 };
 

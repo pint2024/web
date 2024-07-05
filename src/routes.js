@@ -13,8 +13,9 @@ import { Denuncia } from "pages/backoffice/denuncia/Denuncia";
 import { RevisaoComentario } from "pages/backoffice/revisao/comentario/RevisaoComentario";
 import { Botao } from "components";
 import { ConteudoTipoListagem } from "pages/conteudo/listagemByTipo/ConteudoTipoListagem";
-import { UtilizadorBackoffice } from "pages/backoffice/utilizador/UtilizadoresBackoffice";
-import { CriarUtilizadorBackoffice } from "pages/backoffice/utilizador/CriarUtilizadorBackoffice";
+import { UtilizadorPainel } from "pages/backoffice/gestaoDados/utilizador/UtilizadorPainel";
+import { TopicosPainel } from "pages/backoffice/gestaoDados/topicos/TopicosPainel";
+import { CentroPainel } from "pages/backoffice/gestaoDados/centros/CentroPainel";
 
 export class Routes {
 	static InicialRoutes = [
@@ -117,16 +118,20 @@ export class Routes {
 				{
 					title: "Utilizador",
 					path: "/utilizadores",
-					element: <UtilizadorBackoffice />,
+					element: <UtilizadorPainel />,
 					perfis: [],
-					children: [
-						{
-							title: "Criar",
-							path: "/criar",
-							element: <CriarUtilizadorBackoffice />,
-							perfis: [],
-						},
-					],
+				},
+				{
+					title: "Centro",
+					path: "/centros",
+					element: <CentroPainel />,
+					perfis: [],
+				},
+				{
+					title: "Tópicos",
+					path: "/topicos",
+					element: <TopicosPainel />,
+					perfis: [],
 				},
 				{
 					title: "Estatísticas",

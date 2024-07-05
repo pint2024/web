@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
 import { Footer } from "layouts/footer/Footer";
 import { Breadcrumb } from "./Breadcrumb";
-import { SideMenu } from "layouts/sidemenu/SideMenu";
 import "./backoffice-layout.css";
+import { Header } from "layouts/header/Header";
+import { Sidebar } from "layouts/sidebar/Sidebar";
 
 export function BackofficeLayout() {
 	return (
 		<div id="BackofficeLayout">
 			<header className="header-height">
-				<SideMenu />
+				<Header/>
+				<Sidebar />
 			</header>
 			<div className="content-area">
 				<Breadcrumb />

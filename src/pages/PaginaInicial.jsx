@@ -4,6 +4,7 @@ import user2 from "assets/images/examples/e-2.jpg";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { useState } from "react";
 import { Validador } from "utils/validator";
+import { Sidebar } from "layouts/sidebar/Sidebar";
 
 export function PaginaInicial() {
 	const esquema = {
@@ -33,6 +34,7 @@ export function PaginaInicial() {
 			<ImagemModal imagemSelecionada={user2} description={"oi"}>
 				<Imagem src={user2} />
 			</ImagemModal>
+			<Sidebar/>
 		</>
 	);
 }

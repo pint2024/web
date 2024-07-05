@@ -17,6 +17,7 @@ export function ComboBox({
 	options,
 	handleChange,
 	isInvalid,
+	className,
 	value: propValue = "",
 	disabled = false,
 	placeholder = "-",
@@ -31,7 +32,7 @@ export function ComboBox({
 	};
 
 	return (
-		<div className="ComboBox">
+		<div className={`ComboBox ${className}`}>
 			{label && (
 				<label htmlFor="selectOption">
 					{label}

@@ -1,12 +1,1 @@
-.content-area {
-	margin-left: 300px; /* A mesma largura do menu lateral */
-	width: calc(100% - 300px);
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-}
 
-.content-min-height {
-	flex-grow: 1;
-	overflow-y: auto;
-}
