@@ -8,14 +8,16 @@ import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 import { LabelError } from "layouts/labelWarnings/LabelError";
 import { useState } from "react";
 import { InteressesList } from "../InteressesList";
+import { useUserValidation } from "hooks/useAuth";
 
 export function BlocoPrincipal({ data }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
+	const utilizadorAtual = useUserValidation();
 
 	const getInteresses = () => {
 		let interesses = "";
 		for (let interesse of data.interesse_utilizador) {
-			interesses += interesse.interesse_subtopico.area + " ";
+			interesses += interesse.interesse_subtopico.area + ", ";
 		}
 		return interesses;
 	};
@@ -64,12 +66,14 @@ export function BlocoPrincipal({ data }) {
 						</div>
 					</div>
 					<div className="details-right d-flex flex-column align-items-end gap-2">
-						<div className="d-flex gap-3">
-							<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
-								Interesses
-							</Botao>
-							<Botao route={"editar"}>Editar</Botao>
-						</div>
+						{utilizadorAtual.id === data.id && (
+							<div className="d-flex gap-3">
+								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
+									Interesses
+								</Botao>
+								<Botao route={"editar"}>Editar</Botao>
+							</div>
+						)}
 						<div className="d-flex gap-3 ">
 							{data.instagram && (
 								<Navegar to={data.instagram} target="_blank">

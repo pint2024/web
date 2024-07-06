@@ -8,7 +8,7 @@ import { useCarregando } from "hooks/useCarregando";
 import { useParams } from "react-router-dom";
 import { ApiRequest } from "api/apiRequest";
 import { BlocoParticipacoes } from "./blocos/BlocoParticipacoes";
-import { LabelError } from "layouts/labelWarnings/LabelError";
+import { useUserValidation } from "hooks/useAuth";
 
 export function Conta() {
 	const { id } = useParams();
@@ -28,12 +28,15 @@ export function Conta() {
 	};
 
 	const fetchContaData = async () => {
-		const data = await ApiRequest.obter("utilizador", id);
+		const data = await ApiRequest.obter("utilizador/simples", id);
+		console.log("feito1");
 		setdataConta(data);
 	};
 
 	const fetchParticipacaoData = async () => {
-		const data = await ApiRequest.listar("participante", { utilizador: 1 });
+		const data = await ApiRequest.listar("participante", { utilizador: id });
+		console.log("feito2");
+
 		setdataParticipacao(data);
 	};
 

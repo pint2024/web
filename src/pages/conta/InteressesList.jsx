@@ -1,5 +1,7 @@
 import { ApiRequest } from "api";
+import { Botao } from "components";
 import { Categoria } from "components/container/categorias/Categoria";
+import { useUserValidation } from "hooks/useAuth";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 
@@ -8,6 +10,7 @@ export function InteressesList({ id }) {
 	const [dataInteresses, setdataInteresses] = useState(null);
 	const [selectedSubtopicos, setselectedSubtopicos] = useState(null);
 	const { startLoading, stopLoading } = useCarregando();
+	const utilizadorAtual = useUserValidation();
 
 	useEffect(() => {
 		fetchData();
@@ -47,19 +50,38 @@ export function InteressesList({ id }) {
 	if (!dataSubtopicos || !selectedSubtopicos || !dataSubtopicos) return;
 
 	const handleCategoryClick = (isActive, id) => {
-		console.log(isActive, id);
+		if (isActive) {
+			if (!selectedSubtopicos.includes(id)) {
+				setselectedSubtopicos([...selectedSubtopicos, id]);
+			}
+		} else {
+			setselectedSubtopicos(selectedSubtopicos.filter((item) => item !== id));
+		}
+		console.log(isActive, id, selectedSubtopicos);
+	};
+
+	const handleCreateInteresse = async () => {
+		startLoading();
+		await ApiRequest.criar("interesse", { subtopico: selectedSubtopicos, utilizador: utilizadorAtual.id });
+		await fetchData();
+		stopLoading();
 	};
 
 	return (
 		<>
-			{dataSubtopicos.map((interesse) => (
-				<Categoria
-					id={interesse.id}
-					category={interesse.area}
-					value={selectedSubtopicos.includes(interesse.id)}
-					handleChange={(isActive, id) => handleCategoryClick(isActive, id)}
-				/>
-			))}
+			<Botao onClick={() => handleCreateInteresse()}>Concluir</Botao>
+			<div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+				{dataSubtopicos.map((interesse) => (
+					<div className="me-1 mx-1 mt-1 mb-1">
+						<Categoria
+							id={interesse.id}
+							category={interesse.area}
+							value={selectedSubtopicos.includes(interesse.id)}
+							handleChange={(isActive, id) => handleCategoryClick(isActive, id)}
+						/>
+					</div>
+				))}
+			</div>
 		</>
 	);
 }
