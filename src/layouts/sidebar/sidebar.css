@@ -60,6 +60,7 @@
 .sidebar--open {
 	width: 250px;
 	transition: width 0.3s ease;
+	z-index: var(--SIDE-BAR-HEADER);
 }
 
 .sidebar--open .sidebar-position span {

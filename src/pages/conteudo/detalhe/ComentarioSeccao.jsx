@@ -33,8 +33,8 @@ export function ComentarioSeccao({ id }) {
 		setnovoComentario("");
 	};
 
-	const handleNewComentarioChange = (comentario) => {
-		setnovoComentario(comentario);
+	const handleNewComentarioChange = (e) => {
+		setnovoComentario(e.target.value);
 	};
 
 	return (

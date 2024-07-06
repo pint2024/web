@@ -1,18 +1,18 @@
 :root {
-	--POPUP: 8;
-	--POPUP-BACKGROUND: 7;
+	--POPUP: 908;
+	--POPUP-BACKGROUND: 908 - 1;
 
-	--NOTIFICACAO-POPUP: 11;
+	--CONFIRMACAO: 910;
+	--CONFIRMACAO-BACKGROUND: 910 - 1;
 
-	--LOADING: 20;
+	--NOTIFICACAO-POPUP: 911;
 
-	--HEADER-DROPDOWN: 6;
-	--REGULAR-DROPDOWN: 4;
+	--LOADING: 920;
+
+	--HEADER-DROPDOWN: 906;
+	--REGULAR-DROPDOWN: 904;
 
 	--SIDE-BAR-HEADER: 3;
-
-	--CONFIRMACAO: 10;
-	--CONFIRMACAO-BACKGROUND: var(--CONFIRMACAO) - 1;
 }
 
 .loading-operation {
@@ -30,6 +30,14 @@
 
 .c-dropdown-content {
 	z-index: var(--REGULAR-DROPDOWN);
+}
+
+.modal-modalbase {
+	z-index: var(--POPUP);
+}
+
+.modal-backdrop {
+	z-index: 0;
 }
 
 .modal-confirmacao .modal {

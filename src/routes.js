@@ -16,6 +16,8 @@ import { ConteudoTipoListagem } from "pages/conteudo/listagemByTipo/ConteudoTipo
 import { UtilizadorPainel } from "pages/backoffice/gestaoDados/utilizador/UtilizadorPainel";
 import { TopicosPainel } from "pages/backoffice/gestaoDados/topicos/TopicosPainel";
 import { CentroPainel } from "pages/backoffice/gestaoDados/centros/CentroPainel";
+import { EsqueceuPasse } from "pages/autenticacao/esqueceuPasse/EsqueceuPasse";
+import { ResetarPasse } from "pages/autenticacao/resetPasse/ResetarPasse";
 
 export class Routes {
 	static InicialRoutes = [
@@ -90,8 +92,14 @@ export class Routes {
 			perfis: [],
 		},
 		{
-			title: "Esqueceu-se da Password",
-			path: "/forgot-password",
+			title: "Esqueceu-se da Palavra-passe",
+			path: "/esqueceu-passe",
+			element: <EsqueceuPasse />,
+		},
+		{
+			title: "Resetar a Palavra-passe",
+			path: "/resetar-passe",
+			element: <ResetarPasse />,
 		},
 		{
 			title: "Terminar Sessão",

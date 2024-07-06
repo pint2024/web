@@ -15,8 +15,9 @@ export function CriarTopicoPainel({ handleCreated }) {
 		const validador = new Validador(esquema);
 		const data = { topico: formTopico };
 
-		setErros(validador.validar(data));
-		if (!validador.isValido(erros)) return;
+		const validacao = validador.validar(data);
+		setErros(validacao);
+		if (!validador.isValido(validacao)) return;
 
 		startLoading();
 		const response = await ApiRequest.criar("topico", data);

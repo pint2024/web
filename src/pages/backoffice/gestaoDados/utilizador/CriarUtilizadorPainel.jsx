@@ -1,5 +1,5 @@
 import { ApiRequest } from "api";
-import { Botao, CaixaTexto, ComboBox, Notificacao } from "components";
+import { Botao, CaixaTexto, ComboBox, Notificacao, Seletor } from "components";
 import { REGEX } from "data/regex";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 	const [formSenha, setFormSenha] = useState("");
 	const [formCentro, setFormCentro] = useState("");
 	const [dataCentro, setdataCentro] = useState(null);
+	const [formVerificado, setFormVerificado] = useState("");
 	const [erros, setErros] = useState({});
 	const { startLoading, stopLoading } = useCarregando();
 
@@ -45,10 +46,18 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 		};
 
 		const validador = new Validador(esquema);
-		const data = { nome: formNome, sobrenome: formSobrenome, email: formEmail, senha: formSenha, centro: formCentro };
+		const data = {
+			nome: formNome,
+			sobrenome: formSobrenome,
+			email: formEmail,
+			senha: formSenha,
+			centro: formCentro,
+			verificado: formVerificado,
+		};
 
-		setErros(validador.validar(data));
-		if (!validador.isValido(erros)) return;
+		const validacao = validador.validar(data);
+		setErros(validacao);
+		if (validador.isValido(validacao)) return;
 
 		startLoading();
 		const response = await ApiRequest.criar("utilizador", data);
@@ -61,20 +70,22 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 
 	return (
 		<>
-			<CaixaTexto
-				className="mt-2"
-				handleChange={(e) => setFormNome(e.target.value)}
-				value={formNome}
-				isInvalid={erros.nome}
-				label="Nome"
-			/>
-			<CaixaTexto
-				className="mt-2"
-				handleChange={(e) => setFormSobrenome(e.target.value)}
-				value={formSobrenome}
-				isInvalid={erros.sobrenome}
-				label="Sobrenome"
-			/>
+			<div className="d-flex">
+				<CaixaTexto
+					className="mt-2 me-auto"
+					handleChange={(e) => setFormNome(e.target.value)}
+					value={formNome}
+					isInvalid={erros.nome}
+					label="Nome"
+				/>
+				<CaixaTexto
+					className="mt-2 ms-auto"
+					handleChange={(e) => setFormSobrenome(e.target.value)}
+					value={formSobrenome}
+					isInvalid={erros.sobrenome}
+					label="Sobrenome"
+				/>
+			</div>
 			<CaixaTexto
 				className="mt-2"
 				handleChange={(e) => setFormEmail(e.target.value)}
@@ -99,7 +110,10 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 				isInvalid={erros.centro}
 				label="Centro"
 			/>
-			<Botao className="mt-4" onClick={handleLogin}>Adicionar</Botao>
+			<Seletor label="Verificar" className="mt-2" handleChange={(e) => setFormVerificado(e)} value={formVerificado} />
+			<Botao className="mt-4" onClick={handleLogin}>
+				Adicionar
+			</Botao>
 		</>
 	);
 }
