@@ -10,8 +10,6 @@ const MenuItems = ({ items, depthLevel }) => {
 	const firstParam = urlParams[1]; // Obtém o primeiro parâmetro da URL
 	let ref = useRef();
 
-	console.log(urlParams, firstParam, items.route);
-
 	useEffect(() => {
 		const handler = (event) => {
 			if (dropdown && ref.current && !ref.current.contains(event.target)) {

@@ -1,12 +1,17 @@
-import { Icone, Texto, Contentor, Botao, Navegar, Imagem } from "components/index";
+import { Icone, Texto, Contentor, Botao, Navegar, Imagem, Popup } from "components/index";
 import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import UtilizadorDefault from "assets/images/user-default.png";
 import "../conta.css";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
+import { LabelError } from "layouts/labelWarnings/LabelError";
+import { useState } from "react";
+import { InteressesList } from "../InteressesList";
 
 export function BlocoPrincipal({ data }) {
+	const [isPopupOpen, setisPopupOpen] = useState(false);
+
 	const getInteresses = () => {
 		let interesses = "";
 		for (let interesse of data.interesse_utilizador) {
@@ -17,6 +22,14 @@ export function BlocoPrincipal({ data }) {
 
 	return (
 		<Contentor>
+			{isPopupOpen && (
+				<Popup
+					headerTitle={"Adicionar Utilizador"}
+					onClose={() => setisPopupOpen(false)}
+					body={<InteressesList id={data.id} />}
+				/>
+			)}
+			{data.inativo && <LabelError texto="Utilizador está inativo!" />}
 			<div className="main-box-content">
 				<div className="mb-content-image">
 					<ImagemModal imagemSelecionada={data.imagem ? data.imagem : UtilizadorDefault}>
@@ -52,7 +65,9 @@ export function BlocoPrincipal({ data }) {
 					</div>
 					<div className="details-right d-flex flex-column align-items-end gap-2">
 						<div className="d-flex gap-3">
-							<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Interesses</Botao>
+							<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
+								Interesses
+							</Botao>
 							<Botao route={"editar"}>Editar</Botao>
 						</div>
 						<div className="d-flex gap-3 ">

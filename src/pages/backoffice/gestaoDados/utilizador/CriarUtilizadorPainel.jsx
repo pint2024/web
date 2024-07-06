@@ -12,7 +12,7 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 	const [formSenha, setFormSenha] = useState("");
 	const [formCentro, setFormCentro] = useState("");
 	const [dataCentro, setdataCentro] = useState(null);
-	const [formVerificado, setFormVerificado] = useState("");
+	const [formVerificado, setFormVerificado] = useState(false);
 	const [erros, setErros] = useState({});
 	const { startLoading, stopLoading } = useCarregando();
 
@@ -56,8 +56,12 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 		};
 
 		const validacao = validador.validar(data);
+		console.log(validacao)
 		setErros(validacao);
-		if (validador.isValido(validacao)) return;
+		console.log("asd")
+		console.log(validador.isValido(validacao))
+		if (!validador.isValido(validacao)) return;
+		console.log("asd1")
 
 		startLoading();
 		const response = await ApiRequest.criar("utilizador", data);

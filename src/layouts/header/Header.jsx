@@ -23,7 +23,6 @@ export function Header() {
 						<Dropdown items={userItems}>
 							<Imagem
 								src={utilizadorAtual.imagem}
-								alt="Imagem do utilizador"
 								className="header-user-image cursor-pointer"
 							/>
 						</Dropdown>

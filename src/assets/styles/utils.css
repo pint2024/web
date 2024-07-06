@@ -11,8 +11,11 @@
 }
 
 .perigo {
-	/* pinta o elemento com a cor de perigo */
 	color: var(--DANGER);
+}
+
+.sucesso {
+	color: var(--SUCCESS);
 }
 
 .remove-padding {
@@ -28,7 +31,7 @@
 }
 
 .icon-size-big {
-	font-size: 35px;
+	font-size: 18px;
 }
 
 .icon-hover:hover {

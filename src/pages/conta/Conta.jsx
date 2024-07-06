@@ -8,6 +8,7 @@ import { useCarregando } from "hooks/useCarregando";
 import { useParams } from "react-router-dom";
 import { ApiRequest } from "api/apiRequest";
 import { BlocoParticipacoes } from "./blocos/BlocoParticipacoes";
+import { LabelError } from "layouts/labelWarnings/LabelError";
 
 export function Conta() {
 	const { id } = useParams();

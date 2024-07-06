@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useCarregando } from "hooks/useCarregando";
 import { DateUtils } from "utils/date.utils";
 import { ApiRequest } from "api/apiRequest";
-import { Botao, Icone, Imagem, Popup } from "components";
+import { Botao, Icone, Popup } from "components";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
@@ -12,6 +12,7 @@ import { CriarUtilizadorPainel } from "./CriarUtilizadorPainel";
 export function UtilizadorPainel() {
 	const [dataUtilizadores, setdataUtilizadores] = useState(null);
 	const [isPopupOpen, setisPopupOpen] = useState(false);
+	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
 		fetchConteudoData();
@@ -26,19 +27,37 @@ export function UtilizadorPainel() {
 	};
 
 	const fetchConteudoData = async () => {
-		const data = await ApiRequest.listar("utilizador/simples"); // filtra os conteudos apenas
+		const data = await ApiRequest.listar("utilizador/simples");
 		setdataUtilizadores(data);
 	};
 
 	const handleCreated = () => {
 		fetchConteudoData();
 		setisPopupOpen(false);
-	}
+	};
+
+	const handleVerifyUser = async (id) => {
+		startLoading();
+		await ApiRequest.atualizar("utilizador", id, { verificado: true });
+		await fetchConteudoData();
+		stopLoading();
+	};
+
+	const handleManageUserStatus = async (id, isInativar) => {
+		startLoading();
+		await ApiRequest.atualizar("utilizador", id, { inativo: isInativar });
+		await fetchConteudoData();
+		stopLoading();
+	};
 
 	return (
 		<>
 			{isPopupOpen && (
-				<Popup headerTitle={"Adicionar Utilizador"} onClose={() => closePopup()} body={<CriarUtilizadorPainel handleCreated={() => handleCreated()} />}/>
+				<Popup
+					headerTitle={"Adicionar Utilizador"}
+					onClose={() => closePopup()}
+					body={<CriarUtilizadorPainel handleCreated={() => handleCreated()} />}
+				/>
 			)}
 			<Botao onClick={() => openPopup()}>
 				<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
@@ -73,19 +92,51 @@ export function UtilizadorPainel() {
 								<td>{item.nome}</td>
 								<td>{item.sobrenome}</td>
 								<td>{item.email}</td>
-								<td>{item.inativo ? "Sim" : "Não"}</td>
-								<td>{item.verificado ? "Sim" : "Não"}</td>
+								<td>
+									{item.inativo ? (
+										<Icone iconName="CheckCircleFill" className="sucesso" />
+									) : (
+										<Icone iconName="XCircleFill" className="perigo" />
+									)}
+								</td>
+								<td>
+									{item.verificado ? (
+										<Icone iconName="CheckCircleFill" className="sucesso" />
+									) : (
+										<Icone iconName="XCircleFill" className="perigo" />
+									)}
+								</td>
 								<td>{item.utilizador_perfil.perfil}</td>
 								<td>{item.centro ? item?.utilizador_centro?.centro : "Por definir."}</td>
 								<td>{DateUtils.DataNormal(item.data_criacao)}</td>
 								<td>
 									<div className="d-flex gap-2">
-										<Botao title="Verificar" variant={BUTTON_VARIANTS.SUCESSO}>
-											<Icone iconName="Check" type={COMMON_TYPES.INVERSO} />
-										</Botao>
-										<Botao title="Denunciar" variant={BUTTON_VARIANTS.PERIGO}>
-											<Icone iconName="Ban" type={COMMON_TYPES.INVERSO} />
-										</Botao>
+										{item.inativo ? (
+											<Botao
+												title="Ativar"
+												onClick={() => handleManageUserStatus(item.id, false)}
+												variant={BUTTON_VARIANTS.PERIGO}
+											>
+												<Icone iconName="UnlockFill" type={COMMON_TYPES.INVERSO} />
+											</Botao>
+										) : (
+											<Botao
+												title="Inativar"
+												onClick={() => handleManageUserStatus(item.id, true)}
+												variant={BUTTON_VARIANTS.PERIGO}
+											>
+												<Icone iconName="LockFill" type={COMMON_TYPES.INVERSO} />
+											</Botao>
+										)}
+										{!item.verificado && (
+											<Botao
+												title="Verificar"
+												onClick={() => handleVerifyUser(item.id)}
+												variant={BUTTON_VARIANTS.SUCESSO}
+											>
+												<Icone iconName="Check" type={COMMON_TYPES.INVERSO} />
+											</Botao>
+										)}
 									</div>
 								</td>
 							</tr>

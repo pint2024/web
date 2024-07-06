@@ -16,7 +16,6 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: var(--SIDE-BAR-HEADER);
 	overflow-y: auto;
 }
 

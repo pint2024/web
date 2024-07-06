@@ -13,6 +13,10 @@
 	--REGULAR-DROPDOWN: 904;
 
 	--SIDE-BAR-HEADER: 3;
+
+	--IMAGEM-MODAL: 900;
+
+	--TOOL-TIP: 800;
 }
 
 .loading-operation {
@@ -54,4 +58,17 @@
 
 .modal-popup .modal-backdrop {
 	z-index: var(--POPUP-BACKGROUND);
+}
+
+.modal-overlay {
+	z-index: var(--IMAGEM-MODAL);
+}
+
+.Tooltip-Tip {
+	z-index: var(--TOOL-TIP);
+}
+
+.sidebar--open,
+.nav-menu {
+	z-index: var(--SIDE-BAR-HEADER);
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const ImageBox = ({ disabled, handleChange, allowMultiple = false }) => {
+export const ImageBox = ({ disabled, handleChange, value, allowMultiple = false }) => {
 	const [selectedFiles, setSelectedFiles] = useState([]);
 
 	const handleInputChange = (event) => {
@@ -19,6 +19,7 @@ export const ImageBox = ({ disabled, handleChange, allowMultiple = false }) => {
 				onChange={handleInputChange}
 				disabled={disabled}
 				multiple={allowMultiple}
+				value={value}
 				accept="image/*"
 			/>
 			<div>

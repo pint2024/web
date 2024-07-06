@@ -19,6 +19,20 @@ export class ApiRequest {
 		}
 	}
 
+	static async upload_user_image(id, imagem) {
+		try {
+			const url = `/utilizador/imagem/atualizar/${id}`;
+			const formData = new FormData();
+
+			console.log("oi", imagem[0]);
+			formData.append("imagem", imagem[0]);
+
+			return await myAxios({ url, data: formData, method: "put", headers: { "Content-Type": "multipart/form-data" } });
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	static async criar_with_files(endpoint, data, file_key) {
 		try {
 			const url = `/${endpoint}/criar`;
