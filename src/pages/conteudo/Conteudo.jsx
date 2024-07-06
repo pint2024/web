@@ -107,7 +107,6 @@ export function Conteudo() {
 					routeTo={"tipo/atividades"}
 					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID)}
 				/>
-
 				<ConteudoSeccoes
 					titulo={"Eventos"}
 					routeTo={"tipo/eventos"}

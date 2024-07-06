@@ -18,6 +18,7 @@ import { TopicosPainel } from "pages/backoffice/gestaoDados/topicos/TopicosPaine
 import { CentroPainel } from "pages/backoffice/gestaoDados/centros/CentroPainel";
 import { EsqueceuPasse } from "pages/autenticacao/esqueceuPasse/EsqueceuPasse";
 import { ResetarPasse } from "pages/autenticacao/resetPasse/ResetarPasse";
+import { Sobre } from "pages/sobre/Sobre";
 
 export class Routes {
 	static InicialRoutes = [
@@ -81,6 +82,15 @@ export class Routes {
 					perfis: [],
 				},
 			],
+		},
+	];
+
+	static SobreRoutes = [
+		{
+			title: "Sobre",
+			path: "/sobre",
+			element: <Sobre />,
+			perfis: [],
 		},
 	];
 

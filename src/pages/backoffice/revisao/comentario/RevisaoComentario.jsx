@@ -62,7 +62,7 @@ export function RevisaoComentario() {
 									<Botao onClick={() => handleRevisaoRejeitada(item.id)} variant={BUTTON_VARIANTS.PERIGO}>
 										<Icone iconName="X" type={COMMON_TYPES.INVERSO} />
 									</Botao>
-									<Botao route={`/conteudos/${item.revisao_comentario.comentario_conteudo.id}`}>
+									<Botao route={`/conteudos/${item.revisao_comentario.comentario_conteudo.id}#comentario-${item.revisao_comentario.id}`}>
 										<Icone iconName="ArrowRight" type={COMMON_TYPES.INVERSO} />
 									</Botao>
 								</div>

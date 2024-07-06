@@ -5,6 +5,7 @@ import Image from "assets/images/user-default.png";
 import "./conteudo-seccoes.css";
 import { COMMON_SIZES } from "data/data";
 import { useEffect, useState } from "react";
+import { HorizontalScroll } from "components/container/horizontalScroll/HorizontalScroll";
 
 export function ConteudoSeccoes({ titulo, routeTo, data }) {
 	const [dataConteudo, setdataConteudo] = useState([]);
@@ -15,13 +16,13 @@ export function ConteudoSeccoes({ titulo, routeTo, data }) {
 
 	return (
 		<article className="mt-4">
-			<Navegar to={routeTo} className="navegar">
-				<div className="navegar-content">
-					<Texto size={COMMON_SIZES.FS5}>{titulo}</Texto>
-					<Icone size={COMMON_SIZES.FS4} iconName={"ArrowRightShort"} />
-				</div>
-			</Navegar>
-			<div className="d-flex gap-4 horizontal-cards">
+			<HorizontalScroll
+				header={
+					<Navegar to={routeTo} className="navegar">
+						<Texto size={COMMON_SIZES.FS5}>{titulo}</Texto>
+					</Navegar>
+				}
+			>
 				{dataConteudo?.map((item) => (
 					<Post
 						id={item.id}
@@ -32,7 +33,7 @@ export function ConteudoSeccoes({ titulo, routeTo, data }) {
 						imagem={item.imagem}
 					/>
 				))}
-			</div>
+			</HorizontalScroll>
 		</article>
 	);
 }

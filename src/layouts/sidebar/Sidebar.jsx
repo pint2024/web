@@ -14,7 +14,7 @@ export function Sidebar() {
 				<Icone iconName={isOpen ? "X" : "List"} className="sidebar-icon" />
 			</div>
 			<Link to={"/backoffice/utilizadores"} className="sidebar-position">
-				<Icone iconName={"PeopleFill"} className="sidebar-icon"/>
+				<Icone iconName={"PeopleFill"} className="sidebar-icon" />
 				<span>Utilizador</span>
 			</Link>
 			<Link to={"/backoffice/topicos"} className="sidebar-position">
@@ -25,10 +25,6 @@ export function Sidebar() {
 				<Icone iconName={"BuildingsFill"} className="sidebar-icon" />
 				<span>Centro</span>
 			</Link>
-			<Link to={"/backoffice/estatisticas"} className="sidebar-position">
-				<Icone iconName={"BarChartFill"} className="sidebar-icon" />
-				<span>Estatísticas</span>
-			</Link>
 			<Link to={"/backoffice/revisoes"} className="sidebar-position">
 				<Icone iconName={"Search"} className="sidebar-icon" />
 				<span>Revisão</span>
@@ -36,6 +32,10 @@ export function Sidebar() {
 			<Link to={"/backoffice/denuncias"} className="sidebar-position">
 				<Icone iconName={"ExclamationTriangleFill"} className="sidebar-icon" />
 				<span>Denuncias</span>
+			</Link>
+			<Link to={"/backoffice/estatisticas"} className="sidebar-position">
+				<Icone iconName={"BarChartFill"} className="sidebar-icon" />
+				<span>Estatísticas</span>
 			</Link>
 		</div>
 	);

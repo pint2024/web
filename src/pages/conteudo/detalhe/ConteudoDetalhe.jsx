@@ -14,15 +14,22 @@ import { DBUtils } from "utils/db.utils";
 import { ApiRequest } from "api/apiRequest";
 import { LabelInfo } from "layouts/labelWarnings/LabelInfo";
 import { LabelSucess } from "layouts/labelWarnings/LabelSucess";
+import { useUserValidation } from "hooks/useAuth";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
+	const [isRevisao, setisRevisao] = useState(true);
 	const { startLoading, stopLoading } = useCarregando();
 	const { id } = useParams();
+	const utilizadorAtual = useUserValidation();
 
 	useEffect(() => {
 		fetchConteudoData();
 	}, []);
+
+	useEffect(() => {
+		if (dataDetalhe) setisRevisao(DBUtils.checkRevisao(dataDetalhe.revisao_conteudo));
+	}, [dataDetalhe]);
 
 	const fetchConteudoData = async () => {
 		startLoading();
@@ -34,19 +41,19 @@ export function ConteudoDetalhe() {
 	if (!dataDetalhe) return;
 
 	const handleAddParticipacao = async () => {
-		await ApiRequest.criar("participante", { utilizador: 1, conteudo: id });
+		await ApiRequest.criar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
 		fetchConteudoData();
 	};
 
 	const handleRemoverParticipacao = async () => {
-		const data = await ApiRequest.listar("participante", { utilizador: 1, conteudo: id });
+		const data = await ApiRequest.listar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
 		await ApiRequest.remover("participante", data[0].id);
 		fetchConteudoData();
 	};
 
 	return (
 		<>
-			{DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) && <LabelError texto="Em revisão..." />}
+			{isRevisao && <LabelError texto="Em revisão..." />}
 			{DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, 1) && (
 				<LabelSucess texto="Você está inscrito!" />
 			)}
@@ -103,17 +110,25 @@ export function ConteudoDetalhe() {
 				<section className="d-flex gap-2 mt-2">
 					{(dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
 						dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID) &&
-					DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, 1) ? (
+					DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, utilizadorAtual.id) ? (
 						<>
-							<Botao onClick={handleRemoverParticipacao} variant={BUTTON_VARIANTS.SECUNDARIO}>Remover Participação</Botao>
+							<Botao onClick={handleRemoverParticipacao} variant={BUTTON_VARIANTS.SECUNDARIO}>
+								Remover Participação
+							</Botao>
 						</>
 					) : (
 						<>
-							<Botao onClick={handleAddParticipacao} variant={BUTTON_VARIANTS.SUCESSO}>Participar</Botao>
+							<Botao onClick={handleAddParticipacao} variant={BUTTON_VARIANTS.SUCESSO}>
+								Participar
+							</Botao>
 						</>
 					)}
-					<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
-					<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
+					{isRevisao && (
+						<>
+							<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
+							<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
+						</>
+					)}
 				</section>
 				<section>
 					<ComentarioSeccao id={id} />

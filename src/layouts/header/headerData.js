@@ -7,6 +7,7 @@ const navItems = [
 		selectedIcon: "PersonBadgeFill",
 		route: "/backoffice",
 	},
+	{ title: "Sobre", icon: "InfoCircle", selectedIcon: "InfoCircleFill", route: "/sobre" },
 ];
 
 export const userItems = [

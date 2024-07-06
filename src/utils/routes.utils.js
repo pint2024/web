@@ -17,6 +17,7 @@ export const renderRoutes = criarRoutes([
 	...Routes.UtilizadorRoutes,
 	...Routes.AutenticacaoRoutes,
 	...Routes.ErrosRoutes,
+	...Routes.SobreRoutes,
 ]);
 
 export const renderBackofficeRoutes = criarRoutes([...Routes.BackofficeRoutes]);
@@ -45,6 +46,7 @@ export function findRouteByPath(path) {
 			...Routes.AutenticacaoRoutes,
 			...Routes.ErrosRoutes,
 			...Routes.BackofficeRoutes,
+			...Routes.SobreRoutes,
 		],
 		path
 	);

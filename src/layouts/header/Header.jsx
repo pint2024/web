@@ -21,10 +21,7 @@ export function Header() {
 				<div>
 					{utilizadorAtual ? (
 						<Dropdown items={userItems}>
-							<Imagem
-								src={utilizadorAtual.imagem}
-								className="header-user-image cursor-pointer"
-							/>
+							<Imagem src={utilizadorAtual.imagem} className="header-user-image cursor-pointer" />
 						</Dropdown>
 					) : (
 						<Navegar to="/iniciar-sessao">

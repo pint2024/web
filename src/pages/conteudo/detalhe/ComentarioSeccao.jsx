@@ -2,6 +2,7 @@ import { AutenticacaoRequest } from "api";
 import { ApiRequest } from "api/apiRequest";
 import { Comentario, CaixaTexto, Texto, Botao } from "components/index";
 import { COMMON_SIZES } from "data/data";
+import { useUserValidation } from "hooks/useAuth";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 
@@ -9,12 +10,23 @@ export function ComentarioSeccao({ id }) {
 	const [dataComentarios, setdataComentarios] = useState(null);
 	const [novoComentario, setnovoComentario] = useState("");
 	const { startLoading, stopLoading } = useCarregando();
+	const utilizadorAtual = useUserValidation();
 
 	useEffect(() => {
 		startLoading();
 		fetchComentariosData();
 		stopLoading();
 	}, []);
+
+	useEffect(() => {
+		const hash = window.location.hash;
+		if (hash) {
+			const element = document.getElementById(hash.substring(1));
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth" });
+			}
+		}
+	}, [dataComentarios]);
 
 	const fetchComentariosData = async () => {
 		const data = await ApiRequest.listar("comentario", { conteudo: id });
@@ -27,7 +39,7 @@ export function ComentarioSeccao({ id }) {
 		await ApiRequest.criar("comentario", {
 			comentario: novoComentario,
 			conteudo: id,
-			utilizador: 1,
+			utilizador: utilizadorAtual.id,
 		});
 		fetchComentariosData();
 		setnovoComentario("");
@@ -49,7 +61,7 @@ export function ComentarioSeccao({ id }) {
 				<Botao onClick={handleEnviarComentario}>Enviar</Botao>
 			</div>
 			{dataComentarios.map((comentario, _) => (
-				<div className="mb-2">
+				<div key={comentario.id} id={`comentario-${comentario.id}`} className="mb-2">
 					<Comentario key={comentario.id} utilizador={comentario.comentario_utilizador} comentario={comentario} />
 				</div>
 			))}
