@@ -1,7 +1,6 @@
 import { Contentor, Navegar, Texto } from "components/index";
 
 export function BlocoParticipacoes({ data }) {
-	console.log(data);
 	return (
 		<Contentor>
 			<Texto size={2}>Eventos em que estou a participar!</Texto>

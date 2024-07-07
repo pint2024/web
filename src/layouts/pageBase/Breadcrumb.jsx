@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Icone, Texto } from "components/index";
 import { useEffect, useState } from "react";
-import { findRouteByPath } from "utils/routes.utils";
+import { RoutesUtils } from "utils/routes.utils";
 import { COMMON_TYPES } from "data/data";
 
 export function Breadcrumb() {
@@ -14,7 +14,7 @@ export function Breadcrumb() {
 			const breadcrumb = [];
 
 			for (const path of pathnames) {
-				const route = findRouteByPath("/" + path);
+				const route = RoutesUtils.findRouteByPath("/" + path);
 				if (route) {
 					breadcrumb.push(route);
 				}

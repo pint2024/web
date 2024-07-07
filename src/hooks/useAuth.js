@@ -1,9 +1,9 @@
 import { AutenticacaoRequest } from "api";
 import { useEffect, useState } from "react";
 
-export const useUserValidation = () => {
+export const useUserValidation = (shouldReturnIsValid = false) => {
 	const [userData, setuserData] = useState({});
-	const [isValid, setisValid] = useState({});
+	const [isValid, setisValid] = useState(false);
 
 	useEffect(() => {
 		getUserData();
@@ -12,7 +12,7 @@ export const useUserValidation = () => {
 	const getUserData = async () => {
 		try {
 			const data = await AutenticacaoRequest.obterUtilizadorAtual();
-			if (!data) throw new Error("Data não existe.");
+			if (!data) setisValid(true);
 			setuserData(data);
 			setisValid(true);
 		} catch (error) {
@@ -21,5 +21,5 @@ export const useUserValidation = () => {
 		}
 	};
 
-	return userData;
+	return shouldReturnIsValid ? { userData, isValid } : userData;
 };

@@ -1,29 +1,37 @@
 /// React
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 /// Componentes
-import { renderBackofficeRoutes, renderRoutes } from "utils/routes.utils";
 import { PageLayout } from "layouts/pageBase/PageLayout";
 import { PROJETO_NAME } from "data/constants";
-import { useAutenticacao } from "hooks/useAutenticacao";
 import { BackofficeLayout } from "layouts/pageBase/BackofficeLayout";
+import { Rotas } from "routes";
+import { useUserValidation } from "hooks/useAuth";
 
 function App() {
-	const utilizadorAtual = useAutenticacao();
+	const [userRole, setuserRole] = useState();
+	const { userData, isValid } = useUserValidation(true);
+
+	useEffect(() => {
+		if (!userData) return;
+		setuserRole(userData.perfil);
+	}, [isValid, userData]);
 
 	useEffect(() => {
 		document.title = PROJETO_NAME;
 	}, []);
 
+	if (!isValid) return;
+
 	return (
 		<Router>
 			<Routes>
 				<Route path="/backoffice" element={<BackofficeLayout />}>
-					{renderBackofficeRoutes}
+					{Rotas.RenderBackofficeRoutes(userRole)}
 				</Route>
 				<Route path="/" element={<PageLayout />}>
-					{renderRoutes}
+					{Rotas.RenderRoutes(userRole)}
 				</Route>
 			</Routes>
 		</Router>

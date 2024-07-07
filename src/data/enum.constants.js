@@ -28,6 +28,11 @@ export class EnumConstants {
 		REJEITADO: 3,
 	};
 
+	static ROLES = {
+		USER: { ID: 2, NOME: "Utilizador" },
+		ADMIN: { ID: 1, NOME: "Administrador" },
+	};
+
 	static getTipoIdByRoute = (route) => {
 		for (const key in EnumConstants.CONTEUDO_TIPOS) {
 			if (EnumConstants.CONTEUDO_TIPOS[key].ROUTE === route) {

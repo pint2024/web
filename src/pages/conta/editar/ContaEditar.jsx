@@ -2,7 +2,7 @@ import { ApiRequest } from "api";
 import { Botao, ImageBox, Imagem } from "components";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UtilizadorDefault from "assets/images/user-default.png";
 import { useUserValidation } from "hooks/useAuth";
 import { Validador } from "utils/validator";
@@ -14,6 +14,11 @@ export function ContaEditar() {
 	const [erros, setErros] = useState([]);
 	const { startLoading, stopLoading } = useCarregando();
 	const utilizadorAtual = useUserValidation();
+	const navigate = useNavigate();
+
+	if (utilizadorAtual.id !== id) {
+		navigate("/");
+	}
 
 	useEffect(() => {
 		fetchData();
@@ -26,7 +31,7 @@ export function ContaEditar() {
 	};
 
 	const fetchContaData = async () => {
-		const data = await ApiRequest.obter("utilizador", id);
+		const data = await ApiRequest.obter("utilizador/simples", id);
 		setdataConta(data);
 	};
 

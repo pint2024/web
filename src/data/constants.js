@@ -26,11 +26,6 @@ export const CONTENT_VH = getSizes("CONTENT_VH");
 
 export const SEND_MESSAGE_DELAY = 200;
 
-export const ROLES = {
-	USER: { ID: 1, NOME: "Utilizador" },
-	ADMIN: { ID: 2, NOME: "Administrador" },
-};
-
 export const STATUS = {
 	ERRO: 0,
 	SUCESSO: 1,

@@ -19,14 +19,18 @@ import { CentroPainel } from "pages/backoffice/gestaoDados/centros/CentroPainel"
 import { EsqueceuPasse } from "pages/autenticacao/esqueceuPasse/EsqueceuPasse";
 import { ResetarPasse } from "pages/autenticacao/resetPasse/ResetarPasse";
 import { Sobre } from "pages/sobre/Sobre";
+import { RoutesUtils } from "utils/routes.utils";
+import { EnumConstants } from "data/enum.constants";
 
-export class Routes {
+const ROLES = EnumConstants.ROLES;
+
+export class Rotas {
 	static InicialRoutes = [
 		{
 			title: "Página Inicial",
 			path: "/",
 			element: <PaginaInicial />,
-			perfis: [],
+			perfis: [ROLES.USER.ID],
 		},
 	];
 
@@ -35,25 +39,25 @@ export class Routes {
 			title: "Conteudos",
 			path: "/conteudos",
 			element: <Conteudo />,
-			perfis: [],
+			perfis: [ROLES.USER.ID],
 			children: [
 				{
 					title: "Criar",
 					path: "/criar/:id",
 					element: <ConteudoCriar />,
-					perfis: [],
+					perfis: [ROLES.USER.ID],
 				},
 				{
 					title: "Detalhe",
 					path: "/:id",
 					element: <ConteudoDetalhe />,
-					perfis: [],
+					perfis: [ROLES.USER.ID],
 				},
 				{
 					title: "Tipo",
 					path: "/tipo/:tipo",
 					element: <ConteudoTipoListagem />,
-					perfis: [],
+					perfis: [ROLES.USER.ID],
 				},
 			],
 		},
@@ -64,7 +68,7 @@ export class Routes {
 			title: "Calendário",
 			path: "/calendario",
 			element: <Calendario />,
-			perfis: [],
+			perfis: [ROLES.USER.ID],
 		},
 	];
 
@@ -73,13 +77,13 @@ export class Routes {
 			title: "Conta",
 			path: "/conta/:id",
 			element: <Conta />,
-			perfis: [],
+			perfis: [ROLES.USER.ID],
 			children: [
 				{
 					title: "Editar",
 					path: "/editar",
 					element: <ContaEditar />,
-					perfis: [],
+					perfis: [ROLES.USER.ID],
 				},
 			],
 		},
@@ -105,15 +109,18 @@ export class Routes {
 			title: "Esqueceu-se da Palavra-passe",
 			path: "/esqueceu-passe",
 			element: <EsqueceuPasse />,
+			perfis: [],
 		},
 		{
 			title: "Resetar a Palavra-passe",
 			path: "/resetar-passe",
 			element: <ResetarPasse />,
+			perfis: [],
 		},
 		{
 			title: "Terminar Sessão",
 			path: "/terminar-sessao",
+			perfis: [],
 		},
 	];
 
@@ -126,42 +133,52 @@ export class Routes {
 		},
 	];
 
+	static FrontofficeRoutes = [
+		...this.InicialRoutes,
+		...this.ConteudoRoutes,
+		...this.CalendarioRoutes,
+		...this.UtilizadorRoutes,
+		...this.SobreRoutes,
+		...this.AutenticacaoRoutes,
+		...this.ErrosRoutes,
+	];
+
 	static BackofficeRoutes = [
 		{
 			title: "Backoffice",
 			path: "/backoffice",
 			element: <Temporary />,
-			perfis: [],
+			perfis: [0],
 			children: [
 				{
 					title: "Utilizador",
 					path: "/utilizadores",
 					element: <UtilizadorPainel />,
-					perfis: [],
+					perfis: [0],
 				},
 				{
 					title: "Centro",
 					path: "/centros",
 					element: <CentroPainel />,
-					perfis: [],
+					perfis: [0],
 				},
 				{
 					title: "Tópicos",
 					path: "/topicos",
 					element: <TopicosPainel />,
-					perfis: [],
+					perfis: [0],
 				},
 				{
 					title: "Estatísticas",
 					path: "/estatisticas",
 					element: <Temporary />,
-					perfis: [],
+					perfis: [0],
 					children: [
 						{
 							title: "x",
 							path: "/x",
 							element: <Temporary />,
-							perfis: [],
+							perfis: [0],
 						},
 					],
 				},
@@ -174,19 +191,19 @@ export class Routes {
 							<Botao route="comentario">comentario</Botao>
 						</Temporary>
 					),
-					perfis: [],
+					perfis: [0],
 					children: [
 						{
 							title: "Conteudo",
 							path: "/conteudo",
 							element: <RevisaoConteudo />,
-							perfis: [],
+							perfis: [0],
 						},
 						{
 							title: "Comentário",
 							path: "/comentario",
 							element: <RevisaoComentario />,
-							perfis: [],
+							perfis: [0],
 						},
 					],
 				},
@@ -194,17 +211,27 @@ export class Routes {
 					title: "Denuncias",
 					path: "/denuncias",
 					element: <Denuncia />,
-					perfis: [],
+					perfis: [0],
 					children: [
 						{
 							title: "x",
 							path: "/x",
 							element: <Temporary />,
-							perfis: [],
+							perfis: [0],
 						},
 					],
 				},
 			],
 		},
 	];
+
+	static RenderRoutes(user_role) {
+		const routesUtils = new RoutesUtils(user_role);
+		return routesUtils.criarRoutes([...this.FrontofficeRoutes]);
+	}
+
+	static RenderBackofficeRoutes(user_role) {
+		const routesUtils = new RoutesUtils(user_role);
+		return routesUtils.criarRoutes([...this.BackofficeRoutes]);
+	}
 }

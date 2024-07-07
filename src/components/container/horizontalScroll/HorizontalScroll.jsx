@@ -13,7 +13,7 @@ export function HorizontalScroll({ header, children }) {
 		cardsWrapperRef.current.scrollLeft += 1000;
 	};
 	return (
-		<section className="remove-user-select">
+		<section className="horizontal-scroll remove-user-select">
 			<div className="d-flex justify-content-between">
 				<div>{header}</div>
 				<div className="arrowContainer gap-2 mb-4">

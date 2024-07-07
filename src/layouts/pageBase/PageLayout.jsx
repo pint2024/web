@@ -7,10 +7,10 @@ import { Breadcrumb } from "./Breadcrumb";
 export function PageLayout() {
 	return (
 		<div id="PageLayout">
-			<header className="header-height">
+			<header className="header-height fixed-header">
 				<Header />
 			</header>
-			<main className="content-min-height">
+			<main className="content-min-height scrollable-content">
 				<Breadcrumb />
 				<PageContent>
 					<Outlet />

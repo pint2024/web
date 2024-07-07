@@ -1,4 +1,4 @@
-import { Icone, Texto, Contentor, Botao, Navegar, Imagem, Popup } from "components/index";
+import { Icone, Texto, Contentor, Botao, Navegar, Imagem, Popup, ComboBox } from "components/index";
 import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
@@ -6,13 +6,43 @@ import UtilizadorDefault from "assets/images/user-default.png";
 import "../conta.css";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 import { LabelError } from "layouts/labelWarnings/LabelError";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InteressesList } from "../InteressesList";
 import { useUserValidation } from "hooks/useAuth";
+import { ApiRequest } from "api";
+import { useCarregando } from "hooks/useCarregando";
 
 export function BlocoPrincipal({ data }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
+	const [dataPerfis, setdataPerfis] = useState();
+	const [selectPerfil, setselectPerfil] = useState();
+	const { startLoading, stopLoading } = useCarregando();
 	const utilizadorAtual = useUserValidation();
+
+	useEffect(() => {
+		setselectPerfil(data.perfil);
+	}, []);
+
+	useEffect(() => {
+		handleUpdatePerfil();
+	}, [selectPerfil]);
+
+	useEffect(() => {
+		handleFetchPerfil();
+	}, []);
+
+	const handleUpdatePerfil = async () => {
+		startLoading();
+		await ApiRequest.atualizar("utilizador", data.id, { perfil: selectPerfil });
+		stopLoading();
+	};
+
+	const handleFetchPerfil = async () => {
+		startLoading();
+		const data = await ApiRequest.listar("perfil/simples");
+		setdataPerfis(data);
+		stopLoading();
+	};
 
 	const getInteresses = () => {
 		let interesses = "";
@@ -22,11 +52,20 @@ export function BlocoPrincipal({ data }) {
 		return interesses;
 	};
 
+	if (!dataPerfis) return;
+
+	const transformarDados = () => {
+		return dataPerfis?.map((item) => ({
+			value: item.id,
+			label: item.perfil,
+		}));
+	};
+
 	return (
 		<Contentor>
 			{isPopupOpen && (
 				<Popup
-					headerTitle={"Adicionar Utilizador"}
+					headerTitle={"Adicionar Interesses"}
 					onClose={() => setisPopupOpen(false)}
 					body={<InteressesList id={data.id} />}
 				/>
@@ -68,6 +107,12 @@ export function BlocoPrincipal({ data }) {
 					<div className="details-right d-flex flex-column align-items-end gap-2">
 						{utilizadorAtual.id === data.id && (
 							<div className="d-flex gap-3">
+								<ComboBox
+									options={transformarDados()}
+									placeholder="Escolha o perfil..."
+									handleChange={(e) => setselectPerfil(e)}
+									value={selectPerfil}
+								/>
 								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
 									Interesses
 								</Botao>
