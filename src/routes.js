@@ -21,6 +21,7 @@ import { ResetarPasse } from "pages/autenticacao/resetPasse/ResetarPasse";
 import { Sobre } from "pages/sobre/Sobre";
 import { RoutesUtils } from "utils/routes.utils";
 import { EnumConstants } from "data/enum.constants";
+import { Estatisticas } from "pages/backoffice/estatisticas/Estatisticas";
 
 const ROLES = EnumConstants.ROLES;
 
@@ -171,7 +172,7 @@ export class Rotas {
 				{
 					title: "Estatísticas",
 					path: "/estatisticas",
-					element: <Temporary />,
+					element: <Estatisticas />,
 					perfis: [0],
 					children: [
 						{

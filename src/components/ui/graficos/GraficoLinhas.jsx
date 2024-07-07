@@ -2,6 +2,7 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 
 export function GraficoLinhas({ chartData, Nome }) {
+	console.log("gl", chartData)
 	if (!chartData) {
 		return <p>Carregando...</p>;
 	}
@@ -27,7 +28,7 @@ export function GraficoLinhas({ chartData, Nome }) {
 					plugins: {
 						title: {
 							display: true,
-							text: `${totalData} ${Nome}`,
+							text: `${Nome ? Nome : ""}`,
 							font: {
 								weight: "bold",
 							},
