@@ -7,7 +7,7 @@ import { COMMON_SIZES } from "data/data";
 import { useEffect, useState } from "react";
 import { HorizontalScroll } from "components/container/horizontalScroll/HorizontalScroll";
 
-export function ConteudoSeccoes({ titulo, routeTo, data }) {
+export function ConteudoSeccoes({ titulo, icon, routeTo, data }) {
 	const [dataConteudo, setdataConteudo] = useState([]);
 
 	useEffect(() => {
@@ -18,7 +18,8 @@ export function ConteudoSeccoes({ titulo, routeTo, data }) {
 		<article className="mt-4">
 			<HorizontalScroll
 				header={
-					<Navegar to={routeTo} className="navegar">
+					<Navegar to={routeTo} className="navegar gap-2">
+						<Icone size={COMMON_SIZES.FS5} iconName={icon} />
 						<Texto size={COMMON_SIZES.FS5}>{titulo}</Texto>
 					</Navegar>
 				}

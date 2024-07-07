@@ -6,11 +6,11 @@ export function HorizontalScroll({ header, children }) {
 	const cardsWrapperRef = useRef();
 
 	const scrollLeft = () => {
-		cardsWrapperRef.current.scrollLeft += -1000;
+		cardsWrapperRef.current.scrollLeft += -1200;
 	};
 
 	const scrollRight = () => {
-		cardsWrapperRef.current.scrollLeft += 1000;
+		cardsWrapperRef.current.scrollLeft += 1200;
 	};
 	return (
 		<section className="horizontal-scroll remove-user-select">

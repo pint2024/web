@@ -99,21 +99,25 @@ export function Conteudo() {
 			<section>
 				<ConteudoSeccoes
 					titulo={"Espaços"}
+					icon={"HouseDoor"}
 					routeTo={"tipo/espacos"}
 					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ESPACO.ID)}
 				/>
 				<ConteudoSeccoes
 					titulo={"Atividades"}
+					icon={"SignpostSplit"}
 					routeTo={"tipo/atividades"}
 					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID)}
 				/>
 				<ConteudoSeccoes
 					titulo={"Eventos"}
+					icon={"CalendarX"}
 					routeTo={"tipo/eventos"}
 					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.EVENTO.ID)}
 				/>
 				<ConteudoSeccoes
 					titulo={"Recomendações"}
+					icon={"Star"}
 					routeTo={"tipo/recomendacoes"}
 					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO.ID)}
 				/>

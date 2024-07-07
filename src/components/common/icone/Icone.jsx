@@ -12,7 +12,7 @@ export function Icone({ iconName, size = 1, type = "primary", className = "", ..
 	} catch (e) {
 		throw new Error(iconName);
 	}
-	const validSizes = [0, 1, 2, 3, 4];
+	const validSizes = [0, 1, 2, 3, 4, 5];
 	const isSizeValid = validSizes.includes(size) ? true : false;
 
 	const validTypes = ["primary", "secondary", "success", "danger", "inverse"];
