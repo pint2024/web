@@ -26,6 +26,8 @@ export class AutenticacaoRequest {
 			if (response.token) {
 				this.#setToken(response.token);
 				return response;
+			} else if (response.status === 422) {
+				return response;
 			}
 			return STATUS.ERRO;
 		} catch (error) {
@@ -102,6 +104,25 @@ export class AutenticacaoRequest {
 			});
 			if (!response) throw new Error("Não recebeu resposta!");
 			return true;
+		} catch (error) {
+			Log.erro(error);
+			return false;
+		}
+	}
+
+	static async atualizarPasse(token, senha, senha_old) {
+		try {
+			const response = await myAxios({
+				url: "/autenticacao/atualizar-password",
+				method: "post",
+				data: { token: token, senha: senha, senha_old: senha_old },
+			});
+			if (!response) throw new Error("Não recebeu resposta!");
+			if (response.token) {
+				this.#setToken(response.token);
+				return response;
+			}
+			return false;
 		} catch (error) {
 			Log.erro(error);
 			return false;

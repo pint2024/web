@@ -29,8 +29,12 @@ export class Validador {
 				erros[chave] = `Deve ser maior ou igual a ${regras.length_min}`;
 			}
 
-			if (regras.type && typeof valor !== regras.type) {
-				erros[chave] = `Deve ser do tipo ${regras.type}`;
+			if (regras.length_min && valor.length <= regras.length_min) {
+				erros[chave] = `Deve ser maior ou igual a ${regras.length_min}`;
+			}
+
+			if (regras.equals && typeof valor === regras.equals) {
+				erros[chave] = `Deve ser igual a ${regras.equals}`;
 			}
 
 			if (

@@ -13,51 +13,29 @@ export function Conteudo() {
 	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
-		const fetchConteudoData = async () => {
-			startLoading();
-
-			try {
-				const data = await ApiRequest.listar("tipo");
-				if (selectedTopico) {
-					const filteredData = data.map((tipo) => ({
-						...tipo,
-						conteudo_tipo: tipo.conteudo_tipo.filter(
-							(conteudo) => conteudo.conteudo_subtopico.id === selectedTopico.id
-						),
-					}));
-					console.log(filteredData);
-					setdataConteudo(filteredData);
-				} else {
-					setdataConteudo(data);
-				}
-			} catch (error) {
-				console.error("Erro ao buscar dados de conteúdo:", error);
-			} finally {
-				stopLoading();
-			}
-		};
-		fetchConteudoData();
+		fetchConteudoData(selectedTopico ? { subtopico: selectedTopico.id } : {});
+		console.log(selectedTopico);
 	}, [selectedTopico]);
 
 	useEffect(() => {
-		const fetchConteudoData = async () => {
-			startLoading();
-			const data = await ApiRequest.listar("topico");
-			setdataTopicos(data);
-		};
-		fetchConteudoData();
+		fetchTopicoData();
 	}, []);
 
-	if (!dataConteudo || !dataTopicos) return;
-
-	const getTipoById = (id) => {
-		for (let item of dataConteudo) {
-			if (item.id === id) {
-				return item?.conteudo_tipo;
-			}
-		}
-		return null;
+	const fetchTopicoData = async () => {
+		startLoading();
+		const data = await ApiRequest.listar("topico");
+		setdataTopicos(data);
 	};
+
+	const fetchConteudoData = async (body = {}) => {
+		startLoading();
+		console.log(body);
+		const data = await ApiRequest.listar("conteudo/listagem", (body = {}));
+		setdataConteudo(data);
+		stopLoading();
+	};
+
+	if (!dataConteudo || !dataTopicos) return;
 
 	const formatArrayForComboBox = dataTopicos.map((item) => {
 		return {
@@ -101,25 +79,25 @@ export function Conteudo() {
 					titulo={"Espaços"}
 					icon={"HouseDoor"}
 					routeTo={"tipo/espacos"}
-					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ESPACO.ID)}
+					data={dataConteudo[EnumConstants.CONTEUDO_TIPOS.ESPACO.ID]}
 				/>
 				<ConteudoSeccoes
 					titulo={"Atividades"}
 					icon={"SignpostSplit"}
 					routeTo={"tipo/atividades"}
-					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID)}
+					data={dataConteudo[EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID]}
 				/>
 				<ConteudoSeccoes
 					titulo={"Eventos"}
 					icon={"CalendarX"}
 					routeTo={"tipo/eventos"}
-					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.EVENTO.ID)}
+					data={dataConteudo[EnumConstants.CONTEUDO_TIPOS.EVENTO.ID]}
 				/>
 				<ConteudoSeccoes
 					titulo={"Recomendações"}
 					icon={"Star"}
 					routeTo={"tipo/recomendacoes"}
-					data={getTipoById(EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO.ID)}
+					data={dataConteudo[EnumConstants.CONTEUDO_TIPOS.RECOMENDACAO.ID]}
 				/>
 			</section>
 		</div>

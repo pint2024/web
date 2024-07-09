@@ -23,7 +23,11 @@ export function IniciarSessao() {
 	const handleLogin = async () => {
 		startLoading();
 		const res = await AutenticacaoRequest.entrar(formLogin, formSenha);
-		if (res === STATUS.ERRO || !res) {
+		console.log(res);
+		if (res.status === 422) {
+			Notificacao("É necessário alterar a palavra-passe!", "info");
+			navigate(`/atualizar-passe/${res.data.token}`);
+		} else if (res === STATUS.ERRO || !res) {
 			Notificacao("Os dados estão inválidos!", "error");
 		} else {
 			Notificacao("Sessão inciada com sucesso!");

@@ -22,6 +22,7 @@ import { Sobre } from "pages/sobre/Sobre";
 import { RoutesUtils } from "utils/routes.utils";
 import { EnumConstants } from "data/enum.constants";
 import { Estatisticas } from "pages/backoffice/estatisticas/Estatisticas";
+import { AtualizarPasse } from "pages/autenticacao/atualizarPasse/AtualizarPasse";
 
 const ROLES = EnumConstants.ROLES;
 
@@ -104,6 +105,12 @@ export class Rotas {
 			title: "Iniciar Sessão",
 			path: "/iniciar-sessao",
 			element: <IniciarSessao />,
+			perfis: [],
+		},
+		{
+			title: "Atualizar Palavra-passe",
+			path: "/atualizar-passe/:token",
+			element: <AtualizarPasse />,
 			perfis: [],
 		},
 		{
