@@ -10,11 +10,13 @@ const navItems = [
 	{ title: "Sobre", icon: "InfoCircle", selectedIcon: "InfoCircleFill", route: "/sobre" },
 ];
 
-export const userItems = [
-	{ nome: "Minha conta", rota: `/conta/1` },
-	{ nome: "Editar conta", rota: `/conta/1/editar` },
-	{ nome: "Terminar sessão", rota: `/terminar-sessao` },
-];
+export const userItems = (userId) => { 
+	return [
+		{ nome: "Minha conta", rota: `/conta/${userId}` },
+		{ nome: "Editar conta", rota: `/conta/${userId}/editar` },
+		{ nome: "Terminar sessão", rota: `/terminar-sessao` },
+	];
+}
 
 const criarObjeto = (data, parentRoute = null) => {
 	return data.map((item) => ({
