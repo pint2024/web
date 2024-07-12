@@ -4,6 +4,7 @@ import { API_URL, STATUS } from "data/constants";
 const api = axios.create({
 	baseURL: API_URL,
 });
+
 /*
 export async function myAxios({ url, method = "get", data = null, headers = {} }) {
 	try {
@@ -24,6 +25,8 @@ export async function myAxios({ url, method = "get", data = null, headers = {} }
 
 export async function myAxios({ url, method = "get", data = null, headers = {} }) {
 	try {
+		console.log("ola", API_URL, url);
+
 		const response = await api.request({
 			url,
 			method,
