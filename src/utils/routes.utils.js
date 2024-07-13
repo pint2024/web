@@ -1,8 +1,10 @@
 import { EnumConstants } from "data/enum.constants";
 import { NotFound } from "layouts/errors/NotFound";
+import { IniciarSessao } from "pages/autenticacao";
 import React from "react";
 import { Route } from "react-router-dom";
 import { Rotas } from "routes";
+import { Utils } from "./utils";
 
 export class RoutesUtils {
 	constructor(user_role) {
@@ -11,15 +13,11 @@ export class RoutesUtils {
 
 	criarRoutes = (routes, parentRoute = "") => {
 		return routes.map((route, index) => {
-			const isAdmin = this.user_role === EnumConstants.ROLES.ADMIN.ID;
-			const temPerfilDefinido = route.perfis && route.perfis.length > 0 && route.perfis.includes(this.user_role);
-			const naoTemPerfilDefinido = !route.perfis || route.perfis.length === 0;
-
-			const temAcesso = temPerfilDefinido || naoTemPerfilDefinido || isAdmin;
+			const temAcesso = Utils.Perms(route.perfis, this.user_role);
 
 			return (
 				<React.Fragment key={index}>
-					<Route key={index} path={parentRoute + route.path} element={temAcesso ? route.element : <NotFound />} />
+					<Route key={index} path={parentRoute + route.path} element={temAcesso ? route.element : <IniciarSessao />} />
 					{route.children && this.criarRoutes(route.children, parentRoute + route.path)}
 				</React.Fragment>
 			);

@@ -12,27 +12,46 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 	const [formSenha, setFormSenha] = useState("");
 	const [formCentro, setFormCentro] = useState("");
 	const [dataCentro, setdataCentro] = useState(null);
+	const [formPerfil, setFormPerfil] = useState("");
+	const [dataPerfil, setdataPerfil] = useState(null);
 	const [formVerificado, setFormVerificado] = useState(false);
 	const [erros, setErros] = useState({});
 	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
-		fetchCentro();
+		fetchData();
 	}, []);
 
-	const fetchCentro = async () => {
+	const fetchData = async () => {
 		startLoading();
+		await fetchCentro();
+		await fetchPerfil();
+		stopLoading();
+	}
+
+	const fetchCentro = async () => {
 		const response = await ApiRequest.listar("centro/simples");
 		setdataCentro(response);
-		stopLoading();
 	};
 
-	if (!dataCentro) return;
+	const fetchPerfil = async () => {
+		const response = await ApiRequest.listar("perfil/simples");
+		setdataPerfil(response);
+	};
 
-	const transformarDados = () => {
+	if (!dataCentro || !dataPerfil) return;
+
+	const transformarDadosCentro = () => {
 		return dataCentro?.map((item) => ({
 			value: item.id,
 			label: item.centro,
+		}));
+	};
+
+	const transformarDadosPerfil = () => {
+		return dataPerfil?.map((item) => ({
+			value: item.id,
+			label: item.perfil,
 		}));
 	};
 
@@ -53,15 +72,12 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 			senha: formSenha,
 			centro: formCentro,
 			verificado: formVerificado,
+			perfil: formPerfil,
 		};
 
 		const validacao = validador.validar(data);
-		console.log(validacao)
 		setErros(validacao);
-		console.log("asd")
-		console.log(validador.isValido(validacao))
 		if (!validador.isValido(validacao)) return;
-		console.log("asd1")
 
 		startLoading();
 		const response = await ApiRequest.criar("utilizador", data);
@@ -105,15 +121,26 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 				label="Senha"
 				type="password"
 			/>
-			<ComboBox
-				className="mt-2"
-				options={transformarDados()}
-				placeholder="Escolha o centro..."
-				handleChange={(e) => setFormCentro(e)}
-				value={formCentro}
-				isInvalid={erros.centro}
-				label="Centro"
-			/>
+			<div className="d-flex gap-3">
+				<ComboBox
+					className="mt-2"
+					options={transformarDadosCentro()}
+					placeholder="Escolha o centro..."
+					handleChange={(e) => setFormCentro(e)}
+					value={formCentro}
+					isInvalid={erros.centro}
+					label="Centro"
+				/>
+				<ComboBox
+					className="mt-2"
+					options={transformarDadosPerfil()}
+					placeholder="Escolha o perfil..."
+					handleChange={(e) => setFormPerfil(e)}
+					value={formPerfil}
+					isInvalid={erros.perfil}
+					label="Perfil"
+				/>
+			</div>
 			<Seletor label="Verificar" className="mt-2" handleChange={(e) => setFormVerificado(e)} value={formVerificado} />
 			<Botao className="mt-4" onClick={handleLogin}>
 				Adicionar

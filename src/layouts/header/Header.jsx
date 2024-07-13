@@ -17,7 +17,7 @@ export function Header() {
 				<Link to="/" className="header-logo remove-margin">
 					<Imagem src={logo} alt="Logo" className="header-site-logo" />
 				</Link>
-				<Navbar />
+				<Navbar utilizadorAtual={utilizadorAtual} />
 				<div>
 					{utilizadorAtual ? (
 						<Dropdown items={userItems}>

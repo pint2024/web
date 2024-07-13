@@ -1,6 +1,7 @@
 import { STATUS } from "data/constants";
 import { Log } from "./log.utils";
 import UtilizadorDefault from "assets/images/user-default.png";
+import { EnumConstants } from "data/enum.constants";
 
 export class Utils {
 	static isEmpty(...variaveis) {
@@ -51,5 +52,13 @@ export class Utils {
 	static SetImagemUtilizador(imagem) {
 		if (imagem) return imagem;
 		return UtilizadorDefault;
+	}
+
+	static Perms(perfil_array, perfil_user) {
+		const isAdmin = perfil_user === EnumConstants.ROLES.ADMIN.ID;
+		const temPerfilDefinido = perfil_array && perfil_array.length > 0 && perfil_array.includes(perfil_user);
+		const naoTemPerfilDefinido = !perfil_array || perfil_array.length === 0;
+		const temAcesso = temPerfilDefinido || naoTemPerfilDefinido || isAdmin;
+		return temAcesso;
 	}
 }
