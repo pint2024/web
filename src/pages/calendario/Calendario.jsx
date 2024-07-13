@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import { Icone, Navegar, Texto } from "components";
 import { ApiRequest } from "api/apiRequest";
 
+import "./calendario.css";
+
 export function Calendario() {
 	const [firstDay, setfirstDay] = useState(1);
 	const [dataEventos, setdataEventos] = useState([]);
@@ -61,7 +63,6 @@ export function Calendario() {
 				data: evento,
 			});
 		}
-		console.log(eventos_array);
 		return eventos_array;
 	};
 
@@ -69,7 +70,6 @@ export function Calendario() {
 		const { start, end } = arg;
 		const formatedParsedDateStart = DateUtils.DataRelativa(start);
 		const formatedParsedDateEnd = DateUtils.DataRelativa(end);
-		console.log(formatedParsedDateStart, formatedParsedDateEnd);
 	};
 
 	const handleDateDoubleClick = (info) => {
@@ -82,7 +82,6 @@ export function Calendario() {
 	};
 
 	const setupPopup = (data) => {
-		console.log("k", data);
 		puClear();
 		puSet({
 			body: (
@@ -139,6 +138,7 @@ export function Calendario() {
 					aspectRatio={3}
 					locale={"pt"}
 					firstDay={firstDay}
+					height={"auto"}
 				/>
 			</div>
 		</div>

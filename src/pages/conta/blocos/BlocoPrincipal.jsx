@@ -11,6 +11,8 @@ import { InteressesList } from "../InteressesList";
 import { useUserValidation } from "hooks/useAuth";
 import { ApiRequest } from "api";
 import { useCarregando } from "hooks/useCarregando";
+import { Authorizor } from "components/helpers/Authorizor";
+import { EnumConstants } from "data/enum.constants";
 
 export function BlocoPrincipal({ data }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
@@ -105,20 +107,24 @@ export function BlocoPrincipal({ data }) {
 						</div>
 					</div>
 					<div className="details-right d-flex flex-column align-items-end gap-2">
-						{utilizadorAtual.id === data.id && (
-							<div className="d-flex gap-3">
+						<div className="d-flex gap-3">
+							<Authorizor requiredPermission={EnumConstants.ROLES.ADMIN.ID}>
 								<ComboBox
 									options={transformarDados()}
 									placeholder="Escolha o perfil..."
 									handleChange={(e) => setselectPerfil(e)}
 									value={selectPerfil}
 								/>
-								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
-									Interesses
-								</Botao>
-								<Botao route={"editar"}>Editar</Botao>
-							</div>
-						)}
+							</Authorizor>
+							{utilizadorAtual.id === data.id && (
+								<>
+									<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
+										Interesses
+									</Botao>
+									<Botao route={"editar"}>Editar</Botao>
+								</>
+							)}
+						</div>
 						<div className="d-flex gap-3 ">
 							{data.instagram && (
 								<Navegar to={data.instagram} target="_blank">

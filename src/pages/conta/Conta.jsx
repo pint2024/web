@@ -29,14 +29,11 @@ export function Conta() {
 
 	const fetchContaData = async () => {
 		const data = await ApiRequest.obter("utilizador/simples", id);
-		console.log("feito1");
 		setdataConta(data);
 	};
 
 	const fetchParticipacaoData = async () => {
 		const data = await ApiRequest.listar("participante", { utilizador: id });
-		console.log("feito2");
-
 		setdataParticipacao(data);
 	};
 
@@ -48,10 +45,7 @@ export function Conta() {
 			<div className="mt-3">
 				<BlocoParticipacoes data={dataParticipacao} />
 			</div>
-			<div className="mt-3">
-				<BlocoAtividade />
-			</div>
-			<div className="mt-3">
+			{/*<div className="mt-3">
 				<BlocoEventos />
 			</div>
 			<div className="mt-3">
@@ -59,7 +53,7 @@ export function Conta() {
 			</div>
 			<div className="mt-3">
 				<BlocoComentarios />
-			</div>
+			</div>*/}
 		</div>
 	);
 }

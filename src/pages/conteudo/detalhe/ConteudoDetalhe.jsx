@@ -12,16 +12,22 @@ import { LabelError } from "layouts/labelWarnings/LabelError";
 import { EnumConstants } from "data/enum.constants";
 import { DBUtils } from "utils/db.utils";
 import { ApiRequest } from "api/apiRequest";
-import { LabelInfo } from "layouts/labelWarnings/LabelInfo";
 import { LabelSucess } from "layouts/labelWarnings/LabelSucess";
 import { useUserValidation } from "hooks/useAuth";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
 	const [isRevisao, setisRevisao] = useState(true);
+	const [isSubscribed, setisSubscribed] = useState(false);
 	const { startLoading, stopLoading } = useCarregando();
 	const { id } = useParams();
 	const utilizadorAtual = useUserValidation();
+
+	useEffect(() => {
+		if (dataDetalhe) {
+			setisSubscribed(DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, utilizadorAtual.id));
+		}
+	}, [dataDetalhe, utilizadorAtual]);
 
 	useEffect(() => {
 		fetchConteudoData();
@@ -41,22 +47,24 @@ export function ConteudoDetalhe() {
 	if (!dataDetalhe) return;
 
 	const handleAddParticipacao = async () => {
+		startLoading();
 		await ApiRequest.criar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
-		fetchConteudoData();
+		await fetchConteudoData();
 	};
 
 	const handleRemoverParticipacao = async () => {
-		const data = await ApiRequest.listar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
-		await ApiRequest.remover("participante", data[0].id);
-		fetchConteudoData();
+		startLoading();
+		const participacao = await ApiRequest.listar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
+		for (const item in participacao) {
+			await ApiRequest.remover("participante", item.id);
+		}
+		await fetchConteudoData();
 	};
 
 	return (
 		<>
 			{isRevisao && <LabelError texto="Em revisão..." />}
-			{DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, 1) && (
-				<LabelSucess texto="Você está inscrito!" />
-			)}
+			{isSubscribed && <LabelSucess texto="Você está inscrito!" />}
 			<div className="AtividadeDetalhe" id={dataDetalhe.id}>
 				<section className="conteudo-detalhe-conteudo">
 					<div className="conteudo-detalhe-info">
@@ -105,24 +113,25 @@ export function ConteudoDetalhe() {
 			</div>
 			<div className="conteudo-detalhe-interacoes">
 				<section>
-					<ControlosInteracao />
+					<ControlosInteracao
+						conteudo_id={id}
+						utilizador_atual={utilizadorAtual}
+						defaultValue={dataDetalhe.classificacao_conteudo[0].classificacao}
+					/>
 				</section>
 				<section className="d-flex gap-2 mt-2">
 					{(dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID ||
 						dataDetalhe.tipo === EnumConstants.CONTEUDO_TIPOS.EVENTO.ID) &&
-					DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, utilizadorAtual.id) ? (
-						<>
-							<Botao onClick={handleRemoverParticipacao} variant={BUTTON_VARIANTS.SECUNDARIO}>
-								Remover Participação
-							</Botao>
-						</>
-					) : (
-						<>
+						(!isSubscribed ? (
 							<Botao onClick={handleAddParticipacao} variant={BUTTON_VARIANTS.SUCESSO}>
 								Participar
 							</Botao>
-						</>
-					)}
+						) : (
+							<Botao onClick={handleRemoverParticipacao} variant={BUTTON_VARIANTS.SECUNDARIO}>
+								Remover Participação
+							</Botao>
+						))}
+
 					{isRevisao && (
 						<>
 							<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>

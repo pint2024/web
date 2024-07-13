@@ -23,10 +23,7 @@ export class ApiRequest {
 		try {
 			const url = `/utilizador/imagem/atualizar/${id}`;
 			const formData = new FormData();
-
-			console.log("oi", imagem[0]);
 			formData.append("imagem", imagem[0]);
-
 			return await myAxios({ url, data: formData, method: "put", headers: { "Content-Type": "multipart/form-data" } });
 		} catch (error) {
 			throw error;
@@ -54,10 +51,10 @@ export class ApiRequest {
 		}
 	}
 
-	static async listar(endpoint, data = {}) {
+	static async listar(endpoint, data = {}, token = "") {
 		try {
 			const url = `/${endpoint}/listar`;
-			return await myAxios({ url, data, method: "post" });
+			return await myAxios({ url, data, method: "post", token });
 		} catch (error) {
 			throw error;
 		}

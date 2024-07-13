@@ -13,12 +13,15 @@ export function ContaEditar() {
 	const [newImagens, setnewImagens] = useState([]);
 	const [erros, setErros] = useState([]);
 	const { startLoading, stopLoading } = useCarregando();
-	const utilizadorAtual = useUserValidation();
+	const { userData, isValid } = useUserValidation();
 	const navigate = useNavigate();
 
-	if (utilizadorAtual.id !== id) {
-		navigate("/");
-	}
+	useEffect(() => {
+		if (!isValid) return;
+		if (userData.id !== id) {
+			navigate("/");
+		}
+	}, [userData, isValid, id]);
 
 	useEffect(() => {
 		fetchData();
@@ -49,10 +52,8 @@ export function ContaEditar() {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		console.log(newImagens);
-
 		startLoading();
-		await ApiRequest.upload_user_image(utilizadorAtual.id, newImagens);
+		await ApiRequest.upload_user_image(userData.id, newImagens);
 		await fetchData();
 		stopLoading();
 	};

@@ -1,4 +1,5 @@
 import { AutenticacaoRequest } from "api";
+import { userProfile } from "data/userProfile";
 import { useEffect, useState } from "react";
 
 export const useUserValidation = (shouldReturnIsValid = false) => {
@@ -12,6 +13,7 @@ export const useUserValidation = (shouldReturnIsValid = false) => {
 	const getUserData = async () => {
 		try {
 			const data = await AutenticacaoRequest.obterUtilizadorAtual();
+			userProfile.setData(data);
 			if (!data) setisValid(true);
 			setuserData(data);
 			setisValid(true);

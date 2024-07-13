@@ -7,6 +7,7 @@ import logo from "assets/images/logo.png";
 
 import "./header.css";
 import { useUserValidation } from "hooks/useAuth";
+import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 
 export function Header() {
 	const utilizadorAtual = useUserValidation();
@@ -21,7 +22,7 @@ export function Header() {
 				<div>
 					{utilizadorAtual ? (
 						<Dropdown items={userItems(utilizadorAtual.id)}>
-							<Imagem src={utilizadorAtual.imagem} className="header-user-image cursor-pointer" />
+							<ImagemUtilizador src={utilizadorAtual.imagem} className="header-user-image cursor-pointer" />
 						</Dropdown>
 					) : (
 						<Navegar to="/iniciar-sessao">

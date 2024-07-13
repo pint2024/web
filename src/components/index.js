@@ -31,6 +31,5 @@ export { TimePicker } from "./form/dateBox/TimePicker";
 export { FileBox } from "./form/filesBox/FileBox";
 export { ImageBox } from "./form/filesBox/ImageBox";
 export { MultiSelectBox } from "./form/multiSelectBox/MultiSelectBox";
-export { OTP } from "./form/otp/OTP";
 export { SelecaoOpcoes } from "./form/selecaoOpcoes/SelecaoOpcoes";
 export { Seletor } from "./form/seletor/Seletor";

@@ -23,6 +23,8 @@ import { RoutesUtils } from "utils/routes.utils";
 import { EnumConstants } from "data/enum.constants";
 import { Estatisticas } from "pages/backoffice/estatisticas/Estatisticas";
 import { AtualizarPasse } from "pages/autenticacao/atualizarPasse/AtualizarPasse";
+import { TerminarSessao } from "pages/autenticacao/terminarSessao/TerminarSessao";
+import { Navigate } from "react-router-dom";
 
 const ROLES = EnumConstants.ROLES;
 
@@ -128,6 +130,7 @@ export class Rotas {
 		{
 			title: "Terminar Sessão",
 			path: "/terminar-sessao",
+			element: <TerminarSessao />,
 			perfis: [],
 		},
 	];
@@ -155,7 +158,7 @@ export class Rotas {
 		{
 			title: "Backoffice",
 			path: "/backoffice",
-			element: <Temporary />,
+			element: <Navigate to={"/backoffice/utilizadores"} />,
 			perfis: [0],
 			children: [
 				{
@@ -181,14 +184,6 @@ export class Rotas {
 					path: "/estatisticas",
 					element: <Estatisticas />,
 					perfis: [0],
-					children: [
-						{
-							title: "x",
-							path: "/x",
-							element: <Temporary />,
-							perfis: [0],
-						},
-					],
 				},
 				{
 					title: "Revisões",
@@ -220,14 +215,6 @@ export class Rotas {
 					path: "/denuncias",
 					element: <Denuncia />,
 					perfis: [0],
-					children: [
-						{
-							title: "x",
-							path: "/x",
-							element: <Temporary />,
-							perfis: [0],
-						},
-					],
 				},
 			],
 		},

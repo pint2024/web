@@ -1,20 +1,21 @@
 import { Icone } from "components";
 
-export function Classificacao({ rating, setRating }) {
+export function Classificacao({ value, handleChange }) {
 	return (
 		<div className="remove-user-select">
 			{[1, 2, 3, 4, 5].map((star) => {
 				return (
 					<Icone
+						key={star}
 						iconName={"StarFill"}
-						className="start"
+						className="star"
 						style={{
 							cursor: "pointer",
-							color: rating >= star ? "gold" : "gray",
+							color: value >= star ? "gold" : "gray",
 							fontSize: `25px`,
 						}}
 						onClick={() => {
-							setRating(star);
+							handleChange(star);
 						}}
 					/>
 				);

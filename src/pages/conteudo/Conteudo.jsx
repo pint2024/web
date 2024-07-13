@@ -13,8 +13,11 @@ export function Conteudo() {
 	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
-		fetchConteudoData(selectedTopico ? { subtopico: selectedTopico.id } : {});
-		console.log(selectedTopico);
+		if (selectedTopico) {
+			fetchConteudoData({ subtopico: selectedTopico.id });
+		} else {
+			fetchConteudoData();
+		}
 	}, [selectedTopico]);
 
 	useEffect(() => {
@@ -29,8 +32,7 @@ export function Conteudo() {
 
 	const fetchConteudoData = async (body = {}) => {
 		startLoading();
-		console.log(body);
-		const data = await ApiRequest.listar("conteudo/listagem", (body = {}));
+		const data = await ApiRequest.listar("conteudo/listagem", body);
 		setdataConteudo(data);
 		stopLoading();
 	};

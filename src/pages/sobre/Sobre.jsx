@@ -9,7 +9,7 @@ export function Sobre() {
 				<iframe
 					width="560"
 					height="315"
-					src="https://www.youtube.com/embed/Oa_RSwwpPaA?si=8ghB1tpvQUgT9BCq"
+					src="https://www.youtube.com/embed/Tn6-PIqc4UM?si=FbJYqGK_ueqU-hqk"
 					title="YouTube video player"
 					frameborder="0"
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

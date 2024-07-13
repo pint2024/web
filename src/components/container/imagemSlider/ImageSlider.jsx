@@ -23,9 +23,7 @@ export function ImageSlider({ images }) {
 		setCurrentImageIndex(newIndex);
 	};
 
-	const openSlide = () => {
-		console.log("openSlide");
-	};
+	const openSlide = () => {};
 
 	const changeSlide = (index) => {
 		const newIndex = index;

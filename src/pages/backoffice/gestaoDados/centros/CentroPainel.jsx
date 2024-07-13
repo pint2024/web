@@ -14,7 +14,6 @@ export function CentroPainel() {
 
 	const fetchConteudoData = async () => {
 		const data = await ApiRequest.listar("centro/simples");
-		console.log(data);
 		setdataCentro(data);
 	};
 

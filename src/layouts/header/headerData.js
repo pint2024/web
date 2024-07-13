@@ -1,14 +1,14 @@
 import { EnumConstants } from "data/enum.constants";
 
 const navItems = [
-	{ title: "Conteudos", icon: "Star", selectedIcon: "StarFill", route: "/conteudos", perfil: [EnumConstants.ROLES.USER] },
-	{ title: "Calendário", icon: "Calendar", selectedIcon: "CalendarFill", route: "/calendario", perfil: [EnumConstants.ROLES.USER] },
+	{ title: "Conteudos", icon: "Star", selectedIcon: "StarFill", route: "/conteudos", perfil: [EnumConstants.ROLES.USER.ID] },
+	{ title: "Calendário", icon: "Calendar", selectedIcon: "CalendarFill", route: "/calendario", perfil: [EnumConstants.ROLES.USER.ID] },
 	{
 		title: "Backoffice",
 		icon: "PersonBadge",
 		selectedIcon: "PersonBadgeFill",
 		route: "/backoffice",
-		perfil: [EnumConstants.ROLES.ADMIN]
+		perfil: [EnumConstants.ROLES.ADMIN.ID]
 	},
 	{ title: "Sobre", icon: "InfoCircle", selectedIcon: "InfoCircleFill", route: "/sobre", perfil: [] },
 ];

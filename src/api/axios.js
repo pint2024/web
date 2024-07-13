@@ -1,36 +1,31 @@
 import axios from "axios";
 import { API_URL, STATUS } from "data/constants";
+import { AutenticacaoRequest } from "./autenticacaoRequest";
 
 const api = axios.create({
 	baseURL: API_URL,
 });
 
-/*
-export async function myAxios({ url, method = "get", data = null, headers = {} }) {
-	try {
-		//console.log(url, method, headers, data)
-		const response = await api.request({
-			url,
-			method,
-			headers,
-			data,
-		});
-		if (response.data.success) return response.data.data;
-		else return STATUS.SEM_DATA;
-	} catch (error) {
-		console.error("oi", error);
-		return STATUS.ERRO;
+api.interceptors.request.use(
+	(config) => {
+		const token = AutenticacaoRequest.getToken();
+		if (token) config.headers.Authorization = `Bearer ${token}`;
+		return config;
+	},
+	(error) => {
+		return Promise.reject(error);
 	}
-}*/
+);
 
-export async function myAxios({ url, method = "get", data = null, headers = {} }) {
+export async function myAxios({ url, method = "get", data = null, token = "", headers = {} }) {
 	try {
-		console.log("ola", API_URL, url);
-
 		const response = await api.request({
 			url,
 			method,
-			headers,
+			headers: {
+				...headers,
+				...(token && { Authorization: `Bearer ${token}` }),
+			},
 			data,
 		});
 		return response.data.data;
@@ -44,15 +39,15 @@ export async function myAxios({ url, method = "get", data = null, headers = {} }
 			console.error(
 				`Erro na resposta do servidor: ${error.response.status} - ${error.response.data.message || error.message}`
 			);
-			throw new Error(
+			/*throw new Error(
 				`Erro na resposta do servidor: ${error.response.status} - ${error.response.data.message || error.message}`
-			);
+			);*/
 		} else if (error.request) {
 			console.error(`Erro na requisição: Sem resposta do servidor. ${error.message}`);
-			throw new Error(`Erro na requisição: Sem resposta do servidor. ${error.message}`);
+			/*throw new Error(`Erro na requisição: Sem resposta do servidor. ${error.message}`);*/
 		} else {
 			console.error(`Erro na configuração da requisição: ${error.message}`);
-			throw new Error(`Erro na configuração da requisição: ${error.message}`);
+			/*throw new Error(`Erro na configuração da requisição: ${error.message}`);*/
 		}
 	}
 }

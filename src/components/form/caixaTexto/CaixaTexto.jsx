@@ -2,7 +2,22 @@ import { Texto } from "components";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import React from "react";
 
-export function CaixaTexto({ label = "", prefix = false, value, className, isInvalid = false, handleChange, ...props }) {
+export function CaixaTexto({
+	label = "",
+	prefix = false,
+	value,
+	className,
+	onKeyUp,
+	isInvalid = false,
+	handleChange,
+	handleSubmit,
+	...props
+}) {
+	const handleSubmitEvent = (e) => {
+		if (e.key === "Enter") {
+			handleSubmit(e);
+		}
+	};
 	return (
 		<div className={className}>
 			{label && (
@@ -21,6 +36,7 @@ export function CaixaTexto({ label = "", prefix = false, value, className, isInv
 					className={`form-control ${isInvalid ? "form-is-invalid" : ""}`}
 					value={value}
 					onChange={(e) => handleChange(e)}
+					onKeyUp={onKeyUp ? (e) => onKeyUp(e) : (e) => handleSubmitEvent(e)}
 					{...props}
 				/>
 			</div>

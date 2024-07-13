@@ -25,9 +25,13 @@ export function Sidebar() {
 				<Icone iconName={"BuildingsFill"} className="sidebar-icon" />
 				<span>Centro</span>
 			</Link>
-			<Link to={"/backoffice/revisoes"} className="sidebar-position">
+			<Link to={"/backoffice/revisoes/conteudo"} className="sidebar-position">
 				<Icone iconName={"Search"} className="sidebar-icon" />
-				<span>Revisão</span>
+				<span>Revisão Conteudo</span>
+			</Link>
+			<Link to={"/backoffice/revisoes/comentario"} className="sidebar-position">
+				<Icone iconName={"ChatFill"} className="sidebar-icon" />
+				<span>Revisão Comentario</span>
 			</Link>
 			<Link to={"/backoffice/denuncias"} className="sidebar-position">
 				<Icone iconName={"ExclamationTriangleFill"} className="sidebar-icon" />

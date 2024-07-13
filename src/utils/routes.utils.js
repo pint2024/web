@@ -1,8 +1,6 @@
-import { EnumConstants } from "data/enum.constants";
-import { NotFound } from "layouts/errors/NotFound";
-import { IniciarSessao } from "pages/autenticacao";
+import { Route, Navigate } from "react-router-dom";
+
 import React from "react";
-import { Route } from "react-router-dom";
 import { Rotas } from "routes";
 import { Utils } from "./utils";
 
@@ -14,10 +12,11 @@ export class RoutesUtils {
 	criarRoutes = (routes, parentRoute = "") => {
 		return routes.map((route, index) => {
 			const temAcesso = Utils.Perms(route.perfis, this.user_role);
+			const element = temAcesso ? route.element : <Navigate to="/iniciar-sessao" />;
 
 			return (
 				<React.Fragment key={index}>
-					<Route key={index} path={parentRoute + route.path} element={temAcesso ? route.element : <IniciarSessao />} />
+					<Route key={index} path={parentRoute + route.path} element={element} />
 					{route.children && this.criarRoutes(route.children, parentRoute + route.path)}
 				</React.Fragment>
 			);

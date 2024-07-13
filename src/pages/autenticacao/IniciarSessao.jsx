@@ -13,13 +13,6 @@ export function IniciarSessao() {
 	const { startLoading, stopLoading } = useCarregando();
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (AutenticacaoRequest.existsToken()) {
-			navigate("/");
-			Notificacao("Você já tem a sessão iniciada!", "info");
-		}
-	}, []);
-
 	const handleLogin = async () => {
 		startLoading();
 		const res = await AutenticacaoRequest.entrar(formLogin, formSenha);
@@ -30,8 +23,8 @@ export function IniciarSessao() {
 			Notificacao("Os dados estão inválidos!", "error");
 		} else {
 			Notificacao("Sessão inciada com sucesso!");
-			window.location.reload();
 			navigate("/");
+			window.location.reload();
 		}
 		stopLoading();
 	};
@@ -40,17 +33,21 @@ export function IniciarSessao() {
 		<div className="iniciar-sessao-container">
 			<form>
 				<div className="form-container">
-					<CaixaTexto
-						handleChange={(e) => setFormLogin(e.target.value)}
-						value={formLogin}
-						label="Endereço email ou tag"
-					/>
-					<CaixaTexto
-						handleChange={(e) => setFormSenha(e.target.value)}
-						value={formSenha}
-						label="Palavra-passe"
-						type="password"
-					/>
+					<form onSubmit={handleLogin}>
+						<CaixaTexto
+							handleSubmit={() => handleLogin()}
+							handleChange={(e) => setFormLogin(e.target.value)}
+							value={formLogin}
+							label="Endereço email ou tag"
+						/>
+						<CaixaTexto
+							handleSubmit={() => handleLogin()}
+							handleChange={(e) => setFormSenha(e.target.value)}
+							value={formSenha}
+							label="Palavra-passe"
+							type="password"
+						/>
+					</form>
 				</div>
 				<div className="d-flex align-items-center gap-2 mt-4">
 					<Botao onClick={handleLogin}>Entrar</Botao>

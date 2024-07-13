@@ -2,7 +2,6 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 
 export function GraficoLinhas({ chartData, Nome }) {
-	console.log("gl", chartData)
 	if (!chartData) {
 		return <p>Carregando...</p>;
 	}

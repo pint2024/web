@@ -20,7 +20,6 @@ export function TopicosPainel() {
 
 	const fetchConteudoData = async () => {
 		const data = await ApiRequest.listar("topico/simples"); // filtra os conteudos apenas
-		console.log(data);
 		setdataTopicos(data);
 	};
 

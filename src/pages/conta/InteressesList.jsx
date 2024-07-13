@@ -57,7 +57,6 @@ export function InteressesList({ id }) {
 		} else {
 			setselectedSubtopicos(selectedSubtopicos.filter((item) => item !== id));
 		}
-		console.log(isActive, id, selectedSubtopicos);
 	};
 
 	const handleCreateInteresse = async () => {

@@ -4,8 +4,6 @@ import MenuItems from "./HeaderItems";
 
 export function Navbar({ utilizadorAtual }) {
 	const depthLevel = 0;
-	console.log(utilizadorAtual.perfil);
-
 	return (
 		<nav className="desktop-nav">
 			<ul className="menus d-flex remove-padding">

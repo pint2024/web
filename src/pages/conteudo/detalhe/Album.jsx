@@ -19,7 +19,6 @@ export function Album({ id }) {
 	const fetchAlbumData = async () => {
 		startLoading();
 		const data = await ApiRequest.listar("album", { conteudo: id });
-		console.log(data);
 		setalbum(data);
 		stopLoading();
 	};

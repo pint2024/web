@@ -71,7 +71,6 @@ export function AreaGrafico() {
 				},
 			],
 		};
-		console.log(x);
 		return x;
 	};
 

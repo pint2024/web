@@ -20,6 +20,10 @@ export class AutenticacaoRequest {
 		return false;
 	}
 
+	static getToken() {
+		return this.#getToken();
+	}
+
 	static async entrar(login, senha) {
 		try {
 			const response = await myAxios({ url: "/autenticacao/entrar", method: "post", data: { login, senha } });
@@ -36,7 +40,7 @@ export class AutenticacaoRequest {
 		}
 	}
 
-	static terminar_sessao() {
+	static async terminar_sessao() {
 		this.#removeToken();
 	}
 
