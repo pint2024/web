@@ -20,7 +20,7 @@ export function Header() {
 				<Navbar utilizadorAtual={utilizadorAtual} />
 				<div>
 					{utilizadorAtual ? (
-						<Dropdown items={userItems}>
+						<Dropdown items={userItems(utilizadorAtual.id)}>
 							<Imagem src={utilizadorAtual.imagem} className="header-user-image cursor-pointer" />
 						</Dropdown>
 					) : (

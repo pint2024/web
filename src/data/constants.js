@@ -14,7 +14,7 @@ export const PLACEHOLDER_TEXT =
 export const PLACEHOLDER_TITLE =
 	"Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 
-export const API_URL = "http://localhost:8000";
+export const API_URL = process.env.REACT_APP_API_URL;
 
 export const POSTS_TO_RENDER = 20;
 
