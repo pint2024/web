@@ -14,10 +14,11 @@ export function CaixaTexto({
 	...props
 }) {
 	const handleSubmitEvent = (e) => {
-		if (e.key === "Enter") {
+		if (e.key === "Enter" && typeof handleSubmit === "function") {
 			handleSubmit(e);
 		}
 	};
+
 	return (
 		<div className={className}>
 			{label && (

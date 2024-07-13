@@ -52,13 +52,13 @@ export function ComentarioSeccao({ id }) {
 	return (
 		<div className="conteudo-detalhe-comentario">
 			<Texto size={COMMON_SIZES.FS4}>Comentário ({dataComentarios.length})</Texto>
-			<div className="d-flex align-items-center gap-2 mb-3">
+			<div className="align-items-center gap-2 mb-3">
 				<CaixaTexto
 					placeholder="Adicione um comentário..."
 					value={novoComentario}
 					handleChange={handleNewComentarioChange}
+					handleSubmit={() => handleEnviarComentario()}
 				/>
-				<Botao onClick={handleEnviarComentario}>Enviar</Botao>
 			</div>
 			{dataComentarios.map((comentario, _) => (
 				<div key={comentario.id} id={`comentario-${comentario.id}`} className="mb-2">

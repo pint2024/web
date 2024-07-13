@@ -18,11 +18,14 @@ export function BlocoPrincipal({ data }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const [dataPerfis, setdataPerfis] = useState();
 	const [selectPerfil, setselectPerfil] = useState();
+	const [dataCentro, setdataCentro] = useState();
+	const [selectCentro, setselectCentro] = useState();
 	const { startLoading, stopLoading } = useCarregando();
 	const utilizadorAtual = useUserValidation();
 
 	useEffect(() => {
 		setselectPerfil(data.perfil);
+		setselectCentro(data.centro);
 	}, []);
 
 	useEffect(() => {
@@ -30,7 +33,11 @@ export function BlocoPrincipal({ data }) {
 	}, [selectPerfil]);
 
 	useEffect(() => {
-		handleFetchPerfil();
+		handleUpdateCentro();
+	}, [selectCentro]);
+
+	useEffect(() => {
+		handleFetchData();
 	}, []);
 
 	const handleUpdatePerfil = async () => {
@@ -39,11 +46,27 @@ export function BlocoPrincipal({ data }) {
 		stopLoading();
 	};
 
-	const handleFetchPerfil = async () => {
+	const handleUpdateCentro = async () => {
 		startLoading();
+		await ApiRequest.atualizar("utilizador", data.id, { centro: selectCentro });
+		stopLoading();
+	};
+
+	const handleFetchData = async () => {
+		startLoading();
+		await handleFetchPerfil();
+		await handleFetchCentro();
+		stopLoading();
+	};
+
+	const handleFetchPerfil = async () => {
 		const data = await ApiRequest.listar("perfil/simples");
 		setdataPerfis(data);
-		stopLoading();
+	};
+
+	const handleFetchCentro = async () => {
+		const data = await ApiRequest.listar("centro/simples");
+		setdataCentro(data);
 	};
 
 	const getInteresses = () => {
@@ -54,12 +77,19 @@ export function BlocoPrincipal({ data }) {
 		return interesses;
 	};
 
-	if (!dataPerfis) return;
+	if (!dataPerfis || !dataCentro) return;
 
-	const transformarDados = () => {
+	const transformarDadosPerfil = () => {
 		return dataPerfis?.map((item) => ({
 			value: item.id,
 			label: item.perfil,
+		}));
+	};
+
+	const transformarDadosCentro = () => {
+		return dataCentro?.map((item) => ({
+			value: item.id,
+			label: item.centro,
 		}));
 	};
 
@@ -110,7 +140,7 @@ export function BlocoPrincipal({ data }) {
 						<div className="d-flex gap-3">
 							<Authorizor requiredPermission={EnumConstants.ROLES.ADMIN.ID}>
 								<ComboBox
-									options={transformarDados()}
+									options={transformarDadosPerfil()}
 									placeholder="Escolha o perfil..."
 									handleChange={(e) => setselectPerfil(e)}
 									value={selectPerfil}
@@ -118,6 +148,12 @@ export function BlocoPrincipal({ data }) {
 							</Authorizor>
 							{utilizadorAtual.id === data.id && (
 								<>
+									<ComboBox
+										options={transformarDadosCentro()}
+										placeholder="Escolha o centro..."
+										handleChange={(e) => setselectCentro(e)}
+										value={selectCentro}
+									/>
 									<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
 										Interesses
 									</Botao>
