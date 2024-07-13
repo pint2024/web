@@ -80,9 +80,6 @@ export function ContaEditar() {
 		const esquema = {
 			nome: { required: true },
 			sobrenome: { required: true },
-			linkedin: { required: true },
-			instagram: { required: true },
-			facebook: { required: true },
 		};
 
 		const validador = new Validador(esquema);

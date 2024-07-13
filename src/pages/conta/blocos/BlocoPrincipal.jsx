@@ -24,8 +24,8 @@ export function BlocoPrincipal({ data }) {
 	const utilizadorAtual = useUserValidation();
 
 	useEffect(() => {
-		setselectPerfil(data.perfil);
-		setselectCentro(data.centro);
+		setselectPerfil(data?.perfil);
+		setselectCentro(data?.centro);
 	}, []);
 
 	useEffect(() => {
@@ -88,8 +88,8 @@ export function BlocoPrincipal({ data }) {
 
 	const transformarDadosCentro = () => {
 		return dataCentro?.map((item) => ({
-			value: item.id,
-			label: item.centro,
+			value: item?.id,
+			label: item?.centro,
 		}));
 	};
 
@@ -125,7 +125,7 @@ export function BlocoPrincipal({ data }) {
 							<div className="d-flex align-items-center gap-2">
 								<Texto className="d-flex gap-1 align-items-center">
 									<Icone iconName="Buildings" />
-									{data.utilizador_centro.centro}
+									{data.utilizador_centro?.centro}
 								</Texto>
 							</div>
 						</div>
