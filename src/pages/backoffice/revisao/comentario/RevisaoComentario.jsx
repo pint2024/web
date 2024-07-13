@@ -38,7 +38,6 @@ export function RevisaoComentario() {
 		<table className="revisao-tabela">
 			<thead>
 				<tr>
-					<th>Motivo</th>
 					<th>Data de Criação</th>
 					<th>Estado</th>
 					<th>Conteudo</th>
@@ -49,7 +48,6 @@ export function RevisaoComentario() {
 				{dataConteudo ? (
 					dataConteudo.map((item) => (
 						<tr key={item.id}>
-							<td>{item.motivo}</td>
 							<td>{DateUtils.DataNormal(item.data_criacao)}</td>
 							<td>{item.revisao_estado.estado}</td>
 							<td>{item.revisao_comentario.comentario}</td>

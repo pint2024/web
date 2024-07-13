@@ -61,4 +61,17 @@ export class Utils {
 		const temAcesso = temPerfilDefinido || naoTemPerfilDefinido || isAdmin;
 		return temAcesso;
 	}
+
+	static convertoStrToInt(str) {
+		return parseInt(str);
+	}
+
+	static getTipoById(id) {
+		for (const key in EnumConstants.CONTEUDO_TIPOS) {
+			if (EnumConstants.CONTEUDO_TIPOS[key].ID === this.convertoStrToInt(id)) {
+				return EnumConstants.CONTEUDO_TIPOS[key].TIPO;
+			}
+		}
+		return "oi";
+	}
 }

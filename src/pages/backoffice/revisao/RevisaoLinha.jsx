@@ -15,7 +15,6 @@ export function RevisaoLinha({
 }) {
 	return (
 		<tr key={id}>
-			<td>{motivo}</td>
 			<td>
 				<Tooltip
 					content={<OverlayPerfil imagem={utilizador?.imagem} nome={utilizador?.nome} tag={`@${utilizador?.tag}`} />}

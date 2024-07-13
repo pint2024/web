@@ -37,7 +37,6 @@ export function RevisaoTabela() {
 			dataConteudo.map((item) => (
 				<RevisaoLinha
 					id={item.id}
-					motivo={item.motivo}
 					utilizador={item?.revisao_conteudo?.conteudo_utilizador}
 					data_criacao={item.data_criacao}
 					estado={item.revisao_estado.estado}
@@ -54,7 +53,6 @@ export function RevisaoTabela() {
 		<table className="revisao-tabela">
 			<thead>
 				<tr>
-					<th>Motivo</th>
 					<th>Utilizador</th>
 					<th>Data de Criação</th>
 					<th>Estado</th>

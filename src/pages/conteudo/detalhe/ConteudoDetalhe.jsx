@@ -18,6 +18,7 @@ import { useUserValidation } from "hooks/useAuth";
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
 	const [isRevisao, setisRevisao] = useState(true);
+	const [isRejeitado, setisRejeitado] = useState(true);
 	const [isSubscribed, setisSubscribed] = useState(false);
 	const { startLoading, stopLoading } = useCarregando();
 	const { id } = useParams();
@@ -34,7 +35,10 @@ export function ConteudoDetalhe() {
 	}, []);
 
 	useEffect(() => {
-		if (dataDetalhe) setisRevisao(DBUtils.checkRevisao(dataDetalhe.revisao_conteudo));
+		if (dataDetalhe) {
+			setisRevisao(DBUtils.checkRevisao(dataDetalhe.revisao_conteudo));
+			setisRejeitado(DBUtils.checkRevisaoRejeitado(dataDetalhe.revisao_conteudo));
+		}
 	}, [dataDetalhe]);
 
 	const fetchConteudoData = async () => {
@@ -61,10 +65,30 @@ export function ConteudoDetalhe() {
 		await fetchConteudoData();
 	};
 
+	/*const handleRevisaoAprovada = async (id) => {
+		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
+		fetchConteudoData();
+	};
+
+	const handleRevisaoRejeitada = async (id) => {
+		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
+		fetchConteudoData();
+	};*/
+
 	return (
 		<>
 			{isRevisao && <LabelError texto="Em revisão..." />}
+			{isRejeitado && <LabelError texto="Conteudo foi rejeitado" />}
 			{isSubscribed && <LabelSucess texto="Você está inscrito!" />}
+			{/*Revisão
+			<div className="d-flex gap-2 mb-4">
+				<Botao variant={BUTTON_VARIANTS.SUCESSO} onClick={() => handleRevisaoAprovada()}>
+					Aceitar
+				</Botao>
+				<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={() => handleRevisaoRejeitada()}>
+					Rejeitar
+				</Botao>
+			</div>*/}
 			<div className="AtividadeDetalhe" id={dataDetalhe.id}>
 				<section className="conteudo-detalhe-conteudo">
 					<div className="conteudo-detalhe-info">
@@ -116,7 +140,7 @@ export function ConteudoDetalhe() {
 					<ControlosInteracao
 						conteudo_id={id}
 						utilizador_atual={utilizadorAtual}
-						defaultValue={dataDetalhe.classificacao_conteudo[0].classificacao}
+						defaultValue={dataDetalhe?.classificacao_conteudo[0]?.classificacao}
 					/>
 				</section>
 				<section className="d-flex gap-2 mt-2">
