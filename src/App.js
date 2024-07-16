@@ -1,5 +1,5 @@
 /// React
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 /// Componentes
@@ -8,6 +8,8 @@ import { PROJETO_NAME } from "data/constants";
 import { BackofficeLayout } from "layouts/pageBase/BackofficeLayout";
 import { Rotas } from "routes";
 import { useUserValidation } from "hooks/useAuth";
+import { NotFound } from "layouts/errors/NotFound";
+import { AccessDenied } from "layouts/errors/AccessDenied";
 
 function App() {
 	const [userRole, setuserRole] = useState();
@@ -23,6 +25,19 @@ function App() {
 	}, []);
 
 	if (!isValid) return;
+
+	if (userData.inativo) {
+		return (
+			<Router>
+				<Routes>
+					<Route path="/" element={<PageLayout />}>
+						<Route path="/*" element={<AccessDenied />} />
+						<Route path="/" element={<AccessDenied />} />
+					</Route>
+				</Routes>
+			</Router>
+		);
+	}
 
 	return (
 		<Router>
