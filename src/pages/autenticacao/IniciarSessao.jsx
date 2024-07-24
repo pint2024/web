@@ -6,16 +6,17 @@ import { BUTTON_VARIANTS } from "data/data";
 import { STATUS } from "data/constants";
 import { useCarregando } from "hooks/useCarregando";
 import { useNavigate } from "react-router-dom";
+import { useInput } from "hooks/useInput";
 
 export function IniciarSessao() {
-	const [formLogin, setFormLogin] = useState("");
-	const [formSenha, setFormSenha] = useState("");
+	const formLogin = useInput();
+	const formSenha = useInput();
 	const { startLoading, stopLoading } = useCarregando();
 	const navigate = useNavigate();
 
 	const handleLogin = async () => {
 		startLoading();
-		const res = await AutenticacaoRequest.entrar(formLogin, formSenha);
+		const res = await AutenticacaoRequest.entrar(formLogin.value, formSenha.value);
 		if (res.status === 422) {
 			Notificacao("É necessário alterar a palavra-passe!", "info");
 			navigate(`/atualizar-passe/${res.data.token}`);
@@ -36,14 +37,14 @@ export function IniciarSessao() {
 					<form onSubmit={handleLogin}>
 						<CaixaTexto
 							handleSubmit={() => handleLogin()}
-							handleChange={(e) => setFormLogin(e.target.value)}
-							value={formLogin}
+							handleChange={(e) => formLogin.onChange(e)}
+							value={formLogin.value}
 							label="Endereço email ou tag"
 						/>
 						<CaixaTexto
 							handleSubmit={() => handleLogin()}
-							handleChange={(e) => setFormSenha(e.target.value)}
-							value={formSenha}
+							handleChange={(e) => formSenha.onChange(e)}
+							value={formSenha.value}
 							label="Palavra-passe"
 							type="password"
 						/>

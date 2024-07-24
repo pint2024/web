@@ -14,7 +14,7 @@ export const PLACEHOLDER_TEXT =
 export const PLACEHOLDER_TITLE =
 	"Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 
-export const API_URL = process.env.REACT_APP_API_URL;
+export const API_URL = process.env.REACT_APP_USE_CLOUD_URL === 'true' ? process.env.REACT_APP_CLOUD_API_URL : process.env.REACT_APP_LOCAL_API_URL;
 
 export const POSTS_TO_RENDER = 20;
 

@@ -2,19 +2,20 @@ import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ComboBox, Notificacao, Seletor } from "components";
 import { REGEX } from "data/regex";
 import { useCarregando } from "hooks/useCarregando";
+import { useInput } from "hooks/useInput";
 import { useEffect, useState } from "react";
 import { Validador } from "utils/validator";
 
 export function CriarUtilizadorPainel({ handleCreated }) {
-	const [formNome, setFormNome] = useState("");
-	const [formSobrenome, setFormSobrenome] = useState("");
-	const [formEmail, setFormEmail] = useState("");
-	const [formSenha, setFormSenha] = useState("");
-	const [formCentro, setFormCentro] = useState("");
-	const [dataCentro, setdataCentro] = useState(null);
-	const [formPerfil, setFormPerfil] = useState("");
+	const formNome = useInput();
+	const formSobrenome = useInput();
+	const formEmail = useInput();
+	const formSenha = useInput();
+	const formCentro = useInput();
+	const formPerfil = useInput();
+	const formVerificado = useInput(false);
 	const [dataPerfil, setdataPerfil] = useState(null);
-	const [formVerificado, setFormVerificado] = useState(false);
+	const [dataCentro, setdataCentro] = useState(null);
 	const [erros, setErros] = useState({});
 	const { startLoading, stopLoading } = useCarregando();
 
@@ -66,14 +67,16 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 
 		const validador = new Validador(esquema);
 		const data = {
-			nome: formNome,
-			sobrenome: formSobrenome,
-			email: formEmail,
-			senha: formSenha,
-			centro: formCentro,
-			verificado: formVerificado,
-			perfil: formPerfil,
+			nome: formNome.value,
+			sobrenome: formSobrenome.value,
+			email: formEmail.value,
+			senha: formSenha.value,
+			centro: formCentro.value,
+			verificado: formVerificado.value,
+			perfil: formPerfil.value,
 		};
+
+		console.log(data);
 
 		const validacao = validador.validar(data);
 		setErros(validacao);
@@ -93,30 +96,30 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 			<div className="d-flex">
 				<CaixaTexto
 					className="mt-2 me-auto"
-					handleChange={(e) => setFormNome(e.target.value)}
-					value={formNome}
+					handleChange={(e) => formNome.onChange(e)}
+					value={formNome.value}
 					isInvalid={erros.nome}
 					label="Nome"
 				/>
 				<CaixaTexto
 					className="mt-2 ms-auto"
-					handleChange={(e) => setFormSobrenome(e.target.value)}
-					value={formSobrenome}
+					handleChange={(e) => formSobrenome.onChange(e)}
+					value={formSobrenome.value}
 					isInvalid={erros.sobrenome}
 					label="Sobrenome"
 				/>
 			</div>
 			<CaixaTexto
 				className="mt-2"
-				handleChange={(e) => setFormEmail(e.target.value)}
-				value={formEmail}
+				handleChange={(e) => formEmail.onChange(e)}
+				value={formEmail.value}
 				isInvalid={erros.email}
 				label="Email"
 			/>
 			<CaixaTexto
 				className="mt-2"
-				handleChange={(e) => setFormSenha(e.target.value)}
-				value={formSenha}
+				handleChange={(e) => formSenha.onChange(e)}
+				value={formSenha.value}
 				isInvalid={erros.senha}
 				label="Senha"
 				type="password"
@@ -126,8 +129,8 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 					className="mt-2"
 					options={transformarDadosCentro()}
 					placeholder="Escolha o centro..."
-					handleChange={(e) => setFormCentro(e)}
-					value={formCentro}
+					handleChange={(e) => formCentro.setValue(e)}
+					value={formCentro.value}
 					isInvalid={erros.centro}
 					label="Centro"
 				/>
@@ -135,13 +138,13 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 					className="mt-2"
 					options={transformarDadosPerfil()}
 					placeholder="Escolha o perfil..."
-					handleChange={(e) => setFormPerfil(e)}
-					value={formPerfil}
+					handleChange={(e) => formPerfil.setValue(e)}
+					value={formPerfil.value}
 					isInvalid={erros.perfil}
 					label="Perfil"
 				/>
 			</div>
-			<Seletor label="Verificar" className="mt-2" handleChange={(e) => setFormVerificado(e)} value={formVerificado} />
+			<Seletor label="Verificar" className="mt-2" handleChange={(e) => formVerificado.setValue(e)} value={formVerificado.value} />
 			<Botao className="mt-4" onClick={handleLogin}>
 				Adicionar
 			</Botao>
