@@ -13,7 +13,7 @@ import { EnumConstants } from "data/enum.constants";
 import { DBUtils } from "utils/db.utils";
 import { ApiRequest } from "api/apiRequest";
 import { LabelSucess } from "layouts/labelWarnings/LabelSucess";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
@@ -22,7 +22,7 @@ export function ConteudoDetalhe() {
 	const [isSubscribed, setisSubscribed] = useState(false);
 	const { startLoading, stopLoading } = useCarregando();
 	const { id } = useParams();
-	const utilizadorAtual = useUserValidation();
+	const utilizadorAtual = useCurrentUser();
 
 	useEffect(() => {
 		if (dataDetalhe) {

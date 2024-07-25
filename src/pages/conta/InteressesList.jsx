@@ -1,7 +1,7 @@
 import { ApiRequest } from "api";
 import { Botao } from "components";
 import { Categoria } from "components/container/categorias/Categoria";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ export function InteressesList({ id }) {
 	const [dataInteresses, setdataInteresses] = useState(null);
 	const [selectedSubtopicos, setselectedSubtopicos] = useState(null);
 	const { startLoading, stopLoading } = useCarregando();
-	const utilizadorAtual = useUserValidation();
+	const utilizadorAtual = useCurrentUser();
 
 	useEffect(() => {
 		fetchData();

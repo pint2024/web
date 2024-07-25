@@ -2,7 +2,7 @@ import { AutenticacaoRequest } from "api";
 import { userProfile } from "data/userProfile";
 import { useEffect, useState } from "react";
 
-export const useUserValidation = (shouldReturnIsValid = false) => {
+export const useCurrentUser = (shouldReturnIsValid = false) => {
 	const [userData, setuserData] = useState({});
 	const [isValid, setisValid] = useState(false);
 

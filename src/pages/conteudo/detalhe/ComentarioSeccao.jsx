@@ -2,7 +2,7 @@ import { AutenticacaoRequest } from "api";
 import { ApiRequest } from "api/apiRequest";
 import { Comentario, CaixaTexto, Texto, Botao } from "components/index";
 import { COMMON_SIZES } from "data/data";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 
@@ -10,7 +10,7 @@ export function ComentarioSeccao({ id }) {
 	const [dataComentarios, setdataComentarios] = useState(null);
 	const [novoComentario, setnovoComentario] = useState("");
 	const { startLoading, stopLoading } = useCarregando();
-	const utilizadorAtual = useUserValidation();
+	const utilizadorAtual = useCurrentUser();
 
 	useEffect(() => {
 		startLoading();

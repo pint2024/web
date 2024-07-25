@@ -7,13 +7,13 @@ import { PageLayout } from "layouts/pageBase/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { BackofficeLayout } from "layouts/pageBase/BackofficeLayout";
 import { Rotas } from "routes";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { NotFound } from "layouts/errors/NotFound";
 import { AccessDenied } from "layouts/errors/AccessDenied";
 
 function App() {
 	const [userRole, setuserRole] = useState();
-	const { userData, isValid } = useUserValidation(true);
+	const { userData, isValid } = useCurrentUser(true);
 
 	useEffect(() => {
 		if (!userData) return;

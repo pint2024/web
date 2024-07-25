@@ -7,58 +7,80 @@ import { STATUS } from "data/constants";
 import { useCarregando } from "hooks/useCarregando";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "hooks/useInput";
+import { Validador } from "utils/validator";
 
 export function IniciarSessao() {
-	const formLogin = useInput();
-	const formSenha = useInput();
-	const { startLoading, stopLoading } = useCarregando();
-	const navigate = useNavigate();
+  const formLogin = useInput();
+  const formSenha = useInput();
+  const { startLoading, stopLoading } = useCarregando();
+  const navigate = useNavigate();
+  const [erros, setErros] = useState({});
 
-	const handleLogin = async () => {
-		startLoading();
-		const res = await AutenticacaoRequest.entrar(formLogin.value, formSenha.value);
-		if (res.status === 422) {
-			Notificacao("É necessário alterar a palavra-passe!", "info");
-			navigate(`/atualizar-passe/${res.data.token}`);
-		} else if (res === STATUS.ERRO || !res) {
-			Notificacao("Os dados estão inválidos!", "error");
-		} else {
-			Notificacao("Sessão inciada com sucesso!");
-			navigate("/");
-			window.location.reload();
-		}
-		stopLoading();
-	};
+  const handleLogin = async () => {
+    const esquema = {
+      login: { required: true },
+      senha: { required: true },
+    };
 
-	return (
-		<div className="iniciar-sessao-container">
-			<form>
-				<div className="form-container">
-					<form onSubmit={handleLogin}>
-						<CaixaTexto
-							handleSubmit={() => handleLogin()}
-							handleChange={(e) => formLogin.onChange(e)}
-							value={formLogin.value}
-							label="Endereço email ou tag"
-						/>
-						<CaixaTexto
-							handleSubmit={() => handleLogin()}
-							handleChange={(e) => formSenha.onChange(e)}
-							value={formSenha.value}
-							label="Palavra-passe"
-							type="password"
-						/>
-					</form>
-				</div>
-				<div className="d-flex align-items-center gap-2 mt-4">
-					<Botao onClick={handleLogin}>Entrar</Botao>
-					<Botao variant={BUTTON_VARIANTS.SECUNDARIO} route="/criar-conta">
-						Registrar
-					</Botao>
-				</div>
-			</form>
+    const validador = new Validador(esquema);
+    const data = {
+      login: formLogin.value,
+      senha: formSenha.value,
+    };
 
-			<Navegar to="/esqueceu-passe">Esqueceu-se da senha?</Navegar>
-		</div>
-	);
+    const validacao = validador.validar(data);
+    setErros(validacao);
+    if (!validador.isValido(validacao)) return;
+
+    startLoading();
+    const res = await AutenticacaoRequest.entrar(
+      formLogin.value,
+      formSenha.value
+    );
+    if (res.status === 422) {
+      Notificacao("É necessário alterar a palavra-passe!", "info");
+      navigate(`/atualizar-passe/${res.data.token}`);
+    } else if (res === STATUS.ERRO || !res) {
+      Notificacao("Os dados estão inválidos!", "error");
+    } else {
+      Notificacao("Sessão inciada com sucesso!");
+      navigate("/");
+      window.location.reload();
+    }
+    stopLoading();
+  };
+
+  return (
+    <div className="iniciar-sessao-container">
+      <form>
+        <div className="form-container">
+          <form onSubmit={handleLogin}>
+            <CaixaTexto
+              handleSubmit={() => handleLogin()}
+              handleChange={(e) => formLogin.onChange(e)}
+              value={formLogin.value}
+              label="Endereço email ou tag"
+              isInvalid={erros.login}
+            />
+            <CaixaTexto
+              handleSubmit={() => handleLogin()}
+              handleChange={(e) => formSenha.onChange(e)}
+              value={formSenha.value}
+              label="Palavra-passe"
+              type="password"
+              isInvalid={erros.senha}
+            />
+          </form>
+        </div>
+        <div className="d-flex align-items-center gap-2 mt-4">
+          <Botao onClick={handleLogin}>Entrar</Botao>
+          <Botao variant={BUTTON_VARIANTS.SECUNDARIO} route="/criar-conta">
+            Registrar
+          </Botao>
+        </div>
+      </form>
+
+      <Navegar to="/esqueceu-passe">Esqueceu-se da senha?</Navegar>
+    </div>
+  );
 }

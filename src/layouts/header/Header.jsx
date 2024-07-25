@@ -6,11 +6,11 @@ import userDefault from "assets/images/user-default.png";
 import logo from "assets/images/logo.png";
 
 import "./header.css";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 
 export function Header() {
-	const utilizadorAtual = useUserValidation();
+	const utilizadorAtual = useCurrentUser();
 
 	return (
 		<section id="Header">

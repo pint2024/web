@@ -1,34 +1,14 @@
 import { AUTH_KEY, STATUS } from "data/constants";
 import { Log } from "utils/log.utils";
 import { myAxios } from "./axios";
+import { AuthToken } from "./authToken";
 
 export class AutenticacaoRequest {
-	static #setToken(token) {
-		localStorage.setItem(AUTH_KEY, JSON.stringify(token));
-	}
-
-	static #getToken() {
-		return JSON.parse(localStorage.getItem(AUTH_KEY));
-	}
-
-	static #removeToken() {
-		localStorage.removeItem(AUTH_KEY);
-	}
-
-	static existsToken() {
-		if (this.#getToken()) return true;
-		return false;
-	}
-
-	static getToken() {
-		return this.#getToken();
-	}
-
 	static async entrar(login, senha) {
 		try {
 			const response = await myAxios({ url: "/autenticacao/entrar", method: "post", data: { login, senha } });
 			if (response.token) {
-				this.#setToken(response.token);
+				AuthToken.setToken(response.token);
 				return response;
 			} else if (response.status === 422) {
 				return response;
@@ -41,12 +21,12 @@ export class AutenticacaoRequest {
 	}
 
 	static async terminar_sessao() {
-		this.#removeToken();
+		AuthToken.removeToken();
 	}
 
 	static async obterUtilizadorAtual() {
 		try {
-			const token = this.#getToken();
+			const token = AuthToken.getToken();
 			if (!token) return false;
 			const response = await myAxios({
 				url: "/autenticacao/obter",
@@ -62,7 +42,7 @@ export class AutenticacaoRequest {
 
 	static async atualizarToken() {
 		try {
-			const token = this.#getToken();
+			const token = AuthToken.getToken();
 			if (!token) return false;
 
 			const response = await myAxios({
@@ -73,7 +53,7 @@ export class AutenticacaoRequest {
 			if (!(response && response.token)) throw new Error("Não recebeu resposta!");
 
 			const new_token = response.token;
-			this.#setToken(new_token);
+			AuthToken.setToken(new_token);
 		} catch (error) {
 			Log.erro(error);
 			return STATUS.ERRO;
@@ -123,7 +103,7 @@ export class AutenticacaoRequest {
 			});
 			if (!response) throw new Error("Não recebeu resposta!");
 			if (response.token) {
-				this.#setToken(response.token);
+				AuthToken.setToken(response.token);
 				return response;
 			}
 			return false;

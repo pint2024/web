@@ -8,7 +8,7 @@ import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 import { LabelError } from "layouts/labelWarnings/LabelError";
 import { useEffect, useState } from "react";
 import { InteressesList } from "../InteressesList";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { ApiRequest } from "api";
 import { useCarregando } from "hooks/useCarregando";
 import { Authorizor } from "components/helpers/Authorizor";
@@ -21,7 +21,7 @@ export function BlocoPrincipal({ data }) {
 	const [dataCentro, setdataCentro] = useState();
 	const [selectCentro, setselectCentro] = useState();
 	const { startLoading, stopLoading } = useCarregando();
-	const utilizadorAtual = useUserValidation();
+	const utilizadorAtual = useCurrentUser();
 
 	useEffect(() => {
 		setselectPerfil(data?.perfil);

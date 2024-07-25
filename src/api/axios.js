@@ -1,6 +1,6 @@
 import axios from "axios";
-import { API_URL, STATUS } from "data/constants";
-import { AutenticacaoRequest } from "./autenticacaoRequest";
+import { API_URL } from "data/constants";
+import { AuthToken } from "./authToken";
 
 const api = axios.create({
 	baseURL: API_URL,
@@ -8,7 +8,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
 	(config) => {
-		const token = AutenticacaoRequest.getToken();
+		const token = AuthToken.getToken();
 		if (token) config.headers.Authorization = `Bearer ${token}`;
 		return config;
 	},

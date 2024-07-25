@@ -4,7 +4,7 @@ import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UtilizadorDefault from "assets/images/user-default.png";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { Validador } from "utils/validator";
 import { Utils } from "utils/utils";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
@@ -12,7 +12,7 @@ import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 export function ContaEditar() {
 	const { id } = useParams();
 	const { startLoading, stopLoading } = useCarregando();
-	const { userData, isValid } = useUserValidation(true);
+	const { userData, isValid } = useCurrentUser(true);
 	const navigate = useNavigate();
 	const [erros, setErros] = useState([]);
 

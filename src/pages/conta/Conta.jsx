@@ -8,7 +8,6 @@ import { useCarregando } from "hooks/useCarregando";
 import { useParams } from "react-router-dom";
 import { ApiRequest } from "api/apiRequest";
 import { BlocoParticipacoes } from "./blocos/BlocoParticipacoes";
-import { useUserValidation } from "hooks/useAuth";
 
 export function Conta() {
 	const { id } = useParams();

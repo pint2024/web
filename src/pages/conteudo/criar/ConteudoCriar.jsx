@@ -3,7 +3,7 @@ import { AreaTexto, CaixaTexto, DatePicker, ImageBox, ComboBox, Botao, Notificac
 import { Classificacao } from "components/ui/controlosInterecao/classificacao/Classificacao";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import { EnumConstants } from "data/enum.constants";
-import { useUserValidation } from "hooks/useAuth";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,7 +13,7 @@ import { Validador } from "utils/validator";
 export function ConteudoCriar() {
 	const { id } = useParams();
 	const { startLoading, stopLoading } = useLoading();
-	const utilizadorAtual = useUserValidation();
+	const utilizadorAtual = useCurrentUser();
 	const navigate = useNavigate();
 
 	const [formTitulo, setformTitulo] = useState("");
