@@ -102,7 +102,7 @@ export function BlocoPrincipal({ data }) {
 					body={<InteressesList id={data.id} />}
 				/>
 			)}
-			{data.inativo && <LabelError texto="Utilizador está inativo!" />}
+			{data?.inativo && <LabelError texto="Utilizador está inativo!" />}
 			<div className="main-box-content">
 				<div className="mb-content-image">
 					<ImagemModal imagemSelecionada={data.imagem ? data.imagem : UtilizadorDefault}>

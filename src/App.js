@@ -26,7 +26,7 @@ function App() {
 
 	if (!isValid) return;
 
-	if (userData.inativo) {
+	if (userData?.inativo) {
 		return (
 			<Router>
 				<Routes>

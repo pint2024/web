@@ -26,6 +26,8 @@ export const CONTENT_VH = getSizes("CONTENT_VH");
 
 export const SEND_MESSAGE_DELAY = 200;
 
+export const COMBOBOX_DEFAULT_VALUE = 0;
+
 export const STATUS = {
 	ERRO: 0,
 	SUCESSO: 1,
