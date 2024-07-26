@@ -12,7 +12,7 @@ import { Validador } from "utils/validator";
 export function IniciarSessao() {
   const formLogin = useInput();
   const formSenha = useInput();
-  const { startLoading, stopLoading } = useCarregando();
+  const { startLoading, stopLoading, isLoading } = useCarregando();
   const navigate = useNavigate();
   const [erros, setErros] = useState({});
 
@@ -61,6 +61,7 @@ export function IniciarSessao() {
               value={formLogin.value}
               label="Endereço email ou tag"
               isInvalid={erros.login}
+              disabled={isLoading}
             />
             <CaixaTexto
               handleSubmit={() => handleLogin()}
@@ -69,6 +70,7 @@ export function IniciarSessao() {
               label="Palavra-passe"
               type="password"
               isInvalid={erros.senha}
+              disabled={isLoading}
             />
           </form>
         </div>
