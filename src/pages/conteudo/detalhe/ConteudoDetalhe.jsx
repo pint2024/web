@@ -1,4 +1,4 @@
-import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone } from "components/index";
+import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone, Confirmacao } from "components/index";
 import { useEffect, useState } from "react";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
@@ -14,6 +14,7 @@ import { DBUtils } from "utils/db.utils";
 import { ApiRequest } from "api/apiRequest";
 import { LabelSucess } from "layouts/labelWarnings/LabelSucess";
 import { useCurrentUser } from "hooks/useCurrentUser";
+import { useConfirmation } from "hooks/useConfirmation";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
@@ -21,6 +22,7 @@ export function ConteudoDetalhe() {
 	const [isRejeitado, setisRejeitado] = useState(true);
 	const [isSubscribed, setisSubscribed] = useState(false);
 	const { startLoading, stopLoading } = useCarregando();
+	const { conCreate, conSet, conOpen } = useConfirmation();
 	const { id } = useParams();
 	const utilizadorAtual = useCurrentUser();
 
@@ -36,7 +38,8 @@ export function ConteudoDetalhe() {
 
 	useEffect(() => {
 		if (dataDetalhe) {
-			setisRevisao(DBUtils.checkRevisao(dataDetalhe.revisao_conteudo));
+			console.log(dataDetalhe.revisao_conteudo);
+			setisRevisao(dataDetalhe.revisao_conteudo.length > 0 ? DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) : true);
 			setisRejeitado(DBUtils.checkRevisaoRejeitado(dataDetalhe.revisao_conteudo));
 		}
 	}, [dataDetalhe]);
@@ -65,18 +68,40 @@ export function ConteudoDetalhe() {
 		await fetchConteudoData();
 	};
 
-	/*const handleRevisaoAprovada = async (id) => {
-		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
+	const handleRevisaoAprovada = async () => {
+		if (dataDetalhe.revisao_conteudo.length > 0)
+			await ApiRequest.atualizar("revisao", dataDetalhe.revisao_conteudo[0].id, {
+				estado: EnumConstants.ESTADOS.APROVADO,
+			});
+		else await ApiRequest.criar("revisao", { conteudo: id, estado: EnumConstants.ESTADOS.APROVADO });
 		fetchConteudoData();
 	};
 
-	const handleRevisaoRejeitada = async (id) => {
-		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
+	const handleRevisaoRejeitada = async () => {
+		if (dataDetalhe.revisao_conteudo.length > 0)
+			await ApiRequest.atualizar("revisao", dataDetalhe.revisao_conteudo[0].id, {
+				estado: EnumConstants.ESTADOS.REJEITADO,
+			});
+		else await ApiRequest.criar("revisao", { conteudo: id, estado: EnumConstants.ESTADOS.REJEITADO });
+
 		fetchConteudoData();
-	};*/
+	};
+
+	const handleRevisionPopup = () => {
+		conSet({
+			title: "Rever conteudo",
+			body: "O que deseja fazer?",
+			successLabel: "Aceitar",
+			errorLabel: "Rejeitar",
+			onSuccess: handleRevisaoAprovada,
+			onError: handleRevisaoRejeitada,
+		});
+		conOpen();
+	};
 
 	return (
 		<>
+			{conCreate()}
 			{isRevisao && <LabelError texto="Em revisão..." />}
 			{isRejeitado && <LabelError texto="Conteudo foi rejeitado" />}
 			{isSubscribed && <LabelSucess texto="Você está inscrito!" />}
@@ -159,9 +184,11 @@ export function ConteudoDetalhe() {
 					{isRevisao && (
 						<>
 							<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
-							<Botao variant={BUTTON_VARIANTS.PERIGO}>Apagar</Botao>
 						</>
 					)}
+					<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={handleRevisionPopup}>
+						Rever
+					</Botao>
 				</section>
 				<section>
 					<ComentarioSeccao id={id} />

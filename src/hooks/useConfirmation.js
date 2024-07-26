@@ -5,7 +5,10 @@ export const useConfirmation = () => {
 	const [conIsOpen, setconIsOpen] = useState(false);
 	const [conTitle, setconTitle] = useState("");
 	const [conBody, setconBody] = useState("");
+	const [conSuccessLabel, setconSuccessLabel] = useState("");
+	const [conErrorLabel, setconErrorLabel] = useState("");
 	const [conSuccess, setconSuccess] = useState(null);
+	const [conError, setconError] = useState(null);
 
 	const conOpen = () => {
 		setconIsOpen(true);
@@ -15,27 +18,28 @@ export const useConfirmation = () => {
 		setconIsOpen(false);
 	};
 
-	const conSet = ({title, body, onSuccess}) => {
+	const conSet = ({ title, body, successLabel, errorLabel, onSuccess, onError }) => {
 		setconTitle(title);
 		setconBody(body);
-		setconSuccess(onSuccess);
-	}
+		setconSuccessLabel(successLabel);
+		setconErrorLabel(errorLabel);
+		setconSuccess(() => onSuccess);
+		setconError(() => onError);
+	};
 
 	const conClear = () => {
 		setconTitle("");
 		setconBody("");
+		setconSuccessLabel("");
+		setconErrorLabel("");
 		setconSuccess(null);
+		setconError(null);
 	};
 
 	const conCreate = () => (
 		<>
 			{conIsOpen && (
-				<Confirmacao
-					title={conTitle}
-					body={conBody}
-					onSuccess={conSuccess}
-					onClose={conClose}
-				/>
+				<Confirmacao title={conTitle} body={conBody} successLabel={conSuccessLabel} errorLabel={conErrorLabel} onSuccess={conSuccess} onError={conError} onClose={conClose} />
 			)}
 		</>
 	);
@@ -45,11 +49,17 @@ export const useConfirmation = () => {
 		conTitle,
 		conBody,
 		conSuccess,
+		conError,
+		conSuccessLabel,
+		conErrorLabel,
 
 		setconIsOpen,
 		setconTitle,
 		setconBody,
 		setconSuccess,
+		setconError,
+		setconSuccessLabel,
+		setconErrorLabel,
 
 		conSet,
 		conCreate,
