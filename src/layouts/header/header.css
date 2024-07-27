@@ -19,6 +19,17 @@ header * {
 	cursor: pointer;
 }
 
+.trigger-icon {
+	width: 2rem;
+	height: 2rem;
+}
+
+.trigger-icon:hover {
+	background-color: var(--BLACK-HOVER);
+	mix-blend-mode: lighten;
+	border-radius: 10px;
+}
+
 .header-site-logo,
 .header-user-image {
 	width: 50px;

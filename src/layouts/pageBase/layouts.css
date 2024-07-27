@@ -4,12 +4,6 @@
 	height: 100vh;
 }
 
-.header-item:hover {
-	background-color: var(--BLACK-HOVER);
-	mix-blend-mode: lighten;
-	border-radius: 10px;
-}
-
 #main-conteudo {
 	position: relative;
 	padding-top: calc(var(--HEADER_VH) + 5px);

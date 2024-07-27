@@ -86,7 +86,6 @@ export function Filtros({ data, filtered, setFiltered }) {
 	};
 
 	const handleCleanFilters = () => {
-		startLoading();
 		searchCentro.setValue(COMBOBOX_DEFAULT_VALUE);
 		searchPerfil.setValue(COMBOBOX_DEFAULT_VALUE);
 		searchUser.setValue("");

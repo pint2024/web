@@ -1,19 +1,19 @@
 import { AUTH_KEY } from "data/constants";
 
-export class AuthToken {
-  static setToken(token) {
+export class AuthTokenUtils {
+  static set(token) {
     localStorage.setItem(AUTH_KEY, JSON.stringify(token));
   }
 
-  static getToken() {
+  static get() {
     return JSON.parse(localStorage.getItem(AUTH_KEY));
   }
 
-  static removeToken() {
+  static remove() {
     localStorage.removeItem(AUTH_KEY);
   }
 
-  static existsToken() {
+  static exists() {
     if (this.getToken()) return true;
     return false;
   }

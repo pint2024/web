@@ -11,6 +11,7 @@ import { CriarUtilizadorPainel } from "./CriarUtilizadorPainel";
 import { useInput } from "hooks/useInput";
 import { COMBOBOX_DEFAULT_VALUE } from "data/constants";
 import { Filtros } from "./Filtros";
+import { Row } from "components/ui/Row";
 
 export function UtilizadorPainel() {
 	const [dataUtilizadores, setdataUtilizadores] = useState(null);
@@ -23,9 +24,11 @@ export function UtilizadorPainel() {
 	}, []);
 
 	const fetchConteudoData = async () => {
+		startLoading();
 		const data = await ApiRequest.listar("utilizador/simples");
 		setdataUtilizadores(data);
 		setFilteredUtilizadores(data);
+		stopLoading();
 	};
 
 	const closePopup = () => {
@@ -55,6 +58,10 @@ export function UtilizadorPainel() {
 		stopLoading();
 	};
 
+	const handleRefresh = async (id, isInativar) => {
+		fetchConteudoData();
+	};
+
 	return (
 		<>
 			{isPopupOpen && (
@@ -64,9 +71,12 @@ export function UtilizadorPainel() {
 					body={<CriarUtilizadorPainel handleCreated={() => handleCreated()} />}
 				/>
 			)}
-			<Botao onClick={() => openPopup()}>
-				<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
-			</Botao>
+			<Row className="align-content-between justify-content-between">
+				<Botao onClick={() => openPopup()}>
+					<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
+				</Botao>
+				<Icone iconName="ArrowClockwise" size={5} className="icon-hover" onClick={() => handleRefresh()} />
+			</Row>
 			<Filtros data={dataUtilizadores} filtered={filteredUtilizadores} setFiltered={setFilteredUtilizadores} />
 			{dataUtilizadores ? (
 				<table className="revisao-tabela mt-4">

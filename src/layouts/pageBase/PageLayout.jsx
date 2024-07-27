@@ -6,6 +6,7 @@ import "./layouts.css";
 import { useSidebarStatus } from "hooks/useSidebarStatus";
 import { Sidebar } from "layouts/sidebar/Sidebar";
 import { SIDEBAR_CLOSE_WIDTH, SIDEBAR_OPEN_WIDTH } from "data/constants";
+import { Botao } from "components";
 
 export function PageLayout() {
 	const { isOpen } = useSidebarStatus();
@@ -22,7 +23,6 @@ export function PageLayout() {
 						transition: "margin-left 0.3s ease",
 					}}
 				>
-					<Breadcrumb />
 					<PageContent>
 						<Outlet />
 					</PageContent>

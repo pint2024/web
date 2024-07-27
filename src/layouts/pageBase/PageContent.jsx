@@ -1,7 +1,12 @@
+import { Breadcrumb } from "./Breadcrumb";
+
 export function PageContent({ children }) {
 	return (
-		<section id="PageContent" className="container">
-			{children}
-		</section>
+		<>
+			<Breadcrumb />
+			<section id="PageContent" className="container">
+				{children}
+			</section>
+		</>
 	);
 }

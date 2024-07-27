@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Navbar } from "./Navbar";
 import { Dropdown, Icone, Imagem, Navegar, Texto } from "components/index";
 import { userItems } from "./headerData";
 
@@ -23,8 +22,8 @@ export function Header() {
 		<header id="Header" className="header-height fixed-header">
 			<div className="nav-area">
 				<Row className="gap-4">
-					<div className="trigger header-item" onClick={handleTrigger}>
-						<Icone iconName={isOpen ? "X" : "List"} className="sidebar-icon" />
+					<div className="trigger" onClick={handleTrigger}>
+						<Icone iconName={isOpen ? "X" : "List"} className="trigger-icon" />
 					</div>
 					<Link to="/" className="header-logo remove-margin remove-user-select">
 						<Imagem src={LOGO} alt="Logo" className="header-site-logo" />

@@ -8,21 +8,35 @@ aside {
 }
 
 .sidebar-nav-items > * {
-	margin-top: 20px; /* Espaço de 20px entre os itens */
+	margin-top: 20px;
 	padding: 10px;
 }
 
-/* Remove a margem inferior do último item, se desejar */
 .sidebar-nav-items > *:last-child {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
-.sidebar-label {
+.sidebar-item-label {
 	font-size: 1.1rem !important;
+	white-space: nowrap; /* Não quebra a linha */
+	overflow: hidden; /* Oculta o texto que ultrapassa o contêiner */
+	text-overflow: ellipsis; /* Adiciona reticências (...) */
 }
 
-.sidebar-icon {
-	width: 2em;
-	height: 2em;
+.header-item:hover {
+	background-color: var(--BLACK-HOVER);
+	mix-blend-mode: lighten;
+	border-radius: 10px;
+}
+
+.header-item {
+	margin: 6px;
+	height: 46px;
+}
+
+.sidebar-item-icon {
+	height: 27px;
+	width: 27px;
+	flex-shrink: 0;
 }

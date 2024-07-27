@@ -26,7 +26,7 @@ export function Calendario() {
 		const fetchConteudoData = async () => {
 			startLoading();
 			try {
-				const data = await ApiRequest.listar("conteudo", {
+				const data = await ApiRequest.listar("conteudo/participando", {
 					tipo: [EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID, EnumConstants.CONTEUDO_TIPOS.EVENTO.ID],
 				});
 				setdataEventos(data);

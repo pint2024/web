@@ -15,6 +15,7 @@ import { ApiRequest } from "api/apiRequest";
 import { LabelSucess } from "layouts/labelWarnings/LabelSucess";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { useConfirmation } from "hooks/useConfirmation";
+import { myAxios } from "api";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
@@ -61,10 +62,7 @@ export function ConteudoDetalhe() {
 
 	const handleRemoverParticipacao = async () => {
 		startLoading();
-		const participacao = await ApiRequest.listar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
-		for (const item in participacao) {
-			await ApiRequest.remover("participante", item.id);
-		}
+		await myAxios({ url: "participante/remover", method: "post", data: { utilizador: utilizadorAtual.id, conteudo: id } });
 		await fetchConteudoData();
 	};
 
