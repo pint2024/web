@@ -1,5 +1,5 @@
 import { ApiRequest } from "api";
-import { Botao, CaixaTexto, ImageBox, Imagem } from "components";
+import { Botao, CaixaTexto, ImageBox, Imagem, Notificacao } from "components";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -72,6 +72,7 @@ export function ContaEditar() {
 
 		startLoading();
 		await ApiRequest.upload_user_image(userData.id, newImagens);
+		Notificacao("Atualiza com sucesso!");
 		await fetchData();
 		stopLoading();
 	};
@@ -97,6 +98,7 @@ export function ContaEditar() {
 
 		startLoading();
 		await ApiRequest.atualizar("utilizador", userData.id, data);
+		Notificacao("Atualiza com sucesso!");
 		await fetchData();
 		stopLoading();
 	};

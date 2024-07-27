@@ -9,6 +9,7 @@
 	--LIGHT-SECONDARY-TRANSPARENT: rgba(165, 165, 165, 0.5);
 	--ACCENT: rgb(0, 184, 224);
 	--BLACK: rgb(33, 33, 33);
+	--BLACK-LIGHT: rgb(34, 34, 34);
 	--BLACK-AUX: rgb(24, 24, 24);
 	--WHITE: rgb(255, 255, 255);
 	--DARKER-WHITE: rgb(213, 213, 213);
@@ -26,9 +27,11 @@
 
 	/* Cores de destaque */
 	--DIVIDER: rgb(218, 220, 224);
-	--BACKGROUND: rgb(248, 249, 250);
+	--BACKGROUND: rgb(245, 245, 245);
 	--WHITE-HOVER: rgba(213, 213, 213, 0.3);
 	--DARKER-WHITE-HOVER: rgba(113, 113, 113, 0.3);
+	--BLACK-HOVER: rgb(66, 66, 66, 0.5);
+
 
 	/* Cores de navegação*/
 	--LIGHT-DANGER: rgb(180, 0, 0);

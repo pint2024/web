@@ -1,11 +1,12 @@
+import { render } from "react-dom";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import { LoadingProvider } from "context/loadingContext";
 import { AutenticacaoProvider } from "hooks/useAutenticacao";
-import { render } from "react-dom";
-import reportWebVitals from "./reportWebVitals";
+import { SidebarStatusProvider } from "context/sidebarStatusContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -17,8 +18,10 @@ render(
 	<React.StrictMode>
 		<AutenticacaoProvider>
 			<LoadingProvider>
-				<ToastContainer />
-				<App />
+				<SidebarStatusProvider>
+					<ToastContainer />
+					<App />
+				</SidebarStatusProvider>
 			</LoadingProvider>
 		</AutenticacaoProvider>
 	</React.StrictMode>,

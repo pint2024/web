@@ -72,6 +72,5 @@ export class Utils {
 				return EnumConstants.CONTEUDO_TIPOS[key].TIPO;
 			}
 		}
-		return "oi";
 	}
 }

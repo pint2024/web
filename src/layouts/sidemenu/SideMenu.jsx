@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./side-menu.css";
-import logo from "assets/images/logo.png";
 import { Header } from "layouts/header/Header";
 import { Imagem, Texto } from "components";
 import { COMMON_TYPES } from "data/data";
+import { LOGO } from "data/constants";
 
 function SideBarItems({ titulo, icon, route, children }) {
 	return (
@@ -27,7 +27,7 @@ export function SideMenu() {
 				<section className="nav-menu-items">
 					<div className="navbar-toggle d-flex align-items-center">
 						<Link className="navbar-brand" to="/">
-							<Imagem src={logo} className="navbar-logo-size d-inline-block align-top" alt="Logo do Site" />
+							<Imagem src={LOGO} className="navbar-logo-size d-inline-block align-top" alt="Logo do Site" />
 						</Link>
 					</div>
 					<div className="d-flex flex-column justify-content-between item-list">

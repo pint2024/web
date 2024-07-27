@@ -1,4 +1,6 @@
 header {
+	position: fixed;
+	width: 100%;
 	background-color: var(--BLACK);
 }
 
@@ -10,7 +12,11 @@ header * {
 .header-submenu-arrow {
 	margin-left: 5px;
 	text-decoration: none;
-	background-color: transparent; /*temp*/
+	background-color: transparent;
+}
+
+.trigger {
+	cursor: pointer;
 }
 
 .header-site-logo,
@@ -30,7 +36,6 @@ header * {
 .nav-area {
 	display: flex;
 	align-items: center;
-	max-width: 90%;
 	margin: 0 auto;
 	padding: 10px 20px;
 	justify-content: space-between;
@@ -41,7 +46,6 @@ header * {
 	text-decoration: none;
 	font-size: 25px;
 	color: inherit;
-	margin-right: 20px;
 }
 
 /* menu on desktop */
@@ -98,7 +102,6 @@ header * {
 	border-right: 0.32em solid transparent;
 	border-left: 0.32em solid transparent;
 }
-
 
 .desktop-nav .dropdown.show {
 	display: block;

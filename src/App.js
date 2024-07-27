@@ -10,6 +10,7 @@ import { Rotas } from "routes";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { NotFound } from "layouts/errors/NotFound";
 import { AccessDenied } from "layouts/errors/AccessDenied";
+import { useSidebarStatus } from "hooks/useSidebarStatus";
 
 function App() {
 	const [userRole, setuserRole] = useState();

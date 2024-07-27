@@ -1,4 +1,5 @@
 import { getSizes } from "./cssVars";
+import Logo from "../assets/images/logo.png"
 
 export const PROJETO_NAME = "The SoftShares";
 
@@ -22,11 +23,15 @@ export const HEADER_VH = getSizes("HEADER_VH");
 
 export const FOOTER_VH = getSizes("FOOTER_VH");
 
-export const CONTENT_VH = getSizes("CONTENT_VH");
-
 export const SEND_MESSAGE_DELAY = 200;
 
 export const COMBOBOX_DEFAULT_VALUE = 0;
+
+export const LOGO = Logo;
+
+export const SIDEBAR_OPEN_WIDTH = 60;
+
+export const SIDEBAR_CLOSE_WIDTH = 270;
 
 export const STATUS = {
 	ERRO: 0,

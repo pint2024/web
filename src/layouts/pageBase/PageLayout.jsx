@@ -1,24 +1,36 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "layouts/header/Header";
-import { Footer } from "layouts/footer/Footer";
 import { PageContent } from "./PageContent";
 import { Breadcrumb } from "./Breadcrumb";
+import "./layouts.css";
+import { useSidebarStatus } from "hooks/useSidebarStatus";
+import { Sidebar } from "layouts/sidebar/Sidebar";
+import { SIDEBAR_CLOSE_WIDTH, SIDEBAR_OPEN_WIDTH } from "data/constants";
 
 export function PageLayout() {
+	const { isOpen } = useSidebarStatus();
+
 	return (
-		<div id="PageLayout">
-			<header className="header-height fixed-header">
-				<Header />
-			</header>
-			<main className="content-min-height scrollable-content">
-				<Breadcrumb />
-				<PageContent>
-					<Outlet />
-				</PageContent>
+		<div id="PageLayout" className="layout-container">
+			<Header />
+			<main>
+				<Sidebar />
+				<div
+					id="main-conteudo"
+					style={{
+						marginLeft: isOpen ? `${SIDEBAR_CLOSE_WIDTH}px` : `${SIDEBAR_OPEN_WIDTH}px`,
+						transition: "margin-left 0.3s ease",
+					}}
+				>
+					<Breadcrumb />
+					<PageContent>
+						<Outlet />
+					</PageContent>
+				</div>
 			</main>
-			<footer className="footer-height">
+			{/*<footer className="footer-height">
 				<Footer />
-			</footer>
+			</footer>*/}
 		</div>
 	);
 }

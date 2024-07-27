@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Texto } from "components";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
+import { COMBOBOX_DEFAULT_VALUE } from "data/constants";
 
 ComboBox.propTypes = {
 	label: PropTypes.string,
@@ -46,7 +47,7 @@ export function ComboBox({
 				value={value}
 				disabled={disabled}
 			>
-				<option value={0}>{placeholder}</option>
+				<option value={COMBOBOX_DEFAULT_VALUE}>{placeholder}</option>
 				{options?.map((option, index) => (
 					<option key={index} value={option.value}>
 						{option.label}

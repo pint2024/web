@@ -10,82 +10,13 @@ import { Utils } from "utils/utils";
 import { CriarUtilizadorPainel } from "./CriarUtilizadorPainel";
 import { useInput } from "hooks/useInput";
 import { COMBOBOX_DEFAULT_VALUE } from "data/constants";
+import { Filtros } from "./Filtros";
 
 export function UtilizadorPainel() {
-	const searchUser = useInput();
-	const searchCentro = useInput();
-	const searchPerfil = useInput();
 	const [dataUtilizadores, setdataUtilizadores] = useState(null);
 	const [filteredUtilizadores, setFilteredUtilizadores] = useState([]);
 	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const { startLoading, stopLoading } = useCarregando();
-	const [dataPerfil, setdataPerfil] = useState(null);
-
-	const [dataCentro, setdataCentro] = useState(null);
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
-	const fetchData = async () => {
-		startLoading();
-		await fetchCentro();
-		await fetchPerfil();
-		stopLoading();
-	};
-
-	const fetchCentro = async () => {
-		const response = await ApiRequest.listar("centro/simples");
-		setdataCentro(response);
-	};
-
-	const fetchPerfil = async () => {
-		const response = await ApiRequest.listar("perfil/simples");
-		setdataPerfil(response);
-	};
-
-	useEffect(() => {
-		if (!dataUtilizadores) return;
-		const filtered = dataUtilizadores.filter((user) => {
-			const searchValue = searchUser.value.toLowerCase();
-			return (
-				user.nome.toLowerCase().includes(searchValue) ||
-				user.sobrenome.toLowerCase().includes(searchValue) ||
-				user.tag.toLowerCase().includes(searchValue) ||
-				user.email.toLowerCase().includes(searchValue)
-			);
-		});
-
-		setFilteredUtilizadores(filtered);
-	}, [searchUser.value]);
-
-	useEffect(() => {
-		if (!dataUtilizadores) return;
-		if (Utils.convertoStrToInt(searchCentro.value) === COMBOBOX_DEFAULT_VALUE) {
-			setFilteredUtilizadores(dataUtilizadores);
-			return;
-		}
-		const filtered = dataUtilizadores.filter((user) => {
-			const searchValue = Utils.convertoStrToInt(searchCentro.value);
-			return user.centro === searchValue;
-		});
-
-		setFilteredUtilizadores(filtered);
-	}, [searchCentro.value]);
-
-	useEffect(() => {
-		if (!dataUtilizadores) return;
-		if (Utils.convertoStrToInt(searchPerfil.value) === COMBOBOX_DEFAULT_VALUE) {
-			setFilteredUtilizadores(dataUtilizadores);
-			return;
-		}
-		const filtered = dataUtilizadores.filter((user) => {
-			const searchValue = Utils.convertoStrToInt(searchPerfil.value);
-			return user.perfil === searchValue;
-		});
-
-		setFilteredUtilizadores(filtered);
-	}, [searchPerfil.value]);
 
 	useEffect(() => {
 		fetchConteudoData();
@@ -96,8 +27,6 @@ export function UtilizadorPainel() {
 		setdataUtilizadores(data);
 		setFilteredUtilizadores(data);
 	};
-
-	if (!dataCentro || !dataPerfil) return;
 
 	const closePopup = () => {
 		setisPopupOpen(false);
@@ -126,20 +55,6 @@ export function UtilizadorPainel() {
 		stopLoading();
 	};
 
-	const transformarDadosCentro = () => {
-		return dataCentro?.map((item) => ({
-			value: item.id,
-			label: item.centro,
-		}));
-	};
-
-	const transformarDadosPerfil = () => {
-		return dataPerfil?.map((item) => ({
-			value: item.id,
-			label: item.perfil,
-		}));
-	};
-
 	return (
 		<>
 			{isPopupOpen && (
@@ -152,28 +67,7 @@ export function UtilizadorPainel() {
 			<Botao onClick={() => openPopup()}>
 				<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
 			</Botao>
-			<CaixaTexto
-				className="mt-2 me-auto"
-				handleChange={(e) => searchUser.onChange(e)}
-				value={searchUser.value}
-				placeholder="Pesquisar utilizador..."
-			/>
-			<div className="d-flex">
-				<ComboBox
-					className="mt-2"
-					options={transformarDadosCentro()}
-					placeholder="Escolha o centro..."
-					handleChange={(e) => searchCentro.setValue(e)}
-					value={searchCentro.value}
-				/>
-				<ComboBox
-					className="mt-2"
-					options={transformarDadosPerfil()}
-					placeholder="Escolha o perfil..."
-					handleChange={(e) => searchPerfil.setValue(e)}
-					value={searchPerfil.value}
-				/>
-			</div>
+			<Filtros data={dataUtilizadores} filtered={filteredUtilizadores} setFiltered={setFilteredUtilizadores} />
 			{dataUtilizadores ? (
 				<table className="revisao-tabela mt-4">
 					<thead>

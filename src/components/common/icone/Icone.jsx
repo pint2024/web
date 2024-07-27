@@ -15,12 +15,9 @@ export function Icone({ iconName, size = 1, type = "primary", className = "", ..
 	const validSizes = [0, 1, 2, 3, 4, 5];
 	const isSizeValid = validSizes.includes(size) ? true : false;
 
-	const validTypes = ["primary", "secondary", "success", "danger", "inverse"];
-	const isTypeValid = validTypes.includes(type) ? true : false;
-
 	return (
 		<>
-			{IconVariant && isTypeValid && isSizeValid ? (
+			{IconVariant && isSizeValid ? (
 				<IconVariant className={`text-size-${size} text-types-${type} ${className}`} {...props} />
 			) : (
 				<h1>Icon invalido</h1>

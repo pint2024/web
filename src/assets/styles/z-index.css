@@ -12,7 +12,11 @@
 	--HEADER-DROPDOWN: 906;
 	--REGULAR-DROPDOWN: 904;
 
-	--SIDE-BAR-HEADER: 3;
+	--SIDE-BAR-HEADER: 700;
+	--HEADER: 710;
+	--FOOTER: 710;
+
+	--BOTAO: 2;
 
 	--IMAGEM-MODAL: 900;
 
@@ -69,6 +73,19 @@
 }
 
 .sidebar--open,
-.nav-menu {
+.nav-menu,
+aside {
 	z-index: var(--SIDE-BAR-HEADER);
+}
+
+header {
+	z-index: var(--HEADER);
+}
+
+footer {
+	z-index: var(--FOOTER);
+}
+
+button {
+	z-index: var(--BOTAO);
 }

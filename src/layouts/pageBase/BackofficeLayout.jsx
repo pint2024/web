@@ -8,13 +8,10 @@ import { Sidebar } from "layouts/sidebar/Sidebar";
 export function BackofficeLayout() {
 	return (
 		<div id="BackofficeLayout">
-			<header className="header-height">
-				<Header/>
-				<Sidebar />
-			</header>
+			<Header />
 			<div className="content-area">
 				<Breadcrumb />
-				<main className="container content-min-height">
+				<main className="container">
 					<Outlet />
 				</main>
 				<footer className="footer-height">
