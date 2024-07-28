@@ -6,7 +6,7 @@ import { userItems } from "./headerData";
 import "./header.css";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
-import { LOGO } from "data/constants";
+import { PROJETO_LOGO } from "data/constants";
 
 export function Header() {
 	const utilizadorAtual = useCurrentUser();
@@ -15,7 +15,7 @@ export function Header() {
 		<section id="Header">
 			<div className="nav-area">
 				<Link to="/" className="header-logo remove-margin">
-					<Imagem src={LOGO} alt="Logo" className="header-site-logo" />
+					<Imagem src={PROJETO_LOGO} alt="Logo" className="header-site-logo" />
 				</Link>
 				<Navbar utilizadorAtual={utilizadorAtual} />
 				<div>

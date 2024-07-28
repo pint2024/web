@@ -2,7 +2,7 @@ import { Icone, Texto, Contentor, Botao, Navegar, Imagem, Popup, ComboBox } from
 import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
-import UtilizadorDefault from "assets/images/user-default.png";
+import UtilizadorDefault from "assets/images/placeholders/user-default.png";
 import "../conta.css";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 import { LabelError } from "layouts/labelWarnings/LabelError";

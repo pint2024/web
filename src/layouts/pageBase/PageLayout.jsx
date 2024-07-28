@@ -1,25 +1,23 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "layouts/header/Header";
 import { PageContent } from "./PageContent";
-import { Breadcrumb } from "./Breadcrumb";
 import "./layouts.css";
-import { useSidebarStatus } from "hooks/useSidebarStatus";
-import { Sidebar } from "layouts/sidebar/Sidebar";
-import { SIDEBAR_CLOSE_WIDTH, SIDEBAR_OPEN_WIDTH } from "data/constants";
-import { Botao } from "components";
+import { useDrawerStatus } from "hooks/useDrawerStatus";
+import { Drawer } from "layouts/drawer/Drawer";
+import { DRAWER_CLOSE_WIDTH, DRAWER_OPEN_WIDTH } from "data/constants";
 
 export function PageLayout() {
-	const { isOpen } = useSidebarStatus();
+	const { drawerIsOpen, drawerIsHidden } = useDrawerStatus();
 
 	return (
 		<div id="PageLayout" className="layout-container">
 			<Header />
 			<main>
-				<Sidebar />
+				{!drawerIsHidden && <Drawer />}
 				<div
 					id="main-conteudo"
 					style={{
-						marginLeft: isOpen ? `${SIDEBAR_CLOSE_WIDTH}px` : `${SIDEBAR_OPEN_WIDTH}px`,
+						marginLeft: !drawerIsHidden ? (drawerIsOpen ? `${DRAWER_CLOSE_WIDTH}px` : `${DRAWER_OPEN_WIDTH}px`) : `0px`,
 						transition: "margin-left 0.3s ease",
 					}}
 				>

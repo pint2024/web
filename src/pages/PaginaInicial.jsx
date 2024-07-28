@@ -1,14 +1,15 @@
 import React from "react";
 import "./pagina-inicial.css";
-import CitiesImagem from "assets/images/cities.png"
-import FriendsImagem from "assets/images/friends.png"
-import RecomendacoesImagem from "assets/images/recomendation.png"
+import CitiesImagem from "assets/images/home/cities.png"
+import FriendsImagem from "assets/images/home/friends.png"
+import RecomendacoesImagem from "assets/images/home/recomendation.png"
+import { PROJETO_NAME } from "data/constants";
 
 export const PaginaInicial = () => {
 	return (
 		<div className="home-container">
 			<section className="hero-section">
-				<h1>Bem-vindo à Softinsa</h1>
+				<h1>Bem-vindo à {PROJETO_NAME}</h1>
 				<p>
 					Explore e descubra o melhor de cada cidade, integrando-se mais facilmente na região e na nossa organização.
 				</p>

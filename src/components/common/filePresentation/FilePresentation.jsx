@@ -1,4 +1,4 @@
-import PDFIcon from "assets/images/pdf-icon.png";
+import PDFIcon from "assets/images/utils/pdf-icon.png";
 import { Imagem, Navegar } from "components";
 
 export function FilePresentation({ path, displayName }) {

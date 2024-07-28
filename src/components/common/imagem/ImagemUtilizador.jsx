@@ -1,4 +1,4 @@
-import UtilizadorDefault from "assets/images/user-default.png";
+import UtilizadorDefault from "assets/images/placeholders/user-default.png";
 import { Imagem } from "./Imagem";
 
 export function ImagemUtilizador({ src = "", alt = "", ...props }) {

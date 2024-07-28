@@ -1,7 +1,7 @@
 import React from "react";
 import "./loading.css"; // Vamos atualizar este ficheiro CSS
 import { Imagem } from "components";
-import { LOGO } from "data/constants";
+import { PROJETO_LOGO } from "data/constants";
 
 export const Loading = () => {
 	return (
@@ -10,7 +10,7 @@ export const Loading = () => {
 				<div className="double-bounce1"></div>
 				<div className="double-bounce2"></div>
 			</div>
-			<Imagem src={LOGO} className="loading-logo" />
+			<Imagem src={PROJETO_LOGO} className="loading-logo" />
 		</div>
 	);
 };

@@ -144,13 +144,14 @@ export class Rotas {
 		},
 	];
 
+	static AuthenticationRoutes = [...this.AutenticacaoRoutes];
+
 	static FrontofficeRoutes = [
 		...this.InicialRoutes,
 		...this.ConteudoRoutes,
 		...this.CalendarioRoutes,
 		...this.UtilizadorRoutes,
 		...this.SobreRoutes,
-		...this.AutenticacaoRoutes,
 		...this.ErrosRoutes,
 	];
 
@@ -228,5 +229,10 @@ export class Rotas {
 	static RenderBackofficeRoutes(user_role) {
 		const routesUtils = new RoutesUtils(user_role);
 		return routesUtils.criarRoutes([...this.BackofficeRoutes]);
+	}
+
+	static RenderAuthenticationRoutes(user_role) {
+		const routesUtils = new RoutesUtils(user_role);
+		return routesUtils.criarRoutes([...this.AuthenticationRoutes]);
 	}
 }

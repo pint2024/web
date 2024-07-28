@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ToastContainer } from "react-toastify";
 import { LoadingProvider } from "context/loadingContext";
 import { AutenticacaoProvider } from "hooks/useAutenticacao";
-import { SidebarStatusProvider } from "context/sidebarStatusContext";
+import { DrawerStatusProvider } from "context/drawerStatusContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -18,10 +18,10 @@ render(
 	<React.StrictMode>
 		<AutenticacaoProvider>
 			<LoadingProvider>
-				<SidebarStatusProvider>
+				<DrawerStatusProvider>
 					<ToastContainer />
 					<App />
-				</SidebarStatusProvider>
+				</DrawerStatusProvider>
 			</LoadingProvider>
 		</AutenticacaoProvider>
 	</React.StrictMode>,

@@ -8,6 +8,7 @@ import { PROJETO_NAME } from "data/constants";
 import { Rotas } from "routes";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { AccessDenied } from "layouts/errors/AccessDenied";
+import { IniciarSessao } from "pages/autenticacao";
 
 function App() {
 	const [userRole, setuserRole] = useState();
@@ -44,6 +45,7 @@ function App() {
 					{Rotas.RenderRoutes(userRole)}
 					{Rotas.RenderBackofficeRoutes(userRole)}
 				</Route>
+				<Route path="/">{Rotas.RenderAuthenticationRoutes(userRole)}</Route>
 			</Routes>
 		</Router>
 	);

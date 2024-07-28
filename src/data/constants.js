@@ -3,7 +3,7 @@ import Logo from "../assets/images/logo.png"
 
 export const PROJETO_NAME = "The SoftShares";
 
-export const PROJETO_LOGO = "assets/images/logo-shadow.png";
+export const PROJETO_LOGO = Logo;
 
 export const GOSTO_ANIMATION = "animation-bounce";
 
@@ -29,11 +29,9 @@ export const SEND_MESSAGE_DELAY = 200;
 
 export const COMBOBOX_DEFAULT_VALUE = 0;
 
-export const LOGO = Logo;
+export const DRAWER_OPEN_WIDTH = 60;
 
-export const SIDEBAR_OPEN_WIDTH = 60;
-
-export const SIDEBAR_CLOSE_WIDTH = 270;
+export const DRAWER_CLOSE_WIDTH = 270;
 
 export const STATUS = {
 	ERRO: 0,

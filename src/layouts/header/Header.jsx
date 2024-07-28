@@ -5,28 +5,30 @@ import { userItems } from "./headerData";
 import "./header.css";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
-import { LOGO } from "data/constants";
+import { PROJETO_LOGO } from "data/constants";
 import { Row } from "components/ui/Row";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
-import { useSidebarStatus } from "hooks/useSidebarStatus";
+import { useDrawerStatus } from "hooks/useDrawerStatus";
 
 export function Header() {
-	const { isOpen, setIsOpen } = useSidebarStatus();
+	const { drawerIsOpen, setDrawerIsOpen, drawerIsHidden } = useDrawerStatus();
 	const utilizadorAtual = useCurrentUser();
 
 	const handleTrigger = () => {
-		setIsOpen(!isOpen);
+		setDrawerIsOpen(!drawerIsOpen);
 	};
 
 	return (
 		<header id="Header" className="header-height fixed-header">
 			<div className="nav-area">
 				<Row className="gap-4">
-					<div className="trigger" onClick={handleTrigger}>
-						<Icone iconName={isOpen ? "X" : "List"} className="trigger-icon" />
-					</div>
+					{!drawerIsHidden &&
+						<div className="trigger" onClick={handleTrigger}>
+							<Icone iconName={drawerIsOpen ? "X" : "List"} className="trigger-icon" />
+						</div>
+					}
 					<Link to="/" className="header-logo remove-margin remove-user-select">
-						<Imagem src={LOGO} alt="Logo" className="header-site-logo" />
+						<Imagem src={PROJETO_LOGO} alt="Logo" className="header-site-logo" />
 					</Link>
 				</Row>
 				<nav className="desktop-nav">

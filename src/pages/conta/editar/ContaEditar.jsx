@@ -3,7 +3,7 @@ import { Botao, CaixaTexto, ImageBox, Imagem, Notificacao } from "components";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import UtilizadorDefault from "assets/images/user-default.png";
+import UtilizadorDefault from "assets/images/placeholders/user-default.png";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { Validador } from "utils/validator";
 import { Utils } from "utils/utils";

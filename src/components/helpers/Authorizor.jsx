@@ -1,3 +1,4 @@
+import { EnumConstants } from "data/enum.constants";
 import { userProfile } from "data/userProfile";
 import { useEffect, useState } from "react";
 
@@ -11,13 +12,13 @@ export function Authorizor({ requiredPermission, children }) {
 
 	const hasPermission = () => {
 		if (Array.isArray(profile) && Array.isArray(requiredPermission)) {
-			return profile.some((item) => requiredPermission.includes(item));
+			return profile.some((item) => requiredPermission.includes(item)) || profile === EnumConstants.ROLES.ADMIN.ID;
 		} else if (Array.isArray(profile)) {
-			return profile.includes(requiredPermission);
+			return profile.includes(requiredPermission) || profile === EnumConstants.ROLES.ADMIN.ID;
 		} else if (Array.isArray(requiredPermission)) {
-			return requiredPermission.includes(profile);
+			return requiredPermission.includes(profile) || profile === EnumConstants.ROLES.ADMIN.ID;
 		} else {
-			return profile === requiredPermission;
+			return profile === requiredPermission || profile === EnumConstants.ROLES.ADMIN.ID;
 		}
 	};
 

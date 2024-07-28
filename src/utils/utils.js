@@ -1,6 +1,6 @@
 import { STATUS } from "data/constants";
 import { Log } from "./log.utils";
-import UtilizadorDefault from "assets/images/user-default.png";
+import UtilizadorDefault from "assets/images/placeholders/user-default.png";
 import { EnumConstants } from "data/enum.constants";
 
 export class Utils {

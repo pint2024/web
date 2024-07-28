@@ -7,17 +7,17 @@ aside {
 	padding-top: var(--HEADER_VH);
 }
 
-.sidebar-nav-items > * {
+.drawer-nav-items > * {
 	margin-top: 20px;
 	padding: 10px;
 }
 
-.sidebar-nav-items > *:last-child {
+.drawer-nav-items > *:last-child {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
-.sidebar-item-label {
+.drawer-item-label {
 	font-size: 1.1rem !important;
 	white-space: nowrap; /* Não quebra a linha */
 	overflow: hidden; /* Oculta o texto que ultrapassa o contêiner */
@@ -35,7 +35,7 @@ aside {
 	height: 46px;
 }
 
-.sidebar-item-icon {
+.drawer-item-icon {
 	height: 27px;
 	width: 27px;
 	flex-shrink: 0;

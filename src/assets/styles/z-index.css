@@ -72,7 +72,7 @@
 	z-index: var(--TOOL-TIP);
 }
 
-.sidebar--open,
+.drawer--open,
 .nav-menu,
 aside {
 	z-index: var(--SIDE-BAR-HEADER);

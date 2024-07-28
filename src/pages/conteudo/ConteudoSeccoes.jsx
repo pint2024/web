@@ -1,7 +1,4 @@
 import { Icone, Navegar, Post, Texto } from "components";
-import { PLACEHOLDER_TITLE } from "data/constants";
-import Placeholder from "assets/images/placeholder.png";
-import Image from "assets/images/user-default.png";
 import "./conteudo-seccoes.css";
 import { COMMON_SIZES } from "data/data";
 import { useEffect, useState } from "react";
