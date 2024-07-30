@@ -80,10 +80,10 @@ export class AutenticacaoRequest {
 			const response = await myAxios({
 				url: "/autenticacao/reset-password",
 				method: "post",
-				headers: { Authorization: `Bearer ${token}` },
 				data: {
 					senha: senha,
 					confirmacao_senha: confirmacao_senha,
+					token: token,
 				},
 			});
 			if (!response) throw new Error("Não recebeu resposta!");

@@ -12,16 +12,15 @@ export function EsqueceuPasse() {
 	const { startLoading, stopLoading } = useCarregando();
 
 	const handleLogin = async () => {
-		const esquema = {
-			email: { required: true, pattern: REGEX.EMAIL },
-		};
-
-		const validador = new Validador(esquema);
+		const validador = new Validador({ email: { required: true, pattern: REGEX.EMAIL } });
 		const data = { email: formLogin };
 
 		const validacao = validador.validar(data);
 		setErros(validacao);
-		if (!validador.isValido(validacao)) return;
+		if (!validador.isValido(validacao)) {
+			Notificacao("Verifique os campos!", "error");
+			return;
+		}
 
 		startLoading();
 		const res = await AutenticacaoRequest.forgotPassword(formLogin);
