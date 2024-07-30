@@ -12,11 +12,6 @@ aside {
 	padding: 10px;
 }
 
-.drawer-nav-items > *:last-child {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
 .drawer-item-label {
 	font-size: 1.1rem !important;
 	white-space: nowrap; /* Não quebra a linha */

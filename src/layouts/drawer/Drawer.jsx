@@ -52,8 +52,7 @@ export function Drawer() {
 				</Authorizor>
 				<Item route="/sobre" icone="InfoCircle" label="Sobre" />
 				<Authorizor requiredPermission={EnumConstants.ROLES.ADMIN.ID}>
-					<Item route="/backoffice" icone="PersonBadge" label="Backoffice" />
-					<Item route="/backoffice/utilizadores" icone="PeopleFill" label="Utilizador" />
+					<Item route="/backoffice/utilizadores" icone="PeopleFill" label="Utilizadores" />
 					<Item route="/backoffice/topicos" icone="BookmarksFill" label="Tópicos" />
 					<Item route="/backoffice/centros" icone="BuildingsFill" label="Centro" />
 					<Item route="/backoffice/revisoes/conteudo" icone="Star" label="Revisão Conteudo" />

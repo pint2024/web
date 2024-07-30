@@ -1,4 +1,4 @@
-import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone, Confirmacao } from "components/index";
+import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone, Confirmacao, Popup } from "components/index";
 import { useEffect, useState } from "react";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
@@ -16,11 +16,14 @@ import { LabelSucess } from "layouts/labelWarnings/LabelSucess";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { useConfirmation } from "hooks/useConfirmation";
 import { myAxios } from "api";
+import { EditarConteudo } from "./EditarConteudo";
+import { Authorizor } from "components/helpers/Authorizor";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
 	const [isRevisao, setisRevisao] = useState(true);
 	const [isRejeitado, setisRejeitado] = useState(true);
+	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const [isSubscribed, setisSubscribed] = useState(false);
 	const { startLoading, stopLoading } = useCarregando();
 	const { conCreate, conSet, conOpen } = useConfirmation();
@@ -97,8 +100,28 @@ export function ConteudoDetalhe() {
 		conOpen();
 	};
 
+	const closePopup = () => {
+		setisPopupOpen(false);
+	};
+
+	const openPopup = () => {
+		setisPopupOpen(true);
+	};
+
+	const handleCreated = () => {
+		fetchConteudoData();
+		setisPopupOpen(false);
+	};
+
 	return (
 		<>
+			{isPopupOpen && (
+				<Popup
+					headerTitle={"Atualizar conteudo"}
+					onClose={() => closePopup()}
+					body={<EditarConteudo handleCreated={() => handleCreated()} />}
+				/>
+			)}
 			{conCreate()}
 			{isRevisao && <LabelError texto="Em revisão..." />}
 			{isRejeitado && <LabelError texto="Conteudo foi rejeitado" />}
@@ -178,15 +201,16 @@ export function ConteudoDetalhe() {
 								Remover Participação
 							</Botao>
 						))}
-
-					{isRevisao && (
-						<>
-							<Botao variant={BUTTON_VARIANTS.SECUNDARIO}>Editar</Botao>
-						</>
-					)}
-					<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={handleRevisionPopup}>
-						Rever
-					</Botao>
+					<Authorizor requiredPermission={EnumConstants.ROLES.ADMIN.ID}>
+						{isRevisao && (
+							<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => openPopup()}>
+								Editar
+							</Botao>
+						)}
+						<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={handleRevisionPopup}>
+							Rever
+						</Botao>
+					</Authorizor>
 				</section>
 				<section>
 					<ComentarioSeccao id={id} />
