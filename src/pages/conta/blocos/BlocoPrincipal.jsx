@@ -13,10 +13,12 @@ import { ApiRequest } from "api";
 import { useCarregando } from "hooks/useCarregando";
 import { Authorizor } from "components/helpers/Authorizor";
 import { EnumConstants } from "data/enum.constants";
+import { AuthorizorHelper } from "components/helpers/AuthorizorHelper";
 
 export function BlocoPrincipal({ data }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const [dataPerfis, setdataPerfis] = useState();
+	const [listInteresses, setlistInteresses] = useState("");
 	const [selectPerfil, setselectPerfil] = useState();
 	const [dataCentro, setdataCentro] = useState();
 	const [selectCentro, setselectCentro] = useState();
@@ -26,6 +28,7 @@ export function BlocoPrincipal({ data }) {
 	useEffect(() => {
 		setselectPerfil(data?.perfil);
 		setselectCentro(data?.centro);
+		setlistInteresses(getInteresses());
 	}, []);
 
 	useEffect(() => {
@@ -129,12 +132,14 @@ export function BlocoPrincipal({ data }) {
 								</Texto>
 							</div>
 						</div>
-						<div className="d-flex align-items-center gap-2">
-							<Texto className="d-flex gap-1 align-items-center">
-								<Icone iconName="HandThumbsUp" />
-								{getInteresses()}
-							</Texto>
-						</div>
+						{listInteresses && (
+							<div className="d-flex align-items-center gap-2">
+								<Texto className="d-flex gap-1 align-items-center">
+									<Icone iconName="HandThumbsUp" />
+									{listInteresses}
+								</Texto>
+							</div>
+						)}
 					</div>
 					<div className="details-right d-flex flex-column align-items-end gap-2">
 						<div className="d-flex gap-3">
@@ -146,7 +151,8 @@ export function BlocoPrincipal({ data }) {
 									value={selectPerfil}
 								/>
 							</Authorizor>
-							{utilizadorAtual.id === data.id && (
+							{(utilizadorAtual.id === data.id ||
+								AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
 								<>
 									<ComboBox
 										options={transformarDadosCentro()}

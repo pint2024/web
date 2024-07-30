@@ -10,7 +10,6 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 	const formNome = useInput();
 	const formSobrenome = useInput();
 	const formEmail = useInput();
-	const formSenha = useInput();
 	const formCentro = useInput();
 	const formPerfil = useInput();
 	const formVerificado = useInput(false);
@@ -61,7 +60,6 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 			nome: { required: true, type: "string" },
 			sobrenome: { required: true, type: "string" },
 			email: { required: true, pattern: REGEX.EMAIL },
-			senha: { required: true },
 			centro: { required: true },
 		};
 
@@ -70,7 +68,6 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 			nome: formNome.value,
 			sobrenome: formSobrenome.value,
 			email: formEmail.value,
-			senha: formSenha.value,
 			centro: formCentro.value,
 			verificado: formVerificado.value,
 			perfil: formPerfil.value,
@@ -115,14 +112,6 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 				value={formEmail.value}
 				isInvalid={erros.email}
 				label="Email"
-			/>
-			<CaixaTexto
-				className="mt-2"
-				handleChange={(e) => formSenha.onChange(e)}
-				value={formSenha.value}
-				isInvalid={erros.senha}
-				label="Senha"
-				type="password"
 			/>
 			<div className="d-flex gap-3">
 				<ComboBox
