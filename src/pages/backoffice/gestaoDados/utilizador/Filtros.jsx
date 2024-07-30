@@ -17,9 +17,6 @@ export function Filtros({ data, filtered, setFiltered }) {
 
 	const filterData = () => {
 		let filteredData = data;
-
-		console.log(searchUser, searchCentro, searchCentro);
-
 		if (searchUser.value) {
 			const searchValue = searchUser.value.toLowerCase();
 			filteredData = filteredData.filter(

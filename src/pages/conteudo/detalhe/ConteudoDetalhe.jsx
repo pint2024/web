@@ -18,9 +18,11 @@ import { useConfirmation } from "hooks/useConfirmation";
 import { myAxios } from "api";
 import { EditarConteudo } from "./EditarConteudo";
 import { Authorizor } from "components/helpers/Authorizor";
+import { AuthorizorHelper } from "components/helpers/AuthorizorHelper";
 
 export function ConteudoDetalhe() {
 	const [dataDetalhe, setdataDetalhe] = useState(null);
+	const [isAdminCentro, setisAdminCentro] = useState(true);
 	const [isRevisao, setisRevisao] = useState(true);
 	const [isRejeitado, setisRejeitado] = useState(true);
 	const [isPopupOpen, setisPopupOpen] = useState(false);
@@ -41,12 +43,12 @@ export function ConteudoDetalhe() {
 	}, []);
 
 	useEffect(() => {
-		if (dataDetalhe) {
-			console.log(dataDetalhe.revisao_conteudo);
+		if (dataDetalhe && utilizadorAtual) {
 			setisRevisao(dataDetalhe.revisao_conteudo.length > 0 ? DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) : true);
 			setisRejeitado(DBUtils.checkRevisaoRejeitado(dataDetalhe.revisao_conteudo));
+			setisAdminCentro(DBUtils.checkAdminCentro(dataDetalhe.conteudo_utilizador, utilizadorAtual.centro));
 		}
-	}, [dataDetalhe]);
+	}, [dataDetalhe, utilizadorAtual]);
 
 	const fetchConteudoData = async () => {
 		startLoading();
@@ -201,16 +203,18 @@ export function ConteudoDetalhe() {
 								Remover Participação
 							</Botao>
 						))}
-					<Authorizor requiredPermission={EnumConstants.ROLES.ADMIN.ID}>
-						{isRevisao && (
-							<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => openPopup()}>
-								Editar
+					{AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID) && isAdminCentro && (
+						<>
+							{isRevisao && (
+								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => openPopup()}>
+									Editar
+								</Botao>
+							)}
+							<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={handleRevisionPopup}>
+								Rever
 							</Botao>
-						)}
-						<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={handleRevisionPopup}>
-							Rever
-						</Botao>
-					</Authorizor>
+						</>
+					)}
 				</section>
 				<section>
 					<ComentarioSeccao id={id} />

@@ -61,6 +61,7 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 			sobrenome: { required: true, type: "string" },
 			email: { required: true, pattern: REGEX.EMAIL },
 			centro: { required: true },
+			perfil: { required: true },
 		};
 
 		const validador = new Validador(esquema);
@@ -72,8 +73,6 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 			verificado: formVerificado.value,
 			perfil: formPerfil.value,
 		};
-
-		console.log(data);
 
 		const validacao = validador.validar(data);
 		setErros(validacao);

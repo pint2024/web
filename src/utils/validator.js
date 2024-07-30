@@ -1,3 +1,5 @@
+import { Notificacao } from "components";
+
 export class Validador {
 	constructor(esquema) {
 		this.esquema = esquema;
@@ -52,7 +54,10 @@ export class Validador {
 	}
 
 	isValido(erros) {
-		if (erros && Object.entries(erros).length === 0) return true;
+		if (erros && Object.entries(erros).length === 0) {
+			return true;
+		}
+		Notificacao("Verifique os campos!", "error");
 		return false;
 	}
 }

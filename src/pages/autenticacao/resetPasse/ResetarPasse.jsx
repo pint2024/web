@@ -31,15 +31,10 @@ export function ResetarPasse() {
 
 		const validacao = validador.validar(data);
 		setErros(validacao);
-		if (!validador.isValido(validacao)) {
-			Notificacao("Verifique os campos!", "error");
-			return;
-		}
-		console.log("oi");
+		if (!validador.isValido(validacao)) return;
 
 		startLoading();
 		const res = await AutenticacaoRequest.resetPassword(token, formSenha, formSenhaConfirmacao);
-		console.log("oi", res);
 		if (!res) {
 			Notificacao("Os dados estão inválidos!", "error");
 		} else {
