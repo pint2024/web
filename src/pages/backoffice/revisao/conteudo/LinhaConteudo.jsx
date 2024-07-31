@@ -1,20 +1,22 @@
 import { Botao, Icone, Navegar, OverlayPerfil, Tooltip } from "components";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
+import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { DateUtils } from "utils/date.utils";
 
-export function RevisaoLinha({
-	id,
-	motivo,
+export function LinhaConteudo({
 	utilizador,
 	data_criacao,
 	estado,
 	titulo,
+	tipo,
 	id_conteudo,
-	handleAprovacao,
-	handleRejeicao,
+	id_revisao,
+	handlePopupOpen,
 }) {
+	
+
 	return (
-		<tr key={id}>
+		<tr key={id_revisao}>
 			<td>
 				<Tooltip
 					content={<OverlayPerfil imagem={utilizador?.imagem} nome={utilizador?.nome} tag={`@${utilizador?.tag}`} />}
@@ -27,14 +29,11 @@ export function RevisaoLinha({
 			<td>
 				<Navegar to={`/conteudos/${id_conteudo}`}>{titulo}</Navegar>
 			</td>
+			<td>{tipo}</td>
 			<td>
 				<div className="d-flex gap-2">
-					<Botao onClick={() => handleAprovacao(id)} variant={BUTTON_VARIANTS.SUCESSO}>
-						<Icone iconName="Check" type={COMMON_TYPES.INVERSO} />
-					</Botao>
-
-					<Botao onClick={() => handleRejeicao(id)} variant={BUTTON_VARIANTS.PERIGO}>
-						<Icone iconName="X" type={COMMON_TYPES.INVERSO} />
+					<Botao onClick={() => handlePopupOpen(id_revisao, titulo)} variant={BUTTON_VARIANTS.PERIGO}>
+						<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
 					</Botao>
 				</div>
 			</td>

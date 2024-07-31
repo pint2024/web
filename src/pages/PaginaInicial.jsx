@@ -1,11 +1,24 @@
 import React from "react";
 import "./pagina-inicial.css";
-import CitiesImagem from "assets/images/home/cities.png"
-import FriendsImagem from "assets/images/home/friends.png"
-import RecomendacoesImagem from "assets/images/home/recomendation.png"
+import CitiesImagem from "assets/images/home/cities.png";
+import FriendsImagem from "assets/images/home/friends.png";
+import RecomendacoesImagem from "assets/images/home/recomendation.png";
 import { PROJETO_NAME } from "data/constants";
+import { Tabela } from "components/ui/tabela/Tabela";
 
 export const PaginaInicial = () => {
+	const data = [
+		{ name: "John Doe", age: 28, city: "New York" },
+		{ name: "Jane Doe", age: 22, city: "Los Angeles" },
+		{ name: "Mike Smith", age: 35, city: "Chicago" },
+	];
+
+	const columns = [
+		{ header: "Name", id: "name" },
+		{ header: "Age", id: "age" },
+		{ header: "City", id: "city" },
+	];
+
 	return (
 		<div className="home-container">
 			<section className="hero-section">
@@ -31,6 +44,7 @@ export const PaginaInicial = () => {
 					<p>Partilhe e descubra recomendações de locais para comer, desportar, relaxar e muito mais.</p>
 				</div>
 			</section>
+			<Tabela data={data} columns={columns} />
 		</div>
 	);
 };

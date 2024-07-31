@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "./revisao-comentario.css";
 import { useCarregando } from "hooks/useCarregando";
-import { Botao, Icone } from "components";
-import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { EnumConstants } from "data/enum.constants";
-import { DateUtils } from "utils/date.utils";
+import "../revisao-tabela.css";
+import { LinhaComentario } from "./LinhaComentario";
 import { ApiRequest } from "api/apiRequest";
+import { Botao, Icone, Notificacao } from "components";
+import { usePopupDialogo } from "hooks/usePopupDialogo";
+import { BUTTON_VARIANTS } from "data/data";
+import { Filtros } from "./Filtros";
 
 export function RevisaoComentario() {
 	const [dataConteudo, setdataConteudo] = useState(null);
+	const [filteredUtilizadores, setFilteredUtilizadores] = useState([]);
 	const { startLoading, stopLoading } = useCarregando();
+	const puHandleRevisao = usePopupDialogo();
 
 	useEffect(() => {
 		fetchConteudoData();
@@ -17,62 +21,89 @@ export function RevisaoComentario() {
 
 	const fetchConteudoData = async () => {
 		startLoading();
-		const data = await ApiRequest.listar("revisao", { conteudo: null, estado: EnumConstants.ESTADOS.EM_ANALISE }); // filtra os conteudos apenas
+		const data = await ApiRequest.listar("comentario/revisao");
 		setdataConteudo(data);
+		setFilteredUtilizadores(data);
 		stopLoading();
+	};
+
+	const handleUpdateRevisao = async (id, estado) => {
+		startLoading();
+		puHandleRevisao.conClose();
+		await ApiRequest.atualizar("revisao", id, { estado: estado });
+		fetchConteudoData();
+		Notificacao("Estado da revisão atualizado com sucesso!");
+	};
+
+	const handleRevisaoAprovada = async (id) => {
+		handleUpdateRevisao(id, EnumConstants.ESTADOS.APROVADO);
+	};
+
+	const handleRevisaoRejeitada = async (id) => {
+		handleUpdateRevisao(id, EnumConstants.ESTADOS.REJEITADO);
+	};
+
+	const handleRevisaoAnalise = async (id) => {
+		handleUpdateRevisao(id, EnumConstants.ESTADOS.EM_ANALISE);
 	};
 
 	if (!dataConteudo) return;
 
-	const handleRevisaoAprovada = async (id) => {
-		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.APROVADO });
-		fetchConteudoData();
-	};
+	function setupTableContent() {
+		return (
+			filteredUtilizadores &&
+			filteredUtilizadores.map((item) => (
+				<LinhaComentario
+					utilizador={item?.comentario_utilizador}
+					data_criacao={item.data_criacao}
+					estado={item.revisao_comentario[0].revisao_estado?.estado}
+					titulo={item?.comentario}
+					id_conteudo={item.comentario_conteudo.id}
+					id_comentario={item.id}
+					id_revisao={item.revisao_comentario[0].id}
+					handlePopupOpen={handlePopupOpen}
+				/>
+			))
+		);
+	}
 
-	const handleRevisaoRejeitada = async (id) => {
-		await ApiRequest.atualizar("revisao", id, { estado: EnumConstants.ESTADOS.REJEITADO });
-		fetchConteudoData();
+	const handlePopupOpen = (id, titulo) => {
+		puHandleRevisao.conSet({
+			title: `Rever: ${titulo}`,
+			body: null,
+			footer: (
+				<>
+					<Botao variant={BUTTON_VARIANTS.SUCESSO} onClick={() => handleRevisaoAprovada(id)}>
+						<Icone iconName="XLg" className="icon-inverse" /> Aprovar
+					</Botao>
+					<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => handleRevisaoAnalise(id)}>
+						<Icone iconName="XLg" className="icon-inverse" /> Análise
+					</Botao>
+					<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={() => handleRevisaoRejeitada(id)}>
+						<Icone iconName="XLg" className="icon-inverse" /> Rejeitar
+					</Botao>
+				</>
+			),
+		});
+		puHandleRevisao.conOpen();
 	};
 
 	return (
-		<table className="revisao-tabela">
-			<thead>
-				<tr>
-					<th>Data de Criação</th>
-					<th>Estado</th>
-					<th>Conteudo</th>
-					<th>Ações</th>
-				</tr>
-			</thead>
-			<tbody>
-				{dataConteudo ? (
-					dataConteudo.map((item) => (
-						<tr key={item.id}>
-							<td>{DateUtils.DataNormal(item.data_criacao)}</td>
-							<td>{item.revisao_estado.estado}</td>
-							<td>{item.revisao_comentario.comentario}</td>
-							<td>
-								<div className="d-flex gap-2">
-									<Botao onClick={() => handleRevisaoAprovada(item.id)} variant={BUTTON_VARIANTS.SUCESSO}>
-										<Icone iconName="Check" type={COMMON_TYPES.INVERSO} />
-									</Botao>
-
-									<Botao onClick={() => handleRevisaoRejeitada(item.id)} variant={BUTTON_VARIANTS.PERIGO}>
-										<Icone iconName="X" type={COMMON_TYPES.INVERSO} />
-									</Botao>
-									<Botao route={`/conteudos/${item.revisao_comentario.comentario_conteudo.id}#comentario-${item.revisao_comentario.id}`}>
-										<Icone iconName="ArrowRight" type={COMMON_TYPES.INVERSO} />
-									</Botao>
-								</div>
-							</td>
-						</tr>
-					))
-				) : (
+		<>
+			{puHandleRevisao.conCreate()}
+			<Filtros data={dataConteudo} setFiltered={setFilteredUtilizadores} />
+			<table className="revisao-tabela">
+				<thead>
 					<tr>
-						<td colSpan="4">Carregando...</td>
+						<th>Utilizador</th>
+						<th>Data de Criação</th>
+						<th>Estado</th>
+						<th>Comentário</th>
+						<th>Ações</th>
 					</tr>
-				)}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>{setupTableContent()}</tbody>
+			</table>
+		</>
 	);
 }
