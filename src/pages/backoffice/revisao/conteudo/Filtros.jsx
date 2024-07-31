@@ -1,5 +1,6 @@
 import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ComboBox } from "components";
+import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
 import { COMBOBOX_DEFAULT_VALUE } from "data/constants";
 import { BUTTON_VARIANTS } from "data/data";
 import { useCarregando } from "hooks/useCarregando";
@@ -11,6 +12,8 @@ export function Filtros({ data, setFiltered }) {
 	const searchGeral = useInput();
 	const searchEstado = useInput(0);
 	const searchTipo = useInput(0);
+	const searchTopico = useInput(0);
+	const [dataTopicos, setdataTopicos] = useState(null);
 	const [dataEstado, setdataEstado] = useState(null);
 	const [dataTipo, setdataTipo] = useState(null);
 	const { startLoading, stopLoading } = useCarregando();
@@ -40,6 +43,11 @@ export function Filtros({ data, setFiltered }) {
 			filteredData = filteredData.filter((user) => user.conteudo_tipo.id === searchValue);
 		}
 
+		if (Utils.convertoStrToInt(searchTopico.value) !== COMBOBOX_DEFAULT_VALUE) {
+			const searchValue = Utils.convertoStrToInt(searchTopico.value.id);
+			filteredData = filteredData.filter((user) => user.conteudo_subtopico.id === searchValue);
+		}
+
 		setFiltered(filteredData);
 	};
 
@@ -47,7 +55,7 @@ export function Filtros({ data, setFiltered }) {
 		if (data) {
 			filterData();
 		}
-	}, [searchGeral.value, searchTipo.value, searchEstado.value, data]);
+	}, [searchGeral.value, searchTipo.value, searchEstado.value, searchTopico.value, data]);
 
 	useEffect(() => {
 		fetchData();
@@ -57,7 +65,13 @@ export function Filtros({ data, setFiltered }) {
 		startLoading();
 		await fetchCentro();
 		await fetchPerfil();
+		await fetchTopico();
 		stopLoading();
+	};
+
+	const fetchTopico = async () => {
+		const response = await ApiRequest.listar("topico");
+		setdataTopicos(response);
 	};
 
 	const fetchCentro = async () => {
@@ -87,10 +101,24 @@ export function Filtros({ data, setFiltered }) {
 	const handleCleanFilters = () => {
 		searchEstado.setValue(COMBOBOX_DEFAULT_VALUE);
 		searchTipo.setValue(COMBOBOX_DEFAULT_VALUE);
+		searchTopico.setValue(COMBOBOX_DEFAULT_VALUE);
 		searchGeral.setValue("");
 	};
 
-	if (!dataEstado || !dataTipo) return;
+	const transformarDadosTopico = dataTopicos?.map((item) => {
+		return {
+			id: item.id,
+			section: item.topico,
+			options: item.subtopico_topico.map((subItem) => {
+				return {
+					id: subItem.id,
+					label: subItem.area,
+				};
+			}),
+		};
+	});
+
+	if (!dataEstado || !dataTipo || !dataTopicos) return;
 
 	return (
 		<>
@@ -115,6 +143,8 @@ export function Filtros({ data, setFiltered }) {
 					handleChange={(e) => searchEstado.setValue(e)}
 					value={searchEstado.value}
 				/>
+				<ComboBoxSections items={transformarDadosTopico} handleChange={(e) => searchTopico.setValue(e)} />
+
 				<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => handleCleanFilters()}>
 					Limpar
 				</Botao>

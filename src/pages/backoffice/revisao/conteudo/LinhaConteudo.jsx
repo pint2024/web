@@ -1,4 +1,5 @@
 import { Botao, Icone, Navegar, OverlayPerfil, Tooltip } from "components";
+import { Row } from "components/ui/Row";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { DateUtils } from "utils/date.utils";
@@ -9,12 +10,11 @@ export function LinhaConteudo({
 	estado,
 	titulo,
 	tipo,
+	subtopico,
 	id_conteudo,
 	id_revisao,
 	handlePopupOpen,
 }) {
-	
-
 	return (
 		<tr key={id_revisao}>
 			<td>
@@ -30,12 +30,19 @@ export function LinhaConteudo({
 				<Navegar to={`/conteudos/${id_conteudo}`}>{titulo}</Navegar>
 			</td>
 			<td>{tipo}</td>
+			<td>{subtopico}</td>
 			<td>
-				<div className="d-flex gap-2">
+				<Row className="gap-2">
 					<Botao onClick={() => handlePopupOpen(id_revisao, titulo)} variant={BUTTON_VARIANTS.PERIGO}>
 						<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
 					</Botao>
-				</div>
+					<Botao route={`/conta/${utilizador?.id}`}>
+						<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+					<Botao route={`/conteudos/${id_conteudo}`}>
+						<Icone iconName="StarFill" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+				</Row>
 			</td>
 		</tr>
 	);

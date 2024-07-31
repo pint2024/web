@@ -1,4 +1,5 @@
 import { Botao, Icone, Navegar, OverlayPerfil, Tooltip } from "components";
+import { Row } from "components/ui/Row";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { DateUtils } from "utils/date.utils";
@@ -13,8 +14,6 @@ export function LinhaComentario({
 	id_revisao,
 	handlePopupOpen,
 }) {
-	
-
 	return (
 		<tr key={id_revisao}>
 			<td>
@@ -30,11 +29,17 @@ export function LinhaComentario({
 				<Navegar to={`/conteudos/${id_conteudo}#comentario-${id_comentario}`}>{titulo}</Navegar>
 			</td>
 			<td>
-				<div className="d-flex gap-2">
+				<Row className="gap-2">
 					<Botao onClick={() => handlePopupOpen(id_revisao, titulo)} variant={BUTTON_VARIANTS.PERIGO}>
 						<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
 					</Botao>
-				</div>
+					<Botao route={`/conta/${utilizador?.id}`}>
+						<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+					<Botao route={`/conteudos/${id_conteudo}#comentario-${id_comentario}`}>
+						<Icone iconName="ChatFill" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+				</Row>
 			</td>
 		</tr>
 	);

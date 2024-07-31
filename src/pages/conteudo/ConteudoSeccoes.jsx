@@ -3,8 +3,9 @@ import "./conteudo-seccoes.css";
 import { COMMON_SIZES } from "data/data";
 import { useEffect, useState } from "react";
 import { HorizontalScroll } from "components/container/horizontalScroll/HorizontalScroll";
+import { Row } from "components/ui/Row";
 
-export function ConteudoSeccoes({ titulo, icon, routeTo, data }) {
+export function ConteudoSeccoes({ id, titulo, icon, routeTo, data }) {
 	const [dataConteudo, setdataConteudo] = useState([]);
 
 	useEffect(() => {
@@ -15,10 +16,15 @@ export function ConteudoSeccoes({ titulo, icon, routeTo, data }) {
 		<article className="mt-4">
 			<HorizontalScroll
 				header={
-					<Navegar to={routeTo} className="navegar gap-2">
-						<Icone size={COMMON_SIZES.FS5} iconName={icon} />
-						<Texto size={COMMON_SIZES.FS5}>{titulo}</Texto>
-					</Navegar>
+					<Row className="gap-3">
+						<Row className="gap-2">
+							<Icone size={COMMON_SIZES.FS5} iconName={icon} />
+							<Texto size={COMMON_SIZES.FS5}>{titulo}</Texto>
+						</Row>
+						<Navegar to={`/conteudos/criar/${id}`}>
+							<Icone size={COMMON_SIZES.FS5} iconName="PlusLg" className="icon-hover" />
+						</Navegar>
+					</Row>
 				}
 			>
 				{dataConteudo?.map((item) => (

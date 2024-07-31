@@ -12,7 +12,6 @@ import { RevisaoConteudo } from "pages/backoffice/revisao/conteudo/RevisaoConteu
 import { Denuncia } from "pages/backoffice/denuncia/Denuncia";
 import { RevisaoComentario } from "pages/backoffice/revisao/comentario/RevisaoComentario";
 import { Botao } from "components";
-import { ConteudoTipoListagem } from "pages/conteudo/listagemByTipo/ConteudoTipoListagem";
 import { UtilizadorPainel } from "pages/backoffice/gestaoDados/utilizador/UtilizadorPainel";
 import { TopicosPainel } from "pages/backoffice/gestaoDados/topicos/TopicosPainel";
 import { CentroPainel } from "pages/backoffice/gestaoDados/centros/CentroPainel";
@@ -42,7 +41,7 @@ export class Rotas {
 		{
 			title: "Conteudos",
 			path: "/conteudos",
-			element: <Conteudo />,
+			element: <Navigate to="/" />,
 			perfis: [ROLES.USER.ID],
 			children: [
 				{
@@ -55,12 +54,6 @@ export class Rotas {
 					title: "Detalhe",
 					path: "/:id",
 					element: <ConteudoDetalhe />,
-					perfis: [ROLES.USER.ID],
-				},
-				{
-					title: "Tipo",
-					path: "/tipo/:tipo",
-					element: <ConteudoTipoListagem />,
 					perfis: [ROLES.USER.ID],
 				},
 			],

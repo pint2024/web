@@ -59,6 +59,7 @@ export function RevisaoConteudo() {
 					estado={item.revisao_conteudo[0].revisao_estado?.estado}
 					titulo={item?.titulo}
 					tipo={item?.conteudo_tipo.tipo}
+					subtopico={item?.conteudo_subtopico.area}
 					id_conteudo={item.id}
 					id_revisao={item.revisao_conteudo[0].id}
 					handlePopupOpen={handlePopupOpen}
@@ -100,7 +101,8 @@ export function RevisaoConteudo() {
 						<th>Estado</th>
 						<th>Conteudo</th>
 						<th>Tipo</th>
-						<th>Ações</th>
+						<th>Subtópico</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>{setupTableContent()}</tbody>

@@ -12,7 +12,7 @@ export function Authorizor({ requiredPermission, children }) {
 	}, []);
 
 	const hasPermission = () => {
-		return AuthorizorHelper.verifyPermission();
+		return AuthorizorHelper.verifyPermission(profile, requiredPermission);
 	};
 
 	return hasPermission() ? children : null;

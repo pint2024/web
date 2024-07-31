@@ -47,7 +47,7 @@ export function Drawer() {
 		>
 			<nav className="drawer-nav-items">
 				<Authorizor requiredPermission={EnumConstants.ROLES.USER.ID}>
-					<Item route="/conteudos" icone="Star" label="Conteudos" />
+					<Item route="/" icone="House" label="Inicial" />
 					<Item route="/calendario" icone="Calendar" label="Calendário" />
 				</Authorizor>
 				<Item route="/sobre" icone="InfoCircle" label="Sobre" />

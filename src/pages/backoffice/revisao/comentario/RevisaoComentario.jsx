@@ -99,8 +99,8 @@ export function RevisaoComentario() {
 						<th>Data de Criação</th>
 						<th>Estado</th>
 						<th>Comentário</th>
-						<th>Ações</th>
-					</tr>
+						<th></th>
+						</tr>
 				</thead>
 				<tbody>{setupTableContent()}</tbody>
 			</table>
