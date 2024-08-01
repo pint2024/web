@@ -5,7 +5,7 @@ import { useCurrentUser } from "hooks/useCurrentUser";
 import { useCarregando } from "hooks/useCarregando";
 import { useEffect, useState } from "react";
 
-export function InteressesList({ id }) {
+export function InteressesList({ id, onClose }) {
 	const [dataSubtopicos, setdataSubtopicos] = useState(null);
 	const [dataInteresses, setdataInteresses] = useState(null);
 	const [selectedSubtopicos, setselectedSubtopicos] = useState(null);
@@ -62,6 +62,7 @@ export function InteressesList({ id }) {
 	const handleCreateInteresse = async () => {
 		startLoading();
 		await ApiRequest.criar("interesse", { subtopico: selectedSubtopicos, utilizador: utilizadorAtual.id });
+		onClose();
 		await fetchData();
 		stopLoading();
 	};

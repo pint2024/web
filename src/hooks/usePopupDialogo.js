@@ -1,4 +1,3 @@
-import { Confirmacao } from "components/index";
 import { PopupDialogo } from "components/overlay/popup/PopupDialogo";
 import { useState } from "react";
 

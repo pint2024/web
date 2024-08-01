@@ -102,7 +102,7 @@ export function BlocoPrincipal({ data }) {
 				<Popup
 					headerTitle={"Adicionar Interesses"}
 					onClose={() => setisPopupOpen(false)}
-					body={<InteressesList id={data.id} />}
+					body={<InteressesList id={data.id} onClose={() => setisPopupOpen(false)} />}
 				/>
 			)}
 			{data?.inativo && <LabelError texto="Utilizador está inativo!" />}

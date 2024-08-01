@@ -23,10 +23,23 @@ export class RoutesUtils {
 		});
 	};
 
+	static findRouteBySinglePath(path) {
+		const pathnames = path.split("/").filter((path) => path !== "");
+		const breadcrumb = [];
+
+		for (const path of pathnames) {
+			const route = RoutesUtils.findRouteByPath("/" + path);
+			if (route) breadcrumb.push(route);
+		}
+
+		return breadcrumb;
+	}
+
 	static findRouteByPath(path) {
 		const findRecursive = (routes, currentPath) => {
 			for (const route of routes) {
-				if (route.path === currentPath || route.path.split("/:")[0] === currentPath) {
+				let tempPath = route.path.split("/:")[0];
+				if (route.path === currentPath || tempPath === currentPath) {
 					return route;
 				} else if (route.children) {
 					const childRoute = findRecursive(route.children, currentPath);

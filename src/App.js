@@ -1,5 +1,5 @@
 /// React
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 /// Componentes
@@ -8,11 +8,12 @@ import { PROJETO_NAME } from "data/constants";
 import { Rotas } from "routes";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { AccessDenied } from "layouts/errors/AccessDenied";
-import { IniciarSessao } from "pages/autenticacao";
+import { useCarregando } from "hooks/useCarregando";
 
 function App() {
 	const [userRole, setuserRole] = useState();
 	const { userData, isValid } = useCurrentUser(true);
+	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
 		if (!userData) return;
@@ -21,6 +22,17 @@ function App() {
 
 	useEffect(() => {
 		document.title = PROJETO_NAME;
+	}, []);
+
+	useEffect(() => {
+		stopLoading();
+		const handleBeforeUnload = (event) => {
+			startLoading();
+		};
+		window.addEventListener("beforeunload", handleBeforeUnload);
+		return () => {
+			window.removeEventListener("beforeunload", handleBeforeUnload);
+		};
 	}, []);
 
 	if (!isValid) return;

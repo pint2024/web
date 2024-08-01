@@ -10,16 +10,8 @@ export function Breadcrumb() {
 
 	useEffect(() => {
 		const setBreadcrumb = () => {
-			const pathnames = location.pathname.split("/").filter((path) => path !== "");
-			const breadcrumb = [];
-
-			for (const path of pathnames) {
-				const route = RoutesUtils.findRouteByPath("/" + path);
-				if (route) {
-					breadcrumb.push(route);
-				}
-			}
-			setBreadcrumbPath(breadcrumb);
+			const route = RoutesUtils.findRouteBySinglePath(location.pathname);
+			setBreadcrumbPath(route);
 		};
 
 		setBreadcrumb();
