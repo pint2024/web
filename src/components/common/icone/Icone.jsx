@@ -18,7 +18,7 @@ export function Icone({ iconName, size = 1, type = "primary", className = "", ..
 	return (
 		<>
 			{IconVariant && isSizeValid ? (
-				<IconVariant className={`text-size-${size} text-types-${type} ${className}`} {...props} />
+				<IconVariant className={`icone text-size-${size} text-types-${type} ${className}`} {...props} />
 			) : (
 				<h1>Icon invalido</h1>
 			)}

@@ -1,37 +1,43 @@
 aside {
-	align-items: end;
-	background-color: var(--BLACK-LIGHT);
-	position: fixed;
-	height: 100vh;
-	overflow: auto;
-	padding-top: var(--HEADER_VH);
+  align-items: end;
+  background-color: var(--BLACK-LIGHT);
+  position: fixed;
+  height: 100vh;
+  overflow: auto;
+  padding-top: var(--HEADER_VH);
 }
 
 .drawer-nav-items > * {
-	margin-top: 20px;
-	padding: 10px;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .drawer-item-label {
-	font-size: 1.1rem !important;
-	white-space: nowrap; /* Não quebra a linha */
-	overflow: hidden; /* Oculta o texto que ultrapassa o contêiner */
-	text-overflow: ellipsis; /* Adiciona reticências (...) */
+  font-size: 1.1rem !important;
+  white-space: nowrap; /* Não quebra a linha */
+  overflow: hidden; /* Oculta o texto que ultrapassa o contêiner */
+  text-overflow: ellipsis; /* Adiciona reticências (...) */
 }
 
 .header-item:hover {
-	background-color: var(--BLACK-HOVER);
-	mix-blend-mode: lighten;
-	border-radius: 10px;
+  background-color: var(--BLACK-HOVER);
+  mix-blend-mode: lighten;
+  border-radius: 10px;
 }
 
 .header-item {
-	margin: 6px;
-	height: 46px;
+  margin: 6px;
+  height: 46px;
 }
 
 .drawer-item-icon {
-	height: 27px;
-	width: 27px;
-	flex-shrink: 0;
+  height: 27px;
+  width: 27px;
+  flex-shrink: 0;
+}
+
+.drawer-item-icon-highlight {
+	color: var(--ACCENT) !important;
+	filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.2));
+	transform: scale(1.2);
 }

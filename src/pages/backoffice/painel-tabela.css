@@ -1,15 +1,15 @@
-.denuncia-tabela {
+.painel-tabela {
 	border-collapse: collapse;
 	width: 100%;
 }
 
-.denuncia-tabela th,
-.denuncia-tabela td {
+.painel-tabela th,
+.painel-tabela td {
 	border: 1px solid #ddd;
 	padding: 8px;
 	text-align: left;
 }
 
-.denuncia-tabela th {
+.painel-tabela th {
 	background-color: #f2f2f2;
 }

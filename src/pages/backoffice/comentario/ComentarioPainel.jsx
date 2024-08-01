@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCarregando } from "hooks/useCarregando";
 import { EnumConstants } from "data/enum.constants";
-import "../revisao-tabela.css";
+import "../painel-tabela.css";
 import { LinhaComentario } from "./LinhaComentario";
 import { ApiRequest } from "api/apiRequest";
 import { Botao, Icone, Notificacao } from "components";
@@ -9,7 +9,7 @@ import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { BUTTON_VARIANTS } from "data/data";
 import { Filtros } from "./Filtros";
 
-export function RevisaoComentario() {
+export function ComentarioPainel() {
 	const [dataConteudo, setdataConteudo] = useState(null);
 	const [filteredUtilizadores, setFilteredUtilizadores] = useState([]);
 	const { startLoading, stopLoading } = useCarregando();
@@ -92,7 +92,7 @@ export function RevisaoComentario() {
 		<>
 			{puHandleRevisao.conCreate()}
 			<Filtros data={dataConteudo} setFiltered={setFilteredUtilizadores} />
-			<table className="revisao-tabela">
+			<table className="painel-tabela">
 				<thead>
 					<tr>
 						<th>Utilizador</th>

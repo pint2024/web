@@ -38,7 +38,7 @@ export function CentroPainel() {
 				</Botao>
 			</div>
 			{dataCentro ? (
-				<table className="revisao-tabela mt-4">
+				<table className="painel-tabela mt-4">
 					<thead>
 						<tr>
 							<th>Centro</th>

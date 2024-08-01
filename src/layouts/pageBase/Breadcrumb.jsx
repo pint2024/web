@@ -19,7 +19,6 @@ export function Breadcrumb() {
 					breadcrumb.push(route);
 				}
 			}
-
 			setBreadcrumbPath(breadcrumb);
 		};
 

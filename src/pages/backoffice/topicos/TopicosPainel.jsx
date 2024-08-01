@@ -56,7 +56,7 @@ export function TopicosPainel() {
 				</Botao>
 			</div>
 			{dataTopicos ? (
-				<table className="revisao-tabela mt-4">
+				<table className="painel-tabela mt-4">
 					<thead>
 						<tr>
 							<th>Tópico</th>

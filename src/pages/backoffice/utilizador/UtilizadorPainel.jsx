@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useCarregando } from "hooks/useCarregando";
 import { DateUtils } from "utils/date.utils";
 import { ApiRequest } from "api/apiRequest";
-import { Botao, CaixaTexto, ComboBox, Icone, Popup } from "components";
+import { Botao, Icone, Popup } from "components";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { Utils } from "utils/utils";
 import { CriarUtilizadorPainel } from "./CriarUtilizadorPainel";
-import { useInput } from "hooks/useInput";
-import { COMBOBOX_DEFAULT_VALUE } from "data/constants";
 import { Filtros } from "./Filtros";
 import { Row } from "components/ui/Row";
 
@@ -79,7 +77,7 @@ export function UtilizadorPainel() {
 			</Row>
 			<Filtros data={dataUtilizadores} filtered={filteredUtilizadores} setFiltered={setFilteredUtilizadores} />
 			{dataUtilizadores ? (
-				<table className="revisao-tabela mt-4">
+				<table className="painel-tabela mt-4">
 					<thead>
 						<tr>
 							<th>Imagem</th>
