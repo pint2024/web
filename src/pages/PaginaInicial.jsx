@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./pagina-inicial.css";
 import CitiesImagem from "assets/images/home/cities.png";
 import FriendsImagem from "assets/images/home/friends.png";
 import RecomendacoesImagem from "assets/images/home/recomendation.png";
 import { PROJETO_NAME } from "data/constants";
 import { Conteudo } from "./conteudo";
+import { Mapa } from "components/ui/mapa/Mapa";
+import { MapaPopup } from "components/ui/mapa/MapaPopup";
+import { Botao } from "components";
 
 export const PaginaInicial = () => {
+	const [isa, setisa] = useState(false);
+	const [isb, setisb] = useState(false);
+
+	useEffect(() => {
+		console.log(isb);
+	}, [isb]);
+
 	return (
 		<>
+			<MapaPopup popupState={isa} handleChange={setisb} />
+			<Botao onClick={() => setisa(true)}></Botao>
 			<div className="home-container">
 				<section className="hero-section">
 					<h1>Bem-vindo à {PROJETO_NAME}</h1>
