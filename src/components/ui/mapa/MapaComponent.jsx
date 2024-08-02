@@ -16,7 +16,7 @@ L.Icon.Default.mergeOptions({
 	shadowUrl: markerShadow,
 });
 
-export const Mapa = ({ handleChange }) => {
+export const MapaComponent = ({ handleChange }) => {
 	const [position, setPosition] = useState(null);
 	const [address, setAddress] = useState("");
 

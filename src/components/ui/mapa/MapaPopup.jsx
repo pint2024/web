@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Mapa } from "./Mapa";
+import { MapaComponent } from "./MapaComponent";
 import { Popup } from "components";
 
 export function MapaPopup({ handleChange, popupState }) {
@@ -21,7 +21,7 @@ export function MapaPopup({ handleChange, popupState }) {
 				<Popup
 					headerTitle={"Adicionar Topico"}
 					onClose={() => setisOpen(false)}
-					body={<Mapa handleChange={setdataCoords} />}
+					body={<MapaComponent handleChange={setdataCoords} />}
 				/>
 			)}
 		</>

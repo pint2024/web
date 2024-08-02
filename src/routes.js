@@ -22,6 +22,7 @@ import { AtualizarPasse } from "pages/autenticacao/atualizarPasse/AtualizarPasse
 import { TerminarSessao } from "pages/autenticacao/terminarSessao/TerminarSessao";
 import { Navigate } from "react-router-dom";
 import { DenunciaPainel } from "pages/backoffice/denuncia/DenunciaPainel";
+import { Mapa } from "pages/mapa/Mapa";
 
 const ROLES = EnumConstants.ROLES;
 
@@ -63,6 +64,13 @@ export class Rotas {
 	];
 
 	static CalendarioRoutes = [
+		{
+			title: "Mapa",
+			section: "Mapa",
+			path: "/mapa",
+			element: <Mapa />,
+			perfis: [ROLES.USER.ID],
+		},
 		{
 			title: "Calendário",
 			section: "Calendário",
@@ -151,7 +159,14 @@ export class Rotas {
 
 	static AuthenticationRoutes = [...this.AutenticacaoRoutes];
 
-	static FrontofficeRoutes = [...this.InicialRoutes, ...this.ConteudoRoutes, ...this.CalendarioRoutes, ...this.UtilizadorRoutes, ...this.SobreRoutes, ...this.ErrosRoutes];
+	static FrontofficeRoutes = [
+		...this.InicialRoutes,
+		...this.ConteudoRoutes,
+		...this.CalendarioRoutes,
+		...this.UtilizadorRoutes,
+		...this.SobreRoutes,
+		...this.ErrosRoutes,
+	];
 
 	static BackofficeRoutes = [
 		{
