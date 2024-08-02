@@ -6,7 +6,6 @@ export { Comentario } from "./container/comentario/Comentario";
 export { ControlosInteracao } from "./ui/controlosInterecao/ControlosInteracao";
 export { Cartao } from "./container/cartoes/Cartao";
 export { Dropdown } from "./common/dropdown/Dropdown";
-export { ImageSlider } from "./container/imagemSlider/ImageSlider";
 export { Notificacao } from "./overlay/notificacao/Notificacao";
 export { Popup } from "./overlay/popup/Popup";
 export { Confirmacao } from "./overlay/popup/Confirmacao";
