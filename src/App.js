@@ -16,7 +16,8 @@ function App() {
 	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
-		stopLoading();
+		if (userData || isValid)
+			stopLoading();
 		if (!userData) return;
 		setuserRole(userData.perfil);
 	}, [isValid, userData]);
@@ -24,6 +25,7 @@ function App() {
 	useEffect(() => {
 		document.title = PROJETO_NAME;
 		startLoading();
+		console.log("start");
 	}, []);
 
 	useEffect(() => {
