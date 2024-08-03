@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { InteressesList } from "../InteressesList";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { ApiRequest } from "api";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { Authorizor } from "components/helpers/Authorizor";
 import { EnumConstants } from "data/enum.constants";
 import { AuthorizorHelper } from "components/helpers/AuthorizorHelper";
@@ -22,7 +22,7 @@ export function BlocoPrincipal({ data }) {
 	const [selectPerfil, setselectPerfil] = useState();
 	const [dataCentro, setdataCentro] = useState();
 	const [selectCentro, setselectCentro] = useState();
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const utilizadorAtual = useCurrentUser();
 
 	useEffect(() => {
@@ -44,22 +44,22 @@ export function BlocoPrincipal({ data }) {
 	}, []);
 
 	const handleUpdatePerfil = async () => {
-		startLoading();
+		loading.start();
 		await ApiRequest.atualizar("utilizador", data.id, { perfil: selectPerfil });
-		stopLoading();
+		loading.stop();
 	};
 
 	const handleUpdateCentro = async () => {
-		startLoading();
+		loading.start();
 		await ApiRequest.atualizar("utilizador", data.id, { centro: selectCentro });
-		stopLoading();
+		loading.stop();
 	};
 
 	const handleFetchData = async () => {
-		startLoading();
+		loading.start();
 		await handleFetchPerfil();
 		await handleFetchCentro();
-		stopLoading();
+		loading.stop();
 	};
 
 	const handleFetchPerfil = async () => {

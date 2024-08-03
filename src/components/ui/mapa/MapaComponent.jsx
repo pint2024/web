@@ -8,6 +8,8 @@ import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { Botao, CaixaTexto } from "components";
 import { Row } from "../Row";
+import { BUTTON_VARIANTS } from "data/data";
+import { MAP_CENTER_COORDS } from "data/constants";
 
 // Corrigir o ícone padrão do Leaflet que não é exibido corretamente com Webpack
 L.Icon.Default.mergeOptions({
@@ -16,19 +18,15 @@ L.Icon.Default.mergeOptions({
 	shadowUrl: markerShadow,
 });
 
-export const MapaComponent = ({ handleChange }) => {
+export const MapaComponent = ({ handleChange, setisOpen }) => {
 	const [position, setPosition] = useState(null);
 	const [address, setAddress] = useState("");
-
-	useEffect(() => {
-		handleChange(position);
-	}, [position]);
 
 	const useFlyTo = (position) => {
 		const map = useMap();
 		useEffect(() => {
 			if (position) {
-				map.flyTo(position, map.getZoom());
+				map.flyTo([position.lat, position.lng], map.getZoom());
 			}
 		}, [position, map]);
 	};
@@ -39,13 +37,13 @@ export const MapaComponent = ({ handleChange }) => {
 
 		useMapEvents({
 			click(e) {
-				console.log(e.latlng)
-				setPosition(e.latlng);
-				map.flyTo(e.latlng, map.getZoom());
+				const newPosition = { lat: e.latlng.lat, lng: e.latlng.lng };
+				setPosition(newPosition);
+				map.flyTo(newPosition, map.getZoom());
 			},
 		});
 
-		return position === null ? null : <Marker position={position} />;
+		return position === null ? null : <Marker position={[position.lat, position.lng]} />;
 	};
 
 	const handleSearch = async (ad) => {
@@ -59,11 +57,9 @@ export const MapaComponent = ({ handleChange }) => {
 						limit: 1,
 					},
 				});
-				console.log(response);
-
 				if (response.data && response.data.length > 0) {
 					const { lat, lon } = response.data[0];
-					const newPosition = response.data[0];
+					const newPosition = { lat: parseFloat(lat), lng: parseFloat(lon) };
 					setPosition(newPosition);
 				} else {
 					alert("Endereço não encontrado!");
@@ -75,11 +71,30 @@ export const MapaComponent = ({ handleChange }) => {
 		}
 	};
 
-	const handleGetCoords = () => {
+	const reverseGeocode = async (lat, lon) => {
+		try {
+			const response = await axios.get("https://nominatim.openstreetmap.org/reverse", {
+				params: {
+					lat: lat,
+					lon: lon,
+					format: "json",
+				},
+			});
+			return response.data;
+		} catch (error) {
+			console.error("Erro na geocodificação reversa:", error);
+			alert("Ocorreu um erro ao buscar o endereço. Tente novamente.");
+		}
+	};
+
+	const handleGetCoords = async () => {
 		if (position) {
-			alert(`Coordenadas selecionadas: ${position}`);
+			const addressData = await reverseGeocode(position.lat, position.lng);
+			handleChange({ position, address: addressData.display_name });
+			console.log({ position, address: addressData.display_name })
+			setisOpen(false);
 		} else {
-			alert("Nenhuma coordenada selecionada!");
+			alert("Escolha uma localização");
 		}
 	};
 
@@ -89,18 +104,21 @@ export const MapaComponent = ({ handleChange }) => {
 				<CaixaTexto
 					value={address}
 					handleChange={(e) => setAddress(e.target.value)}
-					placeholder="Digite um endereço"
+					placeholder="Endereço..."
 					handleSubmit={() => handleSearch(address)}
 				/>
-				<Botao onClick={handleGetCoords}>Obter Coordenadas</Botao>
+				<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => handleSearch(address)}>
+					Pesquisar
+				</Botao>
 			</Row>
-			<MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "80vh", width: "100%" }}>
+			<MapContainer center={MAP_CENTER_COORDS} zoom={13} style={{ height: "80vh", width: "100%" }}>
 				<TileLayer
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
 				<LocationMarker />
 			</MapContainer>
+			<Botao onClick={() => handleGetCoords()}>Confirmar</Botao>
 		</div>
 	);
 };

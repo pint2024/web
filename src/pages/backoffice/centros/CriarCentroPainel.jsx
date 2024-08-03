@@ -1,13 +1,13 @@
 import { ApiRequest } from "api";
 import { Botao, CaixaTexto, Notificacao } from "components";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useState } from "react";
 import { Validador } from "utils/validator";
 
 export function CriarCentroPainel({ handleCreated }) {
 	const [formCentro, setFormCentro] = useState("");
 	const [erros, setErros] = useState({});
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	const handleAdicionar = async () => {
 		const esquema = { centro: { required: true } };
@@ -18,13 +18,13 @@ export function CriarCentroPainel({ handleCreated }) {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		const response = await ApiRequest.criar("centro", data);
 		if (response) {
 			Notificacao("Tópico criado!");
 			handleCreated();
 		}
-		stopLoading();
+		loading.stop();
 	};
 
 	return (

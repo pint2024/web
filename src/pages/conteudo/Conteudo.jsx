@@ -2,7 +2,7 @@ import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
 import { Icone, Botao, Dropdown } from "components/index";
 import { ConteudoSeccoes } from "./ConteudoSeccoes";
 import { useEffect, useState } from "react";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { EnumConstants } from "data/enum.constants";
 import { ApiRequest } from "api/apiRequest";
 import { PaginaInicial } from "pages/PaginaInicial";

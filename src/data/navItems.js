@@ -13,22 +13,16 @@ export class NavItems {
 			perfis: [ROLES.USER.ID],
 		},
 		{
-			route: "/mapa",
-			icone: "MapFill",
-			label: "Mapa",
-			perfis: [ROLES.USER.ID],
-		},
-		{
 			route: "/calendario",
 			icone: "CalendarFill",
 			label: "Calendário",
 			perfis: [ROLES.USER.ID],
 		},
 		{
-			route: "/sobre",
-			icone: "InfoCircleFill",
-			label: "Sobre",
-			perfis: [],
+			route: "/mapa",
+			icone: "MapFill",
+			label: "Mapa",
+			perfis: [ROLES.USER.ID],
 		},
 		{
 			route: "/backoffice/utilizadores",
@@ -71,6 +65,12 @@ export class NavItems {
 			icone: "Diagram2Fill",
 			label: "Centros",
 			perfis: [ROLES.ADMIN.ID],
+		},
+		{
+			route: "/sobre",
+			icone: "InfoCircleFill",
+			label: "Sobre",
+			perfis: [],
 		},
 	];
 

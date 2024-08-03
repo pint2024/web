@@ -1,7 +1,7 @@
 import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ComboBox, Notificacao, Seletor } from "components";
 import { REGEX } from "data/regex";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useInput } from "hooks/useInput";
 import { useEffect, useState } from "react";
 import { Validador } from "utils/validator";
@@ -16,17 +16,17 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 	const [dataPerfil, setdataPerfil] = useState(null);
 	const [dataCentro, setdataCentro] = useState(null);
 	const [erros, setErros] = useState({});
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	useEffect(() => {
 		fetchData();
 	}, []);
 
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchCentro();
 		await fetchPerfil();
-		stopLoading();
+		loading.stop();
 	}
 
 	const fetchCentro = async () => {
@@ -78,13 +78,13 @@ export function CriarUtilizadorPainel({ handleCreated }) {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		const response = await ApiRequest.criar("utilizador", data);
 		if (response) {
 			Notificacao("Utilizador criado!");
 			handleCreated();
 		}
-		stopLoading();
+		loading.stop();
 	};
 
 	return (

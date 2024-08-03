@@ -1,6 +1,6 @@
 import { ApiRequest } from "api";
 import { GraficoLinhas } from "components";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { LoadingAnimation } from "layouts/loading/LoadingAnimation";
 import { useEffect, useState } from "react";
 

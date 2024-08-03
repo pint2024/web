@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./resetar-passe.css";
 import { AutenticacaoRequest } from "api/autenticacaoRequest";
 import { CaixaTexto, Botao, Notificacao } from "components/index";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { Validador } from "utils/validator";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ export function ResetarPasse() {
 	const [formSenhaConfirmacao, setFormSenhaConfirmacao] = useState("");
 	const [token, settoken] = useState("");
 	const [erros, setErros] = useState({});
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -33,7 +33,7 @@ export function ResetarPasse() {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		const res = await AutenticacaoRequest.resetPassword(token, formSenha, formSenhaConfirmacao);
 		if (!res) {
 			Notificacao("Os dados estão inválidos!", "error");
@@ -42,7 +42,7 @@ export function ResetarPasse() {
 			navigate("/iniciar-sessao");
 		}
 
-		stopLoading();
+		loading.stop();
 	};
 
 	return (

@@ -1,18 +1,20 @@
 import { ApiRequest } from "api";
-import { AreaTexto, CaixaTexto, DatePicker, ImageBox, ComboBox, Botao, Notificacao, TimePicker, Texto } from "components/index";
+import { CaixaTexto, DatePicker, ImageBox, ComboBox, Botao, Notificacao, Texto, Popup } from "components/index";
 import { Classificacao } from "components/ui/controlosInterecao/classificacao/Classificacao";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import { EnumConstants } from "data/enum.constants";
-import { useCurrentUser } from "hooks/useCurrentUser";
 import { useLoading } from "hooks/useLoading";
+import { useCurrentUser } from "hooks/useCurrentUser";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Utils } from "utils/utils";
 import { Validador } from "utils/validator";
+import { Row } from "components/ui/Row";
+import { MapaComponent } from "components/ui/mapa/MapaComponent";
 
 export function ConteudoCriar() {
 	const { id } = useParams();
-	const { startLoading, stopLoading } = useLoading();
+	const loading = useLoading();
 	const utilizadorAtual = useCurrentUser();
 	const navigate = useNavigate();
 
@@ -20,6 +22,8 @@ export function ConteudoCriar() {
 	const [formDescricao, setformDescricao] = useState("");
 	const [formImagem, setformImagem] = useState("");
 	const [formEndereco, setformEndereco] = useState("");
+	const [formLatitude, setformLatitude] = useState("");
+	const [formLongitude, setformLongitude] = useState("");
 	const [formSubtopico, setformSubtopico] = useState("");
 	const [dataSubtopico, setdataSubtopico] = useState(null);
 
@@ -29,14 +33,23 @@ export function ConteudoCriar() {
 
 	const [erros, setErros] = useState({});
 
+	const [isOpen, setisOpen] = useState(false);
+	const [dataCoords, setdataCoords] = useState(null);
+
 	useEffect(() => {
 		fetchData();
 	}, []);
 
+	useEffect(() => {
+		setformLatitude(dataCoords?.position?.lat);
+		setformLongitude(dataCoords?.position?.lng);
+		setformEndereco(dataCoords?.address);
+	}, [dataCoords]);
+
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchSubtopico();
-		stopLoading();
+		loading.stop();
 	};
 
 	const fetchSubtopico = async () => {
@@ -62,7 +75,9 @@ export function ConteudoCriar() {
 			imagem: formImagem,
 			titulo: formTitulo,
 			descricao: formDescricao,
-			endereco: formEndereco,
+			endereco: dataCoords,
+			latitude: formLatitude,
+			longitude: formLongitude,
 			subtopico: formSubtopico,
 			utilizador: utilizadorAtual.id,
 			tipo: id,
@@ -90,6 +105,8 @@ export function ConteudoCriar() {
 			titulo: formTitulo,
 			descricao: formDescricao,
 			endereco: formEndereco,
+			latitude: formLatitude,
+			longitude: formLongitude,
 			subtopico: formSubtopico,
 			utilizador: utilizadorAtual.id,
 			tipo: id,
@@ -110,8 +127,11 @@ export function ConteudoCriar() {
 			endereco: { required: true },
 			data_evento: { required: true },
 			subtopico: { required: true },
-			data_evento: { required: true },
 		};
+
+		console.log("1", dataCoords);
+		console.log("1", dataCoords.lng);
+		console.log("1", dataCoords.lat);
 
 		const validador = new Validador(esquema);
 		const data = {
@@ -119,11 +139,15 @@ export function ConteudoCriar() {
 			titulo: formTitulo,
 			descricao: formDescricao,
 			endereco: formEndereco,
+			latitude: formLatitude,
+			longitude: formLongitude,
 			data_evento: formDataEvento,
 			subtopico: formSubtopico,
 			utilizador: utilizadorAtual.id,
 			tipo: id,
 		};
+
+		console.log("a,", data);
 
 		const validacao = validador.validar(data);
 		setErros(validacao);
@@ -133,13 +157,13 @@ export function ConteudoCriar() {
 	};
 
 	const handleSubmit = async (data) => {
-		startLoading();
+		loading.start();
 		const response = await ApiRequest.criar_with_files("conteudo", data, "imagem");
 		if (response) {
 			Notificacao("Conteudo criado!");
 			navigate("/conteudos");
 		}
-		stopLoading();
+		loading.stop();
 	};
 
 	if (!dataSubtopico) return;
@@ -151,8 +175,20 @@ export function ConteudoCriar() {
 		}));
 	};
 
+	const handleSelectPopup = () => {
+		setisOpen(true);
+		console.log("as", dataCoords);
+	};
+
 	return (
 		<>
+			{isOpen && (
+				<Popup
+					headerTitle={"Selecione o endereço"}
+					onClose={() => setisOpen(false)}
+					body={<MapaComponent handleChange={setdataCoords} setisOpen={setisOpen} />}
+				/>
+			)}
 			<Texto size={COMMON_SIZES.FS4}>Criar {Utils.getTipoById(id)}</Texto>
 			<CaixaTexto
 				className="mt-2 me-auto"
@@ -160,6 +196,7 @@ export function ConteudoCriar() {
 				value={formTitulo}
 				isInvalid={erros.titulo}
 				label="Título"
+				placeholder="Título"
 			/>
 			<CaixaTexto
 				className="mt-2 me-auto"
@@ -167,14 +204,21 @@ export function ConteudoCriar() {
 				value={formDescricao}
 				isInvalid={erros.descricao}
 				label="Descrição"
+				placeholder="Descrição"
 			/>
-			<CaixaTexto
-				className="mt-2 ms-auto"
-				handleChange={(e) => setformEndereco(e.target.value)}
-				value={formEndereco}
-				isInvalid={erros.endereco}
-				label="Endereço"
-			/>
+			<Row className="gap-3">
+				<CaixaTexto
+					className="mt-2"
+					handleChange={(e) => setformEndereco(e.target.value)}
+					value={formEndereco}
+					isInvalid={erros.endereco}
+					label="Endereço"
+					disabled={true}
+				/>
+				<Botao className="mt-2" onClick={() => handleSelectPopup()} label="Endereço">
+					Selecionar
+				</Botao>
+			</Row>
 			<ComboBox
 				className="mt-2"
 				options={transformarDadosSubtopico()}

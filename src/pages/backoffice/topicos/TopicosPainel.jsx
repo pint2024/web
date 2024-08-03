@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { DateUtils } from "utils/date.utils";
 import { ApiRequest } from "api/apiRequest";
 import { Botao, Icone, Popup } from "components";
-import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
-import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
-import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
-import { Utils } from "utils/utils";
+import { COMMON_TYPES } from "data/data";
 import { CriarTopicoPainel } from "./CriarTopicoPainel";
 import { CriarSubtopicoPainel } from "./CriarSubtopicoPainel";
+import { RefreshIcone } from "components/common/icone/RefreshIcone";
+import { useLoading } from "hooks/useLoading";
 
 export function TopicosPainel() {
 	const [dataTopicos, setdataTopicos] = useState(null);
 	const [isPopupTopicoOpen, setisPopupTopicoOpen] = useState(false);
 	const [isPopupSubtopicoOpen, setisPopupSubtopicoOpen] = useState(false);
+	const loading = useLoading(false);
 
 	useEffect(() => {
 		fetchConteudoData();
 	}, []);
 
 	const fetchConteudoData = async () => {
-		const data = await ApiRequest.listar("topico/simples"); // filtra os conteudos apenas
+		loading.start();
+		const data = await ApiRequest.listar("topico/simples");
 		setdataTopicos(data);
+		loading.stop();
 	};
 
 	const handleCreated = () => {
 		fetchConteudoData();
 		setisPopupTopicoOpen(false);
 		setisPopupSubtopicoOpen(false);
-	}
+	};
+
+	const handleRefresh = () => {
+		fetchConteudoData();
+	};
 
 	return (
 		<>
@@ -55,8 +60,11 @@ export function TopicosPainel() {
 					Adicionar Subtópico
 				</Botao>
 			</div>
+			<div className="d-flex justify-content-end mt-4">
+				<RefreshIcone handleRefresh={() => handleRefresh()} />
+			</div>
 			{dataTopicos ? (
-				<table className="painel-tabela mt-4">
+				<table className="painel-tabela">
 					<thead>
 						<tr>
 							<th>Tópico</th>

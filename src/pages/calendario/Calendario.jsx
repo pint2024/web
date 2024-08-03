@@ -5,7 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
 import { DateUtils } from "utils/date.utils";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { EnumConstants } from "data/enum.constants";
 import { useConfirmation } from "hooks/useConfirmation";
 import { usePopup } from "hooks/usePopup";
@@ -18,13 +18,13 @@ import "./calendario.css";
 export function Calendario() {
 	const [firstDay, setfirstDay] = useState(1);
 	const [dataEventos, setdataEventos] = useState([]);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const { conCreate, conSet, conClear, conOpen } = useConfirmation();
 	const { puCreate, puSet, puClear, puOpen } = usePopup();
 
 	useEffect(() => {
 		const fetchConteudoData = async () => {
-			startLoading();
+			loading.start();
 			try {
 				const data = await ApiRequest.listar("conteudo/participando", {
 					tipo: [EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID, EnumConstants.CONTEUDO_TIPOS.EVENTO.ID],
@@ -33,7 +33,7 @@ export function Calendario() {
 			} catch (error) {
 				console.error("Erro ao buscar eventos:", error);
 			} finally {
-				stopLoading();
+				loading.stop();
 			}
 		};
 		fetchConteudoData();

@@ -4,7 +4,7 @@ import { BlocoEventos } from "./blocos/BlocoEventos";
 import { BlocoEstatisticas } from "./blocos/BlocoEstatisticas";
 import { BlocoComentarios } from "./blocos/BlocoComentario";
 import { useEffect, useState } from "react";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useParams } from "react-router-dom";
 import { ApiRequest } from "api/apiRequest";
 import { BlocoParticipacoes } from "./blocos/BlocoParticipacoes";
@@ -13,17 +13,17 @@ export function Conta() {
 	const { id } = useParams();
 	const [dataConta, setdataConta] = useState(null);
 	const [dataParticipacao, setdataParticipacao] = useState(null);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	useEffect(() => {
 		fetchData();
 	}, []);
 
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchParticipacaoData();
 		await fetchContaData();
-		stopLoading();
+		loading.stop();
 	};
 
 	const fetchContaData = async () => {

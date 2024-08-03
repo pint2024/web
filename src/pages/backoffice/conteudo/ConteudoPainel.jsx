@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { EnumConstants } from "data/enum.constants";
 import "../painel-tabela.css";
 import { LinhaConteudo } from "./LinhaConteudo";
@@ -8,27 +8,32 @@ import { Botao, Icone, Notificacao } from "components";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { BUTTON_VARIANTS } from "data/data";
 import { Filtros } from "./Filtros";
+import { RefreshIcone } from "components/common/icone/RefreshIcone";
 
 export function ConteudoPainel() {
 	const [dataConteudo, setdataConteudo] = useState(null);
 	const [filteredUtilizadores, setFilteredUtilizadores] = useState([]);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const puHandleRevisao = usePopupDialogo();
 
 	useEffect(() => {
 		fetchConteudoData();
 	}, []);
 
+	const handleRefresh = () => {
+		fetchConteudoData();
+	}
+
 	const fetchConteudoData = async () => {
-		startLoading();
+		loading.start();
 		const data = await ApiRequest.listar("conteudo/revisao");
 		setdataConteudo(data);
 		setFilteredUtilizadores(data);
-		stopLoading();
+		loading.stop();
 	};
 
 	const handleUpdateRevisao = async (id, estado) => {
-		startLoading();
+		loading.start();
 		puHandleRevisao.conClose();
 		await ApiRequest.atualizar("revisao", id, { estado: estado });
 		fetchConteudoData();
@@ -93,6 +98,9 @@ export function ConteudoPainel() {
 		<>
 			{puHandleRevisao.conCreate()}
 			<Filtros data={dataConteudo} setFiltered={setFilteredUtilizadores} />
+			<div className="d-flex justify-content-end mt-4">
+				<RefreshIcone handleRefresh={() => handleRefresh()} />
+			</div>
 			<table className="painel-tabela">
 				<thead>
 					<tr>

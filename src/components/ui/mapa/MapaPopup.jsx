@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MapaComponent } from "./MapaComponent";
 import { Popup } from "components";
 
-export function MapaPopup({ handleChange, popupState }) {
+export function MapaPopup({ handleChange, popupState, setPopupState }) {
 	const [isOpen, setisOpen] = useState(false);
 	const [dataCoords, setdataCoords] = useState(null);
 
@@ -11,6 +11,7 @@ export function MapaPopup({ handleChange, popupState }) {
 	}, [popupState]);
 
 	useEffect(() => {
+		console.log(dataCoords)
 		setdataCoords(dataCoords);
 		handleChange(dataCoords);
 	}, [dataCoords]);
@@ -19,9 +20,9 @@ export function MapaPopup({ handleChange, popupState }) {
 		<>
 			{isOpen && (
 				<Popup
-					headerTitle={"Adicionar Topico"}
+					headerTitle={"Selecione o endereço"}
 					onClose={() => setisOpen(false)}
-					body={<MapaComponent handleChange={setdataCoords} />}
+					body={<MapaComponent handleChange={setdataCoords} isOpen={isOpen} setisOpen={setisOpen} />}
 				/>
 			)}
 		</>

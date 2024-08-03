@@ -3,19 +3,19 @@ import { ApiRequest } from "api/apiRequest";
 import { Comentario, CaixaTexto, Texto, Botao } from "components/index";
 import { COMMON_SIZES } from "data/data";
 import { useCurrentUser } from "hooks/useCurrentUser";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 
 export function ComentarioSeccao({ id }) {
 	const [dataComentarios, setdataComentarios] = useState(null);
 	const [novoComentario, setnovoComentario] = useState("");
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const utilizadorAtual = useCurrentUser();
 
 	useEffect(() => {
-		startLoading();
+		loading.start();
 		fetchComentariosData();
-		stopLoading();
+		loading.stop();
 	}, []);
 
 	useEffect(() => {

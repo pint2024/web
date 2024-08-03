@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./atualizar-passe.css";
 import { AutenticacaoRequest } from "api/autenticacaoRequest";
 import { CaixaTexto, Botao, Notificacao } from "components/index";
-import { useCarregando } from "hooks/useCarregando";
-import { REGEX } from "data/regex";
+import { useLoading } from "hooks/useLoading";
 import { Validador } from "utils/validator";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -12,7 +11,7 @@ export function AtualizarPasse() {
 	const [senhaNova, setsenhaNova] = useState("");
 	const [confirmeSenhaNova, setconfirmeSenhaNova] = useState("");
 	const [erros, setErros] = useState({});
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const { token } = useParams();
 	const navigate = useNavigate();
 
@@ -29,7 +28,7 @@ export function AtualizarPasse() {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		const res = await AutenticacaoRequest.atualizarPasse(token, senhaNova, senhaAntiga);
 		if (!res) {
 			Notificacao("Os dados estão inválidos!", "error");
@@ -38,7 +37,7 @@ export function AtualizarPasse() {
 			navigate("/");
 		}
 
-		stopLoading();
+		loading.stop();
 	};
 
 	return (

@@ -5,7 +5,7 @@ import { ComentarioSeccao } from "./ComentarioSeccao";
 import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
 import "./conteudo-detalhe.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useParams } from "react-router-dom";
 import { DateUtils } from "utils/date.utils";
 import { LabelError } from "layouts/labelWarnings/LabelError";
@@ -27,7 +27,7 @@ export function ConteudoDetalhe() {
 	const [isRejeitado, setisRejeitado] = useState(true);
 	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const [isSubscribed, setisSubscribed] = useState(false);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const { conCreate, conSet, conOpen } = useConfirmation();
 	const { id } = useParams();
 	const utilizadorAtual = useCurrentUser();
@@ -51,22 +51,22 @@ export function ConteudoDetalhe() {
 	}, [dataDetalhe, utilizadorAtual]);
 
 	const fetchConteudoData = async () => {
-		startLoading();
+		loading.start();
 		const data = await ApiRequest.obter("conteudo", id);
 		setdataDetalhe(data);
-		stopLoading();
+		loading.stop();
 	};
 
 	if (!dataDetalhe) return;
 
 	const handleAddParticipacao = async () => {
-		startLoading();
+		loading.start();
 		await ApiRequest.criar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
 		await fetchConteudoData();
 	};
 
 	const handleRemoverParticipacao = async () => {
-		startLoading();
+		loading.start();
 		await myAxios({ url: "participante/remover", method: "post", data: { utilizador: utilizadorAtual.id, conteudo: id } });
 		await fetchConteudoData();
 	};

@@ -2,7 +2,7 @@ import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ComboBox } from "components";
 import { COMBOBOX_DEFAULT_VALUE } from "data/constants";
 import { BUTTON_VARIANTS } from "data/data";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useInput } from "hooks/useInput";
 import { useEffect, useState } from "react";
 import { Utils } from "utils/utils";
@@ -11,7 +11,7 @@ export function Filtros({ data, setFiltered }) {
 	const searchGeral = useInput();
 	const searchEstado = useInput(0);
 	const [dataEstado, setdataEstado] = useState(null);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	const filterData = () => {
 		let filteredData = data;
@@ -46,9 +46,9 @@ export function Filtros({ data, setFiltered }) {
 	}, []);
 
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchCentro();
-		stopLoading();
+		loading.stop();
 	};
 
 	const fetchCentro = async () => {

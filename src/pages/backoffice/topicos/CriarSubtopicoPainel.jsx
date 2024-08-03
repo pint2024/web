@@ -1,7 +1,7 @@
 import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ComboBox, Notificacao } from "components";
 import { REGEX } from "data/regex";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 import { Validador } from "utils/validator";
 
@@ -10,17 +10,17 @@ export function CriarSubtopicoPainel({ handleCreated }) {
 	const [formTopico, setFormTopico] = useState("");
 	const [dataTopico, setdataTopico] = useState(null);
 	const [erros, setErros] = useState({});
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	useEffect(() => {
 		fetchCentro();
 	}, []);
 
 	const fetchCentro = async () => {
-		startLoading();
+		loading.start();
 		const response = await ApiRequest.listar("topico/simples");
 		setdataTopico(response);
-		stopLoading();
+		loading.stop();
 	};
 
 	if (!dataTopico) return;
@@ -45,13 +45,13 @@ export function CriarSubtopicoPainel({ handleCreated }) {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		const response = await ApiRequest.criar("subtopico", data);
 		if (response) {
 			Notificacao("Subtópico criado!");
 			handleCreated();
 		}
-		stopLoading();
+		loading.stop();
 	};
 
 	return (

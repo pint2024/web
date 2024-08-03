@@ -1,7 +1,7 @@
 import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ComboBox, FileBox, Notificacao, Seletor } from "components";
 import { REGEX } from "data/regex";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useInput } from "hooks/useInput";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -15,7 +15,7 @@ export function EditarConteudo({ handleCreated }) {
 	const [dataSubtopico, setdataSubtopico] = useState(null);
 	const [dataConteudo, setdataConteudo] = useState(null);
 	const [erros, setErros] = useState({});
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -30,10 +30,10 @@ export function EditarConteudo({ handleCreated }) {
 	}, [dataConteudo]);
 
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchSubtopico();
 		await fetchConteudo();
-		stopLoading();
+		loading.stop();
 	};
 
 	const fetchSubtopico = async () => {
@@ -75,13 +75,13 @@ export function EditarConteudo({ handleCreated }) {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		const response = await ApiRequest.atualizar("conteudo", id, data);
 		if (response) {
 			Notificacao("Conteudo editado!");
 			handleCreated();
 		}
-		stopLoading();
+		loading.stop();
 	};
 
 	return (

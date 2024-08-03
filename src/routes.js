@@ -69,7 +69,7 @@ export class Rotas {
 			section: "Mapa",
 			path: "/mapa",
 			element: <Mapa />,
-			perfis: [ROLES.USER.ID],
+			perfis: [ROLES.ADMIN.ID],
 		},
 		{
 			title: "Calendário",

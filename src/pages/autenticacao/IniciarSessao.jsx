@@ -4,7 +4,7 @@ import { AutenticacaoRequest } from "api/autenticacaoRequest";
 import { CaixaTexto, Botao, Navegar, Notificacao } from "components/index";
 import { BUTTON_VARIANTS } from "data/data";
 import { STATUS } from "data/constants";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "hooks/useInput";
 import { Validador } from "utils/validator";
@@ -12,7 +12,7 @@ import { Validador } from "utils/validator";
 export function IniciarSessao() {
 	const formLogin = useInput();
 	const formSenha = useInput();
-	const { startLoading, stopLoading, isLoading } = useCarregando();
+	const loading = useLoading();
 	const navigate = useNavigate();
 	const [erros, setErros] = useState({});
 
@@ -32,7 +32,7 @@ export function IniciarSessao() {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		const res = await AutenticacaoRequest.entrar(formLogin.value, formSenha.value);
 		if (res.status === 422) {
 			Notificacao("É necessário alterar a palavra-passe!", "info");
@@ -44,7 +44,7 @@ export function IniciarSessao() {
 			navigate("/");
 			window.location.reload();
 		}
-		stopLoading();
+		loading.stop();
 	};
 
 	return (
@@ -58,7 +58,7 @@ export function IniciarSessao() {
 							value={formLogin.value}
 							label="Endereço email ou tag"
 							isInvalid={erros.login}
-							disabled={isLoading}
+							disabled={loading.isLoading}
 						/>
 						<CaixaTexto
 							handleSubmit={() => handleLogin()}
@@ -67,7 +67,7 @@ export function IniciarSessao() {
 							label="Palavra-passe"
 							type="password"
 							isInvalid={erros.senha}
-							disabled={isLoading}
+							disabled={loading.isLoading}
 						/>
 					</form>
 				</div>

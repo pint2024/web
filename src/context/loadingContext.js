@@ -1,14 +1,14 @@
 import { createContext } from "react";
-import { useLoading } from "hooks/useLoading";
+import { useLoadingState } from "hooks/useLoadingState";
 
 export const LoadingContext = createContext();
 
 export const LoadingProvider = ({ children }) => {
-	const { isLoading, setisLoading, startLoading, stopLoading, createLoading } = useLoading();
+	const loadingState = useLoadingState();
 
 	return (
-		<LoadingContext.Provider value={{ isLoading, setisLoading, startLoading, stopLoading, createLoading }}>
-			{createLoading}
+		<LoadingContext.Provider value={loadingState}>
+			{loadingState.create}
 			{children}
 		</LoadingContext.Provider>
 	);

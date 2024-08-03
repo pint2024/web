@@ -2,14 +2,14 @@ import { ApiRequest } from "api";
 import { Botao } from "components";
 import { Categoria } from "components/container/categorias/Categoria";
 import { useCurrentUser } from "hooks/useCurrentUser";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 
 export function InteressesList({ id, onClose }) {
 	const [dataSubtopicos, setdataSubtopicos] = useState(null);
 	const [dataInteresses, setdataInteresses] = useState(null);
 	const [selectedSubtopicos, setselectedSubtopicos] = useState(null);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const utilizadorAtual = useCurrentUser();
 
 	useEffect(() => {
@@ -21,10 +21,10 @@ export function InteressesList({ id, onClose }) {
 	}, [dataInteresses]);
 
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchSubtopicoData();
 		await fetchUserInteressesData();
-		stopLoading();
+		loading.stop();
 	};
 
 	const fetchSubtopicoData = async () => {
@@ -60,11 +60,11 @@ export function InteressesList({ id, onClose }) {
 	};
 
 	const handleCreateInteresse = async () => {
-		startLoading();
+		loading.start();
 		await ApiRequest.criar("interesse", { subtopico: selectedSubtopicos, utilizador: utilizadorAtual.id });
 		onClose();
 		await fetchData();
-		stopLoading();
+		loading.stop();
 	};
 
 	return (

@@ -4,23 +4,23 @@ import "./album.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { useEffect, useState } from "react";
 import { ApiRequest } from "api/apiRequest";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 
 export function Album({ id }) {
 	const [album, setalbum] = useState([]);
 	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const [newImagens, setnewImagens] = useState([]);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	useEffect(() => {
 		fetchAlbumData();
 	}, []);
 
 	const fetchAlbumData = async () => {
-		startLoading();
+		loading.start();
 		const data = await ApiRequest.listar("album", { conteudo: id });
 		setalbum(data);
-		stopLoading();
+		loading.stop();
 	};
 
 	if (!album) return;
@@ -34,11 +34,11 @@ export function Album({ id }) {
 	};
 
 	const handleAlbumAdd = async () => {
-		startLoading();
+		loading.start();
 		await ApiRequest.criar_with_files("album", { conteudo: id, imagem: newImagens }, "imagem");
 		await fetchAlbumData();
 		handleAlbumPopupClose();
-		stopLoading();
+		loading.stop();
 	};
 
 	const createPopupAddAlbum = () => {

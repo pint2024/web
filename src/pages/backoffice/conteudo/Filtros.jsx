@@ -3,7 +3,7 @@ import { Botao, CaixaTexto, ComboBox } from "components";
 import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
 import { COMBOBOX_DEFAULT_VALUE } from "data/constants";
 import { BUTTON_VARIANTS } from "data/data";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useInput } from "hooks/useInput";
 import { useEffect, useState } from "react";
 import { Utils } from "utils/utils";
@@ -16,7 +16,7 @@ export function Filtros({ data, setFiltered }) {
 	const [dataTopicos, setdataTopicos] = useState(null);
 	const [dataEstado, setdataEstado] = useState(null);
 	const [dataTipo, setdataTipo] = useState(null);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	const filterData = () => {
 		let filteredData = data;
@@ -62,11 +62,11 @@ export function Filtros({ data, setFiltered }) {
 	}, []);
 
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchCentro();
 		await fetchPerfil();
 		await fetchTopico();
-		stopLoading();
+		loading.stop();
 	};
 
 	const fetchTopico = async () => {

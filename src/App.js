@@ -8,36 +8,35 @@ import { PROJETO_NAME } from "data/constants";
 import { Rotas } from "routes";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { AccessDenied } from "layouts/errors/AccessDenied";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 
 function App() {
 	const [userRole, setuserRole] = useState(null);
 	const { userData, isValid } = useCurrentUser(true);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	useEffect(() => {
-		if (userData || isValid)
-			stopLoading();
 		if (!userData) return;
 		setuserRole(userData.perfil);
+		loading.stop();
 	}, [isValid, userData]);
 
 	useEffect(() => {
 		document.title = PROJETO_NAME;
-		startLoading();
-		console.log("start");
+		loading.start();
 	}, []);
 
 	useEffect(() => {
-		stopLoading();
+		loading.stop();
 		const handleBeforeUnload = (event) => {
-			startLoading();
+			loading.start();
 		};
 		window.addEventListener("beforeunload", handleBeforeUnload);
 		return () => {
 			window.removeEventListener("beforeunload", handleBeforeUnload);
 		};
 	}, []);
+
 
 	if (!isValid) return;
 

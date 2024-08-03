@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { DateUtils } from "utils/date.utils";
 import { ApiRequest } from "api/apiRequest";
 import { Botao, Icone, Popup } from "components";
@@ -10,23 +10,24 @@ import { Utils } from "utils/utils";
 import { CriarUtilizadorPainel } from "./CriarUtilizadorPainel";
 import { Filtros } from "./Filtros";
 import { Row } from "components/ui/Row";
+import { RefreshIcone } from "components/common/icone/RefreshIcone";
 
 export function UtilizadorPainel() {
 	const [dataUtilizadores, setdataUtilizadores] = useState(null);
 	const [filteredUtilizadores, setFilteredUtilizadores] = useState([]);
 	const [isPopupOpen, setisPopupOpen] = useState(false);
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	useEffect(() => {
 		fetchConteudoData();
 	}, []);
 
 	const fetchConteudoData = async () => {
-		startLoading();
+		loading.start();
 		const data = await ApiRequest.listar("utilizador/simples");
 		setdataUtilizadores(data);
 		setFilteredUtilizadores(data);
-		stopLoading();
+		loading.stop();
 	};
 
 	const closePopup = () => {
@@ -43,17 +44,17 @@ export function UtilizadorPainel() {
 	};
 
 	const handleVerifyUser = async (id) => {
-		startLoading();
+		loading.start();
 		await ApiRequest.atualizar("utilizador", id, { verificado: true });
 		await fetchConteudoData();
-		stopLoading();
+		loading.stop();
 	};
 
 	const handleManageUserStatus = async (id, isInativar) => {
-		startLoading();
+		loading.start();
 		await ApiRequest.atualizar("utilizador", id, { inativo: isInativar });
 		await fetchConteudoData();
-		stopLoading();
+		loading.stop();
 	};
 
 	const handleRefresh = async (id, isInativar) => {
@@ -73,11 +74,13 @@ export function UtilizadorPainel() {
 				<Botao onClick={() => openPopup()}>
 					<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
 				</Botao>
-				<Icone iconName="ArrowClockwise" size={5} className="icon-hover" onClick={() => handleRefresh()} />
 			</Row>
 			<Filtros data={dataUtilizadores} filtered={filteredUtilizadores} setFiltered={setFilteredUtilizadores} />
+			<div className="d-flex justify-content-end mt-4">
+				<RefreshIcone handleRefresh={() => handleRefresh()} />
+			</div>
 			{dataUtilizadores ? (
-				<table className="painel-tabela mt-4">
+				<table className="painel-tabela">
 					<thead>
 						<tr>
 							<th>Imagem</th>

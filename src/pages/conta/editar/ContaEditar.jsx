@@ -1,6 +1,6 @@
 import { ApiRequest } from "api";
 import { Botao, CaixaTexto, ImageBox, Imagem, Notificacao } from "components";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UtilizadorDefault from "assets/images/placeholders/user-default.png";
@@ -11,7 +11,7 @@ import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
 
 export function ContaEditar() {
 	const { id } = useParams();
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 	const { userData, isValid } = useCurrentUser(true);
 	const navigate = useNavigate();
 	const [erros, setErros] = useState([]);
@@ -46,9 +46,9 @@ export function ContaEditar() {
 	}, []);
 
 	const fetchData = async () => {
-		startLoading();
+		loading.start();
 		await fetchContaData();
-		stopLoading();
+		loading.stop();
 	};
 
 	const fetchContaData = async () => {
@@ -70,11 +70,11 @@ export function ContaEditar() {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		await ApiRequest.upload_user_image(userData.id, newImagens);
 		Notificacao("Atualiza com sucesso!");
 		await fetchData();
-		stopLoading();
+		loading.stop();
 	};
 
 	const handleDataAtualizar = async () => {
@@ -96,11 +96,11 @@ export function ContaEditar() {
 		setErros(validacao);
 		if (!validador.isValido(validacao)) return;
 
-		startLoading();
+		loading.start();
 		await ApiRequest.atualizar("utilizador", userData.id, data);
 		Notificacao("Atualiza com sucesso!");
 		await fetchData();
-		stopLoading();
+		loading.stop();
 	};
 
 	if (!dataConta || !userData) return;

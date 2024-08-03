@@ -2,14 +2,14 @@ import { useState } from "react";
 import "./esqueceu-passe.css";
 import { AutenticacaoRequest } from "api/autenticacaoRequest";
 import { CaixaTexto, Botao, Notificacao } from "components/index";
-import { useCarregando } from "hooks/useCarregando";
+import { useLoading } from "hooks/useLoading";
 import { REGEX } from "data/regex";
 import { Validador } from "utils/validator";
 
 export function EsqueceuPasse() {
 	const [formLogin, setFormLogin] = useState("");
 	const [erros, setErros] = useState({});
-	const { startLoading, stopLoading } = useCarregando();
+	const loading = useLoading();
 
 	const handleLogin = async () => {
 		const validador = new Validador({ email: { required: true, pattern: REGEX.EMAIL } });
@@ -22,7 +22,7 @@ export function EsqueceuPasse() {
 			return;
 		}
 
-		startLoading();
+		loading.start();
 		const res = await AutenticacaoRequest.forgotPassword(formLogin);
 		if (!res) {
 			Notificacao("Os dados estão inválidos!", "error");
@@ -30,7 +30,7 @@ export function EsqueceuPasse() {
 			Notificacao("Sessão inciada com sucesso!");
 		}
 
-		stopLoading();
+		loading.stop();
 	};
 
 	return (
