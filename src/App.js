@@ -55,7 +55,7 @@ function App() {
 	return (
 		<Router>
 			<Routes>
-				{userRole && (
+				{isValid && (
 					<Route path="/" element={<PageLayout />}>
 						{Rotas.RenderRoutes(userRole)}
 						{Rotas.RenderBackofficeRoutes(userRole)}
