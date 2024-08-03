@@ -50,8 +50,8 @@ export class NavItems {
 		},
 		{
 			route: "/backoffice/denuncias",
-			icone: "CollectionPlayFill",
-			label: "Conteudos",
+			icone: "ShieldSlashFill",
+			label: "Denuncias",
 			perfis: [ROLES.ADMIN.ID],
 		},
 		{

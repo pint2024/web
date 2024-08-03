@@ -7,15 +7,16 @@ import { useDrawerStatus } from "hooks/useDrawerStatus";
 import { DRAWER_CLOSE_WIDTH, DRAWER_OPEN_WIDTH } from "data/constants";
 import { useOnResize } from "hooks/useOnResize";
 import { useEffect, useState } from "react";
-import { DrawerStateUtils } from "utils/drawerState.utils";
-import { EnumConstants } from "data/enum.constants";
-import { Authorizor } from "components/helpers/Authorizor";
 import { NavItems } from "data/navItems";
 
 export function Item({ route, icone, label }) {
 	const { drawerIsOpen } = useDrawerStatus();
-	const [isSelected, setisSelected] = useState(false);
+	const [isSelected, setisSelected] = useState();
 	const location = useLocation();
+
+	useEffect(() => {
+		setisSelected(location.pathname === route);
+	}, [location.pathname, route]);
 
 	return (
 		<div className="header-item remove-user-select">
@@ -25,7 +26,7 @@ export function Item({ route, icone, label }) {
 						type={COMMON_TYPES.INVERSO}
 						iconName={icone}
 						size={4}
-						className={`drawer-item-icon ${isSelected ?? "drawer-item-icon-highlight"}`}
+						className={`drawer-item-icon ${isSelected ? "drawer-item-icon-highlight" : ""}`}
 					/>
 					{drawerIsOpen && (
 						<Texto type={COMMON_TYPES.INVERSO} className="drawer-item-label">
@@ -54,9 +55,7 @@ export function Drawer() {
 				transition: "width 0.3s ease",
 			}}
 		>
-			<nav className="drawer-nav-items">
-				{NavItems.Render()}
-			</nav>
+			<nav className="drawer-nav-items">{NavItems.Render()}</nav>
 		</aside>
 	);
 }
