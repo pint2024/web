@@ -54,12 +54,14 @@ export function ResetarPasse() {
 						isInvalid={erros.senha}
 						value={formSenha}
 						label="Senha"
+						type="password"
 					/>
 					<CaixaTexto
 						handleChange={(e) => setFormSenhaConfirmacao(e.target.value)}
 						isInvalid={erros.confirmacao_senha}
 						value={formSenhaConfirmacao}
 						label="Confirme a Senha"
+						type="password"
 					/>
 				</div>
 				<div className="d-flex align-items-center gap-2 mt-4">
