@@ -239,8 +239,8 @@ export class Rotas {
 		return routesUtils.criarRoutes([...this.BackofficeRoutes]);
 	}
 
-	static RenderAuthenticationRoutes(user_role) {
-		const routesUtils = new RoutesUtils(user_role);
+	static RenderAuthenticationRoutes() {
+		const routesUtils = new RoutesUtils();
 		return routesUtils.criarRoutes([...this.AuthenticationRoutes]);
 	}
 }

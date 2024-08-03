@@ -11,17 +11,19 @@ import { AccessDenied } from "layouts/errors/AccessDenied";
 import { useCarregando } from "hooks/useCarregando";
 
 function App() {
-	const [userRole, setuserRole] = useState();
+	const [userRole, setuserRole] = useState(null);
 	const { userData, isValid } = useCurrentUser(true);
 	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
 		if (!userData) return;
 		setuserRole(userData.perfil);
+		stopLoading();
 	}, [isValid, userData]);
 
 	useEffect(() => {
 		document.title = PROJETO_NAME;
+		startLoading();
 	}, []);
 
 	useEffect(() => {
@@ -53,11 +55,13 @@ function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<PageLayout />}>
-					{Rotas.RenderRoutes(userRole)}
-					{Rotas.RenderBackofficeRoutes(userRole)}
-				</Route>
-				<Route path="/">{Rotas.RenderAuthenticationRoutes(userRole)}</Route>
+				{userRole && (
+					<Route path="/" element={<PageLayout />}>
+						{Rotas.RenderRoutes(userRole)}
+						{Rotas.RenderBackofficeRoutes(userRole)}
+					</Route>
+				)}
+				<Route path="/">{Rotas.RenderAuthenticationRoutes()}</Route>
 			</Routes>
 		</Router>
 	);
