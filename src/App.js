@@ -16,9 +16,9 @@ function App() {
 	const { startLoading, stopLoading } = useCarregando();
 
 	useEffect(() => {
+		stopLoading();
 		if (!userData) return;
 		setuserRole(userData.perfil);
-		stopLoading();
 	}, [isValid, userData]);
 
 	useEffect(() => {
