@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "./mapa.css";
 import { MAP_CENTER_COORDS } from "data/constants";
 import { ApiRequest } from "api";
 import { useLoading } from "hooks/useLoading";
+import L from 'leaflet';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
 export const Mapa = ({ handleChange, setisOpen }) => {
 	const [dataConteudo, setDataConteudo] = useState([]);
 	const [markers, setMarkers] = useState([]);
@@ -44,7 +55,7 @@ export const Mapa = ({ handleChange, setisOpen }) => {
 	};
 
 	return (
-		<div>
+		<div id="mapa">
 			<MapContainer center={MAP_CENTER_COORDS} zoom={13} style={{ height: "100vh" }}>
 				<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 				{markers.map((marker, index) => (

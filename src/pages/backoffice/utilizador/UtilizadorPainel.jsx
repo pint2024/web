@@ -83,10 +83,9 @@ export function UtilizadorPainel() {
 				<table className="painel-tabela">
 					<thead>
 						<tr>
-							<th>Imagem</th>
+							<th></th>
 							<th>Tag</th>
 							<th>Nome</th>
-							<th>Sobrenome</th>
 							<th>Email</th>
 							<th>Inativo</th>
 							<th>Verificado</th>
@@ -105,8 +104,7 @@ export function UtilizadorPainel() {
 									</ImagemModal>
 								</td>
 								<td>@{item.tag}</td>
-								<td>{item.nome}</td>
-								<td>{item.sobrenome}</td>
+								<td>{item.nome} {item.sobrenome}</td>
 								<td>{item.email}</td>
 								<td>
 									{item?.inativo ? (
@@ -127,6 +125,13 @@ export function UtilizadorPainel() {
 								<td>{DateUtils.DataNormal(item.data_criacao)}</td>
 								<td>
 									<div className="d-flex gap-2">
+									<Botao
+												title="Utilizador"
+												route={`/conta/${item.id}`}
+												variant={BUTTON_VARIANTS.SECUNDARIO}
+											>
+												<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
+												</Botao>
 										{item?.inativo ? (
 											<Botao
 												title="Ativar"

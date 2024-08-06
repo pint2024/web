@@ -153,18 +153,21 @@ export function BlocoPrincipal({ data }) {
 							</Authorizor>
 							{(utilizadorAtual.id === data.id ||
 								AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
-								<>
 									<ComboBox
 										options={transformarDadosCentro()}
 										placeholder="Escolha o centro..."
 										handleChange={(e) => setselectCentro(e)}
 										value={selectCentro}
 									/>
-									<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
-										Interesses
-									</Botao>
+							)}
+							{(utilizadorAtual.id === data.id &&
+								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
+									Interesses
+								</Botao>
+							)}
+							{(utilizadorAtual.id === data.id ||
+								AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
 									<Botao route={"editar"}>Editar</Botao>
-								</>
 							)}
 						</div>
 						<div className="d-flex gap-3 ">

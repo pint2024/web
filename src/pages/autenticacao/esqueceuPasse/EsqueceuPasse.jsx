@@ -5,11 +5,13 @@ import { CaixaTexto, Botao, Notificacao } from "components/index";
 import { useLoading } from "hooks/useLoading";
 import { REGEX } from "data/regex";
 import { Validador } from "utils/validator";
+import { useNavigate } from "react-router-dom";
 
 export function EsqueceuPasse() {
 	const [formLogin, setFormLogin] = useState("");
 	const [erros, setErros] = useState({});
 	const loading = useLoading();
+	const navigate = useNavigate();
 
 	const handleLogin = async () => {
 		const validador = new Validador({ email: { required: true, pattern: REGEX.EMAIL } });
@@ -25,9 +27,10 @@ export function EsqueceuPasse() {
 		loading.start();
 		const res = await AutenticacaoRequest.forgotPassword(formLogin);
 		if (!res) {
-			Notificacao("Os dados estão inválidos!", "error");
+			Notificacao("Alguma coisa correu mal!", "error");
 		} else {
-			Notificacao("Sessão inciada com sucesso!");
+			Notificacao("Foi-lhe enviado um email!");
+			navigate("/iniciar-sessao");
 		}
 
 		loading.stop();

@@ -36,10 +36,10 @@ export function LinhaConteudo({
 					<Botao onClick={() => handlePopupOpen(id_revisao, titulo)} variant={BUTTON_VARIANTS.PERIGO}>
 						<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
 					</Botao>
-					<Botao route={`/conta/${utilizador?.id}`}>
+					<Botao route={`/conta/${utilizador?.id}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
 						<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
 					</Botao>
-					<Botao route={`/conteudos/${id_conteudo}`}>
+					<Botao route={`/conteudos/${id_conteudo}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
 						<Icone iconName="StarFill" type={COMMON_TYPES.INVERSO} />
 					</Botao>
 				</Row>

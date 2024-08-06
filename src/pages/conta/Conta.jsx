@@ -1,8 +1,4 @@
 import { BlocoPrincipal } from "./blocos/BlocoPrincipal";
-import { BlocoAtividade } from "./blocos/BlocoAtividade";
-import { BlocoEventos } from "./blocos/BlocoEventos";
-import { BlocoEstatisticas } from "./blocos/BlocoEstatisticas";
-import { BlocoComentarios } from "./blocos/BlocoComentario";
 import { useEffect, useState } from "react";
 import { useLoading } from "hooks/useLoading";
 import { useParams } from "react-router-dom";
@@ -44,15 +40,6 @@ export function Conta() {
 			{dataParticipacao.length > 0 && <div className="mt-3">
 				<BlocoParticipacoes data={dataParticipacao} />
 			</div>}
-			{/*<div className="mt-3">
-				<BlocoEventos />
-			</div>
-			<div className="mt-3">
-				<BlocoEstatisticas />
-			</div>
-			<div className="mt-3">
-				<BlocoComentarios />
-			</div>*/}
 		</div>
 	);
 }

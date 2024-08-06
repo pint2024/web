@@ -8,6 +8,7 @@ import { useCurrentUser } from "hooks/useCurrentUser";
 import { Validador } from "utils/validator";
 import { Utils } from "utils/utils";
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
+import { EnumConstants } from "data/enum.constants";
 
 export function ContaEditar() {
 	const { id } = useParams();
@@ -26,7 +27,7 @@ export function ContaEditar() {
 
 	useEffect(() => {
 		if (!isValid) return;
-		if (userData.id !== Utils.convertoStrToInt(id)) {
+		if (userData.id !== Utils.convertoStrToInt(id) && userData.perfil !== EnumConstants.ROLES.ADMIN.ID) {
 			navigate("/");
 		}
 	}, [userData, isValid, id]);

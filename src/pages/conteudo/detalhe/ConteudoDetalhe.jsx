@@ -17,7 +17,6 @@ import { useCurrentUser } from "hooks/useCurrentUser";
 import { useConfirmation } from "hooks/useConfirmation";
 import { myAxios } from "api";
 import { EditarConteudo } from "./EditarConteudo";
-import { Authorizor } from "components/helpers/Authorizor";
 import { AuthorizorHelper } from "components/helpers/AuthorizorHelper";
 
 export function ConteudoDetalhe() {

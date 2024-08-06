@@ -11,6 +11,7 @@ import { AccessDenied } from "layouts/errors/AccessDenied";
 import { useLoading } from "hooks/useLoading";
 
 function App() {
+	const [isLogged, setisLogged] = useState(null);
 	const [userRole, setuserRole] = useState(null);
 	const { userData, isValid } = useCurrentUser(true);
 	const loading = useLoading();
@@ -22,21 +23,27 @@ function App() {
 	}, [isValid, userData]);
 
 	useEffect(() => {
+	console.log("oi2");
 		document.title = PROJETO_NAME;
 		loading.start();
 	}, []);
 
 	useEffect(() => {
 		loading.stop();
-		const handleBeforeUnload = (event) => {
+		const handleLoading = (event) => {
 			loading.start();
 		};
-		window.addEventListener("beforeunload", handleBeforeUnload);
+	  
+		window.addEventListener("beforeunload", handleLoading);
+		window.addEventListener("DOMContentLoaded", handleLoading);
+		window.addEventListener("load", handleLoading);
+	  
 		return () => {
-			window.removeEventListener("beforeunload", handleBeforeUnload);
+			window.removeEventListener("beforeunload", handleLoading);
+		  	window.removeEventListener("DOMContentLoaded", handleLoading);
+		  	window.removeEventListener("load", handleLoading);
 		};
-	}, []);
-
+	  }, []);
 
 	if (!isValid) return;
 
