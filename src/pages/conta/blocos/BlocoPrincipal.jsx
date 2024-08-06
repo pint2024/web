@@ -1,5 +1,5 @@
 import { Icone, Texto, Contentor, Botao, Navegar, Imagem, Popup, ComboBox } from "components/index";
-import { BUTTON_VARIANTS, COMMON_SIZES } from "data/data";
+import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import UtilizadorDefault from "assets/images/placeholders/user-default.png";
@@ -162,12 +162,14 @@ export function BlocoPrincipal({ data }) {
 							)}
 							{(utilizadorAtual.id === data.id &&
 								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
-									Interesses
+									<Icone iconName="BookmarkPlusFill" type={COMMON_TYPES.INVERSO} />
 								</Botao>
 							)}
 							{(utilizadorAtual.id === data.id ||
 								AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
-									<Botao route={"editar"}>Editar</Botao>
+									<Botao route={"editar"}>
+										<Icone iconName="PencilFill" type={COMMON_TYPES.INVERSO} />
+									</Botao>
 							)}
 						</div>
 						<div className="d-flex gap-3 ">
