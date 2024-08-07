@@ -1,4 +1,8 @@
+import { ApiRequest } from "api";
 import { RefreshIcone } from "components/common/icone/RefreshIcone";
+import { useLoading } from "hooks/useLoading";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const data = [
 	{
@@ -27,6 +31,21 @@ const data = [
 	},
 ];
 export function DenunciaPainel() {
+	const [dataDenuncias, setDataDenuncias] = useState([]);
+	const loading = useLoading();
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const fetchData = async () => {
+		loading.start();
+		const data = await ApiRequest.listar("denuncia");
+		setDataDenuncias(data);
+		console.log(data);
+		loading.stop();
+	}
+	
 	const handleRefresh = () => {};
 
 	return (
@@ -41,17 +60,19 @@ export function DenunciaPainel() {
 						<th>Data de Criação</th>
 						<th>Estado</th>
 						<th>Comentario</th>
-						<th>Utilizador</th>
+						<th>Denunciante</th>
+						<th>Denunciante</th>
 					</tr>
 				</thead>
 				<tbody>
-					{data.map((item) => (
+					{dataDenuncias.map((item) => (
 						<tr key={item.id}>
 							<td>{item.motivo}</td>
 							<td>{item.data_criacao}</td>
-							<td>{item.estado}</td>
-							<td>{item.comentario}</td>
-							<td>{item.utilizador}</td>
+							<td>{item.denuncia_estado.estado}</td>
+							<td>{item.denuncia_comentario.comentario}</td>
+							<td>@{item.denuncia_comentario.comentario_utilizador.tag}</td>
+							<td>@{item.denuncia_utilizador.tag}</td>
 						</tr>
 					))}
 				</tbody>

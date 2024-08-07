@@ -4,17 +4,19 @@ import { EnumConstants } from "data/enum.constants";
 import "../painel-tabela.css";
 import { LinhaComentario } from "./LinhaComentario";
 import { ApiRequest } from "api/apiRequest";
-import { Botao, Icone, Notificacao } from "components";
+import { Botao, Icone, Notificacao, Texto } from "components";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { BUTTON_VARIANTS } from "data/data";
 import { Filtros } from "./Filtros";
 import { RefreshIcone } from "components/common/icone/RefreshIcone";
+import { usePopup } from "hooks/usePopup";
 
 export function ComentarioPainel() {
 	const [dataConteudo, setdataConteudo] = useState(null);
 	const [filteredUtilizadores, setFilteredUtilizadores] = useState([]);
 	const loading = useLoading();
 	const puHandleRevisao = usePopupDialogo();
+	const popup = usePopup();
 
 	useEffect(() => {
 		fetchConteudoData();
@@ -67,6 +69,7 @@ export function ComentarioPainel() {
 					id_comentario={item.id}
 					id_revisao={item.revisao_comentario[0].id}
 					handlePopupOpen={handlePopupOpen}
+					handleDenunciasInfoOpen={handleDenunciasInfoOpen}
 				/>
 			))
 		);
@@ -93,8 +96,30 @@ export function ComentarioPainel() {
 		puHandleRevisao.conOpen();
 	};
 
+	const handleDenunciasInfoOpen = (id) => {
+		const comentario = dataConteudo.find(item => item.id === id);
+		const denuncia = comentario.denuncia_comentario;
+		console.log("oi", comentario)
+		popup.puSet({
+			headerTitle: `Denuncias`,
+			body: (
+				<>
+					{denuncia.map((item, i) => (
+						<>
+							<Texto size={2}>Denuncia #{i}</Texto>
+							<Texto>{item?.motivo} | {item?.denuncia_utilizador?.tag}</Texto>
+							<Texto>{item?.denuncia_estado?.estado}</Texto>
+						</>
+					))}
+				</>
+			),
+		});
+		popup.puOpen();
+	};
+
 	return (
 		<>
+			{popup.puCreate()}
 			{puHandleRevisao.conCreate()}
 			<Filtros data={dataConteudo} setFiltered={setFilteredUtilizadores} />
 			<div className="d-flex justify-content-end mt-4">

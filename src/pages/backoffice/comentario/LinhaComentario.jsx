@@ -13,6 +13,7 @@ export function LinhaComentario({
 	id_conteudo,
 	id_revisao,
 	handlePopupOpen,
+	handleDenunciasInfoOpen
 }) {
 	return (
 		<tr key={id_revisao}>
@@ -33,10 +34,13 @@ export function LinhaComentario({
 					<Botao onClick={() => handlePopupOpen(id_revisao, titulo)} variant={BUTTON_VARIANTS.PERIGO}>
 						<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
 					</Botao>
-					<Botao route={`/conta/${utilizador?.id}`}>
+					<Botao onClick={() => handleDenunciasInfoOpen(id_comentario)}>
+						<Icone iconName="ShieldSlashFill" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+					<Botao route={`/conta/${utilizador?.id}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
 						<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
 					</Botao>
-					<Botao route={`/conteudos/${id_conteudo}#comentario-${id_comentario}`}>
+					<Botao route={`/conteudos/${id_conteudo}#comentario-${id_comentario}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
 						<Icone iconName="ChatFill" type={COMMON_TYPES.INVERSO} />
 					</Botao>
 				</Row>

@@ -19,13 +19,10 @@ function App() {
 	useEffect(() => {
 		if (!userData) return;
 		setuserRole(userData.perfil);
-		loading.stop();
 	}, [isValid, userData]);
 
 	useEffect(() => {
-	console.log("oi2");
 		document.title = PROJETO_NAME;
-		loading.start();
 	}, []);
 
 	useEffect(() => {
@@ -35,17 +32,15 @@ function App() {
 		};
 	  
 		window.addEventListener("beforeunload", handleLoading);
-		window.addEventListener("DOMContentLoaded", handleLoading);
-		window.addEventListener("load", handleLoading);
+		//window.addEventListener("DOMContentLoaded", handleLoading);
+		//window.addEventListener("load", handleLoading);
 	  
 		return () => {
 			window.removeEventListener("beforeunload", handleLoading);
-		  	window.removeEventListener("DOMContentLoaded", handleLoading);
-		  	window.removeEventListener("load", handleLoading);
+		  	//window.removeEventListener("DOMContentLoaded", handleLoading);
+		  	//window.removeEventListener("load", handleLoading);
 		};
 	  }, []);
-
-	if (!isValid) return;
 
 	if (userData?.inativo) {
 		return (
