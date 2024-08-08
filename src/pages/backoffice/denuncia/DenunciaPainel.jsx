@@ -4,32 +4,6 @@ import { useLoading } from "hooks/useLoading";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const data = [
-	{
-		id: 1,
-		data_criacao: "2024-06-05",
-		motivo: "Lorem ipsum",
-		estado: "Ativo",
-		comentario: "Dolor sit amet",
-		utilizador: "@lmsebastiao",
-	},
-	{
-		id: 2,
-		data_criacao: "2024-06-04",
-		motivo: "Dolor sit amet",
-		estado: "Inativo",
-		comentario: "Lorem ipsum",
-		utilizador: "@jsantos",
-	},
-	{
-		id: 3,
-		data_criacao: "2024-06-03",
-		motivo: "Consectetur adipiscing elit",
-		estado: "Ativo",
-		comentario: "Consectetur adipiscing elit",
-		utilizador: "@fmeneses",
-	},
-];
 export function DenunciaPainel() {
 	const [dataDenuncias, setDataDenuncias] = useState([]);
 	const loading = useLoading();
@@ -37,6 +11,16 @@ export function DenunciaPainel() {
 	useEffect(() => {
 		fetchData();
 	}, []);
+
+	useEffect(() => {
+		const hash = window.location.hash;
+		if (hash) {
+			const element = document.getElementById(hash.substring(1));
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth" });
+			}
+		}
+	}, [dataDenuncias]);
 
 	const fetchData = async () => {
 		loading.start();
@@ -66,7 +50,7 @@ export function DenunciaPainel() {
 				</thead>
 				<tbody>
 					{dataDenuncias.map((item) => (
-						<tr key={item.id}>
+						<tr id={`denuncia-${item.id}`} key={item.id}>
 							<td>{item.motivo}</td>
 							<td>{item.data_criacao}</td>
 							<td>{item.denuncia_estado.estado}</td>

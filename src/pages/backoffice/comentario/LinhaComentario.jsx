@@ -13,7 +13,8 @@ export function LinhaComentario({
 	id_conteudo,
 	id_revisao,
 	handlePopupOpen,
-	handleDenunciasInfoOpen
+	handleDenunciasInfoOpen,
+	hasDenuncias = false
 }) {
 	return (
 		<tr key={id_revisao}>
@@ -34,9 +35,9 @@ export function LinhaComentario({
 					<Botao onClick={() => handlePopupOpen(id_revisao, titulo)} variant={BUTTON_VARIANTS.PERIGO}>
 						<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
 					</Botao>
-					<Botao onClick={() => handleDenunciasInfoOpen(id_comentario)}>
+					{hasDenuncias && <Botao onClick={() => handleDenunciasInfoOpen(id_comentario)}>
 						<Icone iconName="ShieldSlashFill" type={COMMON_TYPES.INVERSO} />
-					</Botao>
+					</Botao>}
 					<Botao route={`/conta/${utilizador?.id}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
 						<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
 					</Botao>
