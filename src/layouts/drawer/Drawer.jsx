@@ -19,7 +19,7 @@ export function Item({ route, icone, label }) {
 	}, [location.pathname, route]);
 
 	return (
-		<div className="header-item remove-user-select">
+		<div className={`header-item remove-user-select ${isSelected ? "drawer-item-highlight" : "drawer-item"}`}>
 			<Link to={route} className="drawer-position top-gap-beetwen-items">
 				<Row className="gap-3">
 					<Icone

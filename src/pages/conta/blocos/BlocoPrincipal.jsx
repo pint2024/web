@@ -15,7 +15,7 @@ import { Authorizor } from "components/helpers/Authorizor";
 import { EnumConstants } from "data/enum.constants";
 import { AuthorizorHelper } from "components/helpers/AuthorizorHelper";
 
-export function BlocoPrincipal({ data }) {
+export function BlocoPrincipal({ data, fetchData }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
 	const [dataPerfis, setdataPerfis] = useState();
 	const [listInteresses, setlistInteresses] = useState("");
@@ -96,6 +96,12 @@ export function BlocoPrincipal({ data }) {
 		}));
 	};
 
+	const handleInativar = async () => {
+		await ApiRequest.atualizar("utilizador", data.id, { inativo: data.inativo ? false : true });
+		await handleFetchData();
+		await fetchData();
+	}
+
 	return (
 		<Contentor>
 			{isPopupOpen && (
@@ -170,6 +176,11 @@ export function BlocoPrincipal({ data }) {
 									<Botao route={"editar"}>
 										<Icone iconName="PencilFill" type={COMMON_TYPES.INVERSO} />
 									</Botao>
+							)}
+							{(AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
+								<Botao onClick={() => handleInativar()} variant={BUTTON_VARIANTS.PERIGO}>
+									<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
+								</Botao>
 							)}
 						</div>
 						<div className="d-flex gap-3 ">

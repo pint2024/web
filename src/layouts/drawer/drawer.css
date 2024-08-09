@@ -37,6 +37,14 @@ aside {
 }
 
 .drawer-item-icon-highlight {
-	color: var(--ACCENT) !important;
 	transform: scale(1.2);
+}
+
+.drawer-item-highlight {
+  background-color: var(--BLACK-HOVER);
+  border-radius: 10px;
+}
+
+.drawer-item {
+  opacity: 70%;
 }

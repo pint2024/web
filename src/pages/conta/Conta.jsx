@@ -36,7 +36,7 @@ export function Conta() {
 
 	return (
 		<div>
-			<BlocoPrincipal data={dataConta} />
+			<BlocoPrincipal data={dataConta} fetchData={fetchData} />
 			{dataParticipacao.length > 0 && <div className="mt-3">
 				<BlocoParticipacoes data={dataParticipacao} />
 			</div>}

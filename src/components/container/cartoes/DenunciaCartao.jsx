@@ -2,7 +2,7 @@ import { Icone, Navegar } from "components";
 import { Row } from "components/ui/Row";
 import { Link } from "react-router-dom";
 
-export const DenunciaCartao = ({ title, username, status }) => {
+export const DenunciaCartao = ({ id, title, username, status }) => {
   const cardStyle = {
     alignItems: "center",
     border: "1px solid #ddd",
@@ -41,7 +41,7 @@ export const DenunciaCartao = ({ title, username, status }) => {
   };
 
   return (
-    <Link to={"/backoffice/denuncias"}>
+    <Link to={`/backoffice/denuncias#denuncia-${id}`}>
       <div style={cardStyle}>
         <div style={titleStyle}>{title}</div>
         <Row>

@@ -20,7 +20,7 @@ export function Botao({ variant = "primario", type="", route = null, className, 
 		<>
 			{isVariantValid ? (
 				route ? (
-					<Link to={route} className="d-inline-block">
+					<Link to={route}>
 						{renderBotao()}
 					</Link>
 				) : (

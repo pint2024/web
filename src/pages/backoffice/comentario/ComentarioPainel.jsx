@@ -117,6 +117,7 @@ export function ComentarioPainel() {
           {denuncia.map((item, i) => (
             <>
               <DenunciaCartao
+                id={item?.id}
                 title={item?.motivo}
                 username={item?.denuncia_utilizador?.tag}
                 status={item?.denuncia_estado?.estado}
