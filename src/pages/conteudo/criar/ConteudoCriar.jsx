@@ -1,5 +1,5 @@
 import { ApiRequest } from "api";
-import { CaixaTexto, DatePicker, ImageBox, ComboBox, Botao, Notificacao, Texto, Popup } from "components/index";
+import { CaixaTexto, DatePicker, ImageBox, ComboBox, Botao, Notificacao, Texto, Popup, Icone } from "components/index";
 import { Classificacao } from "components/ui/controlosInterecao/classificacao/Classificacao";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import { EnumConstants } from "data/enum.constants";
@@ -155,7 +155,7 @@ export function ConteudoCriar() {
 		const response = await ApiRequest.criar_with_files("conteudo", data, "imagem");
 		if (response) {
 			Notificacao("Conteudo criado!");
-			navigate("/conteudos");
+			navigate("/");
 		}
 		loading.stop();
 	};
@@ -209,7 +209,7 @@ export function ConteudoCriar() {
 					disabled={true}
 				/>
 				<Botao className="mt-2" onClick={() => handleSelectPopup()} label="Endereço">
-					Selecionar
+					<Icone iconName="Search" type={COMMON_TYPES.INVERSO}/>
 				</Botao>
 			</Row>
 			<ComboBox

@@ -1,4 +1,4 @@
-import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone, Confirmacao, Popup } from "components/index";
+import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone, Confirmacao, Popup, Notificacao } from "components/index";
 import { useEffect, useState } from "react";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
@@ -114,6 +114,17 @@ export function ConteudoDetalhe() {
 		setisPopupOpen(false);
 	};
 
+	const handleCopyLink = () => {
+		const url = window.location.href;
+		navigator.clipboard.writeText(url)
+			.then(() => {
+				Notificacao("Link copiado para a área de transferência!", "info")
+			})
+			.catch(err => {
+				console.error('Erro ao copiar o link: ', err);
+			});
+	};
+
 	return (
 		<div>
 			{isPopupOpen && (
@@ -209,11 +220,14 @@ export function ConteudoDetalhe() {
 									Editar
 								</Botao>
 							)}
-							<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={handleRevisionPopup}>
+							<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={() => handleRevisionPopup()}>
 								Rever
 							</Botao>
 						</>
 					)}
+					<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => handleCopyLink()}>
+						Copiar Link
+					</Botao>
 				</section>
 				<section>
 					<ComentarioSeccao id={id} />

@@ -38,3 +38,8 @@
 .modal-content {
 	background-color: var(--BACKGROUND);
 }
+
+.modal-content {
+	max-height: 90vh;
+	overflow-y: auto;
+}

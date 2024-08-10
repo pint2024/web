@@ -6,9 +6,9 @@ import axios from "axios";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import { Botao, CaixaTexto } from "components";
+import { Botao, CaixaTexto, Icone } from "components";
 import { Row } from "../Row";
-import { BUTTON_VARIANTS } from "data/data";
+import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { MAP_CENTER_COORDS } from "data/constants";
 
 // Corrigir o ícone padrão do Leaflet que não é exibido corretamente com Webpack
@@ -99,7 +99,7 @@ export const MapaComponent = ({ handleChange, setisOpen }) => {
 
 	return (
 		<div>
-			<Row>
+			<Row className="gap-2 mb-3">
 				<CaixaTexto
 					value={address}
 					handleChange={(e) => setAddress(e.target.value)}
@@ -107,17 +107,17 @@ export const MapaComponent = ({ handleChange, setisOpen }) => {
 					handleSubmit={() => handleSearch(address)}
 				/>
 				<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => handleSearch(address)}>
-					Pesquisar
+					<Icone iconName="Search" type={COMMON_TYPES.INVERSO} />
 				</Botao>
 			</Row>
-			<MapContainer center={MAP_CENTER_COORDS} zoom={13} style={{ height: "80vh", width: "100%" }}>
+			<MapContainer center={MAP_CENTER_COORDS} zoom={13} style={{ height: "65vh", width: "100%" }}>
 				<TileLayer
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				/>
 				<LocationMarker />
 			</MapContainer>
-			<Botao onClick={() => handleGetCoords()}>Confirmar</Botao>
+			<Botao onClick={() => handleGetCoords()} className="mt-5">Confirmar</Botao>
 		</div>
 	);
 };
