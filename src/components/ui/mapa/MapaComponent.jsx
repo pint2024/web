@@ -91,7 +91,6 @@ export const MapaComponent = ({ handleChange, setisOpen }) => {
 		if (position) {
 			const addressData = await reverseGeocode(position.lat, position.lng);
 			handleChange({ position, address: addressData.display_name });
-			console.log({ position, address: addressData.display_name })
 			setisOpen(false);
 		} else {
 			alert("Escolha uma localização");

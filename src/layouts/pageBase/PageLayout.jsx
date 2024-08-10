@@ -7,15 +7,15 @@ import { Drawer } from "layouts/drawer/Drawer";
 import { DRAWER_CLOSE_WIDTH, DRAWER_OPEN_WIDTH, PROJETO_NAME } from "data/constants";
 import { useEffect } from "react";
 import { RoutesUtils } from "utils/routes.utils";
+import { Suspense } from "react";
 
 export function PageLayout() {
 	const { drawerIsOpen, drawerIsHidden } = useDrawerStatus();
 	const { pathname } = useLocation();
 
 	useEffect(() => {
-		const rotasAtuais = RoutesUtils.findRouteBySinglePath(pathname);
-		const rotaAtual = rotasAtuais[rotasAtuais.length - 1];
-		document.title = rotaAtual ? rotaAtual.section + " - " + PROJETO_NAME : PROJETO_NAME;
+		/*const teste = RoutesUtils.encontrarRota(pathname);
+		document.title = teste ? teste.section + " - " + PROJETO_NAME : PROJETO_NAME;*/
 	}, [pathname]);
 
 	return (
@@ -26,12 +26,18 @@ export function PageLayout() {
 				<div
 					id="main-conteudo"
 					style={{
-						marginLeft: !drawerIsHidden ? (drawerIsOpen ? `${DRAWER_CLOSE_WIDTH}px` : `${DRAWER_OPEN_WIDTH}px`) : `0px`,
+						marginLeft: !drawerIsHidden
+							? drawerIsOpen
+								? `${DRAWER_CLOSE_WIDTH}px`
+								: `${DRAWER_OPEN_WIDTH}px`
+							: `0px`,
 						transition: "margin-left 0.3s ease",
 					}}
 				>
 					<PageContent>
-						<Outlet />
+						<Suspense fallback={<div>Loading...</div>}>
+							<Outlet />
+						</Suspense>
 					</PageContent>
 				</div>
 			</main>

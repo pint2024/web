@@ -5,7 +5,6 @@ import { DateUtils } from "utils/date.utils";
 import { ApiRequest } from "api";
 
 export function Comentario({ utilizador, comentario, dropdownItems }) {
-console.log(dropdownItems)
 	return (
 		<div className="card mb-2" key={comentario.id}>
 			<div className="card-body">

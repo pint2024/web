@@ -43,7 +43,6 @@ export function DenunciaPainel() {
 		loading.start();
 		const data = await ApiRequest.listar("denuncia");
 		setDataDenuncias(data);
-		console.log(data);
 		loading.stop();
 	};
 
@@ -52,7 +51,6 @@ export function DenunciaPainel() {
 	};
 
 	const handleUpdateRevisao = async (id, estado) => {
-		console.log(id);
 		loading.start();
 		puHandleRevisao.conClose();
 		await ApiRequest.atualizar("denuncia", id, { estado: estado });

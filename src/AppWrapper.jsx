@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import { LoadingProvider } from "context/loadingContext";
 import { AutenticacaoProvider } from "hooks/useAutenticacao";
 import { DrawerStatusProvider } from "context/drawerStatusContext";
+import { GetCurrentUserProvider } from "context/GetCurrentUser";
 
 export function AppWrapper() {
 	return (
@@ -10,8 +11,10 @@ export function AppWrapper() {
 			<AutenticacaoProvider>
 				<LoadingProvider>
 					<DrawerStatusProvider>
-						<ToastContainer />
-						<App />
+						<GetCurrentUserProvider>
+							<ToastContainer />
+							<App />
+						</GetCurrentUserProvider>
 					</DrawerStatusProvider>
 				</LoadingProvider>
 			</AutenticacaoProvider>

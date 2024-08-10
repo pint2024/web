@@ -3,6 +3,7 @@ import { Route, Navigate } from "react-router-dom";
 import React from "react";
 import { Rotas } from "routes";
 import { Utils } from "./utils";
+import { NotFound } from "layouts/errors/NotFound";
 
 export class RoutesUtils {
 	constructor(user_role) {
@@ -24,15 +25,59 @@ export class RoutesUtils {
 	};
 
 	static findRouteBySinglePath(path) {
-		const pathnames = path.split("/").filter((path) => path !== "");
+		const pathnames = path?.split("/").filter((path) => path !== "");
 		const breadcrumb = [];
 
 		for (const path of pathnames) {
-			const route = RoutesUtils.findRouteByPath("/" + path);
+			const route = RoutesUtils.encontrarRota("/" + path);
 			if (route) breadcrumb.push(route);
 		}
 
 		return breadcrumb;
+	}
+
+	static encontrarRota(pathCompleto) {
+		// Função recursiva para encontrar a melhor rota
+		const procurarMelhorRota = (rotas, path, basePath = "") => {
+			let melhorRota = null;
+			let maiorCorrespondencia = 0;
+
+			rotas.forEach((rota) => {
+				if (rota.path !== "*") {
+					let caminhoAtual = `${basePath}${rota.path}`;
+
+					// Substituir parâmetros dinâmicos com expressões regulares
+					if (caminhoAtual) {
+						caminhoAtual = caminhoAtual.replace(/:\w+/g, "[^/]+");
+					}
+
+					const regexPath = new RegExp(`^${caminhoAtual}$`);
+
+					// Verificar correspondência
+					if (regexPath.test(path)) {
+						const correspondencia = caminhoAtual.length;
+						if (correspondencia > maiorCorrespondencia) {
+							melhorRota = rota;
+							maiorCorrespondencia = correspondencia;
+						}
+					}
+
+					// Verificar rotas filhas
+					if (rota.children) {
+						const rotaFilha = procurarMelhorRota(rota.children, path, `${caminhoAtual}/`);
+						if (rotaFilha && rotaFilha.correspondencia > maiorCorrespondencia) {
+							melhorRota = rotaFilha.rota;
+							maiorCorrespondencia = rotaFilha.correspondencia;
+						}
+					}
+				}
+			});
+
+			return { rota: melhorRota, correspondencia: maiorCorrespondencia };
+		};
+
+		const resultado = procurarMelhorRota([...Rotas.MainRoutes, ...Rotas.AuthRoutes], pathCompleto);
+		return resultado.rota;
 	}
 
 	static findRouteByPath(path) {
@@ -51,6 +96,6 @@ export class RoutesUtils {
 			return null;
 		};
 
-		return findRecursive([...Rotas.FrontofficeRoutes, ...Rotas.BackofficeRoutes], path);
+		return findRecursive([Rotas.Routes], path);
 	}
 }

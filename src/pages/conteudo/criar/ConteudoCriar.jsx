@@ -82,7 +82,6 @@ export function ConteudoCriar() {
 			utilizador: utilizadorAtual.id,
 			tipo: id,
 		};
-		console.log(data);
 
 		const validacao = validador.validar(data);
 		setErros(validacao);
@@ -172,7 +171,6 @@ export function ConteudoCriar() {
 
 	const handleSelectPopup = () => {
 		setisOpen(true);
-		console.log("as", dataCoords);
 	};
 
 	return (

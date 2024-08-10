@@ -1,10 +1,13 @@
 import { AutenticacaoRequest } from "api";
 import { userProfile } from "data/userProfile";
 import { useEffect, useState } from "react";
+import { useGetCurrentUser } from "./useGetCurrentUser";
 
 export const useCurrentUser = (shouldReturnIsValid = false) => {
-	const [userData, setuserData] = useState({});
-	const [isValid, setisValid] = useState(false);
+	const [userData, setUserData] = useState({});
+	const [isValid, setIsValid] = useState(false);
+	const [hasFetched, setHasFetched] = useState(false); // Novo
+	const localData = useGetCurrentUser();
 
 	useEffect(() => {
 		getUserData();
@@ -14,14 +17,19 @@ export const useCurrentUser = (shouldReturnIsValid = false) => {
 		try {
 			const data = await AutenticacaoRequest.obterUtilizadorAtual();
 			userProfile.setData(data);
-			if (!data) setisValid(true);
-			setuserData(data);
-			setisValid(true);
+			setUserData(data);
+			localData.setUserData(data);
+			setIsValid(!!data);
+			localData.setIsValid(!!data);
 		} catch (error) {
-			setisValid(false);
+			setIsValid(false);
+			localData.setIsValid(false);
 			console.error("Error fetching user data:", error);
+		} finally {
+			setHasFetched(true);
+			localData.setHasFetched(true);
 		}
 	};
 
-	return shouldReturnIsValid ? { userData, isValid } : userData;
+	return shouldReturnIsValid ? { userData, isValid, hasFetched } : userData;
 };

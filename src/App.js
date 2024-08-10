@@ -1,5 +1,5 @@
 /// React
-import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
+import { createBrowserRouter, Route, BrowserRouter as Router, RouterProvider, Routes, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 /// Componentes
@@ -9,11 +9,13 @@ import { Rotas } from "routes";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { AccessDenied } from "layouts/errors/AccessDenied";
 import { useLoading } from "hooks/useLoading";
+import { useGetCurrentUser } from "hooks/useGetCurrentUser";
 
 function App() {
 	const [isLogged, setisLogged] = useState(null);
 	const [userRole, setuserRole] = useState(null);
-	const { userData, isValid } = useCurrentUser(true);
+	const { userData, isValid, hasFetched } = useCurrentUser(true);
+	const localData = useGetCurrentUser(true);
 	const loading = useLoading();
 
 	useEffect(() => {
@@ -30,17 +32,19 @@ function App() {
 		const handleLoading = (event) => {
 			loading.start();
 		};
-	  
-		window.addEventListener("beforeunload", handleLoading);
+
+		//window.addEventListener("beforeunload", handleLoading);
 		//window.addEventListener("DOMContentLoaded", handleLoading);
 		//window.addEventListener("load", handleLoading);
-	  
+
 		return () => {
-			window.removeEventListener("beforeunload", handleLoading);
-		  	//window.removeEventListener("DOMContentLoaded", handleLoading);
-		  	//window.removeEventListener("load", handleLoading);
+			//window.removeEventListener("beforeunload", handleLoading);
+			//window.removeEventListener("DOMContentLoaded", handleLoading);
+			//window.removeEventListener("load", handleLoading);
 		};
-	  }, []);
+	}, []);
+
+	if (!hasFetched) return;
 
 	if (userData?.inativo) {
 		return (
@@ -55,19 +59,9 @@ function App() {
 		);
 	}
 
-	return (
-		<Router>
-			<Routes>
-				{isValid && (
-					<Route path="/" element={<PageLayout />}>
-						{Rotas.RenderRoutes(userRole)}
-						{Rotas.RenderBackofficeRoutes(userRole)}
-					</Route>
-				)}
-				<Route path="/">{Rotas.RenderAuthenticationRoutes()}</Route>
-			</Routes>
-		</Router>
-	);
+	const loggedRoutes = createBrowserRouter(Rotas.Routes);
+	const unloggedRoutes = createBrowserRouter(Rotas.AuthRoutes);
+	return <>{isValid ? <RouterProvider router={loggedRoutes} /> : <RouterProvider router={unloggedRoutes} />}</>;
 }
 
 export default App;

@@ -11,7 +11,6 @@ export function MapaPopup({ handleChange, popupState, setPopupState }) {
 	}, [popupState]);
 
 	useEffect(() => {
-		console.log(dataCoords)
 		setdataCoords(dataCoords);
 		handleChange(dataCoords);
 	}, [dataCoords]);

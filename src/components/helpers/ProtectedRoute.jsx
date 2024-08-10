@@ -1,9 +1,11 @@
 import { userProfile } from "data/userProfile";
 import { useEffect, useState } from "react";
 import { AuthorizorHelper } from "./AuthorizorHelper";
+import { NotFound } from "layouts/errors/NotFound";
+import { Navigate } from "react-router-dom";
 import { useGetCurrentUser } from "hooks/useGetCurrentUser";
 
-export function Authorizor({ requiredPermission, children }) {
+export function ProtectedRoute({ requiredPermission, element }) {
 	const [profile, setprofile] = useState(0);
 	const [hasPermission, setHasPermission] = useState(false);
 	const localData = useGetCurrentUser();
@@ -14,10 +16,13 @@ export function Authorizor({ requiredPermission, children }) {
 	}, []);
 
 	useEffect(() => {
+		if (!profile || profile === 0) {
+			setHasPermission(false);
+			return;
+		}
 		const check = AuthorizorHelper.verifyPermission(profile, requiredPermission);
 		setHasPermission(check);
 	}, [profile, requiredPermission]);
 
-	return hasPermission ? children : null;
+	return hasPermission  ? element : <NotFound/>;
 }
-

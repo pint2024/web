@@ -15,7 +15,6 @@ import { CentroPainel } from "pages/backoffice/centros/CentroPainel";
 import { EsqueceuPasse } from "pages/autenticacao/esqueceuPasse/EsqueceuPasse";
 import { ResetarPasse } from "pages/autenticacao/resetPasse/ResetarPasse";
 import { Sobre } from "pages/sobre/Sobre";
-import { RoutesUtils } from "utils/routes.utils";
 import { EnumConstants } from "data/enum.constants";
 import { Estatisticas } from "pages/backoffice/estatisticas/Estatisticas";
 import { AtualizarPasse } from "pages/autenticacao/atualizarPasse/AtualizarPasse";
@@ -23,83 +22,78 @@ import { TerminarSessao } from "pages/autenticacao/terminarSessao/TerminarSessao
 import { Navigate } from "react-router-dom";
 import { DenunciaPainel } from "pages/backoffice/denuncia/DenunciaPainel";
 import { Mapa } from "pages/mapa/Mapa";
+import { PageLayout } from "layouts/pageBase/PageLayout";
+import { ProtectedRoute } from "components/helpers/ProtectedRoute";
 
 const ROLES = EnumConstants.ROLES;
 
 export class Rotas {
-	static InicialRoutes = [
+	static MainRoutes = [
 		{
 			title: "Página Inicial",
 			section: "Página Inicial",
 			path: "/",
-			element: <PaginaInicial />,
+			element: <ProtectedRoute element={<PaginaInicial />} requiredPermission={[ROLES.USER.ID]} />,
 			perfis: [ROLES.USER.ID],
 		},
-	];
-
-	static ConteudoRoutes = [
 		{
 			title: "Conteudos",
 			section: "Conteudos",
 			path: "/conteudos",
-			element: <Navigate to="/" />,
 			perfis: [ROLES.USER.ID],
 			children: [
 				{
 					title: "Criar",
 					section: "Conteudos",
-					path: "/criar/:id",
-					element: <ConteudoCriar />,
+					path: "criar/:id",
+					element: <ProtectedRoute element={<ConteudoCriar />} requiredPermission={[ROLES.USER.ID]} />,
 					perfis: [ROLES.USER.ID],
 				},
 				{
 					title: "Detalhe",
 					section: "Conteudos",
-					path: "/:id",
-					element: <ConteudoDetalhe />,
+					path: ":id",
+					element: <ProtectedRoute element={<ConteudoDetalhe />} requiredPermission={[ROLES.USER.ID]} />,
 					perfis: [ROLES.USER.ID],
 				},
 			],
 		},
-	];
-
-	static CalendarioRoutes = [
 		{
 			title: "Mapa",
 			section: "Mapa",
 			path: "/mapa",
-			element: <Mapa />,
+			element: <ProtectedRoute element={<Mapa />} requiredPermission={[ROLES.ADMIN.ID]} />,
 			perfis: [ROLES.ADMIN.ID],
 		},
 		{
 			title: "Calendário",
 			section: "Calendário",
 			path: "/calendario",
-			element: <Calendario />,
+			element: <ProtectedRoute element={<Calendario />} requiredPermission={[ROLES.USER.ID]} />,
 			perfis: [ROLES.USER.ID],
 		},
-	];
-
-	static UtilizadorRoutes = [
 		{
 			title: "Conta",
 			section: "Conta",
-			path: "/conta/:id",
-			element: <Conta />,
+			path: "/conta",
 			perfis: [ROLES.USER.ID],
 			children: [
 				{
+					title: "Conta",
+					section: "Conta",
+					path: ":id",
+					element: <ProtectedRoute element={<Conta />} requiredPermission={[ROLES.USER.ID]} />,
+					perfis: [ROLES.USER.ID],
+				},
+				{
 					title: "Editar",
 					section: "Conta",
-					path: "/editar",
-					element: <ContaEditar />,
+					path: "editar",
+					element: <ProtectedRoute element={<ContaEditar />} requiredPermission={[ROLES.USER.ID]} />,
 					perfis: [ROLES.USER.ID],
 				},
 			],
 		},
-	];
-
-	static SobreRoutes = [
 		{
 			title: "Sobre",
 			section: "Sobre",
@@ -107,9 +101,93 @@ export class Rotas {
 			element: <Sobre />,
 			perfis: [],
 		},
+		{
+			title: "Não encontrado",
+			section: "Não encontrado ",
+			path: "*",
+			element: <NotFound />,
+			perfis: [],
+		},
+		{
+			title: "Não encontrado",
+			section: "Não encontrado ",
+			path: "/not-found",
+			element: <NotFound />,
+			perfis: [],
+		},
+		{
+			title: "Backoffice",
+			section: "Backoffice",
+			path: "/backoffice",
+			perfis: [ROLES.ADMIN.ID],
+			children: [
+				{
+					title: "Utilizador",
+					section: "Utilizador",
+					path: "utilizadores",
+					element: <ProtectedRoute element={<UtilizadorPainel />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+				{
+					title: "Centro",
+					section: "Centro",
+					path: "centros",
+					element: <ProtectedRoute element={<CentroPainel />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+				{
+					title: "Tópicos",
+					section: "Tópicos",
+					path: "topicos",
+					element: <ProtectedRoute element={<TopicosPainel />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+				{
+					title: "Estatísticas",
+					section: "Estatísticas",
+					path: "estatisticas",
+					element: <ProtectedRoute element={<Estatisticas />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+				{
+					title: "Conteudo",
+					section: "Conteudo",
+					path: "conteudos",
+					element: <ProtectedRoute element={<ConteudoPainel />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+				{
+					title: "Comentário",
+					section: "Comentário",
+					path: "comentarios",
+					element: <ProtectedRoute element={<ComentarioPainel />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+				{
+					title: "Denuncias",
+					section: "Denuncias",
+					path: "denuncias",
+					element: <ProtectedRoute element={<DenunciaPainel />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+			],
+		},
+		{
+			title: "Terminar Sessão",
+			section: "Terminar Sessão",
+			path: "/terminar-sessao",
+			element: <TerminarSessao />,
+			perfis: [],
+		},
 	];
 
-	static AutenticacaoRoutes = [
+	static AuthRoutes = [
+		{
+			title: "Página Inicial",
+			section: "Página Inicial",
+			path: "/",
+			element: <Navigate to={"iniciar-sessao"} />,
+		},
 		{
 			title: "Iniciar Sessão",
 			section: "Iniciar Sessão",
@@ -138,98 +216,30 @@ export class Rotas {
 			element: <ResetarPasse />,
 			perfis: [],
 		},
+	];
+
+	static Routes = [
 		{
-			title: "Terminar Sessão",
-			section: "Terminar Sessão",
-			path: "/terminar-sessao",
-			element: <TerminarSessao />,
-			perfis: [],
+			title: "Softshares",
+			section: "Softshares",
+			element: <PageLayout />,
+			errorElement: <NotFound />,
+			children: Rotas.MainRoutes,
 		},
 	];
 
-	static ErrosRoutes = [
-		{
-			title: "Não encontrado",
-			section: "Não encontrado ",
-			path: "*",
-			element: <NotFound />,
-			perfis: [],
-		},
-	];
+	//static AuthenticationRoutes = [...this.AutenticacaoRoutes];
 
-	static AuthenticationRoutes = [...this.AutenticacaoRoutes];
-
-	static FrontofficeRoutes = [
+	/*static FrontofficeRoutes = [
 		...this.InicialRoutes,
 		...this.ConteudoRoutes,
 		...this.CalendarioRoutes,
 		...this.UtilizadorRoutes,
 		...this.SobreRoutes,
 		...this.ErrosRoutes,
-	];
+	];*/
 
-	static BackofficeRoutes = [
-		{
-			title: "Backoffice",
-			section: "Backoffice",
-			path: "/backoffice",
-			element: <Navigate to={"/backoffice/utilizadores"} />,
-			perfis: [0],
-			children: [
-				{
-					title: "Utilizador",
-					section: "Utilizador",
-					path: "/utilizadores",
-					element: <UtilizadorPainel />,
-					perfis: [0],
-				},
-				{
-					title: "Centro",
-					section: "Centro",
-					path: "/centros",
-					element: <CentroPainel />,
-					perfis: [0],
-				},
-				{
-					title: "Tópicos",
-					section: "Tópicos",
-					path: "/topicos",
-					element: <TopicosPainel />,
-					perfis: [0],
-				},
-				{
-					title: "Estatísticas",
-					section: "Estatísticas",
-					path: "/estatisticas",
-					element: <Estatisticas />,
-					perfis: [0],
-				},
-				{
-					title: "Conteudo",
-					section: "Conteudo",
-					path: "/conteudos",
-					element: <ConteudoPainel />,
-					perfis: [0],
-				},
-				{
-					title: "Comentário",
-					section: "Comentário",
-					path: "/comentarios",
-					element: <ComentarioPainel />,
-					perfis: [0],
-				},
-				{
-					title: "Denuncias",
-					section: "Denuncias",
-					path: "/denuncias",
-					element: <DenunciaPainel />,
-					perfis: [0],
-				},
-			],
-		},
-	];
-
-	static RenderRoutes(user_role) {
+	/*static RenderRoutes(user_role) {
 		const routesUtils = new RoutesUtils(user_role);
 		return routesUtils.criarRoutes([...this.FrontofficeRoutes]);
 	}
@@ -242,5 +252,5 @@ export class Rotas {
 	static RenderAuthenticationRoutes() {
 		const routesUtils = new RoutesUtils();
 		return routesUtils.criarRoutes([...this.AuthenticationRoutes]);
-	}
+	}*/
 }

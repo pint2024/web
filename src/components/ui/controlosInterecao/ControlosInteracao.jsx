@@ -12,8 +12,6 @@ export function ControlosInteracao({ conteudo_id, utilizador_atual, defaultValue
 
 	useEffect(() => {
 		for (const classificacao of defaultValue) {
-			console.log(classificacao);
-			console.log(classificacao.utilizador, utilizador_atual);
 			if (classificacao.utilizador === Utils.convertoStrToInt(utilizador_atual.id)) setClassificacao(classificacao.classificacao);
 		}
 	}, []);

@@ -1,6 +1,7 @@
 class UserProfile {
 	constructor() {
 		this.data = {};
+		this.hasFetched = false;
 	}
 
 	setData(data) {
@@ -13,6 +14,10 @@ class UserProfile {
 
 	getPermission() {
 		return this.data?.perfil;
+	}
+
+	getHasFetched() {
+		return this.hasFetched;
 	}
 }
 

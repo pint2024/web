@@ -17,14 +17,12 @@ export function Breadcrumb() {
 		setBreadcrumb();
 	}, [location]);
 
-	if (breadcrumbPath.length <= 0) return;
-
 	return (
 		<section id="Breadcrumb" className="d-flex gap-2 align-items-center ms-3 mb-4	">
 			<Link to="/" className="d-flex align-items-center">
 				<Icone iconName="HouseFill" size={0} type={COMMON_TYPES.SECUNDARIO} className="link-hover" />
 			</Link>
-			{breadcrumbPath.map((item, index) => (
+			{breadcrumbPath.length > 0 && breadcrumbPath.map((item, index) => (
 				<div className="d-flex align-items-center gap-2" key={index}>
 					<Texto size={0} type={COMMON_TYPES.SECUNDARIO}>
 						{">"}
