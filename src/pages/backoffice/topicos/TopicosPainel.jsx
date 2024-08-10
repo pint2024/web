@@ -6,6 +6,12 @@ import { CriarTopicoPainel } from "./CriarTopicoPainel";
 import { CriarSubtopicoPainel } from "./CriarSubtopicoPainel";
 import { RefreshIcone } from "components/common/icone/RefreshIcone";
 import { useLoading } from "hooks/useLoading";
+import { Tabela } from "components/ui/tabela/Tabela";
+
+const columns = [
+	{ id: "topico", label: "Tópico", minWidth: 170 },
+	{ id: "subtopico", label: "Subtópico", minWidth: 100 },
+];
 
 export function TopicosPainel() {
 	const [dataTopicos, setdataTopicos] = useState(null);
@@ -34,6 +40,14 @@ export function TopicosPainel() {
 		fetchConteudoData();
 	};
 
+	if (!dataTopicos) return;
+
+	const rows = dataTopicos.map((item) => ({
+		id: item.id, // Usando o ID como chave única
+		topico: item.topico,
+		subtopico: item.subtopico_topico.map((subItem) => subItem.area).join(", "),
+	}));
+
 	return (
 		<>
 			{isPopupTopicoOpen && (
@@ -53,45 +67,17 @@ export function TopicosPainel() {
 			<div className="d-flex align-items-center gap-3">
 				<Botao onClick={() => setisPopupTopicoOpen(true)}>
 					<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
-					Adicionar Tópico
+					Tópico
 				</Botao>
 				<Botao onClick={() => setisPopupSubtopicoOpen(true)}>
 					<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
-					Adicionar Subtópico
+					Subtópico
 				</Botao>
 			</div>
 			<div className="d-flex justify-content-end mt-4">
 				<RefreshIcone handleRefresh={() => handleRefresh()} />
 			</div>
-			{dataTopicos ? (
-				<table className="painel-tabela">
-					<thead>
-						<tr>
-							<th>Tópico</th>
-							<th>Subtópico</th>
-						</tr>
-					</thead>
-					<tbody>
-						{dataTopicos.map((item) => (
-							<React.Fragment key={item.id}>
-								<tr key={item.id}>
-									<td>{item.topico}</td>
-									<td>
-										{item.subtopico_topico.map((subItem, index) => (
-											<React.Fragment key={subItem.id}>
-												{subItem.area}
-												{index !== item.subtopico_topico.length - 1 && ", "}
-											</React.Fragment>
-										))}
-									</td>
-								</tr>
-							</React.Fragment>
-						))}
-					</tbody>
-				</table>
-			) : (
-				<p>Carregando...</p>
-			)}
+			{dataTopicos ? <Tabela columns={columns} rows={rows}  /> : <p>Carregando...</p>}
 		</>
 	);
 }

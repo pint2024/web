@@ -100,7 +100,7 @@ export function BlocoPrincipal({ data, fetchData }) {
 		await ApiRequest.atualizar("utilizador", data.id, { inativo: data.inativo ? false : true });
 		await handleFetchData();
 		await fetchData();
-	}
+	};
 
 	return (
 		<Contentor>
@@ -155,29 +155,32 @@ export function BlocoPrincipal({ data, fetchData }) {
 									placeholder="Escolha o perfil..."
 									handleChange={(e) => setselectPerfil(e)}
 									value={selectPerfil}
+									className="combo-box"
 								/>
-							</Authorizor>
-							{(utilizadorAtual.id === data.id ||
-								AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
+								{utilizadorAtual.id === data.id && (
 									<ComboBox
 										options={transformarDadosCentro()}
 										placeholder="Escolha o centro..."
 										handleChange={(e) => setselectCentro(e)}
 										value={selectCentro}
+										className="combo-box"
 									/>
-							)}
-							{(utilizadorAtual.id === data.id &&
+								)}
+							</Authorizor>
+						</div>
+						<div className="d-flex gap-3">
+							{utilizadorAtual.id === data.id && (
 								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
 									<Icone iconName="BookmarkPlusFill" type={COMMON_TYPES.INVERSO} />
 								</Botao>
 							)}
 							{(utilizadorAtual.id === data.id ||
 								AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
-									<Botao route={"editar"}>
-										<Icone iconName="PencilFill" type={COMMON_TYPES.INVERSO} />
-									</Botao>
+								<Botao route={"editar"}>
+									<Icone iconName="PencilFill" type={COMMON_TYPES.INVERSO} />
+								</Botao>
 							)}
-							{(AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
+							{AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID) && (
 								<Botao onClick={() => handleInativar()} variant={BUTTON_VARIANTS.PERIGO}>
 									<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
 								</Botao>

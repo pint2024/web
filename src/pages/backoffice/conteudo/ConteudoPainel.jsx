@@ -2,13 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useLoading } from "hooks/useLoading";
 import { EnumConstants } from "data/enum.constants";
 import "../painel-tabela.css";
-import { LinhaConteudo } from "./LinhaConteudo";
 import { ApiRequest } from "api/apiRequest";
-import { Botao, Icone, Notificacao } from "components";
+import { Botao, Icone, Navegar, Notificacao, OverlayPerfil, Tooltip } from "components";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
-import { BUTTON_VARIANTS } from "data/data";
+import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { Filtros } from "./Filtros";
 import { RefreshIcone } from "components/common/icone/RefreshIcone";
+import { DateUtils } from "utils/date.utils";
+import { Row } from "components/ui/Row";
+import { Tabela } from "components/ui/tabela/Tabela";
+
+const columns = [
+	{ id: "tag", label: "Tag", align: "left" },
+	{ id: "data_criacao", label: "Data de Criação", align: "left" },
+	{ id: "estado", label: "Estado", align: "left" },
+	{ id: "titulo", label: "Título", align: "left" },
+	{ id: "tipo", label: "Tipo", align: "left" },
+	{ id: "subtopico", label: "Subtopico", align: "left" },
+	{ id: "acoes", label: "Ações", align: "center" },
+];
 
 export function ConteudoPainel() {
 	const [dataConteudo, setdataConteudo] = useState(null);
@@ -22,7 +34,7 @@ export function ConteudoPainel() {
 
 	const handleRefresh = () => {
 		fetchConteudoData();
-	}
+	};
 
 	const fetchConteudoData = async () => {
 		loading.start();
@@ -54,25 +66,6 @@ export function ConteudoPainel() {
 
 	if (!dataConteudo) return;
 
-	function setupTableContent() {
-		return (
-			filteredUtilizadores &&
-			filteredUtilizadores.map((item) => (
-				<LinhaConteudo
-					utilizador={item?.conteudo_utilizador}
-					data_criacao={item.data_criacao}
-					estado={item.revisao_conteudo[0].revisao_estado?.estado}
-					titulo={item?.titulo}
-					tipo={item?.conteudo_tipo.tipo}
-					subtopico={item?.conteudo_subtopico.area}
-					id_conteudo={item.id}
-					id_revisao={item.revisao_conteudo[0].id}
-					handlePopupOpen={handlePopupOpen}
-				/>
-			))
-		);
-	}
-
 	const handlePopupOpen = (id, titulo) => {
 		puHandleRevisao.conSet({
 			title: `Rever: ${titulo}`,
@@ -94,6 +87,43 @@ export function ConteudoPainel() {
 		puHandleRevisao.conOpen();
 	};
 
+	const rows = filteredUtilizadores.map((item) => ({
+		tag: (
+			<Tooltip
+				content={
+					<OverlayPerfil
+						imagem={item?.conteudo_utilizador?.imagem}
+						nome={item?.conteudo_utilizador?.nome}
+						tag={`@${item?.conteudo_utilizador?.tag}`}
+					/>
+				}
+			>
+				<Navegar to={`/conta/${item?.conteudo_utilizador?.id}`}>@{item?.conteudo_utilizador?.tag}</Navegar>
+			</Tooltip>
+		),
+		data_criacao: DateUtils.DataNormal(item.data_criacao),
+		estado: item.revisao_conteudo[0]?.revisao_estado?.estado,
+		titulo: <Navegar to={`/conteudos/${item.id}`}>{item?.titulo}</Navegar>,
+		tipo: item?.conteudo_tipo?.tipo,
+		subtopico: item?.conteudo_subtopico?.area,
+		acoes: (
+			<Row className="gap-2">
+				<Botao
+					onClick={() => handlePopupOpen(item.revisao_conteudo[0].id, item?.titulo)}
+					variant={BUTTON_VARIANTS.PERIGO}
+				>
+					<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
+				</Botao>
+				<Botao route={`/conta/${item?.conteudo_utilizador?.id}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
+					<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
+				</Botao>
+				<Botao route={`/conteudos/${item.id}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
+					<Icone iconName="StarFill" type={COMMON_TYPES.INVERSO} />
+				</Botao>
+			</Row>
+		),
+	}));
+
 	return (
 		<>
 			{puHandleRevisao.conCreate()}
@@ -101,20 +131,14 @@ export function ConteudoPainel() {
 			<div className="d-flex justify-content-end mt-4">
 				<RefreshIcone handleRefresh={() => handleRefresh()} />
 			</div>
-			<table className="painel-tabela">
-				<thead>
-					<tr>
-						<th>Utilizador</th>
-						<th>Data de Criação</th>
-						<th>Estado</th>
-						<th>Conteudo</th>
-						<th>Tipo</th>
-						<th>Subtópico</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>{setupTableContent()}</tbody>
-			</table>
+			<Tabela
+				columns={columns}
+				rows={rows}
+				maxHeight={"60vh"}
+				rowsPerPageOptions={[10, 25, 100]}
+				defaultRowsPerPage={10}
+				uniqueKey="tag"
+			/>
 		</>
 	);
 }

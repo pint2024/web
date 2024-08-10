@@ -5,12 +5,17 @@ import { useState } from "react";
 import { Classificacao } from "./classificacao/Classificacao";
 import { ApiRequest } from "api";
 import { useEffect } from "react";
+import { Utils } from "utils/utils";
 
 export function ControlosInteracao({ conteudo_id, utilizador_atual, defaultValue }) {
 	const [classificacao, setClassificacao] = useState(0);
 
 	useEffect(() => {
-		setClassificacao(defaultValue);
+		for (const classificacao of defaultValue) {
+			console.log(classificacao);
+			console.log(classificacao.utilizador, utilizador_atual);
+			if (classificacao.utilizador === Utils.convertoStrToInt(utilizador_atual.id)) setClassificacao(classificacao.classificacao);
+		}
 	}, []);
 
 	const handleClassificacaoChange = async (newClassificacao) => {

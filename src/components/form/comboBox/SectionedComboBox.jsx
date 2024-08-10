@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Texto } from "components";
-import { COMMON_SIZES, COMMON_TYPES } from "data/data";
-import { Autocomplete, TextField, FormControl, FormHelperText } from "@mui/material";
+import { Autocomplete, TextField, FormControl, FormHelperText, ListSubheader } from "@mui/material";
 
-ComboBox.propTypes = {
+SectionedComboBox.propTypes = {
 	label: PropTypes.string,
-	options: PropTypes.array.isRequired, // Ex: [{ value: 1, label: "Option 1" }, { value: 2, label: "Option 2" }]
+	options: PropTypes.array.isRequired, // Ex: [{ section: "Group 1", options: [{ value: 1, label: "Option 1" }] }]
 	handleChange: PropTypes.func,
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // Permite valores primitivos
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	disabled: PropTypes.bool,
 	placeholder: PropTypes.string,
 	isInvalid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 	className: PropTypes.string,
 };
 
-export function ComboBox({
+export function SectionedComboBox({
 	label,
 	options,
 	handleChange,
@@ -30,7 +28,8 @@ export function ComboBox({
 	// Sincroniza o estado interno quando propValue muda
 	useEffect(() => {
 		// Encontra a opção correspondente ao valor primitivo
-		const matchedOption = options.find((option) => option.value === propValue) || null;
+		const matchedOption =
+			options.flatMap((section) => section.options).find((option) => option.value === propValue) || null;
 		setValue(matchedOption);
 	}, [propValue, options]);
 
@@ -42,8 +41,13 @@ export function ComboBox({
 	};
 
 	const defaultProps = {
-		options: options,
+		options: options.flatMap((section) => section.options), // Desconstrói as seções em uma lista de opções
 		getOptionLabel: (option) => option.label || "",
+		groupBy: (option) => {
+			const section = options.find((section) => section.options.includes(option));
+			return section ? section.section : "";
+		},
+		renderGroup: (params) => [<ListSubheader key={params.key}>{params.group}</ListSubheader>, params.children],
 	};
 
 	return (
@@ -59,13 +63,7 @@ export function ComboBox({
 					<TextField {...params} label={label} variant="standard" placeholder={placeholder} error={!!isInvalid} />
 				)}
 			/>
-			{isInvalid ? (
-				<FormHelperText>
-					<Texto size={COMMON_SIZES.FS0} type={COMMON_TYPES.PERIGO}>
-						{isInvalid}
-					</Texto>
-				</FormHelperText>
-			) : null}
+			{isInvalid ? <FormHelperText>{isInvalid}</FormHelperText> : null}
 		</FormControl>
 	);
 }

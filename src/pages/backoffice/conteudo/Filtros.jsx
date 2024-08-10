@@ -7,6 +7,7 @@ import { useLoading } from "hooks/useLoading";
 import { useInput } from "hooks/useInput";
 import { useEffect, useState } from "react";
 import { Utils } from "utils/utils";
+import { SectionedComboBox } from "components/form/comboBox/SectionedComboBox";
 
 export function Filtros({ data, setFiltered }) {
 	const searchGeral = useInput();
@@ -44,7 +45,7 @@ export function Filtros({ data, setFiltered }) {
 		}
 
 		if (Utils.convertoStrToInt(searchTopico.value) !== COMBOBOX_DEFAULT_VALUE) {
-			const searchValue = Utils.convertoStrToInt(searchTopico.value.id);
+			const searchValue = Utils.convertoStrToInt(searchTopico.value);
 			filteredData = filteredData.filter((user) => user.conteudo_subtopico.id === searchValue);
 		}
 
@@ -52,9 +53,7 @@ export function Filtros({ data, setFiltered }) {
 	};
 
 	useEffect(() => {
-		if (data) {
-			filterData();
-		}
+		if (data) filterData();
 	}, [searchGeral.value, searchTipo.value, searchEstado.value, searchTopico.value, data]);
 
 	useEffect(() => {
@@ -107,11 +106,10 @@ export function Filtros({ data, setFiltered }) {
 
 	const transformarDadosTopico = dataTopicos?.map((item) => {
 		return {
-			id: item.id,
 			section: item.topico,
 			options: item.subtopico_topico.map((subItem) => {
 				return {
-					id: subItem.id,
+					value: subItem.id,
 					label: subItem.area,
 				};
 			}),
@@ -123,6 +121,7 @@ export function Filtros({ data, setFiltered }) {
 	return (
 		<>
 			<CaixaTexto
+				label="Pesquisa"
 				className="mt-2 me-auto"
 				handleChange={(e) => searchGeral.onChange(e)}
 				value={searchGeral.value}
@@ -130,6 +129,7 @@ export function Filtros({ data, setFiltered }) {
 			/>
 			<div className="d-flex align-items-center gap-3">
 				<ComboBox
+					label="Tipo"
 					className="mt-2"
 					options={transformarDadosTipo()}
 					placeholder="Escolha o tipo..."
@@ -137,13 +137,20 @@ export function Filtros({ data, setFiltered }) {
 					value={searchTipo.value}
 				/>
 				<ComboBox
+					label="Estado"
 					className="mt-2"
 					options={transformarDadosEstado()}
 					placeholder="Escolha o estado..."
 					handleChange={(e) => searchEstado.setValue(e)}
 					value={searchEstado.value}
 				/>
-				<ComboBoxSections items={transformarDadosTopico} handleChange={(e) => searchTopico.setValue(e)} />
+				<SectionedComboBox
+					label="Subtópico"
+					placeholder="Escolha o subtópico"
+					options={transformarDadosTopico}
+					value={searchTopico.value}
+					handleChange={(e) => searchTopico.setValue(e)}
+				/>
 
 				<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => handleCleanFilters()}>
 					Limpar

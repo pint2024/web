@@ -11,6 +11,20 @@ import { CriarUtilizadorPainel } from "./CriarUtilizadorPainel";
 import { Filtros } from "./Filtros";
 import { Row } from "components/ui/Row";
 import { RefreshIcone } from "components/common/icone/RefreshIcone";
+import { Tabela } from "components/ui/tabela/Tabela";
+
+const columns = [
+	{ id: "imagem", label: "", minWidth: 50, align: "center" },
+	{ id: "tag", label: "Tag", minWidth: 100 },
+	{ id: "nomeCompleto", label: "Nome", minWidth: 150 },
+	{ id: "email", label: "Email", minWidth: 170 },
+	{ id: "inativo", label: "Inativo", minWidth: 50, align: "center" },
+	{ id: "verificado", label: "Verificado", minWidth: 50, align: "center" },
+	{ id: "perfil", label: "Perfil", minWidth: 120 },
+	{ id: "centro", label: "Centro", minWidth: 120 },
+	{ id: "dataCriacao", label: "Data criação", minWidth: 50 },
+	{ id: "acoes", label: "Ações", minWidth: 200, align: "center" },
+];
 
 export function UtilizadorPainel() {
 	const [dataUtilizadores, setdataUtilizadores] = useState(null);
@@ -61,6 +75,60 @@ export function UtilizadorPainel() {
 		fetchConteudoData();
 	};
 
+	const rows = filteredUtilizadores.map((item) => ({
+		id: item.id,
+		imagem: (
+			<ImagemModal imagemSelecionada={Utils.SetImagemUtilizador(item.imagem)}>
+				<ImagemUtilizador src={item.imagem} className="card-user-picture" />
+			</ImagemModal>
+		),
+		tag: `@${item.tag}`,
+		nomeCompleto: `${item.nome} ${item.sobrenome}`,
+		email: item.email,
+		inativo: item?.inativo ? (
+			<Icone iconName="CheckCircleFill" className="sucesso" />
+		) : (
+			<Icone iconName="XCircleFill" className="perigo" />
+		),
+		verificado: item.verificado ? (
+			<Icone iconName="CheckCircleFill" className="sucesso" />
+		) : (
+			<Icone iconName="XCircleFill" className="perigo" />
+		),
+		perfil: item.utilizador_perfil.perfil,
+		centro: item.centro ? item?.utilizador_centro?.centro : "Por definir.",
+		dataCriacao: DateUtils.DataNormal(item.data_criacao),
+		acoes: (
+			<div className="d-flex gap-2">
+				<Botao title="Utilizador" route={`/conta/${item.id}`} variant={BUTTON_VARIANTS.SECUNDARIO}>
+					<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
+				</Botao>
+				{item?.inativo ? (
+					<Botao
+						title="Ativar"
+						onClick={() => handleManageUserStatus(item.id, false)}
+						variant={BUTTON_VARIANTS.PERIGO}
+					>
+						<Icone iconName="UnlockFill" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+				) : (
+					<Botao
+						title="Inativar"
+						onClick={() => handleManageUserStatus(item.id, true)}
+						variant={BUTTON_VARIANTS.PERIGO}
+					>
+						<Icone iconName="LockFill" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+				)}
+				{!item.verificado && (
+					<Botao title="Verificar" onClick={() => handleVerifyUser(item.id)} variant={BUTTON_VARIANTS.SUCESSO}>
+						<Icone iconName="Check" type={COMMON_TYPES.INVERSO} />
+					</Botao>
+				)}
+			</div>
+		),
+	}));
+
 	return (
 		<>
 			{isPopupOpen && (
@@ -80,90 +148,7 @@ export function UtilizadorPainel() {
 				<RefreshIcone handleRefresh={() => handleRefresh()} />
 			</div>
 			{dataUtilizadores ? (
-				<table className="painel-tabela">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Tag</th>
-							<th>Nome</th>
-							<th>Email</th>
-							<th>Inativo</th>
-							<th>Verificado</th>
-							<th>Perfil</th>
-							<th>Centro</th>
-							<th>Data criação</th>
-							<th>Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						{filteredUtilizadores.map((item) => (
-							<tr key={item.id}>
-								<td>
-									<ImagemModal imagemSelecionada={Utils.SetImagemUtilizador(item.imagem)}>
-										<ImagemUtilizador src={item.imagem} className="card-user-picture" />
-									</ImagemModal>
-								</td>
-								<td>@{item.tag}</td>
-								<td>{item.nome} {item.sobrenome}</td>
-								<td>{item.email}</td>
-								<td>
-									{item?.inativo ? (
-										<Icone iconName="CheckCircleFill" className="sucesso" />
-									) : (
-										<Icone iconName="XCircleFill" className="perigo" />
-									)}
-								</td>
-								<td>
-									{item.verificado ? (
-										<Icone iconName="CheckCircleFill" className="sucesso" />
-									) : (
-										<Icone iconName="XCircleFill" className="perigo" />
-									)}
-								</td>
-								<td>{item.utilizador_perfil.perfil}</td>
-								<td>{item.centro ? item?.utilizador_centro?.centro : "Por definir."}</td>
-								<td>{DateUtils.DataNormal(item.data_criacao)}</td>
-								<td>
-									<div className="d-flex gap-2">
-									<Botao
-												title="Utilizador"
-												route={`/conta/${item.id}`}
-												variant={BUTTON_VARIANTS.SECUNDARIO}
-											>
-												<Icone iconName="PersonFill" type={COMMON_TYPES.INVERSO} />
-												</Botao>
-										{item?.inativo ? (
-											<Botao
-												title="Ativar"
-												onClick={() => handleManageUserStatus(item.id, false)}
-												variant={BUTTON_VARIANTS.PERIGO}
-											>
-												<Icone iconName="UnlockFill" type={COMMON_TYPES.INVERSO} />
-											</Botao>
-										) : (
-											<Botao
-												title="Inativar"
-												onClick={() => handleManageUserStatus(item.id, true)}
-												variant={BUTTON_VARIANTS.PERIGO}
-											>
-												<Icone iconName="LockFill" type={COMMON_TYPES.INVERSO} />
-											</Botao>
-										)}
-										{!item.verificado && (
-											<Botao
-												title="Verificar"
-												onClick={() => handleVerifyUser(item.id)}
-												variant={BUTTON_VARIANTS.SUCESSO}
-											>
-												<Icone iconName="Check" type={COMMON_TYPES.INVERSO} />
-											</Botao>
-										)}
-									</div>
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
+				<Tabela columns={columns} rows={rows} uniqueKey="id" maxHeight={"60vh"} />
 			) : (
 				<p>Carregando...</p>
 			)}

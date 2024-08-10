@@ -29,25 +29,25 @@ export function ConteudoDetalhe() {
 	const loading = useLoading();
 	const { conCreate, conSet, conOpen } = useConfirmation();
 	const { id } = useParams();
-	const utilizadorAtual = useCurrentUser();
+	const { userData, isValid } = useCurrentUser(true);
 
 	useEffect(() => {
 		if (dataDetalhe) {
-			setisSubscribed(DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, utilizadorAtual.id));
+			setisSubscribed(DBUtils.checkParticipanteInConteudo(dataDetalhe.participante_conteudo, userData.id));
 		}
-	}, [dataDetalhe, utilizadorAtual]);
+	}, [dataDetalhe, userData]);
 
 	useEffect(() => {
 		fetchConteudoData();
 	}, []);
 
 	useEffect(() => {
-		if (dataDetalhe && utilizadorAtual) {
+		if (dataDetalhe && userData) {
 			setisRevisao(dataDetalhe.revisao_conteudo.length > 0 ? DBUtils.checkRevisao(dataDetalhe.revisao_conteudo) : true);
 			setisRejeitado(DBUtils.checkRevisaoRejeitado(dataDetalhe.revisao_conteudo));
-			setisAdminCentro(DBUtils.checkAdminCentro(dataDetalhe.conteudo_utilizador, utilizadorAtual.centro));
+			setisAdminCentro(DBUtils.checkAdminCentro(dataDetalhe.conteudo_utilizador, userData.centro));
 		}
-	}, [dataDetalhe, utilizadorAtual]);
+	}, [dataDetalhe, userData]);
 
 	const fetchConteudoData = async () => {
 		loading.start();
@@ -56,17 +56,17 @@ export function ConteudoDetalhe() {
 		loading.stop();
 	};
 
-	if (!dataDetalhe) return;
+	if (!dataDetalhe || !isValid) return;
 
 	const handleAddParticipacao = async () => {
 		loading.start();
-		await ApiRequest.criar("participante", { utilizador: utilizadorAtual.id, conteudo: id });
+		await ApiRequest.criar("participante", { utilizador: userData.id, conteudo: id });
 		await fetchConteudoData();
 	};
 
 	const handleRemoverParticipacao = async () => {
 		loading.start();
-		await myAxios({ url: "participante/remover", method: "post", data: { utilizador: utilizadorAtual.id, conteudo: id } });
+		await myAxios({ url: "participante/remover", method: "post", data: { utilizador: userData.id, conteudo: id } });
 		await fetchConteudoData();
 	};
 
@@ -186,8 +186,8 @@ export function ConteudoDetalhe() {
 				<section>
 					<ControlosInteracao
 						conteudo_id={id}
-						utilizador_atual={utilizadorAtual}
-						defaultValue={dataDetalhe?.classificacao_conteudo[0]?.classificacao}
+						utilizador_atual={userData}
+						defaultValue={dataDetalhe?.classificacao_conteudo}
 					/>
 				</section>
 				<section className="d-flex gap-2 mt-2">

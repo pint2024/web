@@ -32,7 +32,6 @@
 	--DARKER-WHITE-HOVER: rgba(113, 113, 113, 0.3);
 	--BLACK-HOVER: rgb(66, 66, 66, 0.5);
 
-
 	/* Cores de navegação*/
 	--LIGHT-DANGER: rgb(180, 0, 0);
 	--DANGER: rgb(150, 0, 0);
@@ -52,7 +51,7 @@
 /* DARK MODE - Em Progresso...
 @media (prefers-color-scheme: dark) {
 	:root {
-		--BACKGROUND: #212121;
+		--BACKGROUND: #333333;
 		--TEXT-PRIMARY: #FFF;
 	}
 }*/

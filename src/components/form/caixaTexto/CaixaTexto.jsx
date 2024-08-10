@@ -1,6 +1,8 @@
 import { Texto } from "components";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import React from "react";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
 
 export function CaixaTexto({
 	label = "",
@@ -21,31 +23,29 @@ export function CaixaTexto({
 
 	return (
 		<div className={className}>
-			{label && (
-				<label htmlFor="inputNome">
-					{label}
-					{isInvalid ? "*" : ""}
-				</label>
-			)}
-			<div className="input-group">
-				{prefix && (
-					<span className="input-group-text" id="basic-addon">
-						{prefix}
-					</span>
-				)}
-				<input
-					className={`form-control ${isInvalid ? "form-is-invalid" : ""}`}
-					value={value}
-					onChange={(e) => handleChange(e)}
-					onKeyUp={onKeyUp ? (e) => onKeyUp(e) : (e) => handleSubmitEvent(e)}
-					{...props}
-				/>
-			</div>
-			{isInvalid ? (
-				<Texto size={COMMON_SIZES.FS0} type={COMMON_TYPES.PERIGO}>
-					{isInvalid}
-				</Texto>
-			) : null}
-		</div>
+			<TextField
+				id="standard-basic"
+				label={label}
+				value={value}
+				onChange={(e) => handleChange(e)}
+				onKeyUp={onKeyUp ? (e) => onKeyUp(e) : (e) => handleSubmitEvent(e)}
+				error={!!isInvalid}
+				helperText={
+					isInvalid ? (
+						<Texto size={COMMON_SIZES.FS0} type={COMMON_TYPES.PERIGO}>
+							{isInvalid}
+						</Texto>
+					) : null
+				}
+				InputProps={{
+					startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : null,
+				}}
+				fullWidth
+				variant="standard"
+				disabled={false}
+				{...props}
+			/>
+			
+ 		</div>
 	);
 }

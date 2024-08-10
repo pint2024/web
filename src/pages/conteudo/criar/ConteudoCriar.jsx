@@ -75,13 +75,14 @@ export function ConteudoCriar() {
 			imagem: formImagem,
 			titulo: formTitulo,
 			descricao: formDescricao,
-			endereco: dataCoords,
+			endereco: formEndereco,
 			latitude: formLatitude,
 			longitude: formLongitude,
 			subtopico: formSubtopico,
 			utilizador: utilizadorAtual.id,
 			tipo: id,
 		};
+		console.log(data);
 
 		const validacao = validador.validar(data);
 		setErros(validacao);
@@ -129,10 +130,6 @@ export function ConteudoCriar() {
 			subtopico: { required: true },
 		};
 
-		console.log("1", dataCoords);
-		console.log("1", dataCoords.lng);
-		console.log("1", dataCoords.lat);
-
 		const validador = new Validador(esquema);
 		const data = {
 			imagem: formImagem,
@@ -146,8 +143,6 @@ export function ConteudoCriar() {
 			utilizador: utilizadorAtual.id,
 			tipo: id,
 		};
-
-		console.log("a,", data);
 
 		const validacao = validador.validar(data);
 		setErros(validacao);

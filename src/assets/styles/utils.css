@@ -123,3 +123,8 @@
 .form-is-invalid {
 	border-color: var(--DANGER);
 }
+
+.combo-box {
+	width: auto; /* Faz com que o ComboBox ocupe apenas o espaço necessário */
+	flex-shrink: 0; /* Impede que o ComboBox encolha mais do que o necessário */
+}

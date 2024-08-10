@@ -25,6 +25,11 @@ main {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.MuiTypography-root {
+	font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+		"Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
@@ -53,5 +58,5 @@ svg {
 }
 
 .modal-backdrop {
-	visibility:hidden;
+	visibility: hidden;
 }

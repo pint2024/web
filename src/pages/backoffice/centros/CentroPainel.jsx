@@ -3,6 +3,9 @@ import { ApiRequest } from "api/apiRequest";
 import { Botao, Icone, Popup } from "components";
 import { COMMON_TYPES } from "data/data";
 import { CriarCentroPainel } from "./CriarCentroPainel";
+import { Tabela } from "components/ui/tabela/Tabela";
+
+const columns = [{ id: "centro", label: "Centro", minWidth: 170 }];
 
 export function CentroPainel() {
 	const [dataCentro, setdataCentro] = useState(null);
@@ -20,13 +23,20 @@ export function CentroPainel() {
 	const handleCreated = () => {
 		fetchConteudoData();
 		setisPopupOpen(false);
-	}
+	};
+
+	if (!dataCentro) return;
+
+	const rows = dataCentro.map((item) => ({
+		id: item.id, // Usando o ID como chave única
+		centro: item.centro,
+	}));
 
 	return (
 		<>
 			{isPopupOpen && (
 				<Popup
-					headerTitle={"Adicionar Topico"}
+					headerTitle={"Adicionar Centro"}
 					onClose={() => setisPopupOpen(false)}
 					body={<CriarCentroPainel handleCreated={() => handleCreated()} />}
 				/>
@@ -34,27 +44,10 @@ export function CentroPainel() {
 			<div className="d-flex align-items-center gap-3">
 				<Botao onClick={() => setisPopupOpen(true)}>
 					<Icone iconName="PlusLg" type={COMMON_TYPES.INVERSO} />
-					Adicionar Centro
+					Centro
 				</Botao>
 			</div>
-			{dataCentro ? (
-				<table className="painel-tabela mt-4">
-					<thead>
-						<tr>
-							<th>Centro</th>
-						</tr>
-					</thead>
-					<tbody>
-						{dataCentro.map((item) => (
-							<tr key={item.id}>
-								<td>{item.centro}</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
-			) : (
-				<p>Carregando...</p>
-			)}
+			<Tabela columns={columns} rows={rows} />
 		</>
 	);
 }

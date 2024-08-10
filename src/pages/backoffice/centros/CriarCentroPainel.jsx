@@ -21,7 +21,7 @@ export function CriarCentroPainel({ handleCreated }) {
 		loading.start();
 		const response = await ApiRequest.criar("centro", data);
 		if (response) {
-			Notificacao("Tópico criado!");
+			Notificacao("Centro criado!");
 			handleCreated();
 		}
 		loading.stop();
@@ -34,7 +34,7 @@ export function CriarCentroPainel({ handleCreated }) {
 				handleChange={(e) => setFormCentro(e.target.value)}
 				value={formCentro}
 				isInvalid={erros.centro}
-				label="Tópico"
+				label="Centro"
 			/>
 			<Botao className="mt-4" onClick={handleAdicionar}>
 				Adicionar
