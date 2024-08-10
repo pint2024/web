@@ -3,7 +3,7 @@ import { useLoading } from "hooks/useLoading";
 import { EnumConstants } from "data/enum.constants";
 import "../painel-tabela.css";
 import { ApiRequest } from "api/apiRequest";
-import { Botao, Icone, Navegar, Notificacao, OverlayPerfil, Tooltip } from "components";
+import { Botao, Icone, Navegar, Notificacao, OverlayPerfil } from "components";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { Filtros } from "./Filtros";
@@ -11,6 +11,7 @@ import { RefreshIcone } from "components/common/icone/RefreshIcone";
 import { DateUtils } from "utils/date.utils";
 import { Row } from "components/ui/Row";
 import { Tabela } from "components/ui/tabela/Tabela";
+import { Tooltips } from "components/overlay/tooltip/Tooltip";
 
 const columns = [
 	{ id: "tag", label: "Tag", align: "left" },
@@ -89,8 +90,8 @@ export function ConteudoPainel() {
 
 	const rows = filteredUtilizadores.map((item) => ({
 		tag: (
-			<Tooltip
-				content={
+			<Tooltips
+				trigger={
 					<OverlayPerfil
 						imagem={item?.conteudo_utilizador?.imagem}
 						nome={item?.conteudo_utilizador?.nome}
@@ -99,7 +100,7 @@ export function ConteudoPainel() {
 				}
 			>
 				<Navegar to={`/conta/${item?.conteudo_utilizador?.id}`}>@{item?.conteudo_utilizador?.tag}</Navegar>
-			</Tooltip>
+			</Tooltips>
 		),
 		data_criacao: DateUtils.DataNormal(item.data_criacao),
 		estado: item.revisao_conteudo[0]?.revisao_estado?.estado,

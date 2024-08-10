@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Texto } from "components";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
-import { Autocomplete, TextField, FormControl, FormHelperText } from "@mui/material";
+import { Autocomplete, TextField, FormControl, FormHelperText, Paper } from "@mui/material";
 
 ComboBox.propTypes = {
 	label: PropTypes.string,
-	options: PropTypes.array.isRequired, // Ex: [{ value: 1, label: "Option 1" }, { value: 2, label: "Option 2" }]
+	options: PropTypes.array.isRequired,
 	handleChange: PropTypes.func,
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // Permite valores primitivos
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	disabled: PropTypes.bool,
 	placeholder: PropTypes.string,
 	isInvalid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -27,9 +27,7 @@ export function ComboBox({
 }) {
 	const [value, setValue] = useState(null);
 
-	// Sincroniza o estado interno quando propValue muda
 	useEffect(() => {
-		// Encontra a opção correspondente ao valor primitivo
 		const matchedOption = options.find((option) => option.value === propValue) || null;
 		setValue(matchedOption);
 	}, [propValue, options]);
@@ -37,7 +35,7 @@ export function ComboBox({
 	const handleSelectChange = (event, newValue) => {
 		setValue(newValue);
 		if (typeof handleChange === "function") {
-			handleChange(newValue?.value); // Retorna o valor primitivo
+			handleChange(newValue?.value);
 		}
 	};
 
@@ -55,6 +53,20 @@ export function ComboBox({
 				value={value}
 				onChange={handleSelectChange}
 				isOptionEqualToValue={(option, value) => option.value === value?.value}
+				PaperComponent={(props) => (
+					<Paper
+						{...props}
+						style={{
+							...props.style,
+							position: "fixed",
+							top: `${props.anchorEl?.getBoundingClientRect().bottom}px`,
+							left: `${props.anchorEl?.getBoundingClientRect().left}px`,
+							width: `${props.anchorEl?.offsetWidth}px`,
+							maxHeight: "200px", // Ajuste o tamanho máximo se necessário
+							overflow: "auto",
+						}}
+					/>
+				)}
 				renderInput={(params) => (
 					<TextField {...params} label={label} variant="standard" placeholder={placeholder} error={!!isInvalid} />
 				)}

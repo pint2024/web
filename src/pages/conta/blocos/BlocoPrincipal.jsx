@@ -14,6 +14,8 @@ import { useLoading } from "hooks/useLoading";
 import { Authorizor } from "components/helpers/Authorizor";
 import { EnumConstants } from "data/enum.constants";
 import { AuthorizorHelper } from "components/helpers/AuthorizorHelper";
+import { Row } from "components/ui/Row";
+import { useConfirmation } from "hooks/useConfirmation";
 
 export function BlocoPrincipal({ data, fetchData }) {
 	const [isPopupOpen, setisPopupOpen] = useState(false);
@@ -24,6 +26,7 @@ export function BlocoPrincipal({ data, fetchData }) {
 	const [selectCentro, setselectCentro] = useState();
 	const loading = useLoading();
 	const utilizadorAtual = useCurrentUser();
+	const { conCreate, conSet, conOpen, conClose } = useConfirmation();
 
 	useEffect(() => {
 		setselectPerfil(data?.perfil);
@@ -102,110 +105,137 @@ export function BlocoPrincipal({ data, fetchData }) {
 		await fetchData();
 	};
 
+	const handleOpenConfirmacaoInativar = () => {
+		if (!data.inativo) {
+			conSet({
+				title: "Inativar o utilizador",
+				body: "",
+				onSuccess: handleInativar,
+				onError: conClose,
+				successLabel: "Inativar",
+				errorLabel: "Cancelar",
+			});
+		}
+		else {
+			conSet({
+				title: "Remover inativação do utilizador",
+				body: "",
+				onSuccess: handleInativar,
+				onError: conClose,
+				successLabel: "Remover",
+				errorLabel: "Cancelar",
+			});
+		}
+		conOpen();
+	};
+
 	return (
-		<Contentor>
-			{isPopupOpen && (
-				<Popup
-					headerTitle={"Adicionar Interesses"}
-					onClose={() => setisPopupOpen(false)}
-					body={<InteressesList id={data.id} onClose={() => setisPopupOpen(false)} />}
-				/>
-			)}
-			{data?.inativo && <LabelError texto="Utilizador está inativo!" />}
-			<div className="main-box-content">
-				<div className="mb-content-image">
-					<ImagemModal imagemSelecionada={data.imagem ? data.imagem : UtilizadorDefault}>
-						<ImagemUtilizador src={data.imagem} className="image-size circular-image" />
-					</ImagemModal>
-				</div>
-				<div>
-					<Texto size={COMMON_SIZES.FS5}>{data.nome + " " + data.sobrenome}</Texto>
-					<Texto size={COMMON_SIZES.FS0}>{"@" + data.tag}</Texto>
-				</div>
-				<div className="content-details d-flex justify-content-between mt-3">
-					<div className="details-left">
-						<div className="d-flex align-items-center gap-2">
-							<Texto className="d-flex gap-1 align-items-center">
-								<Icone iconName="Calendar3" />
-								{DateUtils.MesNome_Ano(data.data_criacao)}
-							</Texto>
-						</div>
-						<div className="d-flex gap-3">
-							<div className="d-flex align-items-center gap-2">
-								<Texto className="d-flex gap-1 align-items-center">
-									<Icone iconName="Buildings" />
-									{data.utilizador_centro?.centro}
-								</Texto>
-							</div>
-						</div>
-						{listInteresses && (
-							<div className="d-flex align-items-center gap-2">
-								<Texto className="d-flex gap-1 align-items-center">
-									<Icone iconName="HandThumbsUp" />
-									{listInteresses}
-								</Texto>
-							</div>
-						)}
+		<>
+			{conCreate()}
+			<Contentor>
+				{isPopupOpen && (
+					<Popup
+						headerTitle={"Adicionar Interesses"}
+						onClose={() => setisPopupOpen(false)}
+						body={<InteressesList id={data.id} onClose={() => setisPopupOpen(false)} />}
+					/>
+				)}
+				{data?.inativo && <LabelError texto="Utilizador está inativo!" />}
+				<div className="main-box-content">
+					<div className="mb-content-image">
+						<ImagemModal imagemSelecionada={data.imagem ? data.imagem : UtilizadorDefault}>
+							<ImagemUtilizador src={data.imagem} className="image-size circular-image" />
+						</ImagemModal>
 					</div>
-					<div className="details-right d-flex flex-column align-items-end gap-2">
-						<div className="d-flex gap-3">
-							<Authorizor requiredPermission={EnumConstants.ROLES.ADMIN.ID}>
-								<ComboBox
-									options={transformarDadosPerfil()}
-									placeholder="Escolha o perfil..."
-									handleChange={(e) => setselectPerfil(e)}
-									value={selectPerfil}
-									className="combo-box"
-								/>
-								{utilizadorAtual.id === data.id && (
-									<ComboBox
-										options={transformarDadosCentro()}
-										placeholder="Escolha o centro..."
-										handleChange={(e) => setselectCentro(e)}
-										value={selectCentro}
-										className="combo-box"
-									/>
+					<div>
+						<Texto size={COMMON_SIZES.FS5}>{data.nome + " " + data.sobrenome}</Texto>
+						<Texto size={COMMON_SIZES.FS0}>{"@" + data.tag}</Texto>
+					</div>
+					<div className="content-details d-flex justify-content-between mt-3">
+						<div className="details-left">
+							<div className="d-flex align-items-center gap-2">
+								<Texto className="d-flex gap-1 align-items-center">
+									<Icone iconName="Calendar3" />
+									{DateUtils.MesNome_Ano(data.data_criacao)}
+								</Texto>
+							</div>
+							<div className="d-flex gap-3">
+								<div className="d-flex align-items-center gap-2">
+									<Texto className="d-flex gap-1 align-items-center">
+										<Icone iconName="Buildings" />
+										{data.utilizador_centro?.centro}
+									</Texto>
+								</div>
+							</div>
+							{listInteresses && (
+								<div className="d-flex align-items-center gap-2">
+									<Texto className="d-flex gap-1 align-items-center">
+										<Icone iconName="HandThumbsUp" />
+										{listInteresses}
+									</Texto>
+								</div>
+							)}
+							<Row className="gap-3">
+								{data.instagram && (
+									<Navegar to={data.instagram} target="_blank">
+										<Icone size={COMMON_SIZES.FS4} iconName="Instagram" />
+									</Navegar>
 								)}
-							</Authorizor>
+								{data.linkedin && (
+									<Navegar to={data.linkedin} target="_blank">
+										<Icone size={COMMON_SIZES.FS4} iconName="Linkedin" />
+									</Navegar>
+								)}
+								{data.facebook && (
+									<Navegar to={data.facebook} target="_blank">
+										<Icone size={COMMON_SIZES.FS4} iconName="Facebook" />
+									</Navegar>
+								)}
+							</Row>
 						</div>
-						<div className="d-flex gap-3">
-							{utilizadorAtual.id === data.id && (
-								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
-									<Icone iconName="BookmarkPlusFill" type={COMMON_TYPES.INVERSO} />
-								</Botao>
-							)}
-							{(utilizadorAtual.id === data.id ||
-								AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
-								<Botao route={"editar"}>
-									<Icone iconName="PencilFill" type={COMMON_TYPES.INVERSO} />
-								</Botao>
-							)}
-							{AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID) && (
-								<Botao onClick={() => handleInativar()} variant={BUTTON_VARIANTS.PERIGO}>
-									<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
-								</Botao>
-							)}
-						</div>
-						<div className="d-flex gap-3 ">
-							{data.instagram && (
-								<Navegar to={data.instagram} target="_blank">
-									<Icone size={COMMON_SIZES.FS4} iconName="Instagram" />
-								</Navegar>
-							)}
-							{data.linkedin && (
-								<Navegar to={data.linkedin} target="_blank">
-									<Icone size={COMMON_SIZES.FS4} iconName="Linkedin" />
-								</Navegar>
-							)}
-							{data.facebook && (
-								<Navegar to={data.facebook} target="_blank">
-									<Icone size={COMMON_SIZES.FS4} iconName="Facebook" />
-								</Navegar>
-							)}
+						<div className="details-right d-flex flex-column align-items-end gap-2" style={{ width: "500px" }}>
+							<Row className="gap-3">
+								{utilizadorAtual.id === data.id && (
+									<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => setisPopupOpen(true)}>
+										<Icone iconName="BookmarkPlusFill" type={COMMON_TYPES.INVERSO} />
+									</Botao>
+								)}
+								{(utilizadorAtual.id === data.id ||
+									AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID)) && (
+									<Botao route={"editar"}>
+										<Icone iconName="PencilFill" type={COMMON_TYPES.INVERSO} />
+									</Botao>
+								)}
+								{AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID) && (
+									<Botao onClick={() => handleOpenConfirmacaoInativar()} variant={BUTTON_VARIANTS.PERIGO}>
+										<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
+									</Botao>
+								)}
+							</Row>
+							<Row className="gap-3">
+								<Authorizor requiredPermission={EnumConstants.ROLES.ADMIN.ID}>
+									<ComboBox
+										options={transformarDadosPerfil()}
+										placeholder="Escolha o perfil..."
+										handleChange={(e) => setselectPerfil(e)}
+										value={selectPerfil}
+										className="conta-combo-box"
+									/>
+									{utilizadorAtual.id === data.id && (
+										<ComboBox
+											options={transformarDadosCentro()}
+											placeholder="Escolha o centro..."
+											handleChange={(e) => setselectCentro(e)}
+											value={selectCentro}
+											className="conta-combo-box"
+										/>
+									)}
+								</Authorizor>
+							</Row>
 						</div>
 					</div>
 				</div>
-			</div>
-		</Contentor>
+			</Contentor>
+		</>
 	);
 }

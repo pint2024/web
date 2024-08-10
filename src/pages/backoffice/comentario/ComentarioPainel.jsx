@@ -3,7 +3,7 @@ import { useLoading } from "hooks/useLoading";
 import { EnumConstants } from "data/enum.constants";
 import "../painel-tabela.css";
 import { ApiRequest } from "api/apiRequest";
-import { Botao, Icone, Navegar, Notificacao, OverlayPerfil, Tooltip } from "components";
+import { Botao, Icone, Navegar, Notificacao, OverlayPerfil } from "components";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { Filtros } from "./Filtros";
@@ -13,6 +13,7 @@ import { DenunciaCartao } from "components/container/cartoes/DenunciaCartao";
 import { Row } from "components/ui/Row";
 import { DateUtils } from "utils/date.utils";
 import { Tabela } from "components/ui/tabela/Tabela";
+import { Tooltips } from "components/overlay/tooltip/Tooltip";
 
 const columns = [
 	{ id: "utilizador", label: "Utilizador", minWidth: 100 },
@@ -114,8 +115,8 @@ export function ComentarioPainel() {
 	const rows = filteredUtilizadores.map((item) => ({
 		id: item.id,
 		utilizador: (
-			<Tooltip
-				content={
+			<Tooltips
+				trigger={
 					<OverlayPerfil
 						imagem={item?.comentario_utilizador?.imagem}
 						nome={item?.comentario_utilizador?.nome}
@@ -124,7 +125,7 @@ export function ComentarioPainel() {
 				}
 			>
 				<Navegar to={`/conta/${item?.comentario_utilizador?.id}`}>@{item?.comentario_utilizador?.tag}</Navegar>
-			</Tooltip>
+			</Tooltips>
 		),
 		dataCriacao: DateUtils.DataNormal(item.data_criacao),
 		estado: item.revisao_comentario[0].revisao_estado?.estado,

@@ -1,6 +1,5 @@
 export { OverlayPerfil } from "./container/overlayPerfil/OverlayPerfil";
 export { Navegar } from "./common/navegar/Navegar";
-export { Tooltip } from "./overlay/tooltip/Tooltip";
 export { Form } from "./form/Form";
 export { Comentario } from "./container/comentario/Comentario";
 export { ControlosInteracao } from "./ui/controlosInterecao/ControlosInteracao";

@@ -5,7 +5,6 @@ import FriendsImagem from "assets/images/home/friends.png";
 import RecomendacoesImagem from "assets/images/home/recomendation.png";
 import { PROJETO_NAME } from "data/constants";
 import { Conteudo } from "./conteudo";
-import Fab from "@mui/material/Fab";
 
 export const PaginaInicial = () => {
 	return (

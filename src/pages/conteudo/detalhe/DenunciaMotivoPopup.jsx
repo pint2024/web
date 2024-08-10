@@ -25,7 +25,7 @@ export function DenunciaMotivoPopup({ id, utilizadorAtual, isPopupOpen, setisPop
 								value={motivo.value}
 								handleChange={(e) => motivo.setValue(e.target.value)}
 							/>
-							<Botao onClick={() => handleDenuncia()}>Confirmar</Botao>
+							<Botao className="mt-3" onClick={() => handleDenuncia()}>Confirmar</Botao>
 						</>
 					}
 				/>

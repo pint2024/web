@@ -1,7 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Menu, MenuItem, styled } from "@mui/material";
-import { Icone } from "components";
 
 const StyledMenu = styled((props) => (
 	<Menu
@@ -53,20 +52,39 @@ export function Dropdown({ items, children }) {
 		setAnchorEl(null);
 	};
 
+	// useEffect to toggle body scroll
+	useEffect(() => {
+		if (isOpen) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "auto";
+		}
+
+		// Cleanup on unmount
+		return () => {
+			document.body.style.overflow = "auto";
+		};
+	}, [isOpen]);
+
 	return (
 		<div ref={menuDropdownRef}>
 			<div onClick={handleClick}>{children}</div>
-			<StyledMenu id="customized-menu" anchorEl={anchorEl} open={isOpen} onClose={handleClose}>
+			<StyledMenu
+				inputProps={{ MenuProps: { disableScrollLock: true } }}
+				id="customized-menu"
+				anchorEl={anchorEl}
+				open={isOpen}
+				onClose={handleClose}
+			>
 				{items &&
 					items.map((item, index) => (
 						<Link
+							key={index}
 							to={item.rota}
 							onClick={item.onclick && (() => item.onclick())}
 							style={{ textDecoration: "none", color: "inherit" }}
 						>
-							<MenuItem key={index} onClick={handleClose}>
-								{item.nome}
-							</MenuItem>
+							<MenuItem onClick={handleClose}>{item.nome}</MenuItem>
 						</Link>
 					))}
 			</StyledMenu>
