@@ -47,7 +47,9 @@ export function DenunciaPainel() {
 		loading.stop();
 	};
 
-	const handleRefresh = () => {};
+	const handleRefresh = async () => {
+		await fetchData();
+	};
 
 	const handleUpdateRevisao = async (id, estado) => {
 		console.log(id);
@@ -104,9 +106,17 @@ export function DenunciaPainel() {
 		),
 		denunciou: <Navegar to={`/conta/${item.denuncia_utilizador.id}`}>@{item.denuncia_utilizador.tag}</Navegar>,
 		acoes: (
-			<Botao onClick={() => handlePopupOpen(item.id)} variant={BUTTON_VARIANTS.PERIGO}>
-				<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
-			</Botao>
+			<Row className="gap-2">
+				<Botao onClick={() => handlePopupOpen(item.id)} variant={BUTTON_VARIANTS.PERIGO}>
+					<Icone iconName="Hammer" type={COMMON_TYPES.INVERSO} />
+				</Botao>
+				<Botao
+					route={`/conteudos/${item.denuncia_comentario.comentario_conteudo.id}#comentario-${item.denuncia_comentario.id}`}
+					variant={BUTTON_VARIANTS.SECUNDARIO}
+				>
+					<Icone iconName="ChatFill" type={COMMON_TYPES.INVERSO} />
+				</Botao>
+			</Row>
 		),
 	}));
 

@@ -115,7 +115,7 @@ export function ConteudoDetalhe() {
 	};
 
 	return (
-		<>
+		<div>
 			{isPopupOpen && (
 				<Popup
 					headerTitle={"Atualizar conteudo"}
@@ -151,6 +151,9 @@ export function ConteudoDetalhe() {
 							{dataDetalhe.titulo}
 						</Texto>
 					</div>
+					<div className="conteudo-detalhe-descricao">
+						<Texto className="">{dataDetalhe.descricao}</Texto>
+					</div>
 					<div className="imagem-container">
 						<ImagemModal imagemSelecionada={dataDetalhe.imagem} description={dataDetalhe.titulo}>
 							<Imagem
@@ -159,9 +162,6 @@ export function ConteudoDetalhe() {
 								style={{ objectFit: "cover" }}
 							/>
 						</ImagemModal>
-					</div>
-					<div className="conteudo-detalhe-descricao">
-						<Texto className="">{dataDetalhe.descricao}</Texto>
 					</div>
 					<div className="conteudo-detalhe-botoes"></div>
 				</section>
@@ -219,6 +219,6 @@ export function ConteudoDetalhe() {
 					<ComentarioSeccao id={id} />
 				</section>
 			</div>
-		</>
+		</div>
 	);
 }

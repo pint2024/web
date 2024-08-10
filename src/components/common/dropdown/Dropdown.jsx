@@ -59,7 +59,11 @@ export function Dropdown({ items, children }) {
 			<StyledMenu id="customized-menu" anchorEl={anchorEl} open={isOpen} onClose={handleClose}>
 				{items &&
 					items.map((item, index) => (
-						<Link to={item.rota} style={{ textDecoration: "none", color: "inherit" }}>
+						<Link
+							to={item.rota}
+							onClick={item.onclick && (() => item.onclick())}
+							style={{ textDecoration: "none", color: "inherit" }}
+						>
 							<MenuItem key={index} onClick={handleClose}>
 								{item.nome}
 							</MenuItem>
