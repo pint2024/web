@@ -8,15 +8,11 @@ import { DRAWER_CLOSE_WIDTH, DRAWER_OPEN_WIDTH, PROJETO_NAME } from "data/consta
 import { useEffect } from "react";
 import { RoutesUtils } from "utils/routes.utils";
 import { Suspense } from "react";
+import { Loading } from "layouts/loading/Loading";
 
 export function PageLayout() {
 	const { drawerIsOpen, drawerIsHidden } = useDrawerStatus();
-	const { pathname } = useLocation();
-
-	useEffect(() => {
-		/*const teste = RoutesUtils.encontrarRota(pathname);
-		document.title = teste ? teste.section + " - " + PROJETO_NAME : PROJETO_NAME;*/
-	}, [pathname]);
+	
 
 	return (
 		<div id="PageLayout" className="layout-container">
@@ -35,7 +31,7 @@ export function PageLayout() {
 					}}
 				>
 					<PageContent>
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<Loading/>}>
 							<Outlet />
 						</Suspense>
 					</PageContent>

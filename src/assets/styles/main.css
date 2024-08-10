@@ -40,7 +40,6 @@ a:visited,
 a:hover,
 a:active {
 	color: var(--TEXT-PRIMARY);
-	background-color: transparent;
 	text-decoration: none;
 }
 

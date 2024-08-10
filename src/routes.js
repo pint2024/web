@@ -82,24 +82,25 @@ export class Rotas {
 					title: "Conta",
 					section: "Conta",
 					path: ":id",
-					element: <ProtectedRoute element={<Conta />} requiredPermission={[ROLES.USER.ID]} />,
 					perfis: [ROLES.USER.ID],
-				},
-				{
-					title: "Editar",
-					section: "Conta",
-					path: "editar",
-					element: <ProtectedRoute element={<ContaEditar />} requiredPermission={[ROLES.USER.ID]} />,
-					perfis: [ROLES.USER.ID],
+					children: [
+						{
+							title: "Conta",
+							section: "Conta",
+							path: "",
+							element: <ProtectedRoute element={<Conta />} requiredPermission={[ROLES.USER.ID]} />,
+							perfis: [ROLES.USER.ID],
+						},
+						{
+							title: "Editar",
+							section: "Conta",
+							path: "editar",
+							element: <ProtectedRoute element={<ContaEditar />} requiredPermission={[ROLES.USER.ID]} />,
+							perfis: [ROLES.USER.ID],
+						},
+					],
 				},
 			],
-		},
-		{
-			title: "Sobre",
-			section: "Sobre",
-			path: "/sobre",
-			element: <Sobre />,
-			perfis: [],
 		},
 		{
 			title: "Não encontrado",
@@ -218,13 +219,33 @@ export class Rotas {
 		},
 	];
 
+	static CommonRoutes = [
+		{
+			title: "Sobre",
+			section: "Sobre",
+			path: "/sobre",
+			element: <Sobre />,
+			perfis: [],
+		},
+	];
+
+	static Routestwo = [
+		{
+			title: "Softshares",
+			section: "Softshares",
+			element: <PageLayout />,
+			errorElement: <NotFound />,
+			children: [...Rotas.AuthRoutes, ...Rotas.CommonRoutes],
+		},
+	];
+
 	static Routes = [
 		{
 			title: "Softshares",
 			section: "Softshares",
 			element: <PageLayout />,
 			errorElement: <NotFound />,
-			children: Rotas.MainRoutes,
+			children: [...Rotas.MainRoutes, ...Rotas.CommonRoutes],
 		},
 	];
 

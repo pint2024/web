@@ -1,5 +1,13 @@
 /// React
-import { createBrowserRouter, Route, BrowserRouter as Router, RouterProvider, Routes, useLocation } from "react-router-dom";
+import {
+	createBrowserRouter,
+	Route,
+	BrowserRouter as Router,
+	RouterProvider,
+	Routes,
+	useLocation,
+	useNavigate,
+} from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 /// Componentes
@@ -10,57 +18,31 @@ import { useCurrentUser } from "hooks/useCurrentUser";
 import { AccessDenied } from "layouts/errors/AccessDenied";
 import { useLoading } from "hooks/useLoading";
 import { useGetCurrentUser } from "hooks/useGetCurrentUser";
+import { AutenticacaoRequest } from "api";
+import { Notificacao } from "components";
 
 function App() {
-	const [isLogged, setisLogged] = useState(null);
-	const [userRole, setuserRole] = useState(null);
 	const { userData, isValid, hasFetched } = useCurrentUser(true);
-	const localData = useGetCurrentUser(true);
-	const loading = useLoading();
-
-	useEffect(() => {
-		if (!userData) return;
-		setuserRole(userData.perfil);
-	}, [isValid, userData]);
 
 	useEffect(() => {
 		document.title = PROJETO_NAME;
 	}, []);
 
 	useEffect(() => {
-		loading.stop();
-		const handleLoading = (event) => {
-			loading.start();
-		};
-
-		//window.addEventListener("beforeunload", handleLoading);
-		//window.addEventListener("DOMContentLoaded", handleLoading);
-		//window.addEventListener("load", handleLoading);
-
-		return () => {
-			//window.removeEventListener("beforeunload", handleLoading);
-			//window.removeEventListener("DOMContentLoaded", handleLoading);
-			//window.removeEventListener("load", handleLoading);
-		};
-	}, []);
+		if (userData?.inativo) {
+			AutenticacaoRequest.terminar_sessao();
+			Notificacao("A sua conta foi inativa!", "error");
+			setTimeout(() => {
+				window.location.reload();
+			}, 1000);
+	
+		}
+	}, [userData]);
 
 	if (!hasFetched) return;
 
-	if (userData?.inativo) {
-		return (
-			<Router>
-				<Routes>
-					<Route path="/" element={<PageLayout />}>
-						<Route path="/*" element={<AccessDenied />} />
-						<Route path="/" element={<AccessDenied />} />
-					</Route>
-				</Routes>
-			</Router>
-		);
-	}
-
 	const loggedRoutes = createBrowserRouter(Rotas.Routes);
-	const unloggedRoutes = createBrowserRouter(Rotas.AuthRoutes);
+	const unloggedRoutes = createBrowserRouter(Rotas.Routestwo);
 	return <>{isValid ? <RouterProvider router={loggedRoutes} /> : <RouterProvider router={unloggedRoutes} />}</>;
 }
 

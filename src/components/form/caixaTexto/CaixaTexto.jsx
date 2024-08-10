@@ -13,6 +13,7 @@ export function CaixaTexto({
 	isInvalid = false,
 	handleChange,
 	handleSubmit,
+	isInversed = false,
 	...props
 }) {
 	const handleSubmitEvent = (e) => {
@@ -44,8 +45,24 @@ export function CaixaTexto({
 				variant="standard"
 				disabled={false}
 				{...props}
+				sx={
+					isInversed
+						? {
+								input: { color: "white" }, // Text color for the input field
+								label: { color: "white" }, // Text color for the label
+								"& .MuiInput-underline:before": {
+									borderBottomColor: "white", // Bottom border before focus
+								},
+								"& .MuiInput-underline:hover:before": {
+									borderBottomColor: "white", // Bottom border on hover
+								},
+								"& .MuiInput-underline:after": {
+									borderBottomColor: "white", // Bottom border after focus
+								},
+						  }
+						: {}
+				}
 			/>
-			
- 		</div>
+		</div>
 	);
 }
