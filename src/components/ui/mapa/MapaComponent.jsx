@@ -83,7 +83,6 @@ export const MapaComponent = ({ handleChange, setisOpen }) => {
 			return response.data;
 		} catch (error) {
 			console.error("Erro na geocodificação reversa:", error);
-			alert("Ocorreu um erro ao buscar o endereço. Tente novamente.");
 		}
 	};
 

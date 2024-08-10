@@ -1,4 +1,15 @@
-import { Texto, PequenoPerfil, Imagem, Botao, ControlosInteracao, Rotulo, Icone, Confirmacao, Popup, Notificacao } from "components/index";
+import {
+	Texto,
+	PequenoPerfil,
+	Imagem,
+	Botao,
+	ControlosInteracao,
+	Rotulo,
+	Icone,
+	Confirmacao,
+	Popup,
+	Notificacao,
+} from "components/index";
 import { useEffect, useState } from "react";
 import { Album } from "./Album";
 import { ComentarioSeccao } from "./ComentarioSeccao";
@@ -116,12 +127,13 @@ export function ConteudoDetalhe() {
 
 	const handleCopyLink = () => {
 		const url = window.location.href;
-		navigator.clipboard.writeText(url)
+		navigator.clipboard
+			.writeText(url)
 			.then(() => {
-				Notificacao("Link copiado para a área de transferência!", "info")
+				Notificacao("Link copiado para a área de transferência!", "info");
 			})
-			.catch(err => {
-				console.error('Erro ao copiar o link: ', err);
+			.catch((err) => {
+				Notificacao("Algo correu mal!", "error");
 			});
 	};
 
