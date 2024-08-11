@@ -56,7 +56,7 @@ export class NavItems {
 		},
 		{
 			route: "/backoffice/centros",
-			icone: "Diagram2Fill",
+			icone: "BuildingsFill",
 			label: "Centros",
 			perfis: [ROLES.ADMIN.ID],
 		},
