@@ -6,10 +6,9 @@ import { useGetCurrentUser } from "hooks/useGetCurrentUser";
 export function Authorizor({ requiredPermission, children }) {
 	const [profile, setprofile] = useState(0);
 	const [hasPermission, setHasPermission] = useState(false);
-	const localData = useGetCurrentUser();
 
 	useEffect(() => {
-		const userDataFromProfile = localData.userData.perfil;
+		const userDataFromProfile = userProfile.getPermission();
 		setprofile(userDataFromProfile);
 	}, []);
 

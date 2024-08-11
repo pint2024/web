@@ -233,7 +233,7 @@ export function ConteudoDetalhe() {
 					{AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID) && isAdminCentro && (
 						<>
 							{isRevisao && (
-								<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => openPopup()}>
+								<Botao variant={BUTTON_VARIANTS.PRIMARIO} onClick={() => openPopup()}>
 									Editar
 								</Botao>
 							)}

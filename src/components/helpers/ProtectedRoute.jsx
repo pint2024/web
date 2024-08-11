@@ -11,7 +11,7 @@ export function ProtectedRoute({ requiredPermission, element }) {
 	const localData = useGetCurrentUser();
 
 	useEffect(() => {
-		const userDataFromProfile = localData.userData.perfil;
+		const userDataFromProfile = userProfile.getPermission();
 		setprofile(userDataFromProfile);
 	}, []);
 

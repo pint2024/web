@@ -43,12 +43,6 @@ export class NavItems {
 			perfis: [ROLES.ADMIN.ID],
 		},
 		{
-			route: "/backoffice/estatisticas",
-			icone: "GraphUp",
-			label: "Estatísticas",
-			perfis: [ROLES.ADMIN.ID],
-		},
-		{
 			route: "/backoffice/denuncias",
 			icone: "ShieldSlashFill",
 			label: "Denuncias",
@@ -64,6 +58,12 @@ export class NavItems {
 			route: "/backoffice/centros",
 			icone: "Diagram2Fill",
 			label: "Centros",
+			perfis: [ROLES.ADMIN.ID],
+		},
+		{
+			route: "/backoffice/estatisticas",
+			icone: "GraphUp",
+			label: "Estatísticas",
 			perfis: [ROLES.ADMIN.ID],
 		},
 		{

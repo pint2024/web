@@ -62,7 +62,6 @@ export function ComboBox({
 							top: `${props.anchorEl?.getBoundingClientRect().bottom}px`,
 							left: `${props.anchorEl?.getBoundingClientRect().left}px`,
 							width: `${props.anchorEl?.offsetWidth}px`,
-							maxHeight: "200px",
 							overflow: "auto",
 						}}
 					/>
