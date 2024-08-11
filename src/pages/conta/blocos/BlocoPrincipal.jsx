@@ -115,8 +115,7 @@ export function BlocoPrincipal({ data, fetchData }) {
 				successLabel: "Inativar",
 				errorLabel: "Cancelar",
 			});
-		}
-		else {
+		} else {
 			conSet({
 				title: "Remover inativação do utilizador",
 				body: "",
@@ -159,14 +158,16 @@ export function BlocoPrincipal({ data, fetchData }) {
 									{DateUtils.MesNome_Ano(data.data_criacao)}
 								</Texto>
 							</div>
-							<div className="d-flex gap-3">
-								<div className="d-flex align-items-center gap-2">
-									<Texto className="d-flex gap-1 align-items-center">
-										<Icone iconName="Buildings" />
-										{data.utilizador_centro?.centro}
-									</Texto>
+							{data.utilizador_centro?.centro && (
+								<div className="d-flex gap-3">
+									<div className="d-flex align-items-center gap-2">
+										<Texto className="d-flex gap-1 align-items-center">
+											<Icone iconName="Buildings" />
+											{data.utilizador_centro?.centro}
+										</Texto>
+									</div>
 								</div>
-							</div>
+							)}
 							{listInteresses && (
 								<div className="d-flex align-items-center gap-2">
 									<Texto className="d-flex gap-1 align-items-center">
