@@ -48,7 +48,6 @@ export function IniciarSessao() {
 	};
 
 	const handleAfterLoginLogic = (res) => {
-		console.log(res);
 		if (res.status === 401) {
 			Notificacao("A sua conta foi inativada!", "info");
 		} else if (res.status === 422) {
@@ -64,10 +63,7 @@ export function IniciarSessao() {
 	};
 
 	const onSuccess = (response) => {
-		console.log("Login Success:", response);
 		const token = response.credential;
-		const userInfo = jwtDecode(token);
-		console.log("User Info:", userInfo);
 		handleGoogleLogin(token);
 	};
 

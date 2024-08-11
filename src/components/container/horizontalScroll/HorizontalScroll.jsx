@@ -25,8 +25,6 @@ export function HorizontalScroll({ header, children }) {
 			const scrollLeft = cardsWrapper.scrollLeft;
 			const maxScrollLeft = cardsWrapper.scrollWidth - cardsWrapper.clientWidth;
 
-			console.log(scrollLeft, maxScrollLeft);
-
 			if (maxScrollLeft <= 0) {
 				leftShadow.classList.add("esconde-sombra");
 				rightShadow.classList.remove("esconde-sombra");
@@ -56,6 +54,9 @@ export function HorizontalScroll({ header, children }) {
 		const scrollConteudo = cardsWrapperRef.current;
 
 		const handleWheel = (event) => {
+			const maxScrollLeft = scrollConteudo.scrollWidth - scrollConteudo.clientWidth;
+			if (scrollConteudo.scrollLeft === maxScrollLeft && maxScrollLeft !== 0 && event.deltaY >= 0) return;
+			if (scrollConteudo.scrollLeft === 0 && maxScrollLeft !== 0 && event.deltaY <= 0) return;
 			event.preventDefault();
 			scrollConteudo.scrollLeft += event.deltaY * 6;
 		};

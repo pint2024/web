@@ -12,8 +12,6 @@ export function ConteudoSeccoes({ id, titulo, icon, routeTo, data }) {
 		setdataConteudo(data);
 	}, [data]);
 
-	console.log(dataConteudo)
-
 	return (
 		<article className="mt-4">
 			<HorizontalScroll

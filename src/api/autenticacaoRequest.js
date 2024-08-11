@@ -11,7 +11,6 @@ export class AutenticacaoRequest {
 				method: "post",
 				data: { login, senha },
 			});
-			console.log("asd", response);
 			if (response?.token) {
 				AuthTokenUtils.set(response.token);
 				return response;
