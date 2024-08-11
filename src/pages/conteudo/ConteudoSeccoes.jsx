@@ -12,6 +12,8 @@ export function ConteudoSeccoes({ id, titulo, icon, routeTo, data }) {
 		setdataConteudo(data);
 	}, [data]);
 
+	console.log(dataConteudo)
+
 	return (
 		<article className="mt-4">
 			<HorizontalScroll
@@ -31,7 +33,8 @@ export function ConteudoSeccoes({ id, titulo, icon, routeTo, data }) {
 					<Post
 						id={item.id}
 						titulo={item.titulo}
-						topico={item.conteudo_subtopico.area}
+						subtopico={item.conteudo_subtopico.area}
+						topico={item.conteudo_subtopico.subtopico_topico.topico}
 						utilizador={item.conteudo_utilizador}
 						date={item.data_criacao}
 						imagem={item.imagem}

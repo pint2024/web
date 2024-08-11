@@ -28,7 +28,7 @@ export function CentroPainel() {
 	if (!dataCentro) return;
 
 	const rows = dataCentro.map((item) => ({
-		id: item.id, // Usando o ID como chave única
+		id: item.id,
 		centro: item.centro,
 	}));
 

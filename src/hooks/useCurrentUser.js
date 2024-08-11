@@ -6,7 +6,7 @@ import { useGetCurrentUser } from "./useGetCurrentUser";
 export const useCurrentUser = (shouldReturnIsValid = false) => {
 	const [userData, setUserData] = useState({});
 	const [isValid, setIsValid] = useState(false);
-	const [hasFetched, setHasFetched] = useState(false); // Novo
+	const [hasFetched, setHasFetched] = useState(false);
 	const localData = useGetCurrentUser();
 
 	useEffect(() => {

@@ -1,11 +1,11 @@
 .c-dropdown-content {
 	position: absolute;
 	background-color: var(--BACKGROUND);
-	border-radius: 20px;
+	border-radius: 5px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	right: 0%;
 	top: 120%;
-    white-space: nowrap;
+	white-space: nowrap;
 	width: auto;
 }
 
@@ -15,7 +15,13 @@
 
 .c-dropdown-text {
 	display: flex;
-    align-items: center; /* Alinha verticalmente */
-    justify-content: center; /* Alinha horizontalmente */
+	align-items: center;
+	justify-content: center;
 	padding: 10px 8px 10px 8px;
+}
+
+.c-dropdown-item:hover {
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.1);
 }

@@ -13,7 +13,7 @@ export function Classificacao({ value, handleChange }) {
 				}}
 				icon={<Icone iconName="StarFill" style={{ color: "gold", fontSize: "25px" }} />}
 				emptyIcon={<Icone iconName="StarFill" style={{ color: "gray", fontSize: "25px" }} />}
-				max={5} // Máximo de estrelas
+				max={5}
 			/>
 		</div>
 	);

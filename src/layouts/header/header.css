@@ -59,7 +59,6 @@ header * {
 	color: inherit;
 }
 
-/* menu on desktop */
 .desktop-nav .menus {
 	display: flex;
 	align-items: center;
@@ -128,7 +127,6 @@ header * {
 	background-color: var(--BLACK);
 }
 
-/* page content */
 .content {
 	max-width: 1200px;
 	margin: 0 auto;

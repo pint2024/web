@@ -40,6 +40,26 @@ export class AutenticacaoRequest {
 		}
 	}
 
+	static async externalLogin(token) {
+		try {
+			const response = await myAxios({
+				url: "/autenticacao/external-login",
+				method: "post",
+				data: { token: token },
+			});
+			if (response.token) {
+				AuthTokenUtils.set(response.token);
+				return response;
+			} else if (response.status === 422) {
+				return response;
+			}
+			return STATUS.ERRO;
+		} catch (error) {
+			Log.erro(error);
+			return STATUS.ERRO;
+		}
+	}
+
 	static async atualizarToken() {
 		try {
 			const token = AuthTokenUtils.get();

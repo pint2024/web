@@ -48,16 +48,16 @@ export function CaixaTexto({
 				sx={
 					isInversed
 						? {
-								input: { color: "white" }, // Text color for the input field
-								label: { color: "white" }, // Text color for the label
+								input: { color: "white" },
+								label: { color: "white" },
 								"& .MuiInput-underline:before": {
-									borderBottomColor: "white", // Bottom border before focus
+									borderBottomColor: "white",
 								},
 								"& .MuiInput-underline:hover:before": {
-									borderBottomColor: "white", // Bottom border on hover
+									borderBottomColor: "white",
 								},
 								"& .MuiInput-underline:after": {
-									borderBottomColor: "white", // Bottom border after focus
+									borderBottomColor: "white",
 								},
 						  }
 						: {}

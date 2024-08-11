@@ -92,7 +92,7 @@ export function DenunciaPainel() {
 	};
 
 	const rows = dataDenuncias.map((item) => ({
-		id: item.id, // Assumindo que o 'uniqueKey' é 'id'
+		id: item.id,
 		motivo: item.motivo,
 		data_criacao: item.data_criacao,
 		estado: item.denuncia_estado.estado,

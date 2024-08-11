@@ -8,25 +8,25 @@
 .AtividadeDetalhe {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 40px; /* Espaço entre as colunas, ajuste conforme necessário */
+	gap: 40px;
 }
 
 .conteudo-detalhe-conteudo {
-	flex: 3; /* Coluna principal ocupa mais espaço */
-	min-width: 500px; /* Ajuste conforme necessário */
+	flex: 3;
+	min-width: 500px;
 }
 
 .conteudo-detalhe-informacoes {
-	flex: 1; /* Coluna do menu ocupa menos espaço */
-	min-width: 200px; /* Ajuste conforme necessário */
-	max-width: 300px; /* Define um tamanho máximo para a coluna do menu */
+	flex: 1;
+	min-width: 200px;
+	max-width: 300px;
 }
 
 .imagem-container {
 	display: flex;
-	justify-content: center; /* Centro horizontalmente */
-	align-items: center; /* Centro verticalmente */
-	width: 100%; /* Garantir que a div ocupa 100% da largura disponível */
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 @media (max-width: 1200px) {

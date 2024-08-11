@@ -12,6 +12,11 @@ import { STATUS } from "data/constants";
 import { useLoading } from "hooks/useLoading";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "hooks/useInput";
+import { jwtDecode } from "jwt-decode";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { REGEX } from "data/regex";
+import { ApiRequest } from "api";
+import { GOOGLE_CLIENT_ID } from "data/credentials";
 
 export function IniciarSessao() {
 	const formLogin = useInput();
@@ -38,6 +43,11 @@ export function IniciarSessao() {
 
 		loading.start();
 		const res = await AutenticacaoRequest.entrar(formLogin.value, formSenha.value);
+		handleAfterLoginLogic(res);
+		loading.stop();
+	};
+
+	const handleAfterLoginLogic = (res) => {
 		if (res.status === 422) {
 			Notificacao("É necessário alterar a palavra-passe!", "info");
 			navigate(`/atualizar-passe/${res.data.token}`);
@@ -48,8 +58,27 @@ export function IniciarSessao() {
 			navigate("/");
 			window.location.reload();
 		}
+	};
+
+	const onSuccess = (response) => {
+		console.log("Login Success:", response);
+		const token = response.credential;
+		const userInfo = jwtDecode(token);
+		console.log("User Info:", userInfo);
+		handleGoogleLogin(token);
+	};
+
+	const handleGoogleLogin = async (token) => {
+		loading.start();
+		const response = await AutenticacaoRequest.externalLogin(token);
+		handleAfterLoginLogic(response);
 		loading.stop();
 	};
+
+	const onFailure = (error) => {
+		console.error("Login Failed:", error);
+	};
+
 	return (
 		<div className="container-fluid">
 			<div className="row d-flex justify-content-center align-items-center h-100">
@@ -95,9 +124,12 @@ export function IniciarSessao() {
 							<Botao onClick={handleLogin}>Entrar</Botao>
 
 							<div className="d-flex flex-row mt-3">
-								<a href="#!" className="m-3" style={{ color: "white" }}>
+								{/*<a href="#!" className="m-3" style={{ color: "white" }}>
 									<Icone iconName="Google" size={COMMON_SIZES.FS4} type={COMMON_TYPES.INVERSO} />
-								</a>
+								</a>*/}
+								<GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+									<GoogleLogin onSuccess={onSuccess} onError={onFailure} />
+								</GoogleOAuthProvider>
 								<a href="#!" className="m-3">
 									<Icone iconName="Facebook" size={COMMON_SIZES.FS4} type={COMMON_TYPES.INVERSO} />
 								</a>

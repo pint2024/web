@@ -1,5 +1,5 @@
 import React from "react";
-import "./loading.css"; // Vamos atualizar este ficheiro CSS
+import "./loading.css";
 import { Imagem } from "components";
 import { PROJETO_LOGO } from "data/constants";
 

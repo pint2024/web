@@ -5,13 +5,13 @@ import { styled } from "@mui/material/styles";
 const MeuTooltipPersonalizado = styled(({ className, ...props }) => <Tooltip {...props} classes={{ popper: className }} />)(
 	({ theme }) => ({
 		[`& .MuiTooltip-tooltip`]: {
-			backgroundColor: "#ffffff", // Cor de fundo sólido
-			color: "#000000", // Cor do texto
-			borderRadius: "4px", // Bordas arredondadas
-			boxShadow: theme.shadows[1], // Sombra para destacar o tooltip
+			backgroundColor: "#ffffff",
+			color: "#000000", 
+			borderRadius: "4px", 
+			boxShadow: theme.shadows[1],
 		},
 		[`& .MuiTooltip-arrow`]: {
-			color: "#ffffff", // Cor da seta combinando com o fundo do tooltip
+			color: "#ffffff",
 		},
 	})
 );

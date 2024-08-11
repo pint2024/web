@@ -1,17 +1,17 @@
 import { ImagemUtilizador } from "components/common/imagem/ImagemUtilizador";
-import { Texto, Imagem, Navegar, OverlayPerfil } from "components/index";
+import { Texto, Navegar, OverlayPerfil } from "components/index";
 import { Tooltips } from "components/overlay/tooltip/Tooltip";
 import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 
 export function PequenoPerfil({ id, imagem, nome, data }) {
 	return (
 		<>
-			<div style={{ display: "flex", alignItems: "center" }}>
+			<div style={{ display: "inline-flex", alignItems: "center" }}>
 				<div>
 					<ImagemUtilizador src={imagem} className="card-user-picture" />
 				</div>
-				<div className="col" style={{ marginLeft: "8px" }}>
-					<Tooltips trigger={<OverlayPerfil imagem={imagem} nome={nome} tag={data}/>}>
+				<div style={{ marginLeft: "8px" }}>
+					<Tooltips trigger={<OverlayPerfil imagem={imagem} nome={nome} tag={data} />}>
 						<Navegar to={`/conta/${id}`}>
 							<Texto>{nome}</Texto>
 						</Navegar>

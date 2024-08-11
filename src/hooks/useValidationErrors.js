@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Validador } from 'utils/validator'; // ajuste o caminho conforme necessário
+import { Validador } from 'utils/validator';
 
 export function useValidationErrors(schema) {
   const [erros, setErros] = useState({});

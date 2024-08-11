@@ -43,7 +43,7 @@ export function TopicosPainel() {
 	if (!dataTopicos) return;
 
 	const rows = dataTopicos.map((item) => ({
-		id: item.id, // Usando o ID como chave única
+		id: item.id,
 		topico: item.topico,
 		subtopico: item.subtopico_topico.map((subItem) => subItem.area).join(", "),
 	}));

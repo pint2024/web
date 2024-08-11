@@ -6,8 +6,8 @@ import { Icone } from "components/index";
 const MenuItems = ({ items, depthLevel }) => {
 	const [dropdown, setDropdown] = useState(false);
 	const location = useLocation();
-	const urlParams = location.pathname.split("/"); // Divide a URL em partes usando a barra como delimitador
-	const firstParam = urlParams[1]; // Obtém o primeiro parâmetro da URL
+	const urlParams = location.pathname.split("/");
+	const firstParam = urlParams[1];
 	let ref = useRef();
 
 	useEffect(() => {

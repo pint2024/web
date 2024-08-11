@@ -25,9 +25,7 @@ export function SectionedComboBox({
 }) {
 	const [value, setValue] = useState(null);
 
-	// Sincroniza o estado interno quando propValue muda
 	useEffect(() => {
-		// Encontra a opção correspondente ao valor primitivo
 		const matchedOption =
 			options.flatMap((section) => section.options).find((option) => option.value === propValue) || null;
 		setValue(matchedOption);
@@ -36,12 +34,12 @@ export function SectionedComboBox({
 	const handleSelectChange = (event, newValue) => {
 		setValue(newValue);
 		if (typeof handleChange === "function") {
-			handleChange(newValue?.value); // Retorna o valor primitivo
+			handleChange(newValue?.value);
 		}
 	};
 
 	const defaultProps = {
-		options: options.flatMap((section) => section.options), // Desconstrói as seções em uma lista de opções
+		options: options.flatMap((section) => section.options),
 		getOptionLabel: (option) => option.label || "",
 		groupBy: (option) => {
 			const section = options.find((section) => section.options.includes(option));

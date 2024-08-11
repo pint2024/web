@@ -17,7 +17,7 @@ import { BUTTON_VARIANTS, COMMON_SIZES, COMMON_TYPES } from "data/data";
 import "./conteudo-detalhe.css";
 import { ImagemModal } from "components/overlay/imagemModal/ImagemModal";
 import { useLoading } from "hooks/useLoading";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { DateUtils } from "utils/date.utils";
 import { LabelError } from "layouts/labelWarnings/LabelError";
 import { EnumConstants } from "data/enum.constants";
@@ -150,15 +150,6 @@ export function ConteudoDetalhe() {
 			{isRevisao && <LabelError texto="Em revisão..." />}
 			{isRejeitado && <LabelError texto="Conteudo foi rejeitado" />}
 			{isSubscribed && <LabelSucess texto="Você está inscrito!" />}
-			{/*Revisão
-			<div className="d-flex gap-2 mb-4">
-				<Botao variant={BUTTON_VARIANTS.SUCESSO} onClick={() => handleRevisaoAprovada()}>
-					Aceitar
-				</Botao>
-				<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={() => handleRevisaoRejeitada()}>
-					Rejeitar
-				</Botao>
-			</div>*/}
 			<div className="AtividadeDetalhe" id={dataDetalhe.id}>
 				<section className="conteudo-detalhe-conteudo">
 					<div className="conteudo-detalhe-info">
@@ -198,8 +189,22 @@ export function ConteudoDetalhe() {
 						<Rotulo info={dataDetalhe.conteudo_subtopico.subtopico_topico.topico} />
 						<Rotulo info={dataDetalhe.conteudo_subtopico.area} />
 					</div>
-					{dataDetalhe.preco && <div>Preço: {dataDetalhe.preco}</div>}
-					{dataDetalhe.classificacao && <div>Classificação: {dataDetalhe.classificacao}</div>}
+					{dataDetalhe.preco && (
+						<div>
+							<strong>Preço:</strong> {dataDetalhe.preco}
+						</div>
+					)}
+					{dataDetalhe.classificacao && (
+						<div>
+							<strong>Classificação:</strong> {dataDetalhe.classificacao}
+						</div>
+					)}
+					<Texto>
+						<strong>Endereço:</strong> {dataDetalhe.endereco}
+						<Link style={{ marginLeft: "10px" }} to={`/mapa/${dataDetalhe.id}`}>
+							<Icone iconName="PinMap" className="icon-hover align-self-center" />
+						</Link>
+					</Texto>
 					<div className="mt-3">
 						<Album id={id} />
 					</div>

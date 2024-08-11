@@ -1,23 +1,11 @@
 /// React
-import {
-	createBrowserRouter,
-	Route,
-	BrowserRouter as Router,
-	RouterProvider,
-	Routes,
-	useLocation,
-	useNavigate,
-} from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { useEffect } from "react";
 
 /// Componentes
-import { PageLayout } from "layouts/pageBase/PageLayout";
 import { PROJETO_NAME } from "data/constants";
 import { Rotas } from "routes";
 import { useCurrentUser } from "hooks/useCurrentUser";
-import { AccessDenied } from "layouts/errors/AccessDenied";
-import { useLoading } from "hooks/useLoading";
-import { useGetCurrentUser } from "hooks/useGetCurrentUser";
 import { AutenticacaoRequest } from "api";
 import { Notificacao } from "components";
 
@@ -35,7 +23,6 @@ function App() {
 			setTimeout(() => {
 				window.location.reload();
 			}, 1000);
-	
 		}
 	}, [userData]);
 

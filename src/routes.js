@@ -62,8 +62,23 @@ export class Rotas {
 			title: "Mapa",
 			section: "Mapa",
 			path: "/mapa",
-			element: <ProtectedRoute element={<Mapa />} requiredPermission={[ROLES.ADMIN.ID]} />,
 			perfis: [ROLES.ADMIN.ID],
+			children: [
+				{
+					title: "Mapa",
+					section: "Mapa",
+					path: "",
+					element: <ProtectedRoute element={<Mapa />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+				{
+					title: "Mapa",
+					section: "Mapa",
+					path: ":id",
+					element: <ProtectedRoute element={<Mapa />} requiredPermission={[ROLES.ADMIN.ID]} />,
+					perfis: [ROLES.ADMIN.ID],
+				},
+			],
 		},
 		{
 			title: "Calendário",
@@ -248,30 +263,4 @@ export class Rotas {
 			children: [...Rotas.MainRoutes, ...Rotas.CommonRoutes],
 		},
 	];
-
-	//static AuthenticationRoutes = [...this.AutenticacaoRoutes];
-
-	/*static FrontofficeRoutes = [
-		...this.InicialRoutes,
-		...this.ConteudoRoutes,
-		...this.CalendarioRoutes,
-		...this.UtilizadorRoutes,
-		...this.SobreRoutes,
-		...this.ErrosRoutes,
-	];*/
-
-	/*static RenderRoutes(user_role) {
-		const routesUtils = new RoutesUtils(user_role);
-		return routesUtils.criarRoutes([...this.FrontofficeRoutes]);
-	}
-
-	static RenderBackofficeRoutes(user_role) {
-		const routesUtils = new RoutesUtils(user_role);
-		return routesUtils.criarRoutes([...this.BackofficeRoutes]);
-	}
-
-	static RenderAuthenticationRoutes() {
-		const routesUtils = new RoutesUtils();
-		return routesUtils.criarRoutes([...this.AuthenticationRoutes]);
-	}*/
 }

@@ -11,7 +11,6 @@ import { Row } from "../Row";
 import { BUTTON_VARIANTS, COMMON_TYPES } from "data/data";
 import { MAP_CENTER_COORDS } from "data/constants";
 
-// Corrigir o ícone padrão do Leaflet que não é exibido corretamente com Webpack
 L.Icon.Default.mergeOptions({
 	iconRetinaUrl: markerIcon2x,
 	iconUrl: markerIcon,

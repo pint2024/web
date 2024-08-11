@@ -39,15 +39,10 @@ export async function myAxios({ url, method = "get", data = null, token = "", he
 			console.error(
 				`Erro na resposta do servidor: ${error.response.status} - ${error.response.data.message || error.message}`
 			);
-			/*throw new Error(
-				`Erro na resposta do servidor: ${error.response.status} - ${error.response.data.message || error.message}`
-			);*/
 		} else if (error.request) {
 			console.error(`Erro na requisição: Sem resposta do servidor. ${error.message}`);
-			/*throw new Error(`Erro na requisição: Sem resposta do servidor. ${error.message}`);*/
 		} else {
 			console.error(`Erro na configuração da requisição: ${error.message}`);
-			/*throw new Error(`Erro na configuração da requisição: ${error.message}`);*/
 		}
 	}
 }

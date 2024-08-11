@@ -14,9 +14,9 @@ aside {
 
 .drawer-item-label {
   font-size: 1.1rem !important;
-  white-space: nowrap; /* Não quebra a linha */
-  overflow: hidden; /* Oculta o texto que ultrapassa o contêiner */
-  text-overflow: ellipsis; /* Adiciona reticências (...) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-item:hover {

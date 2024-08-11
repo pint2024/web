@@ -10,11 +10,6 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "react-toastify/dist/ReactToastify.css";
 import "assets/styles/main.css";
 
-render(
-	<React.StrictMode>
-		<AppWrapper />
-	</React.StrictMode>,
-	document.getElementById("root")
-);
+render(<AppWrapper />, document.getElementById("root"));
 
 reportWebVitals();

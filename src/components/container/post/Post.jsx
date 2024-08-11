@@ -2,19 +2,17 @@ import { Link } from "react-router-dom";
 import { Texto, Imagem, PequenoPerfil, Rotulo } from "components/index";
 
 import "./post.css";
-import { COMMON_SIZES } from "data/data";
+import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import { DateUtils } from "utils/date.utils";
+import { Row } from "components/ui/Row";
 
-export function Post({ id, titulo, topico, utilizador, date, imagem }) {
+export function Post({ id, titulo, topico, subtopico, utilizador, date, imagem }) {
 	return (
 		<article className="Post" id={id}>
 			<Link to={`/conteudos/${id}`}>
-				<div className="card" style={{ width: "16rem" }}>
-					<Imagem src={imagem} className="card-img-top" style={{ height: "10rem", objectFit: "cover"  }} />
-					<div className="card-body">
-						<div className="mb-2">
-							<Rotulo info={topico} />
-						</div>
+				<div className="post-card">
+					<Imagem src={imagem} className="card-img-top" style={{ height: "10rem", objectFit: "cover" }} />
+					<div className="post-card-body">
 						<div className="mb-2">
 							<PequenoPerfil
 								id={utilizador.id}
@@ -23,9 +21,14 @@ export function Post({ id, titulo, topico, utilizador, date, imagem }) {
 								data={DateUtils.DataRelativa(date)}
 							/>
 						</div>
+
 						<Texto size={COMMON_SIZES.FS2} className="line-limit-text">
 							{titulo}
 						</Texto>
+						<Row className="mt-2 gap-2">
+							<Rotulo info={topico} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
+							<Rotulo info={subtopico} />
+						</Row>
 					</div>
 				</div>
 			</Link>

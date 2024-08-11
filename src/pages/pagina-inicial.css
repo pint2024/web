@@ -1,9 +1,5 @@
-/* HomePage.css */
-
 .home-container {
-	font-family: Arial, sans-serif;
 	text-align: center;
-	padding: 20px;
 }
 
 .hero-section {
@@ -12,6 +8,8 @@
 	background-position: center;
 	color: white;
 	padding: 60px 20px;
+	height: 300px;
+	border-radius: 5px;
 }
 
 .hero-section h1 {
@@ -54,13 +52,4 @@
 
 .feature-card p {
 	padding: 0 20px 20px;
-}
-
-.footer-section {
-	background: #333;
-	color: white;
-	padding: 10px 0;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
 }

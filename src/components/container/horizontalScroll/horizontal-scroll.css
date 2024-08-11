@@ -8,7 +8,7 @@
 }
 
 .h-scroll-icon:hover {
-	filter: brightness(3); /* Torna o ícone 20% mais claro */
+	filter: brightness(3);
 }
 
 .leftArrow {
@@ -38,5 +38,5 @@
 	overflow-x: scroll;
 	scroll-behavior: smooth;
 	overflow-y: hidden;
-	column-gap: 16px; /* Altera este valor para o espaçamento desejado */
+	column-gap: 16px;
 }

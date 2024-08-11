@@ -47,8 +47,8 @@ export function ComboBoxSections({ handleChange, items, placeholder = "Escolha u
 			zIndex: 1,
 			marginTop: "2px",
 			boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-			maxHeight: '300px', // Tamanho máximo da lista de opções
-            overflowY: 'auto' // Adiciona scroll vertical
+			maxHeight: '300px',
+            overflowY: 'auto'
 
 		},
 		section: {

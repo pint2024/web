@@ -7,7 +7,6 @@ export const ImageBox = ({ disabled, handleChange, value, allowMultiple = false 
 		const files = Array.from(event.target.files);
 		setSelectedFiles(files);
 		handleChange(files);
-		// Pode adicionar lógica adicional aqui para lidar com os ficheiros, como fazer upload.
 	};
 
 	return (

@@ -17,12 +17,12 @@ export class DateUtils {
 			data: dateObj,
 			ano: dateObj.getFullYear(),
 			mesNome: MONTH_NAME[dateObj.getMonth()],
-			mes: mes, // Mesmo que já esteja formatado com dois dígitos
+			mes: mes,
 			semana: WEEK_NAME[dateObj.getDay()],
-			dia: dia, // Formato com dois dígitos
-			hora: hora, // Formato com dois dígitos
-			minuto: minuto, // Formato com dois dígitos
-			segundo: segundo, // Formato com dois dígitos
+			dia: dia,
+			hora: hora,
+			minuto: minuto,
+			segundo: segundo,
 		};
 	}
 

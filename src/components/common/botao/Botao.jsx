@@ -2,13 +2,12 @@ import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { Texto } from "components/index";
 import { COMMON_SIZES } from "data/data";
-import "./botao.css"; // Custom styles for additional button styling
+import "./botao.css";
 
 export function Botao({ variant = "primario", type = "", route = null, className, children, ...props }) {
 	const validVariants = ["primario", "secundario", "sucesso", "perigo", "transparente"];
 	const isVariantValid = validVariants.includes(variant);
 
-	// Map your custom variants to MUI color scheme
 	const variantColorMap = {
 		primario: "primary",
 		secundario: "secondary",
@@ -23,9 +22,9 @@ export function Botao({ variant = "primario", type = "", route = null, className
 		<Button
 			type={type || "button"}
 			variant="contained"
-			color={variantColorMap[variant] || "default"} // Use default if variant is not mapped
+			color={variantColorMap[variant] || "default"}
 			className={buttonClasses}
-			sx={{ textTransform: "none" }} // Override default uppercase text transformation
+			sx={{ textTransform: "none" }}
 			{...props}
 		>
 			{children}
@@ -43,7 +42,7 @@ export function Botao({ variant = "primario", type = "", route = null, className
 						variant="contained"
 						color={variantColorMap[variant] || "default"}
 						className={buttonClasses}
-						sx={{ textTransform: "none" }} // Override default uppercase text transformation
+						sx={{ textTransform: "none" }}
 						{...props}
 					>
 						{children}
