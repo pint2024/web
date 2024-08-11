@@ -31,9 +31,10 @@ export async function myAxios({ url, method = "get", data = null, token = "", he
 		return response.data.data;
 	} catch (error) {
 		const status = error.response.status;
-		const serverMessage = error.response.data.message || error.message;
-		if (status === 422) {
-			return { status: status, message: serverMessage, data: error.response.data.data };
+		if (status === 401) {
+			return { status: status, ...error.response.data };
+		} else if (status === 422) {
+			return { status: status, ...error.response.data };
 		}
 		if (error.response) {
 			console.error(

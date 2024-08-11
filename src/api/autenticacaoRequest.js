@@ -6,11 +6,16 @@ import { AuthTokenUtils } from "../utils/authToken.utils";
 export class AutenticacaoRequest {
 	static async entrar(login, senha) {
 		try {
-			const response = await myAxios({ url: "/autenticacao/entrar", method: "post", data: { login, senha } });
-			if (response.token) {
+			const response = await myAxios({
+				url: "/autenticacao/entrar",
+				method: "post",
+				data: { login, senha },
+			});
+			console.log("asd", response);
+			if (response?.token) {
 				AuthTokenUtils.set(response.token);
 				return response;
-			} else if (response.status === 422) {
+			} else if (response.status === 422 || response.status === 401) {
 				return response;
 			}
 			return STATUS.ERRO;
@@ -47,10 +52,10 @@ export class AutenticacaoRequest {
 				method: "post",
 				data: { token: token },
 			});
-			if (response.token) {
+			if (response?.token) {
 				AuthTokenUtils.set(response.token);
 				return response;
-			} else if (response.status === 422) {
+			} else if (response.status === 422 || response.status === 401) {
 				return response;
 			}
 			return STATUS.ERRO;

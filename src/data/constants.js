@@ -39,3 +39,5 @@ export const DRAWER_OPEN_WIDTH = 60;
 export const DRAWER_CLOSE_WIDTH = 270;
 
 export const MAP_CENTER_COORDS = [40.657283, -7.914133];
+
+export const INATIVO_DELAY_TO_LOGOUT = 2000;

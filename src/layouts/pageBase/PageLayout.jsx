@@ -24,10 +24,11 @@ export function PageLayout() {
 								: `${DRAWER_OPEN_WIDTH}px`
 							: `0px`,
 						transition: "margin-left 0.3s ease",
+						paddingBottom: "20px", // Adicione esta linha
 					}}
 				>
 					<PageContent>
-						<Suspense fallback={<Loading/>}>
+						<Suspense fallback={<Loading />}>
 							<Outlet />
 						</Suspense>
 					</PageContent>

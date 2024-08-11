@@ -3,14 +3,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React, { useEffect } from "react";
 
 /// Componentes
-import { PROJETO_NAME } from "data/constants";
+import { INATIVO_DELAY_TO_LOGOUT, PROJETO_NAME } from "data/constants";
 import { Rotas } from "routes";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { AutenticacaoRequest } from "api";
 import { Notificacao } from "components";
+import { useLoading } from "hooks/useLoading";
 
 function App() {
 	const { userData, isValid, hasFetched } = useCurrentUser(true);
+	const loading = useLoading();
 
 	useEffect(() => {
 		document.title = PROJETO_NAME;
@@ -18,11 +20,13 @@ function App() {
 
 	useEffect(() => {
 		if (userData?.inativo) {
+			loading.start();
 			AutenticacaoRequest.terminar_sessao();
-			Notificacao("A sua conta foi inativa!", "error");
+			Notificacao("A sua conta foi inativada!", "error");
 			setTimeout(() => {
 				window.location.reload();
-			}, 1000);
+				loading.stop();
+			}, INATIVO_DELAY_TO_LOGOUT);
 		}
 	}, [userData]);
 

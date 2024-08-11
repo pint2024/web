@@ -48,7 +48,10 @@ export function IniciarSessao() {
 	};
 
 	const handleAfterLoginLogic = (res) => {
-		if (res.status === 422) {
+		console.log(res);
+		if (res.status === 401) {
+			Notificacao("A sua conta foi inativada!", "info");
+		} else if (res.status === 422) {
 			Notificacao("É necessário alterar a palavra-passe!", "info");
 			navigate(`/atualizar-passe/${res.data.token}`);
 		} else if (res === STATUS.ERRO || !res) {
