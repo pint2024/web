@@ -168,15 +168,17 @@ export function ConteudoDetalhe() {
 					<div className="conteudo-detalhe-descricao">
 						<Texto className="">{dataDetalhe.descricao}</Texto>
 					</div>
-					<div className="imagem-container">
-						<ImagemModal imagemSelecionada={dataDetalhe.imagem} description={dataDetalhe.titulo}>
-							<Imagem
-								src={dataDetalhe.imagem}
-								className="conteudo-detalhe-imagem"
-								style={{ objectFit: "cover" }}
-							/>
-						</ImagemModal>
-					</div>
+					{dataDetalhe.imagem && (
+						<div className="imagem-container">
+							<ImagemModal imagemSelecionada={dataDetalhe.imagem} description={dataDetalhe.titulo}>
+								<Imagem
+									src={dataDetalhe.imagem}
+									className="conteudo-detalhe-imagem"
+									style={{ objectFit: "cover" }}
+								/>
+							</ImagemModal>
+						</div>
+					)}
 					<div className="conteudo-detalhe-botoes"></div>
 				</section>
 				<section className="conteudo-detalhe-informacoes">

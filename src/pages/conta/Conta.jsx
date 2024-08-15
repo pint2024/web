@@ -1,14 +1,14 @@
-import { BlocoPrincipal } from "./blocos/BlocoPrincipal";
+import { ContaPrincipal } from "./blocos/ContaPrincipal";
 import { useEffect, useState } from "react";
 import { useLoading } from "hooks/useLoading";
 import { useParams } from "react-router-dom";
 import { ApiRequest } from "api/apiRequest";
-import { BlocoParticipacoes } from "./blocos/BlocoParticipacoes";
+import { ContaParticipacoes } from "./blocos/ContaParticipacoes";
+import { ContaConteudos } from "./blocos/ContaConteudos";
 
 export function Conta() {
 	const { id } = useParams();
 	const [dataConta, setdataConta] = useState(null);
-	const [dataParticipacao, setdataParticipacao] = useState(null);
 	const loading = useLoading();
 
 	useEffect(() => {
@@ -17,7 +17,6 @@ export function Conta() {
 
 	const fetchData = async () => {
 		loading.start();
-		await fetchParticipacaoData();
 		await fetchContaData();
 		loading.stop();
 	};
@@ -27,19 +26,17 @@ export function Conta() {
 		setdataConta(data);
 	};
 
-	const fetchParticipacaoData = async () => {
-		const data = await ApiRequest.listar("participante", { utilizador: id });
-		setdataParticipacao(data);
-	};
-
-	if (!dataConta || !dataParticipacao) return;
+	if (!dataConta) return;
 
 	return (
 		<div>
-			<BlocoPrincipal data={dataConta} fetchData={fetchData} />
-			{dataParticipacao.length > 0 && <div className="mt-3">
-				<BlocoParticipacoes data={dataParticipacao} />
-			</div>}
+			<ContaPrincipal data={dataConta} fetchData={fetchData} />
+			<div className="mt-3">
+				<ContaConteudos />
+			</div>
+			<div className="mt-3">
+				<ContaParticipacoes />
+			</div>
 		</div>
 	);
 }

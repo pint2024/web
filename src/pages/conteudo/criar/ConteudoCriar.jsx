@@ -156,6 +156,7 @@ export function ConteudoCriar() {
 		if (response) {
 			Notificacao("Conteudo criado!");
 			navigate("/");
+			window.location.reload();
 		}
 		loading.stop();
 	};
@@ -209,7 +210,7 @@ export function ConteudoCriar() {
 					disabled={true}
 				/>
 				<Botao className="mt-2" onClick={() => handleSelectPopup()} label="Endereço">
-					<Icone iconName="Search" type={COMMON_TYPES.INVERSO}/>
+					<Icone iconName="Search" type={COMMON_TYPES.INVERSO} />
 				</Botao>
 			</Row>
 			<ComboBox

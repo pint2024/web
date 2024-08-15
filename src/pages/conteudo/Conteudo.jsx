@@ -7,6 +7,7 @@ import { EnumConstants } from "data/enum.constants";
 import { ApiRequest } from "api/apiRequest";
 import { PaginaInicial } from "pages/PaginaInicial";
 import { LoadingAnimation } from "layouts/loading/LoadingAnimation";
+import { LoadingContent } from "layouts/loading/LoadingContent";
 
 export function Conteudo() {
 	const [dataConteudo, setdataConteudo] = useState(null);
@@ -23,9 +24,7 @@ export function Conteudo() {
 	return (
 		<div>
 			{!dataConteudo ? (
-				<div className="d-flex align-items-md-center justify-content-center">
-					<LoadingAnimation />
-				</div>
+				<LoadingContent />
 			) : (
 				<section>
 					<ConteudoSeccoes

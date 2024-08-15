@@ -6,7 +6,7 @@ import { COMMON_SIZES, COMMON_TYPES } from "data/data";
 import { DateUtils } from "utils/date.utils";
 import { Row } from "components/ui/Row";
 
-export function Post({ id, titulo, topico, subtopico, utilizador, date, imagem }) {
+export function Post({ id, titulo, topico, subtopico, tipo, utilizador, date, imagem }) {
 	return (
 		<article className="Post" id={id}>
 			<Link to={`/conteudos/${id}`}>
@@ -26,8 +26,9 @@ export function Post({ id, titulo, topico, subtopico, utilizador, date, imagem }
 							{titulo}
 						</Texto>
 						<Row className="mt-2 gap-2">
-							<Rotulo info={topico} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />
-							<Rotulo info={subtopico} />
+							{tipo && <Rotulo info={tipo} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />}
+							{topico && <Rotulo info={topico} backgroundColor={"gold"} textColor={COMMON_TYPES.PRIMARIO} />}
+							{subtopico && <Rotulo info={subtopico} />}
 						</Row>
 					</div>
 				</div>

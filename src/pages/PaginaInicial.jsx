@@ -5,11 +5,8 @@ import FriendsImagem from "assets/images/home/friends.png";
 import RecomendacoesImagem from "assets/images/home/recomendation.png";
 import { PROJETO_NAME } from "data/constants";
 import { Conteudo } from "./conteudo";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 
 export const PaginaInicial = () => {
-	
 	return (
 		<>
 			

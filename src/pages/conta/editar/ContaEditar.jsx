@@ -1,9 +1,8 @@
 import { ApiRequest } from "api";
-import { Botao, CaixaTexto, ImageBox, Imagem, Notificacao } from "components";
+import { Botao, CaixaTexto, ImageBox, Notificacao } from "components";
 import { useLoading } from "hooks/useLoading";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import UtilizadorDefault from "assets/images/placeholders/user-default.png";
 import { useCurrentUser } from "hooks/useCurrentUser";
 import { Validador } from "utils/validator";
 import { Utils } from "utils/utils";
@@ -72,7 +71,7 @@ export function ContaEditar() {
 		if (!validador.isValido(validacao)) return;
 
 		loading.start();
-		await ApiRequest.upload_user_image(userData.id, newImagens);
+		await ApiRequest.upload_user_image(id, newImagens);
 		Notificacao("Atualiza com sucesso!");
 		await fetchData();
 		loading.stop();
@@ -98,7 +97,7 @@ export function ContaEditar() {
 		if (!validador.isValido(validacao)) return;
 
 		loading.start();
-		await ApiRequest.atualizar("utilizador", userData.id, data);
+		await ApiRequest.atualizar("utilizador", id, data);
 		Notificacao("Atualiza com sucesso!");
 		await fetchData();
 		loading.stop();
