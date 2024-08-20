@@ -23,7 +23,7 @@ export function Sobre() {
 			</section>
 			<section className="mt-3">
 				<Texto size={5}>Download App</Texto>
-				<Navegar to={"/"}>Clique aqui</Navegar> para fazer o download.
+				<Navegar to={"https://drive.google.com/file/d/1nu9z0AykQEfgMGdRxUYOYnKbPP80pAqu/view?usp=drive_link"}>Clique aqui</Navegar> para fazer o download.
 			</section>
 			<section className="mt-3">
 				<Texto size={5}>PDF</Texto>

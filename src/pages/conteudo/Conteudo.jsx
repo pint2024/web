@@ -1,12 +1,7 @@
-import { ComboBoxSections } from "components/form/comboBox/ComboBoxSections";
-import { Icone, Botao, Dropdown } from "components/index";
 import { ConteudoSeccoes } from "./ConteudoSeccoes";
 import { useEffect, useState } from "react";
-import { useLoading } from "hooks/useLoading";
 import { EnumConstants } from "data/enum.constants";
 import { ApiRequest } from "api/apiRequest";
-import { PaginaInicial } from "pages/PaginaInicial";
-import { LoadingAnimation } from "layouts/loading/LoadingAnimation";
 import { LoadingContent } from "layouts/loading/LoadingContent";
 
 export function Conteudo() {
@@ -16,8 +11,8 @@ export function Conteudo() {
 		fetchConteudoData();
 	}, []);
 
-	const fetchConteudoData = async (body = {}) => {
-		const data = await ApiRequest.listar("conteudo/listagem", body);
+	const fetchConteudoData = async () => {
+		const data = await ApiRequest.listar("conteudo/listagem");
 		setdataConteudo(data);
 	};
 
