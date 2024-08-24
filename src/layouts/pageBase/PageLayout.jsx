@@ -15,18 +15,9 @@ export function PageLayout() {
 			<Header />
 			<main>
 				{!drawerIsHidden && <Drawer />}
-				<div
-					id="main-conteudo"
-					style={{
-						marginLeft: !drawerIsHidden
-							? drawerIsOpen
-								? `${DRAWER_CLOSE_WIDTH}px`
-								: `${DRAWER_OPEN_WIDTH}px`
-							: `0px`,
-						transition: "margin-left 0.3s ease",
-						paddingBottom: "20px", // Adicione esta linha
-					}}
-				>
+				<div id="main-conteudo" style={{ marginLeft: !drawerIsHidden ? drawerIsOpen 
+							? `${DRAWER_CLOSE_WIDTH}px` : `${DRAWER_OPEN_WIDTH}px`
+							: `0px`, transition: "margin-left 0.3s ease", paddingBottom: "20px" }}>
 					<PageContent>
 						<Suspense fallback={<Loading />}>
 							<Outlet />
@@ -34,9 +25,7 @@ export function PageLayout() {
 					</PageContent>
 				</div>
 			</main>
-			{/*<footer className="footer-height">
-				<Footer />
-			</footer>*/}
 		</div>
 	);
 }
+

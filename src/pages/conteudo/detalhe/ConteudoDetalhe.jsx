@@ -232,17 +232,15 @@ export function ConteudoDetalhe() {
 								Remover Participação
 							</Botao>
 						))}
+					{isRevisao && (
+						<Botao variant={BUTTON_VARIANTS.PRIMARIO} onClick={() => openPopup()}>
+							Editar
+						</Botao>
+					)}
 					{AuthorizorHelper.hasPermission(EnumConstants.ROLES.ADMIN.ID) && isAdminCentro && (
-						<>
-							{isRevisao && (
-								<Botao variant={BUTTON_VARIANTS.PRIMARIO} onClick={() => openPopup()}>
-									Editar
-								</Botao>
-							)}
-							<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={() => handleRevisionPopup()}>
-								Rever
-							</Botao>
-						</>
+						<Botao variant={BUTTON_VARIANTS.PERIGO} onClick={() => handleRevisionPopup()}>
+							Rever
+						</Botao>
 					)}
 					<Botao variant={BUTTON_VARIANTS.SECUNDARIO} onClick={() => handleCopyLink()}>
 						Copiar Link
