@@ -1,37 +1,39 @@
-import { Navegar, Texto } from "components";
+import { Texto } from "components";
 import { FilePresentation } from "components/common/filePresentation/FilePresentation";
+
+// Ficheiros
+import Video from "assets/microsite/Video.mp4";
+import Relatorio from "assets/microsite/Relatório.pdf";
+import Credenciais from "assets/microsite/Credenciais.pdf";
+import MobileApk from "assets/microsite/app-release.apk";
+
+// Icones
+import PDFIcon from "assets/microsite/icons/pdf-icon.png";
+import AndroidIcon from "assets/microsite/icons/android-icon.png";
+import WebsiteIcon from "assets/microsite/icons/website-icon.png";
+import CredenciaisIcon from "assets/microsite/icons/credenciais-icon.png";
+import MP4Icon from "assets/microsite/icons/mp4-icon.png";
 
 export function Sobre() {
 	return (
 		<article>
+			<Texto className="mt-4" size={5}>
+				Ficheiros
+			</Texto>
 			<section className="mt-3">
-				<Texto size={5}>Vídeo</Texto>
-				<iframe
-					width="560"
-					height="315"
-					src="https://www.youtube.com/embed/Tn6-PIqc4UM?si=FbJYqGK_ueqU-hqk"
-					title="YouTube video player"
-					frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-					referrerpolicy="strict-origin-when-cross-origin"
-					allowfullscreen
-				></iframe>
+				<FilePresentation path={"/"} displayName="Website" icon={WebsiteIcon} />
 			</section>
 			<section className="mt-3">
-				<Texto size={5}>Website</Texto>
-				<Navegar to={"/"}>Clique aqui</Navegar>.
+				<FilePresentation path={MobileApk} displayName="Aplicação móvel" icon={AndroidIcon} />
 			</section>
 			<section className="mt-3">
-				<Texto size={5}>Download App</Texto>
-				<Navegar to={"https://drive.google.com/file/d/1nu9z0AykQEfgMGdRxUYOYnKbPP80pAqu/view?usp=drive_link"}>Clique aqui</Navegar> para fazer o download.
+				<FilePresentation path={Relatorio} displayName="Relatório" icon={PDFIcon} />
 			</section>
 			<section className="mt-3">
-				<Texto size={5}>PDF</Texto>
-				<FilePresentation path="https://1drv.ms/w/s!AroeFDt5-jybtO1F37uX0yd6hhSrGA?e=PJl3vZ" displayName="Credencias" />
+				<FilePresentation path={Video} displayName="Vídeo" icon={MP4Icon} />
 			</section>
 			<section className="mt-3">
-				<Texto size={5}>Relatório</Texto>
-				<FilePresentation path="https://1drv.ms/w/s!AroeFDt5-jybtO1F37uX0yd6hhSrGA?e=PJl3vZ" displayName="Relatório" />
+				<FilePresentation path={Credenciais} displayName="Credenciais" icon={CredenciaisIcon} />
 			</section>
 		</article>
 	);

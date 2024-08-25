@@ -9,6 +9,7 @@ import { useLoading } from "hooks/useLoading";
 import { usePopupDialogo } from "hooks/usePopupDialogo";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Filtros } from "./Filtros";
 
 const columns = [
 	{ id: "motivo", label: "Motivo", minWidth: 170 },
@@ -22,6 +23,7 @@ const columns = [
 
 export function DenunciaPainel() {
 	const [dataDenuncias, setDataDenuncias] = useState([]);
+	const [filteredDenuncias, setFilteredDenuncias] = useState([]);
 	const loading = useLoading();
 	const puHandleRevisao = usePopupDialogo();
 
@@ -43,6 +45,7 @@ export function DenunciaPainel() {
 		loading.start();
 		const data = await ApiRequest.listar("denuncia");
 		setDataDenuncias(data);
+		setFilteredDenuncias(data);
 		loading.stop();
 	};
 
@@ -91,7 +94,7 @@ export function DenunciaPainel() {
 		puHandleRevisao.conOpen();
 	};
 
-	const rows = dataDenuncias.map((item) => ({
+	const rows = filteredDenuncias.map((item) => ({
 		id: item.id,
 		motivo: item.motivo,
 		data_criacao: item.data_criacao,
@@ -121,6 +124,7 @@ export function DenunciaPainel() {
 	return (
 		<>
 			{puHandleRevisao.conCreate()}
+			<Filtros data={dataDenuncias} filtered={filteredDenuncias} setFiltered={setFilteredDenuncias} />
 			<div className="d-flex justify-content-end mt-4">
 				<RefreshIcone handleRefresh={() => handleRefresh()} />
 			</div>

@@ -1,11 +1,10 @@
-import PDFIcon from "assets/images/utils/pdf-icon.png";
 import { Imagem, Navegar } from "components";
 
-export function FilePresentation({ path, displayName }) {
+export function FilePresentation({ path, displayName, icon }) {
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
-			<Imagem src={PDFIcon} style={{ marginRight: "8px" }} />
-			<Navegar to={path} target="_blank" download="Credenciais.pdf">
+			<Imagem src={icon} style={{ marginRight: "8px", width: "25px" }} />
+			<Navegar to={path} target="_blank" rel="noopener noreferrer">
 				{displayName}
 			</Navegar>
 		</div>
