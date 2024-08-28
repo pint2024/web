@@ -22,7 +22,7 @@ export class NavItems {
 			route: "/mapa",
 			icone: "MapFill",
 			label: "Mapa",
-			perfis: [ROLES.ADMIN.ID],
+			perfis: [ROLES.USER.ID],
 		},
 		{
 			route: "/backoffice/utilizadores",

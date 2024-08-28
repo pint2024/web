@@ -8,9 +8,10 @@ import { useLoading } from "hooks/useLoading";
 import L from "leaflet";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import { Icone, Texto } from "components";
+import { Icone, Seletor, Texto } from "components";
 import { Link, useParams } from "react-router-dom";
 import { Utils } from "utils/utils";
+import { useInput } from "hooks/useInput";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -23,13 +24,15 @@ L.Icon.Default.mergeOptions({
 export const Mapa = () => {
 	const [dataConteudo, setDataConteudo] = useState([]);
 	const [markers, setMarkers] = useState([]);
+	const formParticipando = useInput(false);
 	const loading = useLoading();
 	const mapRef = useRef(null);
 	const { id } = useParams();
 
 	useEffect(() => {
-		fetchData();
-	}, []);
+		if (formParticipando.value) fetchData();
+		else fetchDataUnfiltered();
+	}, [formParticipando.value]);
 
 	useEffect(() => {
 		if (dataConteudo && dataConteudo.length > 0) {
@@ -45,16 +48,25 @@ export const Mapa = () => {
 
 	const fetchData = async () => {
 		loading.start();
-		await fetchConteudo();
-		loading.stop();
-	};
-
-	const fetchConteudo = async () => {
 		try {
-			const data = await ApiRequest.listar("conteudo/simples");
+			const data = await ApiRequest.listar("conteudo/participando");
 			setDataConteudo(data);
 		} catch (error) {
 			console.error("Error fetching conteudo:", error);
+		} finally {
+			loading.stop();
+		}
+	};
+
+	const fetchDataUnfiltered = async () => {
+		loading.start();
+		try {
+			const data = await ApiRequest.listar("conteudo");
+			setDataConteudo(data);
+		} catch (error) {
+			console.error("Error fetching conteudo:", error);
+		} finally {
+			loading.stop();
 		}
 	};
 
@@ -92,6 +104,12 @@ export const Mapa = () => {
 
 	return (
 		<div id="mapa">
+			<Seletor
+				label="Participando"
+				className="mt-2"
+				handleChange={(e) => formParticipando.setValue(e)}
+				value={formParticipando.value}
+			/>
 			<MapContainer
 				center={MAP_CENTER_COORDS}
 				zoom={13}

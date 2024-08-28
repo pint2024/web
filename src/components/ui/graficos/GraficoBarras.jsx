@@ -27,7 +27,6 @@ export function GraficoBarras({ chartData, Nome }) {
 					plugins: {
 						title: {
 							display: true,
-							text: `${Nome}`,
 							font: {
 								weight: "bold",
 							},

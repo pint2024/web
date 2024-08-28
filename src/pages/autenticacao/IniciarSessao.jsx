@@ -123,14 +123,11 @@ export function IniciarSessao() {
 							<Botao onClick={handleLogin}>Entrar</Botao>
 
 							<div className="d-flex flex-row mt-3">
-								{/*<a href="#!" className="m-3" style={{ color: "white" }}>
-									<Icone iconName="Google" size={COMMON_SIZES.FS4} type={COMMON_TYPES.INVERSO} />
-								</a>*/}
 								<GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
 									<GoogleLogin onSuccess={onSuccess} onError={onFailure} />
 								</GoogleOAuthProvider>
 								<a href="#!" className="m-3">
-									<Icone iconName="Facebook" size={COMMON_SIZES.FS4} type={COMMON_TYPES.INVERSO} />
+									<Icone iconName="Github" size={COMMON_SIZES.FS4} type={COMMON_TYPES.INVERSO} />
 								</a>
 							</div>
 						</div>

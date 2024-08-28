@@ -4,43 +4,46 @@ import { useLoading } from "hooks/useLoading";
 import { LoadingAnimation } from "layouts/loading/LoadingAnimation";
 import { useEffect, useState } from "react";
 
-export function AreaGrafico() {
-	const [dataArea, setdataArea] = useState(null);
+export function ConteudoComentariosGrafico() {
+	const [data, setdata] = useState(null);
 	const [graphData, setgraphData] = useState(null);
 
 	useEffect(() => {
-		handleFetchArea();
+		handleFetch();
 	}, []);
 
 	useEffect(() => {
-		if (dataArea) handleFormatData();
-	}, [dataArea]);
+		if (data) handleFormatData();
+	}, [data]);
 
 	useEffect(() => {
 		if (graphData) chartData();
 	}, [graphData]);
 
 	const handleFormatData = () => {
-		const contadorTopicos = {};
-		dataArea.forEach((item) => {
-			contadorTopicos[item.id] = {
-				numConteudos: item.conteudo_subtopico ? item.conteudo_subtopico.length : 0,
-				area: item.area,
-			};
+		const contadorComentarios = {};
+		data.forEach((item) => {
+			if (item?.comentario_conteudo && item.comentario_conteudo.length > 0) {
+				contadorComentarios[item.id] = {
+					numComentarios: item.comentario_conteudo.length,
+					conteudo: item.titulo,
+				};
+			}
 		});
-		setgraphData(contadorTopicos);
+		console.log(contadorComentarios);
+		setgraphData(contadorComentarios);
 	};
 
-	const handleFetchArea = async () => {
-		const data = await ApiRequest.listar("subtopico");
-		setdataArea(data);
+	const handleFetch = async () => {
+		const data = await ApiRequest.listar("conteudo");
+		setdata(data);
 	};
 
 	const dataNumContent = () => {
 		let label = [];
 		if (graphData) {
 			for (let item of Object.values(graphData)) {
-				label.push(item.numConteudos);
+				label.push(item.numComentarios);
 			}
 		}
 		return label;
@@ -50,7 +53,7 @@ export function AreaGrafico() {
 		let label = [];
 		if (graphData) {
 			for (let item of Object.values(graphData)) {
-				label.push(item.area);
+				label.push(item.conteudo);
 			}
 		}
 		return label;
@@ -61,7 +64,7 @@ export function AreaGrafico() {
 			labels: labelArea(),
 			datasets: [
 				{
-					label: "Quantidade de conteudos por area",
+					label: "Quantidade de comentarios por conteudo",
 					data: dataNumContent(),
 					fill: false,
 					borderColor: "rgb(75, 192, 192)",
@@ -74,7 +77,7 @@ export function AreaGrafico() {
 
 	return (
 		<>
-			{!dataArea || !graphData ? (
+			{!data || !graphData ? (
 				<div className="d-flex align-items-md-center justify-content-center">
 					<LoadingAnimation />
 				</div>

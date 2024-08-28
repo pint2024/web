@@ -10,10 +10,11 @@ import { EnumConstants } from "data/enum.constants";
 import { useConfirmation } from "hooks/useConfirmation";
 import { usePopup } from "hooks/usePopup";
 import { Link } from "react-router-dom";
-import { Icone, Navegar, Texto } from "components";
+import { Icone, Navegar, Seletor, Texto } from "components";
 import { ApiRequest } from "api/apiRequest";
 
 import "./calendario.css";
+import { useInput } from "hooks/useInput";
 
 export function Calendario() {
 	const [firstDay, setfirstDay] = useState(1);
@@ -21,27 +22,40 @@ export function Calendario() {
 	const loading = useLoading();
 	const { conCreate, conSet, conClear, conOpen } = useConfirmation();
 	const { puCreate, puSet, puClear, puOpen } = usePopup();
+	const formParticipando = useInput(false);
 
 	useEffect(() => {
-		const fetchConteudoData = async () => {
-			loading.start();
-			try {
-				const data = await ApiRequest.listar("conteudo/participando", {
-					tipo: [EnumConstants.CONTEUDO_TIPOS.ATIVIDADE.ID, EnumConstants.CONTEUDO_TIPOS.EVENTO.ID],
-				});
-				setdataEventos(data);
-			} catch (error) {
-				console.error("Erro ao buscar eventos:", error);
-			} finally {
-				loading.stop();
-			}
-		};
-		fetchConteudoData();
-	}, []);
+		if (formParticipando.value) fetchConteudoData();
+		else fetchConteudoDataUnfiltered();
+	}, [formParticipando.value]);
 
 	if (!dataEventos) {
 		return <div>Carregando...</div>;
 	}
+
+	const fetchConteudoData = async () => {
+		loading.start();
+		try {
+			const data = await ApiRequest.listar("conteudo/participando");
+			setdataEventos(data);
+		} catch (error) {
+			console.error("Erro ao buscar eventos:", error);
+		} finally {
+			loading.stop();
+		}
+	};
+
+	const fetchConteudoDataUnfiltered = async () => {
+		loading.start();
+		try {
+			const data = await ApiRequest.listar("conteudo");
+			setdataEventos(data);
+		} catch (error) {
+			console.error("Erro ao buscar eventos:", error);
+		} finally {
+			loading.stop();
+		}
+	};
 
 	const formatEvents = () => {
 		if (!dataEventos) return [];
@@ -73,12 +87,7 @@ export function Calendario() {
 	};
 
 	const handleDateDoubleClick = (info) => {
-		conSet({
-			title: "ola",
-			body: "adeus",
-			onSuccess: null,
-		});
-		conOpen();
+		
 	};
 
 	const setupPopup = (data) => {
@@ -122,6 +131,12 @@ export function Calendario() {
 		<div className="fullcalendar-calendario">
 			{conCreate()}
 			{puCreate()}
+			<Seletor
+				label="Participando"
+				className="mt-2"
+				handleChange={(e) => formParticipando.setValue(e)}
+				value={formParticipando.value}
+			/>
 			<div className="calendario-contentor">
 				<FullCalendar
 					plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
