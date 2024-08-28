@@ -10,7 +10,7 @@ import { CaixaTexto, Navegar, Notificacao } from "components/index";
 import { BUTTON_VARIANTS } from "data/data";
 import { STATUS } from "data/constants";
 import { useLoading } from "hooks/useLoading";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "hooks/useInput";
 import { jwtDecode } from "jwt-decode";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
@@ -53,6 +53,7 @@ export function IniciarSessao() {
 		} else if (res.status === 422) {
 			Notificacao("É necessário alterar a palavra-passe!", "info");
 			navigate(`/atualizar-passe/${res.data.token}`);
+			window.location.reload();
 		} else if (res === STATUS.ERRO || !res) {
 			Notificacao("Os dados estão inválidos!", "error");
 		} else {
@@ -126,9 +127,6 @@ export function IniciarSessao() {
 								<GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
 									<GoogleLogin onSuccess={onSuccess} onError={onFailure} />
 								</GoogleOAuthProvider>
-								<a href="#!" className="m-3">
-									<Icone iconName="Github" size={COMMON_SIZES.FS4} type={COMMON_TYPES.INVERSO} />
-								</a>
 							</div>
 						</div>
 					</div>

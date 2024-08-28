@@ -31,6 +31,7 @@ export function EsqueceuPasse() {
 		} else {
 			Notificacao("Foi-lhe enviado um email!");
 			navigate("/iniciar-sessao");
+			window.location.reload();
 		}
 
 		loading.stop();
