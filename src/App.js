@@ -15,6 +15,11 @@ function App() {
 	const loading = useLoading();
 
 	useEffect(() => {
+		if (hasFetched) loading.stop();
+		else loading.start();
+	}, [hasFetched]);
+
+	useEffect(() => {
 		document.title = PROJETO_NAME;
 	}, []);
 
