@@ -11,7 +11,7 @@ export function NotFound() {
 				</Texto>
 				<Texto size={COMMON_SIZES.FS6}>Pagina não foi encontrada</Texto>
 			</div>
-			<p className="lead">O que estas aqui a fazer mongoloide? Vai po caralho!</p>
+			<p className="lead">Está página não existe!</p>
 		</section>
 	);
 }

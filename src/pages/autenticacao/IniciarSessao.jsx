@@ -25,6 +25,13 @@ export function IniciarSessao() {
 	const navigate = useNavigate();
 	const [erros, setErros] = useState({});
 
+	const GetSaudacao = () => {
+		const hora = new Date().getHours();
+		if (hora < 12) return "Bom dia";
+		else if (hora < 18) return "Boa tarde";
+		else return "Boa noite";
+	};
+
 	const handleLogin = async () => {
 		const esquema = {
 			login: { required: true },
@@ -85,6 +92,9 @@ export function IniciarSessao() {
 				<div className="col-12">
 					<div className="cartao bg-dark text-white my-5 mx-auto" style={{ borderRadius: "1rem", maxWidth: "400px" }}>
 						<div className="cartao-body p-5 d-flex flex-column align-items-center mx-auto w-100">
+							<Texto type={COMMON_TYPES.INVERSO} size={COMMON_SIZES.FS4} className="text-white-50 mb-4">
+								{GetSaudacao()}
+							</Texto>
 							<Texto type={COMMON_TYPES.INVERSO} size={COMMON_SIZES.FS5} className="mb-2 text-uppercase">
 								Iniciar Sessão
 							</Texto>

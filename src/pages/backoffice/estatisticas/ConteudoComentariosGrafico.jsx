@@ -30,7 +30,6 @@ export function ConteudoComentariosGrafico() {
 				};
 			}
 		});
-		console.log(contadorComentarios);
 		setgraphData(contadorComentarios);
 	};
 

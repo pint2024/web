@@ -155,8 +155,6 @@ export function ConteudoCriar() {
 		const response = await ApiRequest.criar_with_files("conteudo", data, "imagem");
 		if (response) {
 			Notificacao("Conteudo criado!");
-			console.log("oi");
-			console.log(response);
 			navigate(`/conteudos/${response.conteudo.id}`);
 			window.location.reload();
 		}
